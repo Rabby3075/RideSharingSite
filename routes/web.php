@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('customer.registration');
-});
+Route::get('/',[CustomerController::class, 'customerCreate'])->name('customerRegistration');
+Route::post('/submit',[CustomerController::class, 'customerCreateSubmit'])->name('customerCreateSubmit');
