@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/',[CustomerController::class, 'customerCreate'])->name('customerRegistration');
-Route::post('/submit',[CustomerController::class, 'customerCreateSubmit'])->name('customerCreateSubmit');
+// --- Customer route ---
+Route::get('/customerRegistration',[CustomerController::class, 'customerCreate'])->name('customerRegistration');
+Route::post('/customerRegistrationSubmit',[CustomerController::class, 'customerCreateSubmit'])->name('customerCreateSubmit');
+Route::get('/customerLogin', function () {return view('customer.login');})->name('customerLogin');
+Route::post('/customerLoginSubmit',[CustomerController::class, 'customerLoginSubmit'])->name('customerLoginSubmit');
+//--Customer route end ---

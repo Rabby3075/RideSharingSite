@@ -38,7 +38,7 @@
                                 </div>
                          @endif
 
-                        
+
 
                             <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary"><i
@@ -89,7 +89,7 @@
                                     <input type="submit" class="btn btn-primary" value="Sign Up" >
                                 </div>
                                 <p class="text-center mt-3">Already have an account?
-                                    <span class="text-primary"><a href="#">Sign in</a></span>
+                                    <span class="text-primary"><a href="{{route('customerLogin')}}">Sign in</a></span>
 
                                 </p>
 

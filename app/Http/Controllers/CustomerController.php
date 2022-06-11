@@ -131,4 +131,20 @@ class CustomerController extends Controller
     }
 
     }
+
+    public function customerLoginSubmit(Request $request){
+        $validate = $request->validate([
+            'username'=>'required',
+            'password'=>'required'
+        ]
+    );
+    $loginCheck = Customer::where('username',$request->username)->where('password',$request->password)->first();
+    if($loginCheck){
+        return $request;
+    }
+    else{
+        return redirect()->route('customerLogin');
+    }
+    }
+
 }
