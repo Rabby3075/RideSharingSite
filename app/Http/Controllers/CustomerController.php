@@ -95,7 +95,8 @@ class CustomerController extends Controller
             'email'=>'required|email',
             'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:11',
             'username'=>'required|min:5',
-            'password'=>'required|min:8|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{5,20}$/'
+            'password'=>'required|min:8|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{5,20}$/',
+            'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg'
         ],
         ['password.regex'=>"Please use atleast 1 uppercase, 1 lowercase, 1 special charactee, 1 number"]
     );
@@ -106,12 +107,12 @@ class CustomerController extends Controller
     $userCheck = Customer::where('username',$request->username)->first();
     if($userCheck){
 
-        return back();
+        return redirect()->back()->with('failed', 'Username already exist');
     }
     else{
       $image = $request->image;
       $nameImage = $image->getClientOriginalName();
-      $image->storeAs('public/images',$nameImage);
+
       $customer = new Customer();
         $customer->name = $request->name;
         $customer->dob = $request->dob;
@@ -123,10 +124,11 @@ class CustomerController extends Controller
         $customer->image = $nameImage;
         $result = $customer->save();
         if($result){
-            return $request;
+            $image->storeAs('public/images',$nameImage);
+            return redirect()->back()->with('success', 'Registration Done successfully');
         }
         else{
-            return redirect()->route('customerRegistration');
+            return redirect()->back()->with('failed', 'Registration Failed');
         }
     }
 
@@ -143,7 +145,7 @@ class CustomerController extends Controller
         return $request;
     }
     else{
-        return redirect()->route('customerLogin');
+        return redirect()->back()->with('failed', 'Invalid username or password');
     }
     }
 

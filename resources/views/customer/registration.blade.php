@@ -39,6 +39,21 @@
                          @endif
 
 
+                         @if (\Session::has('failed'))
+                         <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        {!! \Session::get('failed') !!}
+                        </div>
+                        @endif
+
+                        @if (\Session::has('success'))
+                         <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        {!! \Session::get('success') !!}
+                        </div>
+                        @endif
+
+
 
                             <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary"><i
