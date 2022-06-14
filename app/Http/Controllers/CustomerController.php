@@ -142,6 +142,7 @@ class CustomerController extends Controller
     );
     $loginCheck = Customer::where('username',$request->username)->where('password',$request->password)->first();
     if($loginCheck){
+        $request->session()->put('id',$loginCheck->id);
         $request->session()->put('name',$loginCheck->name);
         $request->session()->put('dob',$loginCheck->dob);
         $request->session()->put('phone',$loginCheck->phone);
@@ -149,6 +150,7 @@ class CustomerController extends Controller
         $request->session()->put('email',$loginCheck->email);
         $request->session()->put('password',$loginCheck->password);
         $request->session()->put('image',$loginCheck->image);
+        $request->session()->put('rating',$loginCheck->rating);
         return  redirect()->route('customerDash');
     }
     else{
