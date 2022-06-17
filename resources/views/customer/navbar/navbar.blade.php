@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md bg-white navbar-white sticky-top shadow-sm">
+<nav class="navbar navbar-expand-md bg-light navbar-light sticky-top shadow-sm">
 <div class="container">
 <a class="navbar-brand" href="{{route('customerDash')}}">
    <h3 class="text-danger logo">Your</h3><h3 class="text-dark logo">Ride</h3>
@@ -27,7 +27,7 @@
           <a class="dropdown-item" href="#"><i class="fa-solid fa-pen-to-square me-2"></i>Change Password</a>
          </li>
          <li>
-          <a class="dropdown-item" href="#"><i class="bi bi-bell-fill me-2"></i>Notification</a>
+          <a class="dropdown-item" href="#"><i class="bi bi-cash-stack me-2"></i>Apply Promo code</a>
          </li>
          <div class="dropdown-divider"></div>
          <li class="logout">

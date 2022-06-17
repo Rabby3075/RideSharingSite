@@ -19,7 +19,7 @@
       ></a>
 
       <!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/Rabby3075/RideSharingSite" role="button"
         ><i class="fab fa-github"></i
       ></a>
     </section>

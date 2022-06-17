@@ -18,12 +18,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('dob');
             $table->string('phone');
+            $table->string('address');
             $table->string('username');
             $table->string('email');
             $table->string('password');
             $table->string('image');
             $table->string('rating');
-            $table->timestamps();
+            //$table->timestamps();
         });
     }
 

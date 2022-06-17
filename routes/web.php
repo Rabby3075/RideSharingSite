@@ -17,6 +17,7 @@ Route::post('/customerLoginSubmit',[CustomerController::class, 'customerLoginSub
 Route::get('/customerDashboard/home', function () {return view('customer.home');})->name('customerDash')->middleware('customerValid');
 Route::get('/customerDashboard/logout',[CustomerController::class, 'logout'])->name('customerLogout')->middleware('customerValid');
 Route::get('/customerDashboard/viewProfile', function () {return view('customer.updateProfile');})->name('customerProfile')->middleware('customerValid');
+Route::post('/customerEdit',[CustomerController::class, 'customerEdit'])->name('customerEdit');
 //--Customer route end ---
 
 
