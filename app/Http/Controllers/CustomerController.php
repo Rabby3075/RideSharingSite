@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
@@ -89,11 +90,12 @@ class CustomerController extends Controller
     }
     public function customerCreateSubmit(Request $request){
 
-        $validate = $request->validate([
+      $validate = $request->validate([
             "name"=>"required",
             'dob'=>'required|date',
             'email'=>'required|email',
             'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:11',
+            'address'=>'required',
             'username'=>'required|min:5',
             'password'=>'required|min:8|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{5,20}$/',
             'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg'
@@ -117,9 +119,10 @@ class CustomerController extends Controller
         $customer->name = $request->name;
         $customer->dob = $request->dob;
         $customer->phone = $request->phone;
+        $customer->address = $request->address;
         $customer->username = $request->username;
         $customer->email = $request->email;
-        $customer->password = $request->password;
+        $customer->password = md5($request->password);
         $customer->rating = $rating;
         $customer->image = $nameImage;
         $result = $customer->save();
@@ -140,12 +143,15 @@ class CustomerController extends Controller
             'password'=>'required'
         ]
     );
-    $loginCheck = Customer::where('username',$request->username)->where('password',$request->password)->first();
+
+    $loginCheck = Customer::where('username',$request->username)->where( 'password',md5($request->password))->first();
+
     if($loginCheck){
         $request->session()->put('id',$loginCheck->id);
         $request->session()->put('name',$loginCheck->name);
         $request->session()->put('dob',$loginCheck->dob);
         $request->session()->put('phone',$loginCheck->phone);
+        $request->session()->put('address',$loginCheck->address);
         $request->session()->put('username',$loginCheck->username);
         $request->session()->put('email',$loginCheck->email);
         $request->session()->put('password',$loginCheck->password);
@@ -162,11 +168,63 @@ class CustomerController extends Controller
         session()->forget('name');
         session()->forget('dob');
         session()->forget('phone');
+        session()->forget('address');
         session()->forget('username');
         session()->forget('email');
         session()->forget('password');
         session()->forget('image');
         return redirect()->route('customerLogin');
+    }
+
+    public function customerEdit(Request $request){
+       $validate = $request->validate([
+            "name"=>"required",
+            'dob'=>'required|date',
+            'email'=>'required|email',
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:11',
+            'address'=>'required',
+            'image'=> 'image|mimes:jpeg,png,jpg,gif,svg'
+
+
+        ],
+        ['password.regex'=>"Please use atleast 1 uppercase, 1 lowercase, 1 special character, 1 number"]
+    );
+if($request->hasfile('image')){
+    $image = $request->file('image');
+    $nameImage = $image->getClientOriginalName();
+    $image->storeAs('public/images',$nameImage);
+}
+else{
+    $nameImage = $request->session()->get('image');
+}
+
+
+
+
+
+    $user = Customer::where('username',$request->session()->get('username'))->first();
+    $user->name = $request->name;
+    $request->session()->put('name',$request->name);
+    $user->dob = $request->dob;
+    $request->session()->put('dob',$request->dob);
+    $user->email = $request->email;
+    $request->session()->put('email',$request->email);
+    $user->phone = $request->phone;
+    $request->session()->put('phone',$request->phone);
+    $user->address = $request->address;
+    $request->session()->put('address',$request->address);
+    $user->image = $nameImage;
+    $request->session()->put('image',$nameImage);
+
+    $result = $user->save();
+    if($result){
+
+        return redirect()->back()->with('success', 'Profile Update successfully');
+    }
+    else{
+        return redirect()->back()->with('failed', 'Registration Failed');
+    }
+
     }
 
 }

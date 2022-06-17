@@ -17,6 +17,7 @@ Route::post('/customerLoginSubmit',[CustomerController::class, 'customerLoginSub
 Route::get('/customerDashboard/home', function () {return view('customer.home');})->name('customerDash')->middleware('customerValid');
 Route::get('/customerDashboard/logout',[CustomerController::class, 'logout'])->name('customerLogout')->middleware('customerValid');
 Route::get('/customerDashboard/viewProfile', function () {return view('customer.updateProfile');})->name('customerProfile')->middleware('customerValid');
+Route::post('/customerEdit',[CustomerController::class, 'customerEdit'])->name('customerEdit');
 //--Customer route end ---
 
 
@@ -30,3 +31,13 @@ Route::get ('adminProfile',[AdminController::class,'adminProfile'])->name('admin
 Route::get ('changePicture',[AdminController::class,'changePicture'])->name('changePicture');
 
 //--Admin route end--
+
+//--Manager rout--
+Route::get('/managerRegistration', function () {
+      return view('manager.registration');
+  });
+Route::get('/managerLogin', function () {
+      return view('manager.login');
+  });
+
+//--Manager rout end--

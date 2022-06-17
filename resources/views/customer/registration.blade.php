@@ -75,6 +75,14 @@
                                     <input type="tel" class="form-control" name="phone" id="phone" value="{{old('phone')}}" placeholder="Phone Number"><br>
 
                                 </div>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text bg-primary"><i
+                                            class="bi bi-geo-alt text-white"></i></span>
+                                    <input type="tel" class="form-control" name="address" id="address" value="{{old('address')}}" placeholder="Your Address"><br>
+
+                                </div>
+
                                 <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary"><i
                                             class="bi bi-person-plus-fill text-white"></i></span>
