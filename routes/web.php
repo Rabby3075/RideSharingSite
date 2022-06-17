@@ -29,3 +29,13 @@ Route::get('/updateAdminProfile',[AdminController::class, 'updateAdminProfile'])
 Route::post('/updateAdminProfile',[AdminController::class, 'updateSubmitted'])->name('updateProfile');
 
 //--Admin route end--
+
+//--Manager rout--
+Route::get('/managerRegistration', function () {
+      return view('manager.registration');
+  });
+Route::get('/managerLogin', function () {
+      return view('manager.login');
+  });
+
+//--Manager rout end--
