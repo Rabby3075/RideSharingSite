@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RiderController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -41,3 +42,12 @@ Route::get('/managerLogin', function () {
   });
 
 //--Manager rout end--
+
+
+//--Rider route--
+Route::get('/riderLogin', function () {return view('rider.login');})->name('riderLogin');
+Route::post('/riderLogin',[RiderController::class, 'riderLoginSubmit'])->name('riderLogin');
+Route::get('/riderRegistration', function () {return view('rider.registration');})->name('riderRegistration');
+Route::post('/riderRegistration',[RiderController::class, 'riderCreateSubmit'])->name('riderRegistration');
+
+//--Rider route end--
