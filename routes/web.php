@@ -17,7 +17,9 @@ Route::post('/customerLoginSubmit',[CustomerController::class, 'customerLoginSub
 Route::get('/customerDashboard/home', function () {return view('customer.home');})->name('customerDash')->middleware('customerValid');
 Route::get('/customerDashboard/logout',[CustomerController::class, 'logout'])->name('customerLogout')->middleware('customerValid');
 Route::get('/customerDashboard/viewProfile', function () {return view('customer.updateProfile');})->name('customerProfile')->middleware('customerValid');
-Route::post('/customerEdit',[CustomerController::class, 'customerEdit'])->name('customerEdit');
+Route::post('/customerEdit',[CustomerController::class, 'customerEdit'])->name('customerEdit')->middleware('customerValid');
+Route::get('/customerDashboard/changePassword', function () {return view('customer.changePass');})->name('passwordChanging')->middleware('customerValid');
+Route::post('/customerPasswordChange',[CustomerController::class, 'cpass'])->name('passwordChangingRequest')->middleware('customerValid');
 //--Customer route end ---
 
 

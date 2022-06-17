@@ -186,8 +186,7 @@ class CustomerController extends Controller
             'image'=> 'image|mimes:jpeg,png,jpg,gif,svg'
 
 
-        ],
-        ['password.regex'=>"Please use atleast 1 uppercase, 1 lowercase, 1 special character, 1 number"]
+        ]
     );
 if($request->hasfile('image')){
     $image = $request->file('image');
@@ -224,6 +223,45 @@ else{
     else{
         return redirect()->back()->with('failed', 'Registration Failed');
     }
+
+    }
+
+    public function cpass(Request $request){
+
+        $validate = $request->validate([
+            "cpass"=>"required",
+            'npass'=>'required|min:8|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{5,20}$/',
+            'rpass'=>'required'
+        ],
+        ['npass.regex'=>"Please use atleast 1 uppercase, 1 lowercase, 1 special character, 1 number"]
+    );
+
+    $user = Customer::where('username',$request->session()->get('username'))->first();
+
+    if($user->password === md5($request->cpass)){
+
+        if($request->npass === $request->rpass){
+
+            $user->password = md5($request->npass);
+            session()->put('password',md5($request->npass));
+            $result = $user->save();
+            if($result){
+            return redirect()->back()->with('success', 'Password Updated');
+            }
+            else{
+                return redirect()->back()->with('failed', 'Password Changing failed');
+            }
+
+        }
+        else{
+            return redirect()->back()->with('failed', 'retype password doesnt match');
+        }
+
+    }
+    else{
+        return redirect()->back()->with('failed', 'wrong password inserted');
+    }
+
 
     }
 
