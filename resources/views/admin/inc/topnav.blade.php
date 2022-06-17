@@ -7,14 +7,13 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
-
+<body style="background: black;">
 
     <div class="head"><a href="{{route('updateAdminProfile')}}">Welcome, {{Session::get('user')}}
     </a></div>
  <div class="btn">
     <img src="image/index.png">
-        <button type="button" class="btn btn-none dropdown-toggle" data-bs-toggle="dropdown"><span></span></button>
+        <button type="button" class="btn btn-none dropdown-toggle" data-bs-toggle="dropdown" style="background:linear-gradient(45deg, #47cebe,#ef4a82);"><span></span></button>
         <div class="dropdown-menu">
             <a href="{{route('adminProfile')}}" class="dropdown-item">About Your Profile</a>
             <a href="{{route('updateAdminProfile')}}" class="dropdown-item">Update Profile</a>
@@ -23,10 +22,10 @@
             <a href="#" class="dropdown-item">Logout</a>
         </div>
     </div>
-<div class="m-4">
+<div class="m-4" style="background: linear-gradient(45deg, #47cebe,#ef4a82);">
 
     <div class="btn-group">
-      <a class="home" href="{{route('admindashboard')}}">Home</a>
+      <a class="home" href="{{route('admindashboard')}}">Dashboard</a>
         
     </div>
 
@@ -34,7 +33,7 @@
     <div class="btn-group">
         <button type="button" class="btn btn-none dropdown-toggle mt-2" data-bs-toggle="dropdown"><span>Add</span></button>
         <div class="dropdown-menu">
-            <a href="#" class="dropdown-item">Add admin</a>
+            <a href="{{route('addAdmin')}}" class="dropdown-item">Add admin</a>
             <a href="#" class="dropdown-item">Add manager</a>
             <a href="#" class="dropdown-item">Add rider</a>
             <a href="#" class="dropdown-item">Add customer</a>

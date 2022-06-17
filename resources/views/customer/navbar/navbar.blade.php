@@ -24,7 +24,7 @@
           <a class="dropdown-item" href="{{route('customerProfile')}}"><i class="fa-solid fa-user me-2"></i>View Profile</a>
          </li>
          <li>
-          <a class="dropdown-item" href="#"><i class="fa-solid fa-pen-to-square me-2"></i>Change Password</a>
+          <a class="dropdown-item" href="{{route('passwordChanging')}}"><i class="fa-solid fa-pen-to-square me-2"></i>Change Password</a>
          </li>
          <li>
           <a class="dropdown-item" href="#"><i class="bi bi-cash-stack me-2"></i>Apply Promo code</a>
