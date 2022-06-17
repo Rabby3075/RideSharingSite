@@ -112,6 +112,7 @@ class AdminController extends Controller
             $request->session()->put('dob',$admin->dob);
             $request->session()->put('phone',$admin->phone);
 
+
             $request->session()->put('password',$admin->password);
             $request->session()->put('cpassword',$admin->cpassword);
           
@@ -126,8 +127,11 @@ class AdminController extends Controller
 
        
     }
-    public function dashboard(){
+    public function admindashboard(){
         return view('admin.adminDashboard');
+    }
+    public function adminProfile(){
+        return view('admin.adminProfile');
     }
     public function updateAdminProfile(){
         return view('admin.updateAdminProfile');
@@ -135,14 +139,14 @@ class AdminController extends Controller
 
             
         public function updateSubmitted(Request $request){
-        $student = Admin::where('email', $request->email)->first();
+        $admin = Admin::where('email', $request->email)->first();
         // return  $student;
-        $student->email = $request->email;
-        $student->name = $request->name;
-        $student->phone = $request->phone;
-        $student->password = $request->password;
-        $student->cpassword = $request->cpassword;
-        $student->save();
+        $admin->email = $request->email;
+        $admin->name = $request->name;
+        $admin->phone = $request->phone;
+        $admin->password = $request->password;
+        $admin->cpassword = $request->cpassword;
+        $admin->save();
         $request->session()->put('user',$admin->name);
         $request->session()->put('email',$admin->email);
         $request->session()->put('dob',$admin->dob);
@@ -150,7 +154,10 @@ class AdminController extends Controller
 
         $request->session()->put('password',$admin->password);
         $request->session()->put('cpassword',$admin->cpassword);
-        return redirect()->route('dashboard');
+        return redirect()->route('admindashboard');
 
+    }
+    public function changePicture(){
+        return view('admin.changePicture');
     }
 }

@@ -26,9 +26,11 @@ Route::post('/customerPasswordChange',[CustomerController::class, 'cpass'])->nam
 //--Admin route--
 Route::get('/adminlogin',[AdminController::class, 'adminlogin'])->name('adminlogin');
 Route::post('/adminlogin',[AdminController::class, 'loginSubmit'])->name('adminlogin');
-Route::get('/adminDashboard',[AdminController::class, 'dashboard'])->name('admindashboard');
+Route::get('/adminDashboard',[AdminController::class, 'admindashboard'])->name('admindashboard');
 Route::get('/updateAdminProfile',[AdminController::class, 'updateAdminProfile'])->name('updateAdminProfile');
 Route::post('/updateAdminProfile',[AdminController::class, 'updateSubmitted'])->name('updateProfile');
+Route::get ('adminProfile',[AdminController::class,'adminProfile'])->name('adminProfile');
+Route::get ('changePicture',[AdminController::class,'changePicture'])->name('changePicture');
 
 //--Admin route end--
 
