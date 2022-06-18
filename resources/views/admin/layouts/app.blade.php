@@ -6,21 +6,24 @@
     <style type="text/css">
       body{
         background: linear-gradient(to top right, #80cbc4, #e1bee7, #80ddea, #d1c4e9);
+
       }
+
       .m-4{
-       background: :rgba(0, 0, 0, 0.1);
+        background: :blue;
         border-radius: 10px;
-        box-shadow: 5px 7px 10px rgba(0, 0, 0, .5);
+        box-shadow: 5px 7px 10px rgba(0, 0, 1, 1);
         width: 200px;
         position: absolute;
         top: 0px;
         bottom: 0;
+        border: solid;
         
 
       }
 
       div .head a {
-        color: black;
+        color: White;
         margin-top: 5px;
        margin-left: 43%;
         font-size: 30px;
@@ -36,7 +39,7 @@
         border-radius: 20px;
       }
       span{
-        color: black;
+        color: White;
         font-size: 25px;
         text-transform: capitalize;
       }
@@ -64,10 +67,10 @@
   
       }
       a.home{
-        margin-left: 35%;
+        margin-left: 20%;
         font-size: 25px;
         text-decoration: none;
-        color: black;
+        color: white;
       }
 
       </style>

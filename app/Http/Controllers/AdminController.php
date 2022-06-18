@@ -151,7 +151,6 @@ class AdminController extends Controller
         $request->session()->put('email',$admin->email);
         $request->session()->put('dob',$admin->dob);
         $request->session()->put('phone',$admin->phone);
-
         $request->session()->put('password',$admin->password);
         $request->session()->put('cpassword',$admin->cpassword);
         return redirect()->route('admindashboard');
@@ -159,5 +158,8 @@ class AdminController extends Controller
     }
     public function changePicture(){
         return view('admin.changePicture');
+    }
+    public function addAdmin(){
+        return view('admin.addAdmin');
     }
 }
