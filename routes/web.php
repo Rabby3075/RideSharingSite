@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RiderController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,7 +31,8 @@ Route::post('/adminlogin',[AdminController::class, 'loginSubmit'])->name('adminl
 Route::get('/adminDashboard',[AdminController::class, 'admindashboard'])->name('admindashboard');
 Route::get('/updateAdminProfile',[AdminController::class, 'updateAdminProfile'])->name('updateAdminProfile');
 Route::post('/updateAdminProfile',[AdminController::class, 'updateSubmitted'])->name('updateProfile');
-Route::get ('adminProfile',[AdminController::class,'adminProfile'])->name('adminProfile');
+Route::get ('/adminProfile',[AdminController::class,'adminProfile'])->name('adminProfile');
+Route::get ('/addAdmin',[AdminController::class,'addAdmin'])->name('addAdmin');
 Route::get ('changePicture',[AdminController::class,'changePicture'])->name('changePicture');
 
 //--Admin route end--
@@ -44,3 +46,12 @@ Route::get('/managerLogin', function () {
   });
 
 //--Manager rout end--
+
+
+//--Rider route--
+Route::get('/riderLogin', function () {return view('rider.login');})->name('riderLogin');
+Route::post('/riderLogin',[RiderController::class, 'riderLoginSubmit'])->name('riderLogin');
+Route::get('/riderRegistration', function () {return view('rider.registration');})->name('riderRegistration');
+Route::post('/riderRegistration',[RiderController::class, 'riderCreateSubmit'])->name('riderRegistration');
+
+//--Rider route end--
