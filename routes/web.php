@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\RiderController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,13 +38,24 @@ Route::get ('changePicture',[AdminController::class,'changePicture'])->name('cha
 //--Admin route end--
 
 //--Manager rout--
-Route::get('/managerRegistration', function () {
+/*Route::get('/managerRegistration', function () {
       return view('manager.registration');
   });
-Route::get('/managerLogin', function () {
+*/
+
+  Route::get('/managerRegistration',[ManagerController::class, 'managerRegistration'])->name('managerRegistration');
+  Route::post('/managerRegistration',[ManagerController::class, 'managerRegistrationSubmitted'])->name('managerRegistration');
+  
+  
+Route::get('/managerLogin',[ManagerController::class, 'managerLogin'])->name('managerLogin');
+Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])->name('managerLogin');
+
+
+
+/*Route::get('/managerLogin', function () {
       return view('manager.login');
   });
-
+*/
 //--Manager rout end--
 
 
