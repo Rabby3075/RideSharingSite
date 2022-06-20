@@ -35,6 +35,7 @@ Route::post('/updateAdminProfile',[AdminController::class, 'updateSubmitted'])->
 Route::get ('/adminProfile',[AdminController::class,'adminProfile'])->name('adminProfile');
 Route::get ('/addAdmin',[AdminController::class,'addAdmin'])->name('addAdmin');
 Route::get ('changePicture',[AdminController::class,'changePicture'])->name('changePicture');
+Route::post('/addAdmin',[AdminController::class, 'Adminadd'])->name('Adminadd');
 
 //--Admin route end--
 

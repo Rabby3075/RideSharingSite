@@ -8,6 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
  <link href="https://mdbootstrap.com/docs/standard/content-styles/icons/">
+
 <style type="text/css">
 	#btn:checked ~ .menu-btn{
   left: 100px;
@@ -118,6 +119,8 @@ col-lg-8{
     color: red;
     
    }
+
+
 
 </style>
 </head>
@@ -242,39 +245,34 @@ col-lg-8{
 
 
 
-<div  class="col col-lg-4 "> 
+<div  class="col col-lg-4 mt-4"> 
 	<div class="container2">
-	<table class="table table-hover table-dark">
-  <thead>
-    <tr style="color: #D2B48C;">
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+	<table class="table table-hover table-dark" border="1">
+    <tr style="color: #D2B48C; text-align: center;">
+        <th>Name</th>
+        <th>ID</th>
+        <th  style="vertical-align: middle;">Action</th>
     </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+
+    <tr style="text-align: center;">
+        <td>huraiya</td>
+        <td>5</td>
+        <td>
+          <button type="button" class="btn btn-primary"><i class="bi bi-eye" ></i></button>
+          <button type="button" class="btn btn-success"><i class="bi bi-check"></i></button>
+          <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+          </td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
+
 </table>
 </div>
 </div>
+
+
+    <div>
+      <canvas id="pieChart" style="max-width: 500px;"></canvas>
+    </div>
+
 
 </body>
 
