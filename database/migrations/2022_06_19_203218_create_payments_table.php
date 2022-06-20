@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('kilo');
             $table->string('amount');
-            $table->string('time');
+          //  $table->string('time');
             $table->timestamps();
         });
     }

@@ -24,7 +24,9 @@ class DatabaseSeeder extends Seeder
             CustomerSeeder::class,
             RiderSeeder::class,
             RideSeeder::class,
-            Review::class
+            ReviewSeeder::class,
+            PaymentSeeder::class,
+            ManagerSeeder::class
         ]);
     }
 }

@@ -19,10 +19,10 @@ class PaymentSeeder extends Seeder
         \App\Models\Payment::factory()->create([
             'kilo' => '30',
             'amount' => '120',
-            'time' => '2hr',
-            
+            'created_at' => '2022-06-23 02:24:08',
+            'updated_at' => '2022-06-23 02:24:08'
 
         ]);
-       
+
     }
 }

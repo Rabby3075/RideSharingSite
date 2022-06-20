@@ -23,8 +23,11 @@ class ManagerSeeder extends Seeder
             'phone' => '12345678901',
             'email' => 'xyz@email.com',
             'password' => md5('43265478'),
-            'image' => 'index.png',
-            'status' => 'invalid'
+            'confirmPassword' => md5('43265478'),
+            'picture' => 'index.png',
+            'status' => 'invalid',
+            'created_at' => '2022-06-23 02:24:08',
+            'updated_at' => '2022-06-23 02:24:08'
 
         ]);
     }
