@@ -86,7 +86,7 @@ class CustomerController extends Controller
         //
     }
     public function customerCreate(){
-        return view('customer.registration');
+        return view('customer.authentication.registration');
     }
     public function customerCreateSubmit(Request $request){
 

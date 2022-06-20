@@ -22,7 +22,13 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             CustomerSeeder::class,
+<<<<<<< HEAD
             AdminSeeder::class,
+=======
+            RiderSeeder::class,
+            RideSeeder::class,
+            Review::class
+>>>>>>> 74e554f7f9a1ae7ebeb39102c31accb44fd896f3
         ]);
     }
 }
