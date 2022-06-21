@@ -30,7 +30,7 @@ h1{
 
 
 <div class="profile" style="background: linear-gradient(45deg, #47cebe,#ef4a82);">
-<img class="img" src="image/index.png" width="2%">
+<img class="img" src="img/{{Session::get('picture')}}"  width="2%">
 <h1 class="top" align="center">Name: {{Session::get('user')}}</h1><br>
 <h1 align="center">Dath of birth: {{Session::get('dob')}}</h1><br>
 <h1 align="center">Email: {{Session::get('email')}}</h1><br>

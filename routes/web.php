@@ -29,13 +29,18 @@ Route::get('/customerDashboard/rideRequest', function () {return view('customer.
 //--Admin route--
 Route::get('/adminlogin',[AdminController::class, 'adminlogin'])->name('adminlogin');
 Route::post('/adminlogin',[AdminController::class, 'loginSubmit'])->name('adminlogin');
-Route::get('/adminDashboard',[AdminController::class, 'admindashboard'])->name('admindashboard');
-Route::get('/updateAdminProfile',[AdminController::class, 'updateAdminProfile'])->name('updateAdminProfile');
-Route::post('/updateAdminProfile',[AdminController::class, 'updateSubmitted'])->name('updateProfile');
-Route::get ('/adminProfile',[AdminController::class,'adminProfile'])->name('adminProfile');
-Route::get ('/addAdmin',[AdminController::class,'addAdmin'])->name('addAdmin');
-Route::get ('changePicture',[AdminController::class,'changePicture'])->name('changePicture');
-Route::post('/addAdmin',[AdminController::class, 'Adminadd'])->name('Adminadd');
+Route::get('/logout',[AdminController::class, 'logout'])->name('logout');
+Route::get('/adminDashboard',[AdminController::class, 'admindashboard'])->name('admindashboard')->middleware('Admin');
+Route::get('/updateAdminProfile',[AdminController::class, 'updateAdminProfile'])->name('updateAdminProfile')->middleware('Admin');
+Route::post('/updateAdminProfile',[AdminController::class, 'updateSubmitted'])->name('updateProfile')->middleware('Admin');
+Route::get ('/adminProfile',[AdminController::class,'adminProfile'])->name('adminProfile')->middleware('Admin');
+Route::get ('/addAdmin',[AdminController::class,'addAdmin'])->name('addAdmin')->middleware('Admin');
+Route::get ('changePicture',[AdminController::class,'changePicture'])->name('changePicture')->middleware('Admin');
+Route::post('changePicture',[AdminController::class,'changePictureSubmit'])->name('changePictureSubmit')->middleware('Admin');
+Route::post('/addAdmin',[AdminController::class, 'Adminadd'])->name('Adminadd')->middleware('Admin');
+Route::get ('/addCustomer',[AdminController::class,'addCustomer'])->name('addCustomer')->middleware('Admin');
+Route::post ('/addCustomer',[AdminController::class,'customerAdd'])->name('customerAdd')->middleware('Admin');
+
 
 //--Admin route end--
 

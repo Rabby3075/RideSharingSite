@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Customer;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
-{
+{   
+
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +20,7 @@ class AdminController extends Controller
     {
         //
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -107,26 +110,37 @@ class AdminController extends Controller
 
         // return $teacher;
         if($admin){
+            $request->session()->put('id',$admin->id);
             $request->session()->put('user',$admin->name);
             $request->session()->put('email',$admin->email);
             $request->session()->put('dob',$admin->dob);
             $request->session()->put('phone',$admin->phone);
-
-
             $request->session()->put('password',$admin->password);
             $request->session()->put('cpassword',$admin->cpassword);
+            $request->session()->put('picture',$admin->picture);
           
             
             return redirect()->route('admindashboard');
+            //echo session()->get('id');
             //echo session()->get('user');
         }
         else{
         $request->session()->flash('invalid','Invalid username and password');
        return back();
    }
+}
+
+    public function logout(){
+        session()->forget('user');
+        session()->forget('email');
+        session()->forget('dob');
+        session()->forget('phone');
+
+        return redirect()->route('adminlogin');
+    }
 
        
-    }
+    
     public function admindashboard(){
         return view('admin.adminDashboard');
     }
@@ -160,6 +174,26 @@ class AdminController extends Controller
     public function changePicture(){
         return view('admin.changePicture');
     }
+    public function changePictureSubmit(Request $request){
+        $file_name = $request->file('picture')->getClientOriginalName();
+        //$f_name = $file_name.'.'.$req->file('pro_pic')->getClientOriginalExtension();
+        $folder = $request->file('picture')->move(public_path('img').'/',$file_name);
+        
+        $value = session()->get('id');
+        $admin = Admin::where('id', $value)
+        ->first();
+        $admin->picture = $file_name;
+        $admin->save();
+        $request->session()->put('picture', $file_name);
+
+
+
+
+        //$request->session()->flash('change_picture', 'Profile picture uploaded successfully');
+
+        return redirect()->route('changePicture');
+
+    }
 
     /////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////
@@ -186,6 +220,33 @@ class AdminController extends Controller
                     $admin->cpassword = $request->cpassword;
                     $admin->picture = 'user.jpg';
                     $admin->save();
+            }
+    }
+
+
+    public function addCustomer(){
+        return view('admin.add.addCustomer');
+    }
+        public function customerAdd(Request $request){
+         $customer = Customer::where('email',$request->email)
+                            ->first();
+
+            if($customer){
+                $request->session()->flash('cus', 'This account already exists');
+                return redirect()->route('addCustomer');
+            }
+            else{
+                    $customer = new  Customer();
+                    $customer->email = $request->email;
+                    $customer->name = $request->name;
+                    $customer->phone = $request->phone;
+                    $customer->dob = $request->dob;
+                    $customer->address = $request->address;
+                    $customer->username= $request->username;
+                    $customer->password = md5($request->password);
+                    $customer->rating='0';
+                    $customer->image = 'user.jpg';
+                    $customer->save();
             }
     }
 }

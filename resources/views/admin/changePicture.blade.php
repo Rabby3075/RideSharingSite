@@ -16,23 +16,24 @@
         .img{
     
     
-            height: 35%;
+            height: 200px;
             margin-left: 30px;
-            border-radius:150px;
+            border-radius: 50%;
+            width: 200px;
         }
 
 
 
     </style>
 </head>
-<form action="{{route('addAdmin')}}" class="form-group" method="post" align="center">
+<form action="{{route('changePictureSubmit')}}" class="form-group" method="post" align="center" enctype="multipart/form-data">
     <!-- Cross Site Request Forgery-->
     {{csrf_field()}}
 
     <div class="r">
-    <img class="img" src="image/index.png" >
+    <img class="img" src="img/{{Session::get('picture')}}" >
     </div>
-    <input type="file" name="" style="margin-top: 30px; border-style: solid; border-color: red; border-width: thin; color: white;" ><br>
+    <input type="file" name="picture" style="margin-top: 30px; border-style: solid; border-color: red; border-width: thin; color: white;" ><br>
         
             <input type="submit" class="btn btn-success" value="Upload" style="margin-left: 80px; width: 30%; margin-top: 30px;">
     
