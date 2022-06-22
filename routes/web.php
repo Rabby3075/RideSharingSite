@@ -42,6 +42,13 @@ Route::get ('/addCustomer',[AdminController::class,'addCustomer'])->name('addCus
 Route::post ('/addCustomer',[AdminController::class,'customerAdd'])->name('customerAdd')->middleware('Admin');
 
 
+//---admin rider--
+Route::get ('/addRider',[AdminController::class,'addRider'])->name('addRider')->middleware('Admin');
+Route::post ('/addRider',[AdminController::class,'riderAdd'])->name('riderAdd')->middleware('Admin');
+//--Total User, Total Rider--
+Route::get ('/adminDashboard',[AdminController::class,'viewRecord'])->name('admindashboard');
+
+
 //--Admin route end--
 
 //--Manager rout--

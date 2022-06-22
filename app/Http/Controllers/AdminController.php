@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\Customer;
+use App\Models\Rider;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
 use Illuminate\Http\Request;
+use DB;
 
 class AdminController extends Controller
 {   
@@ -19,6 +21,8 @@ class AdminController extends Controller
     public function index()
     {
         //
+       
+
     }
     
 
@@ -143,6 +147,11 @@ class AdminController extends Controller
     
     public function admindashboard(){
         return view('admin.adminDashboard');
+
+       $customer = DB::table('customers')->count();
+        $rider = DB::table('riders')->count();
+        return view('admin.adminDashboard',compact('customer','rider'));
+
     }
     public function adminProfile(){
         return view('admin.adminProfile');
@@ -249,4 +258,56 @@ class AdminController extends Controller
                     $customer->save();
             }
     }
+
+///Add rider///
+
+    public function addRider(){
+        return view('admin.add.addRider');
+    }
+
+    public function riderAdd(Request $request){
+        $rider = Rider::where('email',$request->email)
+      ->where('phone',$request->phone)
+      ->first();
+
+           if($rider){
+               $request->session()->flash('rider', 'Already Exists or Added');
+               return redirect()->route('addRider');
+           }
+           else{
+            $rider = new Rider();
+            $rider->name = $request->name;
+            $rider->gender = $request->gender;
+            $rider->dob = $request->dob;
+            $rider->peraddress = $request->peraddress;
+            $rider->preaddress = $request->preaddress;
+            $rider->phone = $request->phone;
+            $rider->email = $request->email;
+            $rider->nid = $request->nid;
+            $rider->dlic = $request->dlic;
+            $rider->status = 'approved';
+            $rider->rpoint = '0';
+            $rider->balance = '0';
+            $rider->username = $request->username;
+            $rider->password = md5($request->password);
+            if($request->hasfile('image'))
+            {
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time().'.'.$extension;
+                $file->move('uploads/pictures/',$filename);
+                $rider->image = $filename;
+            }
+           
+            $rider->save();
+           }
+   }
+
+
+         public function viewRecord(){
+                $customer = DB::table('customers')->count();
+                $rider = DB::table('riders')->count();
+               return view('admin.adminDashboard',compact('customer','rider'));
+          }
+   
 }
