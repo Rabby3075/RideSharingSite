@@ -8,6 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
  <link href="https://mdbootstrap.com/docs/standard/content-styles/icons/">
+
 <style type="text/css">
 	#btn:checked ~ .menu-btn{
   left: 100px;
@@ -119,20 +120,22 @@ col-lg-8{
     
    }
 
+
+
 </style>
 </head>
 <body style="background: black;">
    <div class="head"><h1 style="font-style: italic;">Dashboard</h1><a style="text-align: center;" href="{{route('updateAdminProfile')}}">Welcome, {{Session::get('user')}}
     </a></div>
  <div class="btn">
-    <img src="image/index.png">
+    <img src="img/{{Session::get('picture')}}" >
         <button type="button" class="btn btn-none dropdown-toggle" data-bs-toggle="dropdown" style="background:linear-gradient(45deg, #47cebe,#ef4a82);"><span></span></button>
         <div class="dropdown-menu">
             <a href="{{route('adminProfile')}}" class="dropdown-item">About Your Profile</a>
-            <a href="{{route('updateAdminProfile')}}" class="dropdown-item">Update Profile</a>
+            <a href="{{route('updateAdminProfile')}}" class="dropdown-item"></i>Update Profile</a>
             <a href="#" class="dropdown-item">change password</a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">Logout</a>
+            <a href="{{route('logout')}}" class="dropdown-item">Logout</a>
         </div>
     </div>
 <div class="m-4" style="background: linear-gradient(45deg, #47cebe,#ef4a82);">
@@ -147,18 +150,18 @@ col-lg-8{
         <button type="button" class="btn btn-none dropdown-toggle mt-2" data-bs-toggle="dropdown"><span>Add</span></button>
         <div class="dropdown-menu">
             <a href="{{route('addAdmin')}}" class="dropdown-item">Add admin</a>
-            <a href="#" class="dropdown-item">Add manager</a>
-            <a href="#" class="dropdown-item">Add rider</a>
+            <a href="{{route('addCustomer')}}" class="dropdown-item">Add Custmer</a>
             <a href="#" class="dropdown-item">Add customer</a>
             <div class="dropdown-divider"></div>
            
         </div>
     </div><br>
     <div class="btn-group">
-        <button type="button" class="btn btn-none dropdown-toggle mt-2" data-bs-toggle="dropdown"><span>Home</span></button>
+        <button type="button" class="btn btn-none dropdown-toggle mt-2" data-bs-toggle="dropdown"><span>View</span></button>
         <div class="dropdown-menu">
-            <a href="#" class="dropdown-item">Action</a>
-            <a href="#" class="dropdown-item">Another action</a>
+            <a href="#" class="dropdown-item">Admin</a>
+            <a href="#" class="dropdown-item">Customer</a>
+            <a href="#" class="dropdown-item">Rider</a>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">Separated link</a>
         </div>
@@ -242,39 +245,34 @@ col-lg-8{
 
 
 
-<div  class="col col-lg-4 "> 
+<div  class="col col-lg-4 mt-4"> 
 	<div class="container2">
-	<table class="table table-hover table-dark">
-  <thead>
-    <tr style="color: #D2B48C;">
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+	<table class="table table-hover table-dark" border="1">
+    <tr style="color: #D2B48C; text-align: center;">
+        <th>Name</th>
+        <th>ID</th>
+        <th  style="vertical-align: middle;">Action</th>
     </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+
+    <tr style="text-align: center;">
+        <td>huraiya</td>
+        <td>5</td>
+        <td>
+          <button type="button" class="btn btn-primary"><i class="bi bi-eye" ></i></button>
+          <button type="button" class="btn btn-success"><i class="bi bi-check"></i></button>
+          <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+          </td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
+
 </table>
 </div>
 </div>
+
+
+    <div>
+      <canvas id="pieChart" style="max-width: 500px;"></canvas>
+    </div>
+
 
 </body>
 

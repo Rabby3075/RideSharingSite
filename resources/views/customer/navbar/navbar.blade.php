@@ -1,3 +1,4 @@
+<script src="{{asset('js/customer/navbar.js')}}"></script>
 <nav class="navbar navbar-expand-md bg-light navbar-light sticky-top shadow-sm">
 <div class="container">
 <a class="navbar-brand" href="{{route('customerDash')}}">
@@ -12,7 +13,7 @@
           <a class="nav-link" href="{{route('customerDash')}}"><i class="fa-solid fa-house-chimney me-1"></i>Home</a>
         </li>
         <li class="nav-item me-4">
-          <a class="nav-link" href="#"><i class="fa-solid fa-car-on me-1"></i>Request for a ride</a>
+          <a class="nav-link" href="{{route('rideRequest')}}"><i class="fa-solid fa-car-on me-1"></i>Request for a ride</a>
         </li>
         <li class="nav-item me-4">
           <a class="nav-link" href="#"><i class="bi bi-clipboard2-data-fill me-1"></i>Ride History</a>

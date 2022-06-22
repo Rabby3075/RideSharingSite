@@ -14,7 +14,7 @@
             text-align: left;
         }
         form.form-group{
-            padding-top: 3%;
+            padding-top: 0%;
             text-align: left;
             margin-left: 40%;
             margin-right: 25%;
@@ -82,11 +82,11 @@
 
           
 
-<form action="{{route('addAdmin')}}" class="form-group" method="post" align="center" style="background: linear-gradient(45deg, #47cebe,#ef4a82);">
+<form action="{{route('addCustomer')}}" class="form-group" method="post" align="center" style="background: linear-gradient(45deg, #47cebe,#ef4a82);">
     <!-- Cross Site Request Forgery-->
     {{csrf_field()}}
-    <h1 class="badge rounded-pill bg-danger">{{Session::get('reg')}}</h1>
-        <h1>Add Admin</h1>
+    <h1 class="badge rounded-pill bg-danger">{{Session::get('cus')}}</h1>
+        <h1>Add Customer</h1>
  <div class="col-md-9 form-group">
         <span class="id">Name</span>
         <input type="text" name="name" value="{{old('name')}}" class="form-control" placeholder="Enter your name">
@@ -103,18 +103,34 @@
     </div>
 
 
-    <div class="col-md-9 form-group">
-        <span class="id">Email</span>
-        <input type="text" name="email" value="{{old('email')}}" class="form-control" placeholder="Enter your email">
-        @error('email')
-            <span class="text-danger">{{$message}}</span>
-        @enderror
-    </div>
+
 
     <div class="col-md-9 form-group">
         <span class="id">Phone</span>
         <input type="text" name="phone" value="{{old('phone')}}" class="form-control" placeholder="Enter your phone number">
         @error('phone')
+            <span class="text-danger">{{$message}}</span>
+        @enderror
+    </div>
+
+        <div class="col-md-9 form-group">
+        <span class="id">Address</span>
+        <input type="tel" name="address" value="{{old('phone')}}" class="form-control" placeholder="Your Address">
+        @error('address')
+            <span class="text-danger">{{$message}}</span>
+        @enderror
+    </div>
+        <div class="col-md-9 form-group">
+        <span class="id">Username</span>
+        <input type="text" name="username" value="{{old('phone')}}" class="form-control" placeholder="Enter your username">
+        @error('username')
+            <span class="text-danger">{{$message}}</span>
+        @enderror
+    </div>
+        <div class="col-md-9 form-group">
+        <span class="id">Email</span>
+        <input type="text" name="email" value="{{old('email')}}" class="form-control" placeholder="Enter your email">
+        @error('email')
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>
