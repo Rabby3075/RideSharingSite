@@ -99,5 +99,8 @@ class RiderController extends Controller
       }
   
       }
+      else{
+        return redirect()->back()->with('failed', 'Confirm Password doesnt match with password');
+    }
     }
 }

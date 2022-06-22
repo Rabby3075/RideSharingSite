@@ -45,8 +45,6 @@ Route::get('/managerLogin', function () {
   });
 
 //--Manager rout end--
-<<<<<<< HEAD
-
 
 //--Rider route--
 Route::get('/riderLogin', function () {return view('rider.login');})->name('riderLogin');
@@ -55,5 +53,4 @@ Route::get('/riderRegistration', function () {return view('rider.registration');
 Route::post('/riderRegistration',[RiderController::class, 'riderCreateSubmit'])->name('riderRegistration');
 
 //--Rider route end--
-=======
->>>>>>> d0a7af34c3c45df458c2540b048ee0f8b5816504
+
