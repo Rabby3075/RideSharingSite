@@ -52,8 +52,8 @@ Route::post ('/addCustomer',[AdminController::class,'customerAdd'])->name('custo
 
   Route::get('/managerRegistration',[ManagerController::class, 'managerRegistration'])->name('managerRegistration');
   Route::post('/managerRegistration',[ManagerController::class, 'managerRegistrationSubmitted'])->name('managerRegistration');
-  
-  
+
+
 Route::get('/managerLogin',[ManagerController::class, 'managerLogin'])->name('managerLogin');
 Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])->name('managerLogin');
 
@@ -73,3 +73,9 @@ Route::get('/riderRegistration', function () {return view('rider.registration');
 Route::post('/riderRegistration',[RiderController::class, 'riderCreateSubmit'])->name('riderRegistration');
 
 //--Rider route end--
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 559d79e9d68db7877f329eddb8ac5dfcbe26e642
