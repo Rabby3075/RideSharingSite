@@ -100,7 +100,7 @@ class CustomerController extends Controller
             'password'=>'required|min:8|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{5,20}$/',
             'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg'
         ],
-        ['password.regex'=>"Please use atleast 1 uppercase, 1 lowercase, 1 special charactee, 1 number"]
+        ['password.regex'=>"Please use atleast 1 uppercase, 1 lowercase, 1 special charactee, 1 numbers"]
     );
     $rating = 0;
     $ErrorMsg = "User name doesn't exist";
