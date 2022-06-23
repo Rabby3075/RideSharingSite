@@ -39,7 +39,14 @@ Route::get ('changePicture',[AdminController::class,'changePicture'])->name('cha
 Route::post('changePicture',[AdminController::class,'changePictureSubmit'])->name('changePictureSubmit')->middleware('Admin');
 Route::post('/addAdmin',[AdminController::class, 'Adminadd'])->name('Adminadd')->middleware('Admin');
 Route::get ('/addCustomer',[AdminController::class,'addCustomer'])->name('addCustomer')->middleware('Admin');
-Route::post ('/addCustomer',[AdminController::class,'customerAdd'])->name('customerAdd');
+Route::post ('/addCustomer',[AdminController::class,'customerAdd'])->name('customerAdd')->middleware('Admin');
+
+
+//---admin rider--
+Route::get ('/addRider',[AdminController::class,'addRider'])->name('addRider')->middleware('Admin');
+Route::post ('/addRider',[AdminController::class,'riderAdd'])->name('riderAdd')->middleware('Admin');
+//--Total User, Total Rider--
+Route::get ('/adminDashboard',[AdminController::class,'viewRecord'])->name('admindashboard');
 
 
 //--Admin route end--
@@ -52,8 +59,8 @@ Route::post ('/addCustomer',[AdminController::class,'customerAdd'])->name('custo
 
   Route::get('/managerRegistration',[ManagerController::class, 'managerRegistration'])->name('managerRegistration');
   Route::post('/managerRegistration',[ManagerController::class, 'managerRegistrationSubmitted'])->name('managerRegistration');
-
-
+  
+  
 Route::get('/managerLogin',[ManagerController::class, 'managerLogin'])->name('managerLogin');
 Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])->name('managerLogin');
 
@@ -65,7 +72,6 @@ Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])
 */
 //--Manager rout end--
 
-
 //--Rider route--
 Route::get('/riderLogin', function () {return view('rider.login');})->name('riderLogin');
 Route::post('/riderLogin',[RiderController::class, 'riderLoginSubmit'])->name('riderLogin');
@@ -73,8 +79,11 @@ Route::get('/riderRegistration', function () {return view('rider.registration');
 Route::post('/riderRegistration',[RiderController::class, 'riderCreateSubmit'])->name('riderRegistration');
 
 //--Rider route end--
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> ae184b7f8ef4fbac1c7cb9ee307a3be3992f2521

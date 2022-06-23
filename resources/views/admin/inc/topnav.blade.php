@@ -35,7 +35,7 @@
         <div class="dropdown-menu">
             <a href="{{route('addAdmin')}}" class="dropdown-item">Add Admin</a>
             <a href="{{route('addCustomer')}}" class="dropdown-item">Add Customer</a>
-            <a href="#" class="dropdown-item">Add Rider</a>
+            <a href="{{route('addRider')}}" class="dropdown-item">Add Rider</a>
             <div class="dropdown-divider"></div>
            
         </div>
