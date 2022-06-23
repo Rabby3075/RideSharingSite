@@ -40,6 +40,9 @@ Route::post('changePicture',[AdminController::class,'changePictureSubmit'])->nam
 Route::post('/addAdmin',[AdminController::class, 'Adminadd'])->name('Adminadd')->middleware('Admin');
 Route::get ('/addCustomer',[AdminController::class,'addCustomer'])->name('addCustomer')->middleware('Admin');
 Route::post ('/addCustomer',[AdminController::class,'customerAdd'])->name('customerAdd')->middleware('Admin');
+Route::get ('/adminTable',[AdminController::class,'adminTable'])->name('adminTable');
+Route::get('/adminDelete/{id}',[AdminController::class, 'adminDelete'])->name('adminDelete');
+Route::get('/adminView/{id}',[AdminController::class, 'adminView'])->name('adminView');
 
 
 //---admin rider--
@@ -79,11 +82,4 @@ Route::get('/riderRegistration', function () {return view('rider.registration');
 Route::post('/riderRegistration',[RiderController::class, 'riderCreateSubmit'])->name('riderRegistration');
 
 //--Rider route end--
-<<<<<<< HEAD
 
-
-
-
-
-=======
->>>>>>> ae184b7f8ef4fbac1c7cb9ee307a3be3992f2521
