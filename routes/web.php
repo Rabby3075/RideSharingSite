@@ -73,9 +73,3 @@ Route::get('/riderRegistration', function () {return view('rider.registration');
 Route::post('/riderRegistration',[RiderController::class, 'riderCreateSubmit'])->name('riderRegistration');
 
 //--Rider route end--
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 559d79e9d68db7877f329eddb8ac5dfcbe26e642
