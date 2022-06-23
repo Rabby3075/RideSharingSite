@@ -39,14 +39,7 @@ Route::get ('changePicture',[AdminController::class,'changePicture'])->name('cha
 Route::post('changePicture',[AdminController::class,'changePictureSubmit'])->name('changePictureSubmit')->middleware('Admin');
 Route::post('/addAdmin',[AdminController::class, 'Adminadd'])->name('Adminadd')->middleware('Admin');
 Route::get ('/addCustomer',[AdminController::class,'addCustomer'])->name('addCustomer')->middleware('Admin');
-Route::post ('/addCustomer',[AdminController::class,'customerAdd'])->name('customerAdd')->middleware('Admin');
-
-
-//---admin rider--
-Route::get ('/addRider',[AdminController::class,'addRider'])->name('addRider')->middleware('Admin');
-Route::post ('/addRider',[AdminController::class,'riderAdd'])->name('riderAdd')->middleware('Admin');
-//--Total User, Total Rider--
-Route::get ('/adminDashboard',[AdminController::class,'viewRecord'])->name('admindashboard');
+Route::post ('/addCustomer',[AdminController::class,'customerAdd'])->name('customerAdd');
 
 
 //--Admin route end--
@@ -71,10 +64,7 @@ Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])
   });
 */
 //--Manager rout end--
-<<<<<<< HEAD
-=======
 
->>>>>>> b079b4d172422f96610a5956e2e3bd01912b3c61
 
 //--Rider route--
 Route::get('/riderLogin', function () {return view('rider.login');})->name('riderLogin');
@@ -83,7 +73,3 @@ Route::get('/riderRegistration', function () {return view('rider.registration');
 Route::post('/riderRegistration',[RiderController::class, 'riderCreateSubmit'])->name('riderRegistration');
 
 //--Rider route end--
-<<<<<<< HEAD
-
-=======
->>>>>>> b079b4d172422f96610a5956e2e3bd01912b3c61

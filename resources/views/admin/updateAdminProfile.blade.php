@@ -84,7 +84,7 @@
     <!-- Cross Site Request Forgery-->
     {{csrf_field()}}
     <div>
-     <img class="pro" src="img/{{Session::get('picture')}}" ><a class="edit" href="{{route('changePicture')}}">Edit</a>
+     <img class="pro" src="img/{{Session::get('picture')}}"><a class="edit" href="{{route('changePicture')}}">Edit</a>
  </div>
  <div class="col-md-9 form-group">
         <span class="id">Name</span>

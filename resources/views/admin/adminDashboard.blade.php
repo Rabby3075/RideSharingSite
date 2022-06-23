@@ -151,7 +151,7 @@ col-lg-8{
         <div class="dropdown-menu">
             <a href="{{route('addAdmin')}}" class="dropdown-item">Add admin</a>
             <a href="{{route('addCustomer')}}" class="dropdown-item">Add Custmer</a>
-            <a href="{{route('addRider')}}" class="dropdown-item">Add Rider</a>
+            <a href="#" class="dropdown-item">Add Rider</a>
             <div class="dropdown-divider"></div>
            
         </div>
@@ -220,7 +220,7 @@ col-lg-8{
         <div class="card">
       <div class="card-content">
         <span><i class="bi bi-people-fill" style="font-size: 3rem;"></i>  Total user</span>
-       <h2>{{$customer}}</h2>
+       <h2>huraiya</h2>
         <div class="card-name"></div>
         
       </div>
@@ -229,7 +229,7 @@ col-lg-8{
       <div class="card-content">
         
         <span><i class='bi bi-bicycle' style="font-size: 3rem;"> </i>Total rider</span>
-        <h2>{{$rider}}</h2>
+        <h2>huraiya</h2>
 
         <div class="card-name"></div>
         
