@@ -51,6 +51,26 @@ Route::get ('/adminDashboard',[AdminController::class,'viewRecord'])->name('admi
 
 //--Admin route end--
 
+//--Manager rout--
+/*Route::get('/managerRegistration', function () {
+      return view('manager.registration');
+  });
+*/
+
+  Route::get('/managerRegistration',[ManagerController::class, 'managerRegistration'])->name('managerRegistration');
+  Route::post('/managerRegistration',[ManagerController::class, 'managerRegistrationSubmitted'])->name('managerRegistration');
+  
+  
+Route::get('/managerLogin',[ManagerController::class, 'managerLogin'])->name('managerLogin');
+Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])->name('managerLogin');
+
+
+
+/*Route::get('/managerLogin', function () {
+      return view('manager.login');
+  });
+*/
+//--Manager rout end--
 
 //--Rider route--
 Route::get('/riderLogin', function () {return view('rider.login');})->name('riderLogin');

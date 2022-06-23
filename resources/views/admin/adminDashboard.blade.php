@@ -220,7 +220,7 @@ col-lg-8{
         <div class="card">
       <div class="card-content">
         <span><i class="bi bi-people-fill" style="font-size: 3rem;"></i>  Total user</span>
-       <h2>{{$customer}}</h2>
+        <h2>{{$customer}}</h2>
         <div class="card-name"></div>
         
       </div>
