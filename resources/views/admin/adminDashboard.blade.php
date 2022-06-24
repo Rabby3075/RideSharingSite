@@ -161,7 +161,7 @@ col-lg-8{
         <div class="dropdown-menu">
             <a href="{{route('adminTable')}}" class="dropdown-item">Admin</a>
             <a href="#" class="dropdown-item">Customer</a>
-            <a href="#" class="dropdown-item">Rider</a>
+            <a href="{{route('riderList')}}" class="dropdown-item">Rider</a>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">Separated link</a>
         </div>

@@ -325,6 +325,8 @@ class AdminController extends Controller
             }
            
             $rider->save();
+
+            return redirect()->route('riderList');
            }
    }
 
@@ -334,5 +336,18 @@ class AdminController extends Controller
                 $rider = DB::table('riders')->count();
                return view('admin.adminDashboard',compact('customer','rider'));
           }
+
+
+          public function riderList(){
+            $riders = Rider::all();
+            return view('admin.view.riderList')->with('riders', $riders);
+        }
+
+        public function riderDelete(Request $request){
+            $rider = Rider::where('id', $request->id)->first();
+            $rider->delete();
+    
+            return redirect()->route('riderList');
+        }
    
 }
