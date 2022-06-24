@@ -229,6 +229,7 @@ class AdminController extends Controller
                     $admin->cpassword = $request->cpassword;
                     $admin->picture = 'user.jpg';
                     $admin->save();
+                    return redirect()->route('adminTable');
             }
     }
 
@@ -258,6 +259,30 @@ class AdminController extends Controller
                     $customer->save();
             }
     }
+    //////////////////////END////////////////////////////////////
+
+    /////////////////VIEW_Page////////////////////////////////////////
+
+    //public function adminTable(){
+        //return view('admin.view.adminTable');
+   // }
+    public function adminTable(){
+        $admins = Admin::paginate(2);
+        return view('admin.view.adminTable')->with('admins', $admins);
+    }
+
+    public function adminDelete(Request $request){
+        $admin = Admin::where('id', $request->id)->first();
+        $admin->delete();
+
+    return redirect()->route('adminTable');
+    }
+    public function adminView(Request $request){
+        $admin = Admin::where('id', $request->id)->first();
+        return $admin;
+        //return view('admin.view.adminTable')->with('admins', $admins);
+     //    $request->session()->put('cpassword',$admin->cpassword);
+      }
 
 ///Add rider///
 
