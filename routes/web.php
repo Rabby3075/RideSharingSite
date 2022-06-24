@@ -4,6 +4,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\RiderController;
+use App\Http\Controllers\RideController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,7 +23,9 @@ Route::get('/customerDashboard/viewProfile', function () {return view('customer.
 Route::post('/customerEdit',[CustomerController::class, 'customerEdit'])->name('customerEdit')->middleware('customerValid');
 Route::get('/customerDashboard/changePassword', function () {return view('customer.profile.changePass');})->name('passwordChanging')->middleware('customerValid');
 Route::post('/customerPasswordChange',[CustomerController::class, 'cpass'])->name('passwordChangingRequest')->middleware('customerValid');
-Route::get('/customerDashboard/rideRequest', function () {return view('customer.ride.rideRequest');})->name('rideRequest')->middleware('customerValid');
+
+//ride information
+Route::get('/customerDashboard/rideRequest',[RideController::class, 'rideRequestDisplay'])->name('rideRequest')->middleware('customerValid');
 //--Customer route end ---
 
 
@@ -59,8 +62,8 @@ Route::get ('/adminDashboard',[AdminController::class,'viewRecord'])->name('admi
 
   Route::get('/managerRegistration',[ManagerController::class, 'managerRegistration'])->name('managerRegistration');
   Route::post('/managerRegistration',[ManagerController::class, 'managerRegistrationSubmitted'])->name('managerRegistration');
-  
-  
+
+
 Route::get('/managerLogin',[ManagerController::class, 'managerLogin'])->name('managerLogin');
 Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])->name('managerLogin');
 

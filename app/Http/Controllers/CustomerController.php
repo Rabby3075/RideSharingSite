@@ -166,6 +166,7 @@ class CustomerController extends Controller
 
     public function logout(){
         session()->forget('name');
+        session()->forget('name');
         session()->forget('dob');
         session()->forget('phone');
         session()->forget('address');
