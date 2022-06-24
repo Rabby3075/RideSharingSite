@@ -12,7 +12,7 @@
             <td class="fs-4">{{$rider->phone}}</td>
             <td class="fs-4">{{$rider->email}}</td>
             <td class="fs-4">{{$rider->id}}</td>
-            <!--<td><a class="text-decoration-none text-white bg-success p-1 m-3 rounded" href="/editUser/{{$rider->id}}">Edit</a></td>-->
+            <td><a class="text-decoration-none text-white bg-success p-1 m-3 rounded" href="/updateRider/{{$rider->id}}">Edit</a></td>
             <td><a class="text-decoration-none text-white bg-dark p-1 m-3 rounded" href="/riderDelete/{{$rider->id}}">Delete</a></td>
 
         </tr>

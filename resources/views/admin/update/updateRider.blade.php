@@ -1,4 +1,4 @@
-<!--
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,13 +19,12 @@
 
 <form action="{{route('updateRider')}}" class="form-group" method="post" enctype="multipart/form-data" >
     {{csrf_field()}}
-    <h1 class="badge rounded-pill bg-danger">{{Session::get('rider')}}</h1>
         <h1>update Rider</h1>
 
         <div class="col-md-9 form-group">
         <span>ID</span>
         <input type="text" name="id" value="{{$rider->id}}" class="form-control">
-        @error('name')
+        @error('id')
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>
@@ -100,7 +99,7 @@
      
         <div class="col-md-9 form-group">
         <span class="id">Username</span>
-        <input type="text" name="username" value="{{old('phone')}}" class="form-control">
+        <input type="text" name="username" value="{{old('username')}}" class="form-control">
         @error('username')
             <span class="text-danger">{{$message}}</span>
         @enderror
@@ -113,13 +112,7 @@
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>
-        <div class="col-md-9 form-group">
-        <span class="id">Confirm Password</span>
-        <input type="text" name="cpassword" value="{{old('cpassword')}}" class="form-control">
-       @error('cpassword')
-            <span class="text-danger">{{$message}}</span>
-        @enderror
-    </div>
+       
 <!--
     <div class="col-md-9 form-group">
     <span class="id">Upload Image</span>
@@ -127,10 +120,10 @@
         <input class="form-control" type="file" name="image" id="image">
     </div> 
 -->
-   <!--
+   
    
    <div class="mt-3 mx-auto">
-            <input type="submit"  href="{{route('updateRider')}}" class="btn btn-info" value="Update Rider" >
+            <input type="submit" class="btn btn-info" value="Update Rider" >
     </div>
 </div>
 
@@ -142,4 +135,3 @@
     
 </body>
 </html>
--->

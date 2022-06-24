@@ -59,6 +59,11 @@ Route::get('/riderList',[AdminController::class, 'riderList'])->name('riderList'
 
 //--rider delete--
 Route::get('/riderDelete/{id}',[AdminController::class, 'riderDelete'])->name('riderDelete')->middleware('Admin');
+//--rider update--
+
+
+Route::get('/updateRider/{id}',[AdminController::class, 'updateRider'])->name('updateRider')->middleware('Admin');
+Route::post('/updateRider',[AdminController::class, 'updateRiderSubmitted'])->name('updateRider')->middleware('Admin');
 
 
 //--Admin route end--
