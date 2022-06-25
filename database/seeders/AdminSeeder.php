@@ -21,7 +21,7 @@ class AdminSeeder extends Seeder
             'phone'=> '01767876546',
             'password' => '123456',
             'cpassword'=>'123456',
-            'picture' => 'user.png',
+            'picture' => 'user.jpg',
            
         ]);
     }

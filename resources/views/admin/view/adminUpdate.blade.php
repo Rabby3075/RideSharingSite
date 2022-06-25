@@ -80,15 +80,15 @@
         
           
 
-<form action="{{route('updateAdminProfile')}}" class="form-group" method="post" align="center" style="background: linear-gradient(45deg, #47cebe,#ef4a82);">
+<form action="{{route('adminUpdateSubmitted',['id' => $admins->id])}}" class="form-group" method="post" align="center" style="background: linear-gradient(45deg, #47cebe,#ef4a82);">
     <!-- Cross Site Request Forgery-->
     {{csrf_field()}}
     <div>
-     <img class="pro" src="img/{{Session::get('picture')}}"><a class="edit" href="{{route('changePicture')}}">Edit</a>
+     <img class="pro" src="img/{{$admins->picture}}"><a class="edit" href="{{route('changePicture')}}">Edit</a>
  </div>
  <div class="col-md-9 form-group">
         <span class="id">Name</span>
-        <input type="text" name="name" value="{{Session::get('user')}}" class="form-control">
+        <input type="text" name="name" value="{{$admins->name}}" class="form-control">
         @error('name')
             <span class="text-danger">{{$message}}</span>
         @enderror
@@ -98,13 +98,13 @@
 
     <div class="col-md-9 form-group">
         <span class="id">Date of Birth</span>
-        <input type="date" name="dob" value="{{Session::get('dob')}}"class="form-control">
+        <input type="date" name="dob" value="{{$admins->dob}}"class="form-control">
     </div>
 
 
     <div class="col-md-9 form-group">
         <span class="id">Email</span>
-        <input type="text" name="email" value="{{Session::get('email')}}" class="form-control">
+        <input type="text" name="email" value="{{$admins->email}}" class="form-control">
         @error('email')
             <span class="text-danger">{{$message}}</span>
         @enderror
@@ -112,7 +112,7 @@
 
     <div class="col-md-9 form-group">
         <span class="id">Phone</span>
-        <input type="text" name="phone" value="{{Session::get('phone')}}" class="form-control">
+        <input type="text" name="phone" value="{{$admins->phone}}" class="form-control">
         @error('phone')
             <span class="text-danger">{{$message}}</span>
         @enderror

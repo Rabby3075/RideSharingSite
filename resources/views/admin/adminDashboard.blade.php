@@ -151,7 +151,7 @@ col-lg-8{
         <div class="dropdown-menu">
             <a href="{{route('addAdmin')}}" class="dropdown-item">Add admin</a>
             <a href="{{route('addCustomer')}}" class="dropdown-item">Add Custmer</a>
-            <a href="#" class="dropdown-item">Add customer</a>
+            <a href="{{route('addRider')}}" class="dropdown-item">Add Rider</a>
             <div class="dropdown-divider"></div>
            
         </div>
@@ -159,9 +159,15 @@ col-lg-8{
     <div class="btn-group">
         <button type="button" class="btn btn-none dropdown-toggle mt-2" data-bs-toggle="dropdown"><span>View</span></button>
         <div class="dropdown-menu">
-            <a href="#" class="dropdown-item">Admin</a>
+<<<<<<< HEAD
+            <a href="{{route('adminTable')}}" class="dropdown-item">Admin Table</a>
+            <a href="{{route('customerTable')}}" class="dropdown-item">Customer Table</a>
+            <a href="#" class="dropdown-item">Rider Table</a>
+=======
+            <a href="{{route('adminTable')}}" class="dropdown-item">Admin</a>
             <a href="#" class="dropdown-item">Customer</a>
-            <a href="#" class="dropdown-item">Rider</a>
+            <a href="{{route('riderList')}}" class="dropdown-item">Rider</a>
+>>>>>>> f6167cd1ad5428e24cba47e03bbc40a1c1ade057
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">Separated link</a>
         </div>
@@ -220,8 +226,8 @@ col-lg-8{
         <div class="card">
       <div class="card-content">
         <span><i class="bi bi-people-fill" style="font-size: 3rem;"></i>  Total user</span>
-       
-        <div class="card-name">huraiya</div>
+        <h2>{{$customer}}</h2>
+        <div class="card-name"></div>
         
       </div>
     </div>
@@ -229,8 +235,9 @@ col-lg-8{
       <div class="card-content">
         
         <span><i class='bi bi-bicycle' style="font-size: 3rem;"> </i>Total rider</span>
+        <h2>{{$rider}}</h2>
 
-        <div class="card-name">huraiya</div>
+        <div class="card-name"></div>
         
       </div>
     </div>

@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
             ReviewSeeder::class,
             PaymentSeeder::class,
             ManagerSeeder::class,
-            ChatSeeder::class
+            ChatSeeder::class,
+            LocationSeeder::class
 
         ]);
     }
