@@ -161,7 +161,7 @@ class AdminController extends Controller
     }
 
             
-        public function updateSubmitted(Request $request){
+    public function updateSubmitted(Request $request){
         $admin = Admin::where('email', $request->email)->first();
         // return  $student;
         $admin->email = $request->email;
@@ -255,7 +255,7 @@ class AdminController extends Controller
                     $customer->username= $request->username;
                     $customer->password = md5($request->password);
                     $customer->rating='0';
-                    $customer->image = 'user.jpg';
+                    $customer->image = 'index.png';
                     $customer->save();
             }
     }
@@ -277,12 +277,60 @@ class AdminController extends Controller
 
     return redirect()->route('adminTable');
     }
-    public function adminView(Request $request){
-        $admin = Admin::where('id', $request->id)->first();
-        return $admin;
-        //return view('admin.view.adminTable')->with('admins', $admins);
-     //    $request->session()->put('cpassword',$admin->cpassword);
+    public function viewAdmin(Request $request){
+        $admins = Admin::where('id', $request->id)->first();
+        //return $admin;
+        return view('admin.view.viewAdmin')->with('admins', $admins);
+        
+    
       }
+    public function adminUpdate(Request $request){
+       $admins = Admin::where('id', $request->id)->first();
+       return view('admin.view.adminUpdate')->with('admins', $admins); 
+    }
+    public function adminUpdateSubmitted(Request $request){
+        $admins = Admin::where('id', $request->id)->first();
+        $admins->email = $request->email;
+        $admins->name = $request->name;
+        $admins->phone = $request->phone;
+        $admins->dob = $request->dob;
+        $admins->save();
+       return view('admin.view.viewadmin')->with('admins', $admins); 
+    }
+    ////////////////////CustomerView////////////////////
+
+    public function customerTable(){
+        $customers = Customer::paginate(2);
+        return view('admin.view.customerTable')->with('customers', $customers);
+    }
+    public function viewCustomer(Request $request){
+        $customers = Customer::where('id', $request->id)->first();
+        //return $admin;
+        return view('admin.view.viewCustomer')->with('customers', $customers);
+        
+    
+      }
+    public function customerDelete(Request $request){
+        $customer = Customer::where('id', $request->id)->first();
+        $customer->delete();
+
+    return redirect()->route('customerTable');
+    }
+
+    public function customerUpdate(Request $request){
+        $customer = Customer::where('id', $request->id)->first();
+        return view('admin.view.customerUpdate')->with('customer',$customer);
+    }
+    public function customerUpdateSubmitted(Request $request){
+        $customer = Customer::where('id', $request->id)->first();
+        $customer->email = $request->email;
+        $customer->name = $request->name;
+        $customer->phone = $request->phone;
+        $customer->dob = $request->dob;
+        $customer->address = $request->address;
+        $customer->save();
+       return view('admin.view.viewCustomer')->with('customers', $customer); 
+    }
 
 ///Add rider///
 

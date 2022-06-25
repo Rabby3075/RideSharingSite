@@ -45,7 +45,16 @@ Route::get ('/addCustomer',[AdminController::class,'addCustomer'])->name('addCus
 Route::post ('/addCustomer',[AdminController::class,'customerAdd'])->name('customerAdd')->middleware('Admin');
 Route::get ('/adminTable',[AdminController::class,'adminTable'])->name('adminTable');
 Route::get('/adminDelete/{id}',[AdminController::class, 'adminDelete'])->name('adminDelete');
-Route::get('/adminView/{id}',[AdminController::class, 'adminView'])->name('adminView');
+Route::get('/adminUpdate',[AdminController::class, 'adminUpdate'])->name('adminUpdate');
+Route::post('/adminUpdate',[AdminController::class, 'adminUpdateSubmitted'])->name('adminUpdateSubmitted');
+Route::get('/viewAdmin',[AdminController::class, 'viewAdmin'])->name('viewAdmin');
+Route::get ('/customerTable',[AdminController::class,'customerTable'])->name('customerTable');
+Route::get('/viewCustomer',[AdminController::class, 'viewCustomer'])->name('viewCustomer');
+Route::get('/customerDelete/{id}',[AdminController::class, 'customerDelete'])->name('customerDelete');
+Route::get('/customerUpdate',[AdminController::class, 'customerUpdate'])->name('customerUpdate');
+Route::post('/customerUpdate',[AdminController::class, 'customerUpdateSubmitted'])->name('customerUpdateSubmitted');
+
+
 
 
 //---admin rider--

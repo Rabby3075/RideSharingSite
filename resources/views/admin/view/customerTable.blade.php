@@ -15,14 +15,14 @@
         <th>ID</th>
         <th  style="vertical-align: middle;">Action</th>
     </tr>
-     @foreach($admins as $admin)
+     @foreach($customers as $customer)
     <tr style="text-align: center;">
-        <td>{{$admin->name}}</td>
-        <td>{{$admin->id}}</td>
+        <td>{{$customer->name}}</td>
+        <td>{{$customer->id}}</td>
         <td>
-          <a href="{{route('viewAdmin',['id' => $admin->id])}}" type="button" class="btn btn-primary"><i class="bi bi-eye" ></i></a>
-          <a href="{{route('adminUpdate',['id' => $admin->id])}}" type="button" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
-          <a href="/adminDelete/{{$admin->id}}" type="button" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+          <a href="{{route('viewCustomer',['id' => $customer->id])}}" type="button" class="btn btn-primary"><i class="bi bi-eye" ></i></a>
+          <a href="{{route('customerUpdate',['id' => $customer->id])}}" type="button" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+          <a href="/customerDelete/{{$customer->id}}" type="button" class="btn btn-danger"><i class="bi bi-trash"></i></a>
           </td>
     </tr>
     @endforeach
@@ -30,6 +30,6 @@
 </div>
 </div>
 <div class="d-flex justify-content-center">
-    {!! $admins->links() !!}
+    {!! $customers->links() !!}
 </div>
 @endsection
