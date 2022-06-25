@@ -64,19 +64,17 @@ Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])
   });
 */
 //--Manager rout end--
-<<<<<<< HEAD
-=======
-
->>>>>>> b079b4d172422f96610a5956e2e3bd01912b3c61
 
 //--Rider route--
 Route::get('/riderLogin', function () {return view('rider.login');})->name('riderLogin');
 Route::post('/riderLogin',[RiderController::class, 'riderLoginSubmit'])->name('riderLogin');
 Route::get('/riderRegistration', function () {return view('rider.registration');})->name('riderRegistration');
 Route::post('/riderRegistration',[RiderController::class, 'riderCreateSubmit'])->name('riderRegistration');
+Route::get('/riderDash', function () {return view('rider.dashborad');})->name('riderDash')->middleware('riderValid');
+Route::get('/riderProf', function () {return view('rider.profEdit');})->name('riderProf')->middleware('riderValid');
+Route::post('/riderProf',[RiderController::class, 'riderProfEdit'])->name('riderProf')->middleware('riderValid');
+Route::get('/riderPass', function () {return view('rider.changePass');})->name('riderPass')->middleware('riderValid');
+Route::post('/riderPass',[RiderController::class, 'riderchangePass'])->name('riderPass')->middleware('riderValid');
+Route::get('/riderLogout',[RiderController::class, 'logout'])->name('riderLogout')->middleware('riderValid');
 
 //--Rider route end--
-<<<<<<< HEAD
-
-=======
->>>>>>> b079b4d172422f96610a5956e2e3bd01912b3c61
