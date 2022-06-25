@@ -159,9 +159,15 @@ col-lg-8{
     <div class="btn-group">
         <button type="button" class="btn btn-none dropdown-toggle mt-2" data-bs-toggle="dropdown"><span>View</span></button>
         <div class="dropdown-menu">
+<<<<<<< HEAD
             <a href="{{route('adminTable')}}" class="dropdown-item">Admin Table</a>
             <a href="{{route('customerTable')}}" class="dropdown-item">Customer Table</a>
             <a href="#" class="dropdown-item">Rider Table</a>
+=======
+            <a href="{{route('adminTable')}}" class="dropdown-item">Admin</a>
+            <a href="#" class="dropdown-item">Customer</a>
+            <a href="{{route('riderList')}}" class="dropdown-item">Rider</a>
+>>>>>>> f6167cd1ad5428e24cba47e03bbc40a1c1ade057
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">Separated link</a>
         </div>

@@ -373,6 +373,8 @@ class AdminController extends Controller
             }
            
             $rider->save();
+
+            return redirect()->route('riderList');
            }
    }
 
@@ -382,5 +384,48 @@ class AdminController extends Controller
                 $rider = DB::table('riders')->count();
                return view('admin.adminDashboard',compact('customer','rider'));
           }
+
+
+          public function riderList(){
+            $riders = Rider::all();
+            return view('admin.view.riderList')->with('riders', $riders);
+        }
+
+        public function riderDelete(Request $request){
+            $rider = Rider::where('id', $request->id)->first();
+            $rider->delete();
+    
+            return redirect()->route('riderList');
+        }
+        
+
+        
+    public function updateRider(Request $request){
+        $rider = Rider::where('id', $request->id)->first();
+        
+        return view('admin.update.updateRider')->with('rider', $rider);
+        
+    }
+    public function updateRiderSubmitted(Request $request){
+        $rider = Rider::where('id', $request->id)->first();
+
+        $rider->name = $request->name;
+        $rider->gender = $request->gender;
+        $rider->dob = $request->dob;
+        $rider->peraddress = $request->peraddress;
+        $rider->preaddress = $request->preaddress;
+        $rider->phone = $request->phone;
+        $rider->email = $request->email;
+        $rider->nid = $request->nid;
+        $rider->dlic = $request->dlic;
+        $rider->status = 'approved';
+        $rider->rpoint = '0';
+        $rider->balance = '0';
+        $rider->username = $request->username;
+        $rider->save();
+        return redirect()->route('riderList');
+
+    }
+
    
 }
