@@ -46,7 +46,16 @@ Route::get ('/addCustomer',[AdminController::class,'addCustomer'])->name('addCus
 Route::post ('/addCustomer',[AdminController::class,'customerAdd'])->name('customerAdd')->middleware('Admin');
 Route::get ('/adminTable',[AdminController::class,'adminTable'])->name('adminTable');
 Route::get('/adminDelete/{id}',[AdminController::class, 'adminDelete'])->name('adminDelete');
-Route::get('/adminView/{id}',[AdminController::class, 'adminView'])->name('adminView');
+Route::get('/adminUpdate',[AdminController::class, 'adminUpdate'])->name('adminUpdate');
+Route::post('/adminUpdate',[AdminController::class, 'adminUpdateSubmitted'])->name('adminUpdateSubmitted');
+Route::get('/viewAdmin',[AdminController::class, 'viewAdmin'])->name('viewAdmin');
+Route::get ('/customerTable',[AdminController::class,'customerTable'])->name('customerTable');
+Route::get('/viewCustomer',[AdminController::class, 'viewCustomer'])->name('viewCustomer');
+Route::get('/customerDelete/{id}',[AdminController::class, 'customerDelete'])->name('customerDelete');
+Route::get('/customerUpdate',[AdminController::class, 'customerUpdate'])->name('customerUpdate');
+Route::post('/customerUpdate',[AdminController::class, 'customerUpdateSubmitted'])->name('customerUpdateSubmitted');
+
+
 
 
 //---admin rider--
@@ -55,9 +64,21 @@ Route::post ('/addRider',[AdminController::class,'riderAdd'])->name('riderAdd')-
 //--Total User, Total Rider--
 Route::get ('/adminDashboard',[AdminController::class,'viewRecord'])->name('admindashboard');
 
+//--rider list or view --
+Route::get('/riderList',[AdminController::class, 'riderList'])->name('riderList')->middleware('Admin');
+
+//--rider delete--
+Route::get('/riderDelete/{id}',[AdminController::class, 'riderDelete'])->name('riderDelete')->middleware('Admin');
+//--rider update--
+
+
+Route::get('/updateRider/{id}',[AdminController::class, 'updateRider'])->name('updateRider')->middleware('Admin');
+Route::post('/updateRider',[AdminController::class, 'updateRiderSubmitted'])->name('updateRider')->middleware('Admin');
+
 
 //--Admin route end--
 
+<<<<<<< HEAD
 //--Manager rout--
 /*Route::get('/managerRegistration', function () {
       return view('manager.registration');
@@ -66,8 +87,8 @@ Route::get ('/adminDashboard',[AdminController::class,'viewRecord'])->name('admi
 
   Route::get('/managerRegistration',[ManagerController::class, 'managerRegistration'])->name('managerRegistration');
   Route::post('/managerRegistration',[ManagerController::class, 'managerRegistrationSubmitted'])->name('managerRegistration');
-
-
+  
+  
 Route::get('/managerLogin',[ManagerController::class, 'managerLogin'])->name('managerLogin');
 Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])->name('managerLogin');
 
@@ -78,12 +99,23 @@ Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])
   });
 */
 //--Manager rout end--
+=======
+>>>>>>> 6ec38977083ec868ceaa3800b5048134a7726f44
 
 //--Rider route--
 Route::get('/riderLogin', function () {return view('rider.login');})->name('riderLogin');
 Route::post('/riderLogin',[RiderController::class, 'riderLoginSubmit'])->name('riderLogin');
 Route::get('/riderRegistration', function () {return view('rider.registration');})->name('riderRegistration');
 Route::post('/riderRegistration',[RiderController::class, 'riderCreateSubmit'])->name('riderRegistration');
+Route::get('/riderDash', function () {return view('rider.dashborad');})->name('riderDash')->middleware('riderValid');
+Route::get('/riderProf', function () {return view('rider.profEdit');})->name('riderProf')->middleware('riderValid');
+Route::post('/riderProf',[RiderController::class, 'riderProfEdit'])->name('riderProf')->middleware('riderValid');
+Route::get('/riderPass', function () {return view('rider.changePass');})->name('riderPass')->middleware('riderValid');
+Route::post('/riderPass',[RiderController::class, 'riderchangePass'])->name('riderPass')->middleware('riderValid');
+Route::get('/riderLogout',[RiderController::class, 'logout'])->name('riderLogout')->middleware('riderValid');
 
 //--Rider route end--
+<<<<<<< HEAD
+=======
 
+>>>>>>> 6ec38977083ec868ceaa3800b5048134a7726f44
