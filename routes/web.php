@@ -26,6 +26,7 @@ Route::post('/customerPasswordChange',[CustomerController::class, 'cpass'])->nam
 
 //ride information
 Route::get('/customerDashboard/rideRequest',[RideController::class, 'rideRequestDisplay'])->name('rideRequest')->middleware('customerValid');
+Route::post('/customerDashboard/rideRequest/submit',[RideController::class, 'rideRequestSubmit'])->name('rideRequestSubmit')->middleware('customerValid');
 //--Customer route end ---
 
 

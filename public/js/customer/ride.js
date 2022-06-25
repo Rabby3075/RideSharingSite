@@ -1,4 +1,1 @@
-$(function(){
-    $("#country").select2();
-   });
 
