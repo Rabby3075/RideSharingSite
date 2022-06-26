@@ -1,7 +1,8 @@
 <!-- Remove the container if you want to extend the Footer to full width. -->
-<div class="">
+<link rel="stylesheet" href="{{asset('cs/customer/footer.css')}}">
 
-  <footer class="bg-dark text-center text-white">
+
+  <footer class="bg-dark text-center text-white footer">
   <!-- Grid container -->
   <div class="container p-4 pb-0">
 
@@ -35,5 +36,5 @@
   <!-- Copyright -->
 </footer>
 
-</div>
+
 <!-- End of .container -->

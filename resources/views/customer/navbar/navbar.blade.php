@@ -16,7 +16,7 @@
           <a class="nav-link" href="{{route('rideRequest')}}"><i class="fa-solid fa-car-on me-1"></i>Request for a ride</a>
         </li>
         <li class="nav-item me-4">
-          <a class="nav-link" href="#"><i class="bi bi-clipboard2-data-fill me-1"></i>Ride History</a>
+          <a class="nav-link" href="{{route('rideList')}}"><i class="bi bi-clipboard2-data-fill me-1"></i>Ride History</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" data-bs-target="#demo-drop" href="#"><img  src="{{asset('/storage/images/')}}/{{Session::get('image')}}" alt="profile pic"  width="40" height="40"></a>

@@ -35,6 +35,7 @@ return new class extends Migration
              $table->timestamp('rideRequestTime');
              $table->timestamp('riderApprovalTime')->nullable();
              $table->timestamp('reachedTime')->nullable();
+             $table->timestamp('cancelTime')->nullable();
             //$table->timestamps();
         });
     }

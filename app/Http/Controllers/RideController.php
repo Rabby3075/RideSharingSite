@@ -179,6 +179,11 @@ class RideController extends Controller
 
     }
 
+    public function rideList(){
+        $rideList = Ride::where('customerId',session()->get('id'))->get();
+        return view('customer.ride.rideList')->with('rideList', $rideList);
+    }
+
 
 
 

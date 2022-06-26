@@ -15,20 +15,21 @@ class RideSeeder extends Seeder
     public function run()
     {
         \App\Models\Ride::factory()->create([
-            'customerName' => 'Someone',
+            'customerName' => 'Mr.x',
             'customerId' => 1,
             'customerPhone' => '01711111111',
-            'pickupPoint' => 'somewhere,earth',
-            'destination' => 'anywhere,earth',
-            'length' => '3 kilo',
-            'cost' => '100 tk',
+            'pickupPoint' => 'Motijheel',
+            'destination' => 'AIUB',
+            'length' => '15',
+            'cost' => '200',
             'riderId' => 1,
             'riderName' => 'Abc',
             'riderPhone' => '01711111111',
             'customerStatus' => 'Ride complete',
             'riderStatus' => 'Ride complete',
-            'created_at' => '2022-06-23 02:24:08',
-            'updated_at' => '2022-06-23 03:00:00',
+            'rideRequestTime' => '2022-06-26 12:33:08',
+            'riderApprovalTime' => '2022-06-26 12:34:08',
+            'reachedTime' => '2022-06-26 01:34:08'
 
         ]);
     }
