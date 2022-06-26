@@ -50,6 +50,7 @@ Route::get('/adminDelete/{id}',[AdminController::class, 'adminDelete'])->name('a
 Route::get('/adminUpdate',[AdminController::class, 'adminUpdate'])->name('adminUpdate');
 Route::post('/adminUpdate',[AdminController::class, 'adminUpdateSubmitted'])->name('adminUpdateSubmitted');
 Route::get('/viewAdmin',[AdminController::class, 'viewAdmin'])->name('viewAdmin');
+Route::post('/adminTable',[AdminController::class, 'search_btn'])->name('search_btn');
 Route::get ('/customerTable',[AdminController::class,'customerTable'])->name('customerTable');
 Route::get('/viewCustomer',[AdminController::class, 'viewCustomer'])->name('viewCustomer');
 Route::get('/customerDelete/{id}',[AdminController::class, 'customerDelete'])->name('customerDelete');
