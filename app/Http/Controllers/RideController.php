@@ -184,6 +184,27 @@ class RideController extends Controller
         return view('customer.ride.rideList')->with('rideList', $rideList);
     }
 
+    public function rideCancelConfirmation(Request $request){
+        $rideCancel = Ride::where('id',$request->id)->first();
+        return $rideCancel;
+    }
+    public function rideCancel(Request $request){
+        $validate = $request->validate([
+            "rideid" => "required"
+
+        ]);
+        $rideCancel = Ride::where('id',$request->rideid)->first();
+        date_default_timezone_set('Asia/Dhaka');
+        $date = date('d-m-y h:i:s');
+
+        $rideCancel->customerStatus = "Cancel";
+        $rideCancel->cancelTime = $date;
+        $result = $rideCancel->save();
+        if($result){
+            return redirect()->back()->with('success', 'Ride Cancel');
+        }
+
+    }
 
 
 

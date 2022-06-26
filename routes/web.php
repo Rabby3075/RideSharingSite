@@ -28,6 +28,8 @@ Route::post('/customerPasswordChange',[CustomerController::class, 'cpass'])->nam
 Route::get('/customerDashboard/rideRequest',[RideController::class, 'rideRequestDisplay'])->name('rideRequest')->middleware('customerValid');
 Route::post('/customerDashboard/rideRequest/submit',[RideController::class, 'rideRequestSubmit'])->name('rideRequestSubmit')->middleware('customerValid');
 Route::get('/customerDashboard/rideList',[RideController::class, 'rideList'])->name('rideList')->middleware('customerValid');
+Route::get('/customerDashboard/rideCancel/{id}',[RideController::class, 'rideCancelConfirmation'])->name('rideCancel')->middleware('customerValid');
+Route::post('/customerDashboard/rideCancelSubmit',[RideController::class, 'rideCancel'])->name('rideCancelSubmit')->middleware('customerValid');
 //--Customer route end ---
 
 
