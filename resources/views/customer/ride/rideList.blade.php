@@ -78,16 +78,16 @@
         @endif
 
         @if($ride->customerStatus === "Waiting for rider..." )
-        <td><a class="btn btn-danger text-white" id="cancel-ride" href="javascript:void(0)" data-url="{{ route('rideCancel', $ride->id) }}"><i class="bi bi-x-circle-fill"></i> Cancel Ride</a></td>
+        <td><a class="btn btn-danger text-white" id="cancel-ride" href="javascript:void(0)" data-url="{{ route('rideView', $ride->id) }}"><i class="bi bi-x-circle-fill"></i> Cancel Ride</a></td>
         @endif
         @if($ride->customerStatus === "Ride complete")
-        <td><button type="button" class="btn btn-primary"><i class="bi bi-eye me-2 text-white"></i>View Details</button></td>
+        <td> <a href="javascript:void(0)" class="btn btn-primary"  id="viewRide" data-url="{{ route('rideView', $ride->id) }}"><i class="bi bi-eye me-2 text-white"></i>View Details</a></td>
         @endif
         @if($ride->customerStatus === "Cancel")
         <td> <p class="text-danger"> Ride Cancel at <strong>{{$ride->cancelTime}}</strong></p></td>
         @endif
         @if($ride->customerStatus === "Approve")
-        <td><button type="button" class="btn btn-primary"><i class="bi bi-eye me-2 text-white"></i>View Details</button></td>
+        <td> <a href="" class="btn btn-primary"><i class="bi bi-eye me-2 text-white"></i>View Details</a></td>
         @endif
     </tr>
     @endforeach
@@ -129,23 +129,42 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-danger">Ride Cancel</h5>
+        <h3 class="modal-title text-primary">Ride Information</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="{{route('rideCancelSubmit')}}" class="form-group" method="post" enctype="multipart/form-data">
+        <!--<form action="" class="form-group" method="post" enctype="multipart/form-data">-->
         {{csrf_field()}}
-            <input type="hidden" id="ride-id" name="rideid">
-        <span class="text-dark">Are you sure to cancel your ride From </span><span class="text-dark" id="ride-pick"></span><span class="text-dark"> To </span><span class="text-dark" id="ride-destination"></span>
+        <hr>
+        <h4 class="d-flex justify-content-center">Rider Information</h4> <hr>
+        <div class="text-center">
+         <p>Rider Name: <span class="riderName"></span></p>
+         <p>Rider Phone Number: <span class="riderPhone"></span></p>
+        </div>
+        <hr>
+        <h4 class="d-flex justify-content-center">Ride Information</h4> <hr>
+        <div class="row text-center">
+        <div class="col">
+        <p>Pick Point: <span class="pickPoint"></span></p>
+        <p>Destination: <span class="destination"></span></p>
+        <p>Total Distance: <span class="distance"></span> Kilo</p>
+        <p>Cost: <span class="cost"></span> TK</p>
+        </div>
+        <div class="col">
+        <p>Ride Request Time: <span class="rideReqTime"></span></p>
+        <p>Rider Approval Time: <span class="riderAppTime"></span></p>
+        <p>Departure Time: <span class="depTime"></span></p>
+        <p>Arrival Time:  <span class="arrTime"></span></p>
+        </div>
+        </div>
 
+        <hr>
+        <textarea class="form-control border border-primary" id="exampleFormControlTextarea1" rows="3" placeholder="Please type your review message"></textarea>
+        <input type="submit" class="btn btn-outline-primary mt-2 text-center" id="review" value="Submit your review">
+        <hr>
+    </form>
       </div>
-      <div class="modal-footer">
-      <input type="submit" class="btn btn-danger" id="yes" value="Yes">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" >No</button>
 
-        </form>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -156,6 +175,7 @@
 
 <script type="text/javascript">
 
+//-----------cancel ride---------------
     $(document).ready(function () {
 
         $('body').on('click', '#cancel-ride', function () {
@@ -169,13 +189,37 @@
           })
        });
 
-
+       detailsModal
 
     });
 
-    $(document).ready( function () {
-    $('#myTable').DataTable();
-} );
+    //-----------View Ride---------------
+    $(document).ready(function () {
+
+$('body').on('click', '#viewRide', function () {
+  var userURL = $(this).data('url');
+  $.get(userURL, function (data) {
+      $('#detailsModal').modal('show');
+     // $('#ride-id').val(data.id);
+      $('.riderName').text(data.riderName);
+      $('.riderPhone').text(data.riderPhone);
+      $('.pickPoint').text(data.pickupPoint);
+      $('.destination').text(data.destination);
+      $('.distance').text(data.length);
+      $('.cost').text(data.cost );
+      $('.rideReqTime').text(data.rideRequestTime);
+      $('.riderAppTime').text(data.riderApprovalTime);
+      $('.depTime').text(data.riderStartingTime);
+      $('.arrTime').text(data.reachedTime);
+
+  })
+});
+
+
+
+});
+
+
 
 </script>
 @endsection

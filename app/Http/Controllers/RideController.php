@@ -186,7 +186,7 @@ class RideController extends Controller
         return view('customer.ride.rideList')->with('rideList', $rideList);
     }
 
-    public function rideCancelConfirmation(Request $request){
+    public function getRideInformation(Request $request){
         $rideCancel = Ride::where('id',$request->id)->first();
         return $rideCancel;
     }
