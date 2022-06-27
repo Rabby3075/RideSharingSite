@@ -392,8 +392,17 @@ class AdminController extends Controller
           }
 
 
-          public function riderList(){
-            $riders = Rider::all();
+          public function riderList(Request $request){
+
+            $search = $request['search'] ?? "";
+            if ($search != ""){
+
+                $riders = Rider::where('name','LIKE',"%$search%")->orWhere('email','LIKE',"%$search%")->get();
+            }
+            else{
+                $riders = Rider::all();
+            }
+           $data = compact('riders','search');
             return view('admin.view.riderList')->with('riders', $riders);
         }
 
@@ -433,5 +442,12 @@ class AdminController extends Controller
 
     }
 
+
+    public function viewRider(Request $request){
+        $rider = Rider::where('id', $request->id)->first();
+        
+        return view('admin.view.viewRider')->with('rider', $rider);
+        
+    }
    
 }
