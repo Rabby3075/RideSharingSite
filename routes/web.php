@@ -54,7 +54,7 @@ Route::post ('/addRider',[AdminController::class,'riderAdd'])->name('riderAdd')-
 //--Total User, Total Rider--
 Route::get ('/adminDashboard',[AdminController::class,'viewRecord'])->name('admindashboard');
 
-//--rider list or view --
+//--rider list  --
 Route::get('/riderList',[AdminController::class, 'riderList'])->name('riderList')->middleware('Admin');
 
 //--rider delete--
@@ -64,7 +64,9 @@ Route::get('/riderDelete/{id}',[AdminController::class, 'riderDelete'])->name('r
 
 Route::get('/updateRider/{id}',[AdminController::class, 'updateRider'])->name('updateRider')->middleware('Admin');
 Route::post('/updateRider',[AdminController::class, 'updateRiderSubmitted'])->name('updateRider')->middleware('Admin');
+//--rider view details--
 
+Route::get('/viewRider/{id}',[AdminController::class, 'viewRider'])->name('viewRider')->middleware('Admin');
 
 //--Admin route end--
 
