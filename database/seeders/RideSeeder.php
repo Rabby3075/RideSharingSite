@@ -15,21 +15,62 @@ class RideSeeder extends Seeder
     public function run()
     {
         \App\Models\Ride::factory()->create([
-            'customerName' => 'Mr.x',
+            'customerName' => 'Someone',
             'customerId' => 1,
             'customerPhone' => '01711111111',
             'pickupPoint' => 'Motijheel',
             'destination' => 'AIUB',
-            'length' => '15',
-            'cost' => '200',
+            'length' => '10',
+            'cost' => '150',
             'riderId' => 1,
             'riderName' => 'Abc',
             'riderPhone' => '01711111111',
             'customerStatus' => 'Ride complete',
             'riderStatus' => 'Ride complete',
-            'rideRequestTime' => '2022-06-26 12:33:08',
-            'riderApprovalTime' => '2022-06-26 12:34:08',
-            'reachedTime' => '2022-06-26 01:34:08'
+            'rideRequestTime' => '27 June 2022, 06:02:26 PM',
+            'riderApprovalTime' => '27 June 2022, 06:02:27 PM',
+            'reachedTime' => '27 June 2022, 06:40:21 PM'
+
+        ]);
+        \App\Models\Ride::factory()->create([
+            'customerName' => 'Someone',
+            'customerId' => 1,
+            'customerPhone' => '01711111111',
+            'pickupPoint' => 'AIUB',
+            'destination' => 'Motijheel',
+            'length' => '10',
+            'cost' => '150',
+            'riderId' => 1,
+            'riderName' => 'Abc',
+            'riderPhone' => '01711111111',
+            'customerStatus' => 'Approve',
+            'riderStatus' => 'Accept',
+            'rideRequestTime' => '27 June 2022, 10:10:26 PM',
+            'riderApprovalTime' => '27 June 2022, 10:10:29 PM'
+        ]);
+        \App\Models\Ride::factory()->create([
+            'customerName' => 'Someone',
+            'customerId' => 1,
+            'customerPhone' => '01711111111',
+            'pickupPoint' => 'SegunBagicha',
+            'destination' => 'Dhanmondi',
+            'length' => '1',
+            'cost' => '60',
+            'customerStatus' => 'Cancel',
+            'rideRequestTime' => '28 June 2022, 10:00:00 AM',
+            'cancelTime' => '28 June 2022, 10:02:00 AM'
+
+        ]);
+        \App\Models\Ride::factory()->create([
+            'customerName' => 'Someone',
+            'customerId' => 1,
+            'customerPhone' => '01711111111',
+            'pickupPoint' => 'SegunBagicha',
+            'destination' => 'Dhanmondi',
+            'length' => '1',
+            'cost' => '60',
+            'customerStatus' => 'Waiting for rider...',
+            'rideRequestTime' => '28 June 2022, 10:10:26 AM'
 
         ]);
     }

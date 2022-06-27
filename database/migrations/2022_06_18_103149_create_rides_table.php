@@ -32,10 +32,10 @@ return new class extends Migration
 
             $table->foreign('customerId')->references('id')->on('customers');
             $table->foreign('riderId')->references('id')->on('riders');
-             $table->timestamp('rideRequestTime');
-             $table->timestamp('riderApprovalTime')->nullable();
-             $table->timestamp('reachedTime')->nullable();
-             $table->timestamp('cancelTime')->nullable();
+             $table->string('rideRequestTime');
+             $table->string('riderApprovalTime')->nullable();
+             $table->string('reachedTime')->nullable();
+             $table->string('cancelTime')->nullable();
             //$table->timestamps();
         });
     }

@@ -139,8 +139,10 @@ class RideController extends Controller
               $baseBill = 50;
               $perKiloBill = 10;
               $bill = $baseBill + $perKiloBill * $distance;
-              date_default_timezone_set('Asia/Dhaka');
-                $date = date('d-m-y h:i:s');
+              //date_default_timezone_set('Asia/Dhaka');
+               // $date = date('d-m-y h:i:s');
+               date_default_timezone_set('Asia/Dhaka');
+               $time =  date('d F Y, h:i:s A');
               $ride = new Ride();
                $ride->customerName = $request->session()->get('name');
                $ride->customerId = $request->session()->get('id');
@@ -150,7 +152,7 @@ class RideController extends Controller
                $ride->length = $distance;
                $ride->cost = $bill;
                $ride->customerStatus = $status;
-               $ride->rideRequestTime = $date;
+               $ride->rideRequestTime = $time;
                $result = $ride->save();
                if($result){
                 $success = "Congratulations your ride request confirm successfully";
@@ -194,11 +196,12 @@ class RideController extends Controller
 
         ]);
         $rideCancel = Ride::where('id',$request->rideid)->first();
+
         date_default_timezone_set('Asia/Dhaka');
-        $date = date('d-m-y h:i:s');
+        $time =  date('d F Y, h:i:s A');
 
         $rideCancel->customerStatus = "Cancel";
-        $rideCancel->cancelTime = $date;
+        $rideCancel->cancelTime = $time;
         $result = $rideCancel->save();
         if($result){
             return redirect()->back()->with('success', 'Ride Cancel');
