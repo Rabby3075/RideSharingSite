@@ -198,7 +198,7 @@ class RideController extends Controller
         $rideCancel = Ride::where('id',$request->rideid)->first();
 
         date_default_timezone_set('Asia/Dhaka');
-        $time =  date('d F Y, h:i:s A');
+       $time =  date('d F Y, h:i:s A');
 
         $rideCancel->customerStatus = "Cancel";
         $rideCancel->cancelTime = $time;

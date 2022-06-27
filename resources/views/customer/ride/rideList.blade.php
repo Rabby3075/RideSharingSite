@@ -26,7 +26,7 @@
                         {!! \Session::get('success') !!}
                         </div>
                         @endif
-  <table class="table my-3" style="text-align: center" id="myTable">
+  <table class="table my-3 bg-light" style="text-align: center" id="myTable">
     <thead>
       <tr>
         <th>Ride ID</th>
@@ -93,6 +93,7 @@
     @endforeach
     </tbody>
   </table>
+
 </div>
 
 

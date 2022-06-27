@@ -34,6 +34,7 @@ return new class extends Migration
             $table->foreign('riderId')->references('id')->on('riders');
              $table->string('rideRequestTime');
              $table->string('riderApprovalTime')->nullable();
+             $table->string('riderStartingTie')->nullable();
              $table->string('reachedTime')->nullable();
              $table->string('cancelTime')->nullable();
             //$table->timestamps();
