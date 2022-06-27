@@ -7,6 +7,12 @@
 
     </style>
 </head>
+<form action="{{route('search_btn')}}" class="form-group" method="post" align="center">
+    <!-- Cross Site Request Forgery-->
+    {{csrf_field()}}
+    <input type="text" name="search" >
+    <input type="submit" name="search_btn" value="Search">
+    <a href="{{route('adminTable')}}" type="button"><i class="bi bi-arrow-clockwise"></i></a>
 <div  class="col col-lg-4 mt-4"> 
 	<div class="container2">
 	<table class="table table-hover table-dark" border="1">
@@ -20,8 +26,8 @@
         <td>{{$admin->name}}</td>
         <td>{{$admin->id}}</td>
         <td>
-          <a href="/adminView/{{$admin->id}}" type="button" class="btn btn-primary"><i class="bi bi-eye" ></i></a>
-          <a type="button" class="btn btn-success"><i class="bi bi-check"></i></a>
+          <a href="{{route('viewAdmin',['id' => $admin->id])}}" type="button" class="btn btn-primary"><i class="bi bi-eye" ></i></a>
+          <a href="{{route('adminUpdate',['id' => $admin->id])}}" type="button" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
           <a href="/adminDelete/{{$admin->id}}" type="button" class="btn btn-danger"><i class="bi bi-trash"></i></a>
           </td>
     </tr>
@@ -29,7 +35,10 @@
 </table>
 </div>
 </div>
+@if(!isset($_POST['search_btn']))
 <div class="d-flex justify-content-center">
     {!! $admins->links() !!}
 </div>
+@endif
+</form>
 @endsection
