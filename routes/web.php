@@ -49,16 +49,24 @@ Route::post('/addAdmin',[AdminController::class, 'Adminadd'])->name('Adminadd')-
 Route::get ('/addCustomer',[AdminController::class,'addCustomer'])->name('addCustomer')->middleware('Admin');
 Route::post ('/addCustomer',[AdminController::class,'customerAdd'])->name('customerAdd')->middleware('Admin');
 Route::get ('/adminTable',[AdminController::class,'adminTable'])->name('adminTable');
+Route::post('/adminTable',[AdminController::class, 'search_btn'])->name('search_btn');
 Route::get('/adminDelete/{id}',[AdminController::class, 'adminDelete'])->name('adminDelete');
 Route::get('/adminUpdate',[AdminController::class, 'adminUpdate'])->name('adminUpdate');
 Route::post('/adminUpdate',[AdminController::class, 'adminUpdateSubmitted'])->name('adminUpdateSubmitted');
 Route::get('/viewAdmin',[AdminController::class, 'viewAdmin'])->name('viewAdmin');
-Route::post('/adminTable',[AdminController::class, 'search_btn'])->name('search_btn');
+
 Route::get ('/customerTable',[AdminController::class,'customerTable'])->name('customerTable');
+Route::post('/customerTable',[AdminController::class, 'searchc_btn'])->name('searchc_btn');
 Route::get('/viewCustomer',[AdminController::class, 'viewCustomer'])->name('viewCustomer');
 Route::get('/customerDelete/{id}',[AdminController::class, 'customerDelete'])->name('customerDelete');
 Route::get('/customerUpdate',[AdminController::class, 'customerUpdate'])->name('customerUpdate');
 Route::post('/customerUpdate',[AdminController::class, 'customerUpdateSubmitted'])->name('customerUpdateSubmitted');
+
+Route::get('/riderStatus',[AdminController::class, 'riderStatus'])->name('riderStatus');
+Route::get('/riderApproval',[AdminController::class, 'riderApproval'])->name('riderApproval');
+Route::get('/riderApproved',[AdminController::class, 'riderApproved'])->name('riderApproved');
+Route::get('/riderDenay/{id}',[AdminController::class, 'riderDenay'])->name('riderDenay');
+
 
 
 

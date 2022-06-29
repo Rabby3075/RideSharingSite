@@ -7,6 +7,12 @@
 
     </style>
 </head>
+<form action="{{route('searchc_btn')}}" class="form-group" method="post" align="center">
+    <!-- Cross Site Request Forgery-->
+    {{csrf_field()}}
+    <input type="text" name="search" >
+    <input type="submit" name="search_btn" value="Search">
+    <a href="{{route('customerTable')}}" type="button"><i class="bi bi-arrow-clockwise"></i></a>
 <div  class="col col-lg-4 mt-4"> 
 	<div class="container2">
 	<table class="table table-hover table-dark" border="1">
@@ -29,7 +35,10 @@
 </table>
 </div>
 </div>
+@if(!isset($_POST['search_btn']))
 <div class="d-flex justify-content-center">
     {!! $customers->links() !!}
 </div>
+@endif
+</form>
 @endsection
