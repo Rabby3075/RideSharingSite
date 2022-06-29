@@ -27,13 +27,17 @@ return new class extends Migration
             $table->unsignedBigInteger('riderId')->nullable();
             $table->string('riderName')->nullable();
             $table->string('riderPhone')->nullable();
-            $table->string('customerStatus')->nullable();
+            $table->string('customerStatus');
             $table->string('riderStatus')->nullable();
 
             $table->foreign('customerId')->references('id')->on('customers');
             $table->foreign('riderId')->references('id')->on('riders');
-
-            $table->timestamps();
+             $table->string('rideRequestTime');
+             $table->string('riderApprovalTime')->nullable();
+             $table->string('riderStartingTie')->nullable();
+             $table->string('reachedTime')->nullable();
+             $table->string('cancelTime')->nullable();
+            //$table->timestamps();
         });
     }
 

@@ -26,6 +26,11 @@ Route::post('/customerPasswordChange',[CustomerController::class, 'cpass'])->nam
 
 //ride information
 Route::get('/customerDashboard/rideRequest',[RideController::class, 'rideRequestDisplay'])->name('rideRequest')->middleware('customerValid');
+Route::post('/customerDashboard/rideRequest/submit',[RideController::class, 'rideRequestSubmit'])->name('rideRequestSubmit')->middleware('customerValid');
+Route::get('/customerDashboard/rideList',[RideController::class, 'rideList'])->name('rideList')->middleware('customerValid');
+Route::get('/customerDashboard/rideView/{id}',[RideController::class, 'getRideInformation'])->name('rideView')->middleware('customerValid');
+Route::post('/customerDashboard/rideCancelSubmit',[RideController::class, 'rideCancel'])->name('rideCancelSubmit')->middleware('customerValid');
+//Route::get('/customerDashboard/rideView/{id}',[RideController::class, 'rideView'])->name('rideView')->middleware('customerValid');
 //--Customer route end ---
 
 
@@ -44,15 +49,24 @@ Route::post('/addAdmin',[AdminController::class, 'Adminadd'])->name('Adminadd')-
 Route::get ('/addCustomer',[AdminController::class,'addCustomer'])->name('addCustomer')->middleware('Admin');
 Route::post ('/addCustomer',[AdminController::class,'customerAdd'])->name('customerAdd')->middleware('Admin');
 Route::get ('/adminTable',[AdminController::class,'adminTable'])->name('adminTable');
+Route::post('/adminTable',[AdminController::class, 'search_btn'])->name('search_btn');
 Route::get('/adminDelete/{id}',[AdminController::class, 'adminDelete'])->name('adminDelete');
 Route::get('/adminUpdate',[AdminController::class, 'adminUpdate'])->name('adminUpdate');
 Route::post('/adminUpdate',[AdminController::class, 'adminUpdateSubmitted'])->name('adminUpdateSubmitted');
 Route::get('/viewAdmin',[AdminController::class, 'viewAdmin'])->name('viewAdmin');
+
 Route::get ('/customerTable',[AdminController::class,'customerTable'])->name('customerTable');
+Route::post('/customerTable',[AdminController::class, 'searchc_btn'])->name('searchc_btn');
 Route::get('/viewCustomer',[AdminController::class, 'viewCustomer'])->name('viewCustomer');
 Route::get('/customerDelete/{id}',[AdminController::class, 'customerDelete'])->name('customerDelete');
 Route::get('/customerUpdate',[AdminController::class, 'customerUpdate'])->name('customerUpdate');
 Route::post('/customerUpdate',[AdminController::class, 'customerUpdateSubmitted'])->name('customerUpdateSubmitted');
+
+Route::get('/riderStatus',[AdminController::class, 'riderStatus'])->name('riderStatus');
+Route::get('/riderApproval',[AdminController::class, 'riderApproval'])->name('riderApproval');
+Route::get('/riderApproved',[AdminController::class, 'riderApproved'])->name('riderApproved');
+Route::get('/riderDenay/{id}',[AdminController::class, 'riderDenay'])->name('riderDenay');
+
 
 
 
@@ -63,7 +77,7 @@ Route::post ('/addRider',[AdminController::class,'riderAdd'])->name('riderAdd')-
 //--Total User, Total Rider--
 Route::get ('/adminDashboard',[AdminController::class,'viewRecord'])->name('admindashboard');
 
-//--rider list or view --
+//--rider list  --
 Route::get('/riderList',[AdminController::class, 'riderList'])->name('riderList')->middleware('Admin');
 
 //--rider delete--
@@ -73,10 +87,13 @@ Route::get('/riderDelete/{id}',[AdminController::class, 'riderDelete'])->name('r
 
 Route::get('/updateRider/{id}',[AdminController::class, 'updateRider'])->name('updateRider')->middleware('Admin');
 Route::post('/updateRider',[AdminController::class, 'updateRiderSubmitted'])->name('updateRider')->middleware('Admin');
+//--rider view details--
 
+Route::get('/viewRider/{id}',[AdminController::class, 'viewRider'])->name('viewRider')->middleware('Admin');
 
 //--Admin route end--
 
+<<<<<<< HEAD
 
 //--Manager rout--
 /*Route::get('/managerRegistration', function () {
@@ -99,6 +116,9 @@ Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])
 */
 //--Manager rout end--
 
+=======
+
+>>>>>>> c72083f574f383b270622d65d52c39c054b8bd89
 
 //--Rider route--
 Route::get('/riderLogin', function () {return view('rider.login');})->name('riderLogin');
@@ -113,4 +133,7 @@ Route::post('/riderPass',[RiderController::class, 'riderchangePass'])->name('rid
 Route::get('/riderLogout',[RiderController::class, 'logout'])->name('riderLogout')->middleware('riderValid');
 
 //--Rider route end--
+<<<<<<< HEAD
 
+=======
+>>>>>>> c72083f574f383b270622d65d52c39c054b8bd89

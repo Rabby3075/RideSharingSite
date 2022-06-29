@@ -16,8 +16,9 @@ class LocationSeeder extends Seeder
     {
         \App\Models\Location::factory()->create([
             'location' => 'SegunBagicha',
-            'latitude' => '23.733274',
-            'longitude' => '90.407522'
+            'latitude' => '23.733337',
+            'longitude' => '90.407513'
+
 
         ]);
         \App\Models\Location::factory()->create([
@@ -28,14 +29,14 @@ class LocationSeeder extends Seeder
         ]);
         \App\Models\Location::factory()->create([
             'location' => 'Khilgaon',
-            'latitude' => '23.751948',
-            'longitude' => '90.424642'
+            'latitude' => '23.7522232',
+            'longitude' => '90.421561'
 
         ]);
         \App\Models\Location::factory()->create([
             'location' => 'Mirpur',
-            'latitude' => '23.820517',
-            'longitude' => '90.364683'
+            'latitude' => '23.8371883',
+            'longitude' => '90.3689834'
 
         ]);
         \App\Models\Location::factory()->create([
@@ -52,20 +53,20 @@ class LocationSeeder extends Seeder
         ]);
         \App\Models\Location::factory()->create([
             'location' => 'Motijheel',
-            'latitude' => '23.734524',
-            'longitude' => '90.418307'
+            'latitude' => '23.7272598',
+            'longitude' => '90.4211957'
 
         ]);
         \App\Models\Location::factory()->create([
             'location' => 'Dhanmondi',
-            'latitude' => '23.739714',
-            'longitude' => '90.381384'
+            'latitude' => '23.7388987',
+            'longitude' => '90.3801179'
 
         ]);
         \App\Models\Location::factory()->create([
             'location' => 'Bashundhara City Market',
-            'latitude' => '23.751163',
-            'longitude' => '90.390546'
+            'latitude' => '23.751142',
+            'longitude' => '90.390641'
 
         ]);
         \App\Models\Location::factory()->create([
