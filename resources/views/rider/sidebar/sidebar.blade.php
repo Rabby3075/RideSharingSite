@@ -48,7 +48,7 @@
 					<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 						<div class="card-body">
 							<ul class="list-group">										
-								<li class="list-group-item"><a href="#"><i class="fa fa-table"></i> Ride history</a></li>
+								<li class="list-group-item"><a href="{{route('rideHis')}}"><i class="fa fa-table"></i> Ride history</a></li>
 								<li class="list-group-item"><a href="#"><i class="fa fa-file-excel-o"></i> Excel Report</a></li>			
 							</ul>
 						</div>
@@ -68,7 +68,7 @@
 						<div class="card-body">
 							<ul class="list-group">										
 								<li class="list-group-item"><a href="#"><i class="fa fa-list-alt"></i> Check Request</a></li>
-								<li class="list-group-item"><a href="#"><i class="fa fa-male"></i> Customer History</a></li>	
+								<!-- <li class="list-group-item"><a href="#"><i class="fa fa-male"></i> Customer History</a></li> -->	
 								<li class="list-group-item"><a href="#"><i class="fa fa-star"></i> Customer Review</a></li>			
 							</ul>
 						</div>
@@ -87,7 +87,7 @@
 					<div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
 						<div class="card-body">
 							<ul class="list-group">										
-								<li class="list-group-item"><a href="#"><i class="fa fa-money"></i> Balance</a></li>
+								<li class="list-group-item"><a href="{{route('riderBalance')}}"><i class="fa fa-money"></i> Balance</a></li>
 								<li class="list-group-item"><a href="#"><i class="fa fa-credit-card"></i> Cash-out</a></li>
 								<li class="list-group-item"><a href="#"><i class="fa fa-star-half-o"></i> Rider Point</a></li>			
 							</ul>
