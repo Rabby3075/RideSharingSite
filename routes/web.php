@@ -93,7 +93,6 @@ Route::get('/viewRider/{id}',[AdminController::class, 'viewRider'])->name('viewR
 
 //--Admin route end--
 
-<<<<<<< HEAD
 
 //--Manager rout--
 /*Route::get('/managerRegistration', function () {
@@ -116,9 +115,6 @@ Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])
 */
 //--Manager rout end--
 
-=======
-
->>>>>>> c72083f574f383b270622d65d52c39c054b8bd89
 
 //--Rider route--
 Route::get('/riderLogin', function () {return view('rider.login');})->name('riderLogin');
@@ -131,9 +127,7 @@ Route::post('/riderProf',[RiderController::class, 'riderProfEdit'])->name('rider
 Route::get('/riderPass', function () {return view('rider.changePass');})->name('riderPass')->middleware('riderValid');
 Route::post('/riderPass',[RiderController::class, 'riderchangePass'])->name('riderPass')->middleware('riderValid');
 Route::get('/riderLogout',[RiderController::class, 'logout'])->name('riderLogout')->middleware('riderValid');
+Route::get('/rideHistory',[RideController::class, 'rideHis'])->name('rideHis')->middleware('riderValid');
+Route::get('/riderBalance',[RideController::class, 'riderBalance'])->name('riderBalance')->middleware('riderValid');
 
 //--Rider route end--
-<<<<<<< HEAD
-
-=======
->>>>>>> c72083f574f383b270622d65d52c39c054b8bd89

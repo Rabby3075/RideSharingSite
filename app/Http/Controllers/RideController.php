@@ -209,6 +209,24 @@ class RideController extends Controller
 
     }
 
+    //Rider_Part
+
+    
+   
+    public function rideHis(){
+        $req = "Ride complete";
+        $rideHis = Ride::where('riderId',session()->get('id'))->where('customerStatus',$req)->where('riderStatus',$req)->get();
+        return view('rider.rideHis')->with('rideHis', $rideHis);
+    }
+
+    public function riderBalance(){
+        $req = "Ride complete";
+        $rideHis = Ride::where('riderId',session()->get('id'))->where('customerStatus',$req)->where('riderStatus',$req)->get();
+        $rideCount = Ride::where('riderId',session()->get('id'))->where('customerStatus',$req)->where('riderStatus',$req)->get()->count();
+        return view('rider.riderBalance')->with('rideHis', $rideHis)->with('rideCount', $rideCount);
+    }
+   //
+
 
 
 }
