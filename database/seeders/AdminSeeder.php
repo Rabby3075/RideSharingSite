@@ -24,6 +24,16 @@ class AdminSeeder extends Seeder
             'picture' => 'user.jpg',
            
         ]);
+        \App\Models\Admin::factory()->create([
+            'name' => 'JEBA FAWJIA',
+            'dob' => '2000-08-05',
+            'email' => 'jeba@gmail.com',
+            'phone'=> '01767877446',
+            'password' => md5('09876'),
+            'cpassword'=> md5('09876'),
+            'picture' => 'user.jpg',
+           
+        ]);
     }
     
 }

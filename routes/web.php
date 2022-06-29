@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\RiderController;
 use App\Http\Controllers\RideController;
+use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,6 +32,7 @@ Route::get('/customerDashboard/rideList',[RideController::class, 'rideList'])->n
 Route::get('/customerDashboard/rideView/{id}',[RideController::class, 'getRideInformation'])->name('rideView')->middleware('customerValid');
 Route::post('/customerDashboard/rideCancelSubmit',[RideController::class, 'rideCancel'])->name('rideCancelSubmit')->middleware('customerValid');
 //Route::get('/customerDashboard/rideView/{id}',[RideController::class, 'rideView'])->name('rideView')->middleware('customerValid');
+Route::get('/chat/{id}',[ChatController::class, 'chatUser'])->name('chatUser')->middleware('customerValid');
 //--Customer route end ---
 
 
@@ -90,6 +92,13 @@ Route::post('/updateRider',[AdminController::class, 'updateRiderSubmitted'])->na
 //--rider view details--
 
 Route::get('/viewRider/{id}',[AdminController::class, 'viewRider'])->name('viewRider')->middleware('Admin');
+
+
+//--admin change password--
+
+Route::get('/admin/password',[AdminController::class, 'CPassword'])->name('changePassword')->middleware('Admin');
+
+Route::post('/password/update',[AdminController::class, 'updatePassword'])->name('passwordUpdate')->middleware('Admin');
 
 //--Admin route end--
 

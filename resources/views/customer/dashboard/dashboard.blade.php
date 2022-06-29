@@ -15,6 +15,9 @@
     <title>Dashbord</title>
 </head>
 <body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+    </style>
 @if(Session::get('username'))
 @include('customer.navbar.navbar')
 
