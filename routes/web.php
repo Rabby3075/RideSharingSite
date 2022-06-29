@@ -83,6 +83,13 @@ Route::post('/updateRider',[AdminController::class, 'updateRiderSubmitted'])->na
 
 Route::get('/viewRider/{id}',[AdminController::class, 'viewRider'])->name('viewRider')->middleware('Admin');
 
+
+//--admin change password--
+
+Route::get('/admin/password',[AdminController::class, 'CPassword'])->name('changePassword')->middleware('Admin');
+
+Route::post('/password/update',[AdminController::class, 'updatePassword'])->name('passwordUpdate')->middleware('Admin');
+
 //--Admin route end--
 
 

@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\Customer;
 use App\Models\Rider;
+use App\Models\User;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
 use Illuminate\Http\Request;
 use DB;
+use Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {   
@@ -449,5 +452,54 @@ class AdminController extends Controller
         return view('admin.view.viewRider')->with('rider', $rider);
         
     }
+    public function CPassword(){
+       
+        return view('admin.changePassword');
+        
+    }
+    public function updatePassword(Request $request){
+        
+
+       $validateData = $request->validate([
+        'oldPassword' => 'required',
+        'password' => 'required|confirmed',
+
+       ]);
+
+       $adminNewPass=$request->password;
+       $adminConPass=$request->password_confirmation;
+   
+
+
+     //echo Admin::all()->password;
+
+        //$hashedPassword = Auth::admin()->password;
+    if($adminNewPass == $adminConPass){
+            $user = Admin::where('password', md5($request->oldPassword))->first();
+    //    if(Hash::check($request->oldPassword, Auth::admin()->password)){
+    //          // dd("old password doesn't match");
+    //    $user = Admin::find(Auth::id());
+
+    $user->password = md5($request->password);
+    $user->password = Hash::make($request->password);
+   // $user->password = Hash::make($request->password);
+    $user->save();
+     Auth::logout();
+     return redirect()->route('adminlogin')->with('success','Password is change successfully');
+
+     }
+       else{
+         return redirect()->back()->with('error','Current Password invalid');
+
+        }
+    
+     //dd($request->all());
+
+        
+    }
+
+
+
+
    
 }

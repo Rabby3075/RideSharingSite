@@ -133,7 +133,7 @@ col-lg-8{
         <div class="dropdown-menu">
             <a href="{{route('adminProfile')}}" class="dropdown-item">About Your Profile</a>
             <a href="{{route('updateAdminProfile')}}" class="dropdown-item"></i>Update Profile</a>
-            <a href="#" class="dropdown-item">change password</a>
+            <a href="{{route('changePassword')}}" class="dropdown-item">change password</a>
             <div class="dropdown-divider"></div>
             <a href="{{route('logout')}}" class="dropdown-item">Logout</a>
         </div>
