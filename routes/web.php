@@ -77,7 +77,7 @@ Route::post('/updateRider',[AdminController::class, 'updateRiderSubmitted'])->na
 
 //--Admin route end--
 
-<<<<<<< HEAD
+
 //--Manager rout--
 /*Route::get('/managerRegistration', function () {
       return view('manager.registration');
@@ -98,8 +98,7 @@ Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])
   });
 */
 //--Manager rout end--
-=======
->>>>>>> 6ec38977083ec868ceaa3800b5048134a7726f44
+
 
 //--Rider route--
 Route::get('/riderLogin', function () {return view('rider.login');})->name('riderLogin');
@@ -114,7 +113,4 @@ Route::post('/riderPass',[RiderController::class, 'riderchangePass'])->name('rid
 Route::get('/riderLogout',[RiderController::class, 'logout'])->name('riderLogout')->middleware('riderValid');
 
 //--Rider route end--
-<<<<<<< HEAD
-=======
 
->>>>>>> 6ec38977083ec868ceaa3800b5048134a7726f44
