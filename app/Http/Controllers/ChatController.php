@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
+use App\Models\Rider;
+use App\Models\Ride;
 use App\Http\Requests\StoreChatRequest;
 use App\Http\Requests\UpdateChatRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ChatController extends Controller
 {
@@ -82,5 +86,13 @@ class ChatController extends Controller
     public function destroy(Chat $chat)
     {
         //
+    }
+    public function chatUser(Request $request){
+
+        $ride = Ride::where('id', $request->id)->first();
+        $rider = Rider::where('id',$ride->riderId)->first();
+
+        return view('chat.chat')->with('rider',$rider);
+
     }
 }

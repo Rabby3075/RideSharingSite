@@ -117,16 +117,13 @@ class RideController extends Controller
 
                 if($dropLocation){
 
+                $ride = Ride::where('customerId',session()->get('id'))->where('customerStatus','Waiting for rider...')->orWhere('customerStatus','Approve')->orWhere('customerStatus','ongoing')->get();
+                 if(count($ride)>0){
+                    return redirect()->back()->with('failed', 'You have already requested for a ride. Please Cancel it for new request or if ride on going after this ride you can request for new ride');
+                 }
+                 else{
 
-             /*$ride = new Ride();
-               $ride->customerName = $request->session()->get('name');
-               $ride->customerId = $request->session()->get('id');
-               $ride->customerPhone = $request->session()->get('phone');
-               $ride->pickupPoint = $request->pickLocation;
-               $ride->destination = $request->droplocation;
-               $ride->length = $distance;
-               $ride->cost = $bill;
-               $result = $ride->save();*/
+
                 $lat1 = $pickLocation->latitude;
               $long1 = $pickLocation->longitude;
 
@@ -163,6 +160,7 @@ class RideController extends Controller
                }
 
                 }
+            }
                 else{
                     return redirect()->back()->with('failed', 'Drop Location is not correct.Please check correct location from your suggestion box');
                 }
@@ -202,6 +200,11 @@ class RideController extends Controller
 
         $rideCancel->customerStatus = "Cancel";
         $rideCancel->cancelTime = $time;
+        $rideCancel->riderId=null;
+        $rideCancel->riderName=null;
+        $rideCancel->riderPhone=null;
+        $rideCancel->riderStatus=null;
+        $rideCancel->riderApprovalTime=null;
         $result = $rideCancel->save();
         if($result){
             return redirect()->back()->with('success', 'Ride Cancel');

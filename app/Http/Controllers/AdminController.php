@@ -316,8 +316,6 @@ class AdminController extends Controller
         $customers = Customer::where('id', $request->id)->first();
         //return $admin;
         return view('admin.view.viewCustomer')->with('customers', $customers);
-        
-    
       }
     public function customerDelete(Request $request){
         $customer = Customer::where('id', $request->id)->first();
@@ -341,6 +339,36 @@ class AdminController extends Controller
        return view('admin.view.viewCustomer')->with('customers', $customer); 
     }
 
+    public function searchc_btn(Request $request){
+        $customers = Customer::where('name',$request->search)->get();
+        //return $admins;
+        return view('admin.view.customerTable')->with('customers', $customers);
+    }
+
+    ////////////////////APPROVE///////////////
+    public function riderStatus(){
+        $riders = Rider::where('status','Pending')->get();
+        return view('admin.status.riderStatus')->with('riders', $riders);
+    }
+
+    public function riderApproval(Request $request){
+    $riders = Rider::where('id', $request->id)->first();
+    //return $admin;
+    return view('admin.status.riderApproval')->with('riders', $riders);
+      }
+
+    public function riderApproved(Request $request){
+    $riders = Rider::where('id', $request->id)->first();
+    $riders->status = "Approved";
+    $riders->save();
+    return redirect()->route('riderStatus')->with('riders', $riders); 
+    }
+
+    public function riderDenay(Request $request){
+    $riders = Rider::where('id', $request->id)->first();
+    $riders->delete();
+    return redirect()->route('riderStatus')->with('riders', $riders);
+    }
 ///Add rider///
 
     public function addRider(){
