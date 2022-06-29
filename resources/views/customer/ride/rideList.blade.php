@@ -73,7 +73,7 @@
         <td ><span class="badge bg-danger">Ride Cancel</span></td>
         @endif
         @if($ride->customerStatus === "Approve")
-        <td ><span class="badge bg-info text-dark">Rider Approve</span> <a href="#" class = "btn btn-info"><i class="bi bi-chat-dots me-1 text-dark"></i>Chat</a></td>
+        <td ><span class="badge bg-info text-dark">Rider Approve</span> </td>
 
         @endif
 
@@ -87,7 +87,7 @@
         <td> <p class="text-danger"> Ride Cancel at <strong>{{$ride->cancelTime}}</strong></p></td>
         @endif
         @if($ride->customerStatus === "Approve")
-        <td> <a href="" class="btn btn-primary"><i class="bi bi-eye me-2 text-white"></i>View Details</a></td>
+        <td><a href="/chat/{{$ride->id}}" class = "btn btn-info "><i class="bi bi-chat-dots me-1 text-dark"></i>Chat</a> <a class="btn btn-danger text-white" id="cancel-ride" href="javascript:void(0)" data-url="{{ route('rideView', $ride->id) }}"> <i class="bi bi-x-circle-fill"></i> Cancel Ride </a></td>
         @endif
     </tr>
     @endforeach
