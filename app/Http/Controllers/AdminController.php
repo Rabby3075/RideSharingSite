@@ -526,8 +526,24 @@ class AdminController extends Controller
         
     }
 
+    public function charts(){
+            
+        return view('admin.charts');
+    }
 
 
+    public function chartInfo(){
+  $result = DB::select(DB::raw("select count(*) as total_gender,gender from riders group by gender
+  "));
+  $chartData = "";
+  foreach($result as $list){
+    $chartData.="['".$list->gender."',".$list->total_gender."],";
+  }
+  $arr['chartData'] = rtrim($chartData,",");
+
+   return view('admin.charts',$arr);
+
+  }
 
    
 }

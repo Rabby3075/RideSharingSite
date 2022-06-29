@@ -60,12 +60,10 @@
         </div>
     </div><br>
     <div class="btn-group">
-        <button type="button" class="btn btn-none dropdown-toggle mt-2" data-bs-toggle="dropdown"><span>Home</span></button>
+        <button type="button" class="btn btn-none dropdown-toggle mt-2" data-bs-toggle="dropdown"><span>Statistics</span></button>
         <div class="dropdown-menu">
-            <a href="#" class="dropdown-item">Action</a>
-            <a href="#" class="dropdown-item">Another action</a>
+            <a href="{{route('charts')}}" class="dropdown-item">Charts</a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">Separated link</a>
         </div>
     </div><br>
     <div class="btn-group">

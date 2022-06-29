@@ -100,34 +100,14 @@ Route::get('/admin/password',[AdminController::class, 'CPassword'])->name('chang
 
 Route::post('/password/update',[AdminController::class, 'updatePassword'])->name('passwordUpdate')->middleware('Admin');
 
+//--Charts and graphs
+
+Route::get ('/charts',[AdminController::class,'charts'])->name('charts')->middleware('Admin');
+Route::get ('/charts',[AdminController::class,'chartInfo'])->name('charts')->middleware('Admin');
+
+
 //--Admin route end--
 
-<<<<<<< HEAD
-
-//--Manager rout--
-/*Route::get('/managerRegistration', function () {
-      return view('manager.registration');
-  });
-*/
-
-  Route::get('/managerRegistration',[ManagerController::class, 'managerRegistration'])->name('managerRegistration');
-  Route::post('/managerRegistration',[ManagerController::class, 'managerRegistrationSubmitted'])->name('managerRegistration');
-  
-  
-Route::get('/managerLogin',[ManagerController::class, 'managerLogin'])->name('managerLogin');
-Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])->name('managerLogin');
-
-
-
-/*Route::get('/managerLogin', function () {
-      return view('manager.login');
-  });
-*/
-//--Manager rout end--
-
-=======
-
->>>>>>> c72083f574f383b270622d65d52c39c054b8bd89
 
 //--Rider route--
 Route::get('/riderLogin', function () {return view('rider.login');})->name('riderLogin');
@@ -142,7 +122,3 @@ Route::post('/riderPass',[RiderController::class, 'riderchangePass'])->name('rid
 Route::get('/riderLogout',[RiderController::class, 'logout'])->name('riderLogout')->middleware('riderValid');
 
 //--Rider route end--
-<<<<<<< HEAD
-
-=======
->>>>>>> c72083f574f383b270622d65d52c39c054b8bd89
