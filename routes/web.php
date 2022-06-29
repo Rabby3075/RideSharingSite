@@ -51,16 +51,24 @@ Route::post('/addAdmin',[AdminController::class, 'Adminadd'])->name('Adminadd')-
 Route::get ('/addCustomer',[AdminController::class,'addCustomer'])->name('addCustomer')->middleware('Admin');
 Route::post ('/addCustomer',[AdminController::class,'customerAdd'])->name('customerAdd')->middleware('Admin');
 Route::get ('/adminTable',[AdminController::class,'adminTable'])->name('adminTable');
+Route::post('/adminTable',[AdminController::class, 'search_btn'])->name('search_btn');
 Route::get('/adminDelete/{id}',[AdminController::class, 'adminDelete'])->name('adminDelete');
 Route::get('/adminUpdate',[AdminController::class, 'adminUpdate'])->name('adminUpdate');
 Route::post('/adminUpdate',[AdminController::class, 'adminUpdateSubmitted'])->name('adminUpdateSubmitted');
 Route::get('/viewAdmin',[AdminController::class, 'viewAdmin'])->name('viewAdmin');
-Route::post('/adminTable',[AdminController::class, 'search_btn'])->name('search_btn');
+
 Route::get ('/customerTable',[AdminController::class,'customerTable'])->name('customerTable');
+Route::post('/customerTable',[AdminController::class, 'searchc_btn'])->name('searchc_btn');
 Route::get('/viewCustomer',[AdminController::class, 'viewCustomer'])->name('viewCustomer');
 Route::get('/customerDelete/{id}',[AdminController::class, 'customerDelete'])->name('customerDelete');
 Route::get('/customerUpdate',[AdminController::class, 'customerUpdate'])->name('customerUpdate');
 Route::post('/customerUpdate',[AdminController::class, 'customerUpdateSubmitted'])->name('customerUpdateSubmitted');
+
+Route::get('/riderStatus',[AdminController::class, 'riderStatus'])->name('riderStatus');
+Route::get('/riderApproval',[AdminController::class, 'riderApproval'])->name('riderApproval');
+Route::get('/riderApproved',[AdminController::class, 'riderApproved'])->name('riderApproved');
+Route::get('/riderDenay/{id}',[AdminController::class, 'riderDenay'])->name('riderDenay');
+
 
 
 
@@ -87,7 +95,32 @@ Route::get('/viewRider/{id}',[AdminController::class, 'viewRider'])->name('viewR
 
 //--Admin route end--
 
+<<<<<<< HEAD
 
+//--Manager rout--
+/*Route::get('/managerRegistration', function () {
+      return view('manager.registration');
+  });
+*/
+
+  Route::get('/managerRegistration',[ManagerController::class, 'managerRegistration'])->name('managerRegistration');
+  Route::post('/managerRegistration',[ManagerController::class, 'managerRegistrationSubmitted'])->name('managerRegistration');
+  
+  
+Route::get('/managerLogin',[ManagerController::class, 'managerLogin'])->name('managerLogin');
+Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])->name('managerLogin');
+
+
+
+/*Route::get('/managerLogin', function () {
+      return view('manager.login');
+  });
+*/
+//--Manager rout end--
+
+=======
+
+>>>>>>> c72083f574f383b270622d65d52c39c054b8bd89
 
 //--Rider route--
 Route::get('/riderLogin', function () {return view('rider.login');})->name('riderLogin');
@@ -102,3 +135,7 @@ Route::post('/riderPass',[RiderController::class, 'riderchangePass'])->name('rid
 Route::get('/riderLogout',[RiderController::class, 'logout'])->name('riderLogout')->middleware('riderValid');
 
 //--Rider route end--
+<<<<<<< HEAD
+
+=======
+>>>>>>> c72083f574f383b270622d65d52c39c054b8bd89
