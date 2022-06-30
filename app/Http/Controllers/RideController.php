@@ -117,9 +117,19 @@ class RideController extends Controller
 
                 if($dropLocation){
 
-                $ride = Ride::where('customerId',session()->get('id'))->where('customerStatus','Waiting for rider...')->orWhere('customerStatus','Approve')->orWhere('customerStatus','ongoing')->get();
-                 if(count($ride)>0){
-                    return redirect()->back()->with('failed', 'You have already requested for a ride. Please Cancel it for new request or if ride on going after this ride you can request for new ride');
+                $rideValid = Ride::
+                where(function ($query) {
+                    $query->where('customerId',session()->get('id'));
+                })
+                ->Where(function($q) {
+                    $q->orWhere('customerStatus', 'Waiting for rider...');
+                    $q->orWhere('customerStatus', 'Approve');
+                    $q->orWhere('customerStatus', 'ongoing');
+                    })
+                ->first();
+                 if($rideValid){
+                 return redirect()->back()->with('failed', 'You have already requested for a ride. Please Cancel it for new request or if ride on going after this ride you can request for new ride');
+                   //return $rideValid;
                  }
                  else{
 
@@ -214,8 +224,8 @@ class RideController extends Controller
 
     //Rider_Part
 
-    
-   
+
+
     public function rideHis(){
         $req = "Ride complete";
         $rideHis = Ride::where('riderId',session()->get('id'))->where('customerStatus',$req)->where('riderStatus',$req)->get();

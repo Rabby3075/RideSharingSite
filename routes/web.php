@@ -71,6 +71,10 @@ Route::get('/riderDenay/{id}',[AdminController::class, 'riderDenay'])->name('rid
 
 
 
+Route::get('/export',[AdminController::class, 'export'])->name('export');
+Route::get('/rideComplete',[AdminController::class, 'rideComplete'])->name('rideComplete');
+Route::post('/rideComplete',[AdminController::class, 'search_ride_btn'])->name('search_ride_btn');
+
 
 
 //---admin rider--
@@ -100,29 +104,13 @@ Route::get('/admin/password',[AdminController::class, 'CPassword'])->name('chang
 
 Route::post('/password/update',[AdminController::class, 'updatePassword'])->name('passwordUpdate')->middleware('Admin');
 
+//--Charts and graphs
+
+Route::get ('/charts',[AdminController::class,'charts'])->name('charts')->middleware('Admin');
+Route::get ('/charts',[AdminController::class,'chartInfo'])->name('charts')->middleware('Admin');
+
+
 //--Admin route end--
-
-
-//--Manager rout--
-/*Route::get('/managerRegistration', function () {
-      return view('manager.registration');
-  });
-*/
-
-  Route::get('/managerRegistration',[ManagerController::class, 'managerRegistration'])->name('managerRegistration');
-  Route::post('/managerRegistration',[ManagerController::class, 'managerRegistrationSubmitted'])->name('managerRegistration');
-  
-  
-Route::get('/managerLogin',[ManagerController::class, 'managerLogin'])->name('managerLogin');
-Route::post('/managerLogin',[ManagerController::class, 'managerLoginSubmitted'])->name('managerLogin');
-
-
-
-/*Route::get('/managerLogin', function () {
-      return view('manager.login');
-  });
-*/
-//--Manager rout end--
 
 
 //--Rider route--

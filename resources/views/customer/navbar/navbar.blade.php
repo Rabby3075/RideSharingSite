@@ -19,7 +19,7 @@
           <a class="nav-link" href="{{route('rideList')}}"><i class="bi bi-clipboard2-data-fill me-1"></i>Ride History</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" data-bs-target="#demo-drop" href="#"><img  src="{{asset('/storage/images/')}}/{{Session::get('image')}}" alt="profile pic"  width="40" height="40"></a>
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" data-bs-target="#demo-drop" href="#"><img  src="../customer_image/{{Session::get('image')}}" alt="profile pic"  width="40" height="40"></a>
           <ul class="dropdown-menu" id="dot-drop">
           <li>
           <a class="dropdown-item" href="{{route('customerProfile')}}"><i class="fa-solid fa-user me-2"></i>View Profile</a>
