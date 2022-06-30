@@ -18,7 +18,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
     </style>
-@if(Session::get('username'))
+@if(Session::get('customer_username'))
 @include('customer.navbar.navbar')
 
 @yield('content')

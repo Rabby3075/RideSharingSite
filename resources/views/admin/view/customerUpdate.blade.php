@@ -71,6 +71,10 @@
             font-size: 30px;
             margin-bottom: 20px;
         }
+        .text-danger{
+            font-size: 15px;
+            background-color: black;
+        }
 
 
  

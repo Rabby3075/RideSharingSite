@@ -1,6 +1,7 @@
 @extends('customer.dashboard.dashboard')
 @section('content')
 
+
 <div class="container mt-3">
   <h2 class="d-flex justify-content-center"><u>Your Ride History</u></h2>
   @if ($errors->any())
@@ -26,6 +27,9 @@
                         {!! \Session::get('success') !!}
                         </div>
                         @endif
+ <div class="table-responsive custom-table-responsive">
+
+
   <table class="table my-3 bg-light" style="text-align: center" id="myTable">
     <thead>
       <tr>
@@ -93,6 +97,7 @@
     @endforeach
     </tbody>
   </table>
+  </div>
 
 </div>
 

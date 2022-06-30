@@ -73,6 +73,7 @@
         }
 
 
+
  
     </style>
 </head>
@@ -85,6 +86,7 @@
 <form action="{{route('addAdmin')}}" class="form-group" method="post" align="center" style="background: linear-gradient(45deg, #47cebe,#ef4a82);">
     <!-- Cross Site Request Forgery-->
     {{csrf_field()}}
+
     <h1 class="badge rounded-pill bg-danger">{{Session::get('reg')}}</h1>
         <h1>Add Admin</h1>
  <div class="col-md-9 form-group">

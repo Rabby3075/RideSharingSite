@@ -72,7 +72,10 @@
             margin-bottom: 20px;
         }
 
-
+        .text-danger{
+            font-size: 15px;
+            background-color: black;
+        }
  
     </style>
 </head>
@@ -85,6 +88,7 @@
 <form action="{{route('addCustomer')}}" class="form-group" method="post" align="center" style="background: linear-gradient(45deg, #47cebe,#ef4a82);">
     <!-- Cross Site Request Forgery-->
     {{csrf_field()}}
+
     <h1 class="badge rounded-pill bg-danger">{{Session::get('cus')}}</h1>
         <h1>Add Customer</h1>
  <div class="col-md-9 form-group">
@@ -100,6 +104,9 @@
     <div class="col-md-9 form-group">
         <span class="id">Date of Birth</span>
         <input type="date" name="dob" value="{{old('dob')}}"class="form-control">
+        @error('dob')
+            <span class="text-danger">{{$message}}</span>
+        @enderror
     </div>
 
 
@@ -115,14 +122,14 @@
 
         <div class="col-md-9 form-group">
         <span class="id">Address</span>
-        <input type="tel" name="address" value="{{old('phone')}}" class="form-control" placeholder="Your Address">
+        <input type="tel" name="address" value="{{old('address')}}" class="form-control" placeholder="Your Address">
         @error('address')
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>
         <div class="col-md-9 form-group">
         <span class="id">Username</span>
-        <input type="text" name="username" value="{{old('phone')}}" class="form-control" placeholder="Enter your username">
+        <input type="text" name="username" value="{{old('username')}}" class="form-control" placeholder="Enter your username">
         @error('username')
             <span class="text-danger">{{$message}}</span>
         @enderror
@@ -141,13 +148,7 @@
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>
-        <div class="col-md-9 form-group">
-        <span class="id">Confirm Password</span>
-        <input type="text" name="cpassword" value="{{old('cpassword')}}" class="form-control" placeholder="confirm password">
-       @error('cpassword')
-            <span class="text-danger">{{$message}}</span>
-        @enderror
-    </div>
+ 
 
     <div class="p">
     <div class="d-grid col-12 mx-auto">
