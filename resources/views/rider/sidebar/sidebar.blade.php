@@ -49,7 +49,7 @@
 						<div class="card-body">
 							<ul class="list-group">										
 								<li class="list-group-item"><a href="{{route('rideHis')}}"><i class="fa fa-table"></i> Ride history</a></li>
-								<li class="list-group-item"><a href="#"><i class="fa fa-file-excel-o"></i> Excel Report</a></li>			
+								<li class="list-group-item"><a href="{{route('riderReport')}}"><i class="fa fa-file-excel-o"></i> Excel Report</a></li>			
 							</ul>
 						</div>
 					</div>

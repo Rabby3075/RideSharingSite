@@ -228,6 +228,12 @@ class RideController extends Controller
         $rideCount = Ride::where('riderId',session()->get('id'))->where('customerStatus',$req)->where('riderStatus',$req)->get()->count();
         return view('rider.riderBalance')->with('rideHis', $rideHis)->with('rideCount', $rideCount);
     }
+    public function rideexl(){
+        $req = "Ride complete";
+        $rideHis = Ride::where('riderId',session()->get('id'))->where('customerStatus',$req)->where('riderStatus',$req)->get();
+        return view('rider.excel')->with('rideHis', $rideHis);
+        
+    }
    //
 
 
