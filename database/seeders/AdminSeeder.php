@@ -19,8 +19,8 @@ class AdminSeeder extends Seeder
             'dob' => '1999-03-06',
             'email' => 'Laboni@gmail.com',
             'phone'=> '01767876546',
-            'password' => '123456',
-            'cpassword'=>'123456',
+            'password' => md5('123456'),
+            'cpassword'=>md5('123456'),
             'picture' => 'user.jpg',
            
         ]);
