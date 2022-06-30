@@ -11,8 +11,12 @@
       <button class="btn btn-primary" type = "button">Reset</button>
 
       </a>
+
 </form>
 
+<div>
+    <a href="/exportpdf" class="btn btn-primary">Export PDF</a>
+</div>
 <table class="table table-border">
     <tr>
         <th class="fs-4">Name</th>

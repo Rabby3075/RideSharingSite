@@ -104,6 +104,8 @@ Route::post('/password/update',[AdminController::class, 'updatePassword'])->name
 
 Route::get ('/charts',[AdminController::class,'charts'])->name('charts')->middleware('Admin');
 Route::get ('/charts',[AdminController::class,'chartInfo'])->name('charts')->middleware('Admin');
+//--export pdf--
+Route::get ('/exportpdf',[AdminController::class,'exportpdf'])->name('exportpdf')->middleware('Admin');
 
 
 //--Admin route end--
