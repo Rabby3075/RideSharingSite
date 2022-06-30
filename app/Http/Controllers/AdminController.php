@@ -12,6 +12,11 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Exports\CustomerExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Ride;
+
+
 
 class AdminController extends Controller
 {   
@@ -112,7 +117,7 @@ class AdminController extends Controller
 
     );
         $admin = Admin::where('email',$request->email)
-                            ->where('password',$request->password)
+                            ->where('password',md5($request->password))
                             ->first();
 
         // return $teacher;
@@ -243,6 +248,18 @@ class AdminController extends Controller
         public function customerAdd(Request $request){
          $customer = Customer::where('email',$request->email)
                             ->first();
+         $validate = $request->validate([
+            "name"=>"required",
+            'dob'=>'required|date',
+            'email'=>'required|email',
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:11',
+            'address'=>'required',
+            'username'=>'required|min:5',
+            'password'=>'required|min:8|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{5,20}$/',
+           
+            ],
+                 ['password.regex'=>"Please use atleast 1 uppercase, 1 lowercase, 1 special charactee, 1 numbers"]
+            );
 
             if($customer){
                 $request->session()->flash('cus', 'This account already exists');
@@ -260,6 +277,7 @@ class AdminController extends Controller
                     $customer->rating='0';
                     $customer->image = 'index.png';
                     $customer->save();
+                    return redirect()->route('customerTable');
             }
     }
     //////////////////////END////////////////////////////////////
@@ -309,7 +327,7 @@ class AdminController extends Controller
     ////////////////////CustomerView////////////////////
 
     public function customerTable(){
-        $customers = Customer::paginate(2);
+        $customers = Customer::paginate(10);
         return view('admin.view.customerTable')->with('customers', $customers);
     }
     public function viewCustomer(Request $request){
@@ -330,6 +348,17 @@ class AdminController extends Controller
     }
     public function customerUpdateSubmitted(Request $request){
         $customer = Customer::where('id', $request->id)->first();
+        $validate = $request->validate([
+            "name"=>"required",
+            'dob'=>'required|date',
+            'email'=>'required|email',
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:11',
+            'address'=>'required',
+            'username'=>'required|min:5',
+           
+            ],
+ 
+            );
         $customer->email = $request->email;
         $customer->name = $request->name;
         $customer->phone = $request->phone;
@@ -340,9 +369,14 @@ class AdminController extends Controller
     }
 
     public function searchc_btn(Request $request){
-        $customers = Customer::where('name',$request->search)->get();
+        $customers = Customer::where('name', 'LIKE', "%{$request->search}%")->get();
         //return $admins;
         return view('admin.view.customerTable')->with('customers', $customers);
+    }
+   //////////////////////EXPORT///////////////////////
+
+    public function export(){
+        return Excel::download(new CustomerExport, 'customer.xlsx');
     }
 
     ////////////////////APPROVE///////////////
@@ -368,6 +402,20 @@ class AdminController extends Controller
     $riders = Rider::where('id', $request->id)->first();
     $riders->delete();
     return redirect()->route('riderStatus')->with('riders', $riders);
+    }
+
+
+
+    //////////////////////////////RIDE/////////////////////
+
+    public function rideComplete(){
+        $rides = Ride::all();
+        return view('admin.ride.rideComplete')->with('rides', $rides);
+    }
+    public function search_ride_btn(Request $request){
+    $rides = Ride::where('riderApprovalTime','LIKE', "%{$request->search}%")->get();
+    //return $rides;
+     return view('admin.ride.rideComplete')->with('rides', $rides);
     }
 ///Add rider///
 
@@ -504,12 +552,14 @@ class AdminController extends Controller
         //$hashedPassword = Auth::admin()->password;
     if($adminNewPass == $adminConPass){
             $user = Admin::where('password', md5($request->oldPassword))->first();
+
+
     //    if(Hash::check($request->oldPassword, Auth::admin()->password)){
     //          // dd("old password doesn't match");
     //    $user = Admin::find(Auth::id());
 
     $user->password = md5($request->password);
-    $user->password = Hash::make($request->password);
+    //$user->password = Hash::make($request->password);
    // $user->password = Hash::make($request->password);
     $user->save();
      Auth::logout();

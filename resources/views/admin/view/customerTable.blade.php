@@ -40,5 +40,6 @@
     {!! $customers->links() !!}
 </div>
 @endif
+<a href="{{route('export')}}" type="button" class="btn btn-success"><i class="bi bi-arrow-down-circle-fill">Export</i></a>
 </form>
 @endsection

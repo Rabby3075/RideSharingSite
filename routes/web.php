@@ -71,6 +71,10 @@ Route::get('/riderDenay/{id}',[AdminController::class, 'riderDenay'])->name('rid
 
 
 
+Route::get('/export',[AdminController::class, 'export'])->name('export');
+Route::get('/rideComplete',[AdminController::class, 'rideComplete'])->name('rideComplete');
+Route::post('/rideComplete',[AdminController::class, 'search_ride_btn'])->name('search_ride_btn');
+
 
 
 //---admin rider--
