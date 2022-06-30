@@ -53,6 +53,26 @@ class RideSeeder extends Seeder
 
         ]);
 
+   
+           \App\Models\Ride::factory()->create([
+            'customerName' => 'Someone',
+            'customerId' => 1,
+            'customerPhone' => '01711111111',
+            'pickupPoint' => 'SegunBagicha',
+            'destination' => 'Dhanmondi',
+            'length' => '1',
+            'cost' => '60',
+            'riderId' => 1,
+            'riderName' => 'Abc',
+            'riderPhone' => '01711111111',
+            'customerStatus' => 'Cancel',
+            'riderStatus' => 'Cancel',
+            'rideRequestTime' => '28 June 2022, 10:02:26 AM',
+            'riderApprovalTime' => '28 June 2022, 10:04:27 AM',
+            'riderStartingTie' => '28 June 2022, 10:10:27 AM',
+            'reachedTime' => '28 June 2022, 11:40:21 AM'
+
+        ]);
 
     }
 }

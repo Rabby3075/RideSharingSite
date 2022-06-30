@@ -30,8 +30,8 @@
         <th>Destination</th>
         <th>Lenth</th>
         <th>Cost</th>
-        <th>Rider status</th>
         <th>Customer status</th>
+        <th>Rider status</th>
        
     </tr>
      @foreach($rides as $ride)
@@ -45,6 +45,10 @@
         <td>{{$ride->cost}}</td>
         @if($ride->riderStatus === "Ride complete")
         <td ><span class="badge bg-success">Ride Complete</span></td>
+
+        @endif
+        @if($ride->riderStatus === "Cancel")
+        <td ><span class="badge bg-danger">Ride Cancel</span></td>
 
         @endif
 
@@ -61,7 +65,7 @@
         <td ><span class="badge bg-danger">Ride Cancel</span></td>
         @endif
         @if($ride->customerStatus === "Approve")
-        <td ><span class="badge bg-info text-dark">Rider Approve</span> </td>
+        <td ><span class="badge bg-info text-dark">kjgkkgj</span> </td>
 
         @endif
 
