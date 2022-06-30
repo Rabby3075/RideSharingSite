@@ -83,7 +83,7 @@
 
 
          <div class="form-outline mb-4">
-            <input type="password" name="password" id="form3Example4" class="form-control form-control-lg"
+            <input type="password" name="password" value="{{old('password')}}" id="form3Example4"  class="form-control form-control-lg"
               placeholder="Enter password" />
             <label class="form-label" for="form3Example4">Password</label>
         @error('password')
