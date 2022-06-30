@@ -128,5 +128,6 @@ Route::post('/riderPass',[RiderController::class, 'riderchangePass'])->name('rid
 Route::get('/riderLogout',[RiderController::class, 'logout'])->name('riderLogout')->middleware('riderValid');
 Route::get('/rideHistory',[RideController::class, 'rideHis'])->name('rideHis')->middleware('riderValid');
 Route::get('/riderBalance',[RideController::class, 'riderBalance'])->name('riderBalance')->middleware('riderValid');
+Route::get('/riderReport',[RideController::class, 'rideexl'])->name('riderReport')->middleware('riderValid');
 
 //--Rider route end--

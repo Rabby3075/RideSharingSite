@@ -84,8 +84,8 @@ body {
     	
         <div class="col-md-3 border-right align-self-center">
 
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{{asset('/storage/image/')}}/{{Session::get('image')}}">
-            <div class="upload-btns-wrapper">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5 shadow p-2 mb-5 bg-white rounded" width="150px" src="img/{{Session::get('image')}}">
+            <div class="upload-btns-wrapper"> <br>
             <button class="btns">Update Picture</button>
             <input type="file" id="formFile" name="image" id="image" value="{{Session::get('image')}}">
             </div>

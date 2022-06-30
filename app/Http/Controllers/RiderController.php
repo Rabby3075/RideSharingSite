@@ -51,8 +51,11 @@ class RiderController extends Controller
           return redirect()->back()->with('failed', 'Username already exist');
       }
       else{
-        $image = $request->image;
-        $nameImage = $image->getClientOriginalName();
+        $image = $request->file('image')->getClientOriginalName();
+        
+        
+        //$image = $request->image;
+        //$nameImage = $image->getClientOriginalName();
   
         $rider = new Rider();
           $rider->name = $request->fname;
@@ -69,10 +72,10 @@ class RiderController extends Controller
           $rider->balance = $balance;
           $rider->username = $request->username;
           $rider->password = md5($request->password);
-          $rider->image = $nameImage;
+          $rider->image = $image;
           $result = $rider->save();
           if($result){
-              $image->storeAs('public/image',$nameImage);
+              $folder = $request->file('image')->move(public_path('img').'/',$image);
               return redirect()->route('riderLogin');
           }
           else{
@@ -162,9 +165,8 @@ class RiderController extends Controller
         'dlic.required'=>"The DRIVING LICENSE field is required."]
      );
  if($request->hasfile('image')){
-     $image = $request->file('image');
-     $nameImage = $image->getClientOriginalName();
-     $image->storeAs('public/image',$nameImage);
+    $image = $request->file('image')->getClientOriginalName();
+    $folder = $request->file('image')->move(public_path('img').'/',$image);
  }
  else{
      $nameImage = $request->session()->get('image');
