@@ -14,14 +14,23 @@
   
 <body>        
 
+@if(session('failed'))
+<div class = "alert alert-danger alert-dismissible fade show" role="alert">
+<strong>{{session('failed')}}</strong>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+
+</div>
+@endif
+
+
+
     <div class="container">
     <h1>Change Password</h1>
 
 <form action="{{route('passwordUpdate')}}" class="form-group" method="post">
     {{csrf_field()}}
-  
-   
-
     <div class="col-md-9 form-group">
         <span class="id">Current Password</span>
         <input type="password" name="oldPassword"  class="form-control" placeholder="Current password" id="current_password">
@@ -31,8 +40,8 @@
     </div>
     <div class="col-md-9 form-group">
         <span class="id">New Password</span>
-        <input type="password" name="password"  class="form-control" placeholder="New password" id="password">
-        @error('password')
+        <input type="password" name="newPassword"  class="form-control" placeholder="New password" id="newPassword">
+        @error('newPassword')
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>

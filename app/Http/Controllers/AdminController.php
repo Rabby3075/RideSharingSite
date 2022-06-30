@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 use Illuminate\Support\Facades\Hash;
+use PDF;
 use App\Exports\CustomerExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Ride;
@@ -127,8 +128,8 @@ class AdminController extends Controller
             $request->session()->put('email',$admin->email);
             $request->session()->put('dob',$admin->dob);
             $request->session()->put('phone',$admin->phone);
-            $request->session()->put('password',$admin->password);
-            $request->session()->put('cpassword',$admin->cpassword);
+            $request->session()->put('password',md5($admin->password));
+            $request->session()->put('cpassword',md5($admin->cpassword));
             $request->session()->put('picture',$admin->picture);
           
             
@@ -534,46 +535,40 @@ class AdminController extends Controller
         
     }
     public function updatePassword(Request $request){
-        
-
-       $validateData = $request->validate([
+       $validate = $request->validate([
         'oldPassword' => 'required',
-        'password' => 'required|confirmed',
-
+        'newPassword' => 'required',
+        'password_confirmation'=> 'required',
        ]);
 
-       $adminNewPass=$request->password;
+       $adminNewPass=$request->newPassword;
        $adminConPass=$request->password_confirmation;
-   
-
-
-     //echo Admin::all()->password;
-
-        //$hashedPassword = Auth::admin()->password;
-    if($adminNewPass == $adminConPass){
-            $user = Admin::where('password', md5($request->oldPassword))->first();
-
-
-    //    if(Hash::check($request->oldPassword, Auth::admin()->password)){
-    //          // dd("old password doesn't match");
-    //    $user = Admin::find(Auth::id());
-
-    $user->password = md5($request->password);
-    //$user->password = Hash::make($request->password);
-   // $user->password = Hash::make($request->password);
-    $user->save();
-     Auth::logout();
-     return redirect()->route('adminlogin')->with('success','Password is change successfully');
-
-     }
-       else{
-         return redirect()->back()->with('error','Current Password invalid');
-
-        }
     
-     //dd($request->all());
+    if ($adminNewPass == $adminConPass)  
+    {
 
-        
+    $user = Admin::where('email',$request->session()->get('email'))->where('password',md5($request->oldPassword))->first();
+    if($user){
+
+            $user->password = md5($request->newPassword);
+            session()->put('password',md5($request->newPassword));
+            $result = $user->save();
+            Auth::logout();
+            if($result){
+            return redirect()->route('adminlogin')->with('success', 'Password  is Updated Successfully');
+            }
+            else{
+                return redirect()->back()->with('failed', 'Password Updating Failed');
+            }     
+    }
+    else{
+        return redirect()->back()->with('failed', 'Please enter valid User Password');
+    }
+    }
+    else{
+        return redirect()->back()->with('failed', 'Password Confirmation does not match');
+    }
+
     }
 
     public function charts(){
@@ -595,5 +590,17 @@ class AdminController extends Controller
 
   }
 
+public function exportpdf(){
+
+    $data = Rider::all();
+    view()->share('data',$data);
+    $pdf = PDF::loadView('admin.view.riderListPdf');
+    return $pdf->download('riders.pdf');
+
+}
+
+
    
 }
+
+ 
