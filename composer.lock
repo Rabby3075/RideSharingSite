@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "985c312063f933673d04973df2d17e48",
-    "content-hash": "fb06b64b83070a19382df59180dc2af1",
+    "content-hash": "38a26dbd360f8eb52f720002cc47f06a",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -2219,16 +2218,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.59.0",
+            "version": "2.59.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "9cea2f72585a46d0651ee6d4c8c8f752e78c16c6"
+                "reference": "a9000603ea337c8df16cc41f8b6be95a65f4d0f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/9cea2f72585a46d0651ee6d4c8c8f752e78c16c6",
-                "reference": "9cea2f72585a46d0651ee6d4c8c8f752e78c16c6",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/a9000603ea337c8df16cc41f8b6be95a65f4d0f5",
+                "reference": "a9000603ea337c8df16cc41f8b6be95a65f4d0f5",
                 "shasum": ""
             },
             "require": {
@@ -2317,7 +2316,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-06-26T20:26:59+00:00"
+            "time": "2022-06-29T21:43:55+00:00"
         },
         {
             "name": "nette/schema",
@@ -2587,85 +2586,95 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Svg\\": "src/Svg"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Ménager",
+                    "email": "fabien.menager@gmail.com"
+                }
+            ],
+            "description": "A library to read, parse and export to PDF SVG files.",
+            "homepage": "https://github.com/PhenX/php-svg-lib",
+            "support": {
+                "issues": "https://github.com/dompdf/php-svg-lib/issues",
+                "source": "https://github.com/dompdf/php-svg-lib/tree/0.4.1"
+            },
+            "time": "2022-03-07T12:52:04+00:00"
+        },
+        {
             "name": "phpoffice/phpspreadsheet",
-                "version": "1.23.0",
-                "source": {
-                    "type": "git",
-                    "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-                    "reference": "21e4cf62699eebf007db28775f7d1554e612ed9e"
-                },
-                "dist": {
-                    "type": "zip",
-                    "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/21e4cf62699eebf007db28775f7d1554e612ed9e",
-                    "reference": "21e4cf62699eebf007db28775f7d1554e612ed9e",
-                    "shasum": ""
-                },
-                "require": {
-                    "ext-ctype": "*",
-                    "ext-dom": "*",
-                    "ext-fileinfo": "*",
-                    "ext-gd": "*",
-                    "ext-iconv": "*",
-                    "ext-libxml": "*",
-                    "ext-mbstring": "*",
-                    "ext-simplexml": "*",
-                    "ext-xml": "*",
-                    "ext-xmlreader": "*",
-                    "ext-xmlwriter": "*",
-                    "ext-zip": "*",
-                    "ext-zlib": "*",
-                    "ezyang/htmlpurifier": "^4.13",
-                    "maennchen/zipstream-php": "^2.1",
-                    "markbaker/complex": "^3.0",
-                    "markbaker/matrix": "^3.0",
-                    "php": "^7.3 || ^8.0",
-                    "psr/http-client": "^1.0",
-                    "psr/http-factory": "^1.0",
-                    "psr/simple-cache": "^1.0 || ^2.0"
-                },
-                "require-dev": {
-                    "dealerdirect/phpcodesniffer-composer-installer": "dev-master",
-                    "dompdf/dompdf": "^1.0",
-                    "friendsofphp/php-cs-fixer": "^3.2",
-                    "jpgraph/jpgraph": "^4.0",
-                    "mpdf/mpdf": "8.0.17",
-                    "phpcompatibility/php-compatibility": "^9.3",
-                    "phpstan/phpstan": "^1.1",
-                    "phpstan/phpstan-phpunit": "^1.0",
-                    "phpunit/phpunit": "^8.5 || ^9.0",
-                    "squizlabs/php_codesniffer": "^3.6",
-                    "tecnickcom/tcpdf": "^6.4"
-                },
-                "suggest": {
-                    "dompdf/dompdf": "Option for rendering PDF with PDF Writer (doesn't yet support PHP8)",
-                    "jpgraph/jpgraph": "Option for rendering charts, or including charts with PDF or HTML Writers",
-                    "mpdf/mpdf": "Option for rendering PDF with PDF Writer",
-                    "tecnickcom/tcpdf": "Option for rendering PDF with PDF Writer (doesn't yet support PHP8)"
-                },
-                "type": "library",
-                "autoload": {
-                    "psr-4": {
-                        "Svg\\": "src/Svg"
+            "version": "1.23.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
+                "reference": "21e4cf62699eebf007db28775f7d1554e612ed9e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/21e4cf62699eebf007db28775f7d1554e612ed9e",
+                "reference": "21e4cf62699eebf007db28775f7d1554e612ed9e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-dom": "*",
+                "ext-fileinfo": "*",
+                "ext-gd": "*",
+                "ext-iconv": "*",
+                "ext-libxml": "*",
+                "ext-mbstring": "*",
+                "ext-simplexml": "*",
+                "ext-xml": "*",
+                "ext-xmlreader": "*",
+                "ext-xmlwriter": "*",
+                "ext-zip": "*",
+                "ext-zlib": "*",
+                "ezyang/htmlpurifier": "^4.13",
+                "maennchen/zipstream-php": "^2.1",
+                "markbaker/complex": "^3.0",
+                "markbaker/matrix": "^3.0",
+                "php": "^7.3 || ^8.0",
+                "psr/http-client": "^1.0",
+                "psr/http-factory": "^1.0",
+                "psr/simple-cache": "^1.0 || ^2.0"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "dev-master",
+                "dompdf/dompdf": "^1.0",
+                "friendsofphp/php-cs-fixer": "^3.2",
+                "jpgraph/jpgraph": "^4.0",
+                "mpdf/mpdf": "8.0.17",
+                "phpcompatibility/php-compatibility": "^9.3",
+                "phpstan/phpstan": "^1.1",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^8.5 || ^9.0",
+                "squizlabs/php_codesniffer": "^3.6",
+                "tecnickcom/tcpdf": "^6.4"
+            },
+            "suggest": {
+                "dompdf/dompdf": "Option for rendering PDF with PDF Writer (doesn't yet support PHP8)",
+                "jpgraph/jpgraph": "Option for rendering charts, or including charts with PDF or HTML Writers",
+                "mpdf/mpdf": "Option for rendering PDF with PDF Writer",
+                "tecnickcom/tcpdf": "Option for rendering PDF with PDF Writer (doesn't yet support PHP8)"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
                     "PhpOffice\\PhpSpreadsheet\\": "src/PhpSpreadsheet"
-                    }
-                },
-                "notification-url": "https://packagist.org/downloads/",
-                "license": [
-                    "LGPL-3.0"
-                ],
-                "authors": [
-                    {
-                        "name": "Fabien Ménager",
-                        "email": "fabien.menager@gmail.com"
-                    }
-                ],
-                "description": "A library to read, parse and export to PDF SVG files.",
-                "homepage": "https://github.com/PhenX/php-svg-lib",
-                "support": {
-                    "issues": "https://github.com/dompdf/php-svg-lib/issues",
-                    "source": "https://github.com/dompdf/php-svg-lib/tree/0.4.1"
-                },
-                "time": "2022-03-07T12:52:04+00:00"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
                 "MIT"
             ],
             "authors": [
