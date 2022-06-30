@@ -112,8 +112,8 @@ class CustomerController extends Controller
         return redirect()->back()->with('failed', 'Username already exist');
     }
     else{
-      $image = $request->image;
-      $nameImage = $image->getClientOriginalName();
+        $nameImage = $request->file('image')->getClientOriginalName();
+        $folder = $request->file('image')->move(public_path('customer_image').'/',$nameImage);
 
       $customer = new Customer();
         $customer->name = $request->name;
@@ -127,7 +127,7 @@ class CustomerController extends Controller
         $customer->image = $nameImage;
         $result = $customer->save();
         if($result){
-            $image->storeAs('public/images',$nameImage);
+            //$image->storeAs('public/images',$nameImage);
             return redirect()->back()->with('success', 'Registration Done successfully');
         }
         else{
@@ -152,7 +152,7 @@ class CustomerController extends Controller
         $request->session()->put('dob',$loginCheck->dob);
         $request->session()->put('phone',$loginCheck->phone);
         $request->session()->put('address',$loginCheck->address);
-        $request->session()->put('username',$loginCheck->username);
+        $request->session()->put('customer_username',$loginCheck->username);
         $request->session()->put('email',$loginCheck->email);
         $request->session()->put('password',$loginCheck->password);
         $request->session()->put('image',$loginCheck->image);
@@ -170,10 +170,11 @@ class CustomerController extends Controller
         session()->forget('dob');
         session()->forget('phone');
         session()->forget('address');
-        session()->forget('username');
+        session()->forget('customer_username');
         session()->forget('email');
         session()->forget('password');
         session()->forget('image');
+        session()->forget('rating');
         return redirect()->route('customerLogin');
     }
 
@@ -190,9 +191,8 @@ class CustomerController extends Controller
         ]
     );
 if($request->hasfile('image')){
-    $image = $request->file('image');
-    $nameImage = $image->getClientOriginalName();
-    $image->storeAs('public/images',$nameImage);
+    $nameImage = $request->file('image')->getClientOriginalName();
+    $folder = $request->file('image')->move(public_path('customer_image').'/',$nameImage);
 }
 else{
     $nameImage = $request->session()->get('image');
@@ -202,7 +202,7 @@ else{
 
 
 
-    $user = Customer::where('username',$request->session()->get('username'))->first();
+    $user = Customer::where('username',$request->session()->get('customer_username'))->first();
     $user->name = $request->name;
     $request->session()->put('name',$request->name);
     $user->dob = $request->dob;
@@ -237,7 +237,7 @@ else{
         ['npass.regex'=>"Please use atleast 1 uppercase, 1 lowercase, 1 special character, 1 number"]
     );
 
-    $user = Customer::where('username',$request->session()->get('username'))->first();
+    $user = Customer::where('username',$request->session()->get('customer_username'))->first();
 
     if($user->password === md5($request->cpass)){
 

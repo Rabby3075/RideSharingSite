@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-3 border-right">
      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-        <img class="rounded-circle mt-5" width="150px" src="{{asset('/storage/images/')}}/{{Session::get('image')}}">
+        <img class="rounded-circle mt-5" width="150px" src="../customer_image/{{Session::get('image')}}">
         <span class="font-weight-bold"> ID: {{Session::get('id')}}</span>
         <span class="text-black-50"> Rating: {{Session::get('rating')}} star</span>
 
