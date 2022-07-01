@@ -181,11 +181,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-<<<<<<< HEAD
-        //Barryvdh\DomPDF\ServiceProvider::class,
-=======
-       // Barryvdh\DomPDF\ServiceProvider::class,
->>>>>>> 4d82a5105d67ac7e5421e3b7c201c9549bd7cfeb
+
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
