@@ -6,12 +6,14 @@ use App\Models\Admin;
 use App\Models\Customer;
 use App\Models\Rider;
 use App\Models\User;
+use App\Models\Chat;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
 use Illuminate\Support\Facades\Hash;
+use PDF;
 use App\Exports\CustomerExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Ride;
@@ -127,8 +129,8 @@ class AdminController extends Controller
             $request->session()->put('email',$admin->email);
             $request->session()->put('dob',$admin->dob);
             $request->session()->put('phone',$admin->phone);
-            $request->session()->put('password',$admin->password);
-            $request->session()->put('cpassword',$admin->cpassword);
+            $request->session()->put('password',md5($admin->password));
+            $request->session()->put('cpassword',md5($admin->cpassword));
             $request->session()->put('picture',$admin->picture);
           
             
@@ -413,10 +415,13 @@ class AdminController extends Controller
         return view('admin.ride.rideComplete')->with('rides', $rides);
     }
     public function search_ride_btn(Request $request){
-    $rides = Ride::where('riderApprovalTime','LIKE', "%{$request->search}%")->get();
+    $rides = Ride::where('riderApprovalTime','LIKE', "%{$request->search}%")
+                    ->orWhere('customerStatus','LIKE', "%{$request->search}%")->get();
     //return $rides;
      return view('admin.ride.rideComplete')->with('rides', $rides);
     }
+
+
 ///Add rider///
 
     public function addRider(){
@@ -467,7 +472,9 @@ class AdminController extends Controller
          public function viewRecord(){
                 $customer = DB::table('customers')->count();
                 $rider = DB::table('riders')->count();
-               return view('admin.adminDashboard',compact('customer','rider'));
+                $rides = Ride::where('customerStatus', 'Ride complete')
+                                ->where('riderStatus','Ride complete')->sum('cost');
+               return view('admin.adminDashboard',compact('customer','rider','rides'));
           }
 
 
@@ -487,6 +494,7 @@ class AdminController extends Controller
 
         public function riderDelete(Request $request){
             $rider = Rider::where('id', $request->id)->first();
+            //$rider->chats()->delete();
             $rider->delete();
     
             return redirect()->route('riderList');
@@ -534,66 +542,117 @@ class AdminController extends Controller
         
     }
     public function updatePassword(Request $request){
-        
-
-       $validateData = $request->validate([
+       $validate = $request->validate([
         'oldPassword' => 'required',
-        'password' => 'required|confirmed',
-
+        'newPassword' => 'required',
+        'password_confirmation'=> 'required',
        ]);
 
-       $adminNewPass=$request->password;
+       $adminNewPass=$request->newPassword;
        $adminConPass=$request->password_confirmation;
-   
-
-
-     //echo Admin::all()->password;
-
-        //$hashedPassword = Auth::admin()->password;
-    if($adminNewPass == $adminConPass){
-            $user = Admin::where('password', md5($request->oldPassword))->first();
-
-
-    //    if(Hash::check($request->oldPassword, Auth::admin()->password)){
-    //          // dd("old password doesn't match");
-    //    $user = Admin::find(Auth::id());
-
-    $user->password = md5($request->password);
-    //$user->password = Hash::make($request->password);
-   // $user->password = Hash::make($request->password);
-    $user->save();
-     Auth::logout();
-     return redirect()->route('adminlogin')->with('success','Password is change successfully');
-
-     }
-       else{
-         return redirect()->back()->with('error','Current Password invalid');
-
-        }
     
-     //dd($request->all());
+    if ($adminNewPass == $adminConPass)  
+    {
 
-        
+    $user = Admin::where('email',$request->session()->get('email'))->where('password',md5($request->oldPassword))->first();
+    if($user){
+
+            $user->password = md5($request->newPassword);
+            session()->put('password',md5($request->newPassword));
+            $result = $user->save();
+            Auth::logout();
+            if($result){
+            return redirect()->route('adminlogin')->with('success', 'Password  is Updated Successfully');
+            }
+            else{
+                return redirect()->back()->with('failed', 'Password Updating Failed');
+            }     
+    }
+    else{
+        return redirect()->back()->with('failed', 'Please enter valid User Password');
+    }
+    }
+    else{
+        return redirect()->back()->with('failed', 'Password Confirmation does not match');
     }
 
-    public function charts(){
+    }
+
+    public function pieCharts(){
             
-        return view('admin.charts');
+        return view('admin.charts.pieCharts');
     }
 
 
-    public function chartInfo(){
-  $result = DB::select(DB::raw("select count(*) as total_gender,gender from riders group by gender
-  "));
-  $chartData = "";
+    public function pieChartInfo(){
+  $result = DB::select(DB::raw(
+  "
+  SELECT name as name,
+  SUM(balance) as balance 
+  FROM riders 
+  GROUP BY name
+      
+  "
+));
+  $riderData = "";
   foreach($result as $list){
-    $chartData.="['".$list->gender."',".$list->total_gender."],";
+    $riderData.="['".$list->name."',".$list->balance."],";
   }
-  $arr['chartData'] = rtrim($chartData,",");
+  $arr['riderData'] = rtrim($riderData,",");
 
-   return view('admin.charts',$arr);
+
+  $res = DB::select(DB::raw(
+    "
+    SELECT count(*) as total_address, address FROM customers GROUP BY address     
+    "
+  ));
+
+  $cusData = "";
+  foreach($res as $cus){
+    $cusData.="['".$cus->address."',".$cus->total_address."],";
+  }
+  $arr['cusData'] = rtrim($cusData,",");
+
+   return view('admin.charts.pieCharts',$arr);
 
   }
+
+  public function barCharts(){
+            
+    return view('admin.charts.barCharts');
+}
+  public function barChartInfo(){
+          
+    $ress = DB::select(DB::raw(
+        "
+        SELECT count(*) as total_riderStatus, riderStatus FROM rides GROUP BY riderStatus     
+
+        "
+      ));
+        $statusData = "";
+        foreach($ress as $list){
+          $statusData.="['".$list->riderStatus."',".$list->total_riderStatus."],";
+        }
+        $arr['statusData'] = rtrim($statusData,",");
+       
+
+    return view('admin.charts.barCharts');
+}
+
+
+
+
+public function exportpdf(){
+
+    $data = Rider::all();
+    view()->share('data',$data);
+    $pdf = PDF::loadView('admin.view.riderListPdf');
+    return $pdf->download('riders.pdf');
+
+}
+
 
    
 }
+
+ 

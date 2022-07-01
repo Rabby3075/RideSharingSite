@@ -74,6 +74,8 @@ Route::get('/riderDenay/{id}',[AdminController::class, 'riderDenay'])->name('rid
 Route::get('/export',[AdminController::class, 'export'])->name('export');
 Route::get('/rideComplete',[AdminController::class, 'rideComplete'])->name('rideComplete');
 Route::post('/rideComplete',[AdminController::class, 'search_ride_btn'])->name('search_ride_btn');
+Route::get ('/adminDashboard',[AdminController::class,'completeRideCost'])->name('completeRideCost');
+
 
 
 
@@ -82,32 +84,25 @@ Route::get ('/addRider',[AdminController::class,'addRider'])->name('addRider')->
 Route::post ('/addRider',[AdminController::class,'riderAdd'])->name('riderAdd')->middleware('Admin');
 //--Total User, Total Rider--
 Route::get ('/adminDashboard',[AdminController::class,'viewRecord'])->name('admindashboard');
-
 //--rider list  --
 Route::get('/riderList',[AdminController::class, 'riderList'])->name('riderList')->middleware('Admin');
-
 //--rider delete--
 Route::get('/riderDelete/{id}',[AdminController::class, 'riderDelete'])->name('riderDelete')->middleware('Admin');
 //--rider update--
-
-
 Route::get('/updateRider/{id}',[AdminController::class, 'updateRider'])->name('updateRider')->middleware('Admin');
 Route::post('/updateRider',[AdminController::class, 'updateRiderSubmitted'])->name('updateRider')->middleware('Admin');
 //--rider view details--
-
 Route::get('/viewRider/{id}',[AdminController::class, 'viewRider'])->name('viewRider')->middleware('Admin');
-
-
 //--admin change password--
-
 Route::get('/admin/password',[AdminController::class, 'CPassword'])->name('changePassword')->middleware('Admin');
-
 Route::post('/password/update',[AdminController::class, 'updatePassword'])->name('passwordUpdate')->middleware('Admin');
-
 //--Charts and graphs
-
-Route::get ('/charts',[AdminController::class,'charts'])->name('charts')->middleware('Admin');
-Route::get ('/charts',[AdminController::class,'chartInfo'])->name('charts')->middleware('Admin');
+Route::get ('/pieCharts',[AdminController::class,'pieCharts'])->name('pieCharts')->middleware('Admin');
+Route::get ('/pieCharts',[AdminController::class,'pieChartInfo'])->name('pieCharts')->middleware('Admin');
+Route::get ('/barCharts',[AdminController::class,'barCharts'])->name('barCharts')->middleware('Admin');
+Route::get ('/barCharts',[AdminController::class,'barChartInfo'])->name('barCharts')->middleware('Admin');
+//--export pdf--
+Route::get ('/exportpdf',[AdminController::class,'exportpdf'])->name('exportpdf')->middleware('Admin');
 
 
 //--Admin route end--
