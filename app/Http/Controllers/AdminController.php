@@ -414,10 +414,13 @@ class AdminController extends Controller
         return view('admin.ride.rideComplete')->with('rides', $rides);
     }
     public function search_ride_btn(Request $request){
-    $rides = Ride::where('riderApprovalTime','LIKE', "%{$request->search}%")->get();
+    $rides = Ride::where('riderApprovalTime','LIKE', "%{$request->search}%")
+                    ->orWhere('customerStatus','LIKE', "%{$request->search}%")->get();
     //return $rides;
      return view('admin.ride.rideComplete')->with('rides', $rides);
     }
+
+
 ///Add rider///
 
     public function addRider(){
@@ -468,7 +471,9 @@ class AdminController extends Controller
          public function viewRecord(){
                 $customer = DB::table('customers')->count();
                 $rider = DB::table('riders')->count();
-               return view('admin.adminDashboard',compact('customer','rider'));
+                $rides = Ride::where('customerStatus', 'Ride complete')
+                                ->where('riderStatus','Ride complete')->sum('cost');
+               return view('admin.adminDashboard',compact('customer','rider','rides'));
           }
 
 
