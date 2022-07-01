@@ -180,7 +180,8 @@ col-lg-8{
     <div class="btn-group">
         <button type="button" class="btn btn-none dropdown-toggle mt-2" data-bs-toggle="dropdown"><span>Statistics</span></button>
         <div class="dropdown-menu">
-            <a href="{{route('charts')}}" class="dropdown-item">Charts</a>
+            <a href="{{route('pieCharts')}}" class="dropdown-item">Pie Charts</a>
+            <a href="{{route('barCharts')}}" class="dropdown-item">Bar Charts</a>
             <div class="dropdown-divider"></div>
         </div>
     </div><br>
