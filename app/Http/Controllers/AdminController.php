@@ -15,11 +15,11 @@ use Auth;
 use Illuminate\Support\Facades\Hash;
 use PDF;
 use App\Exports\CustomerExport;
-<<<<<<< HEAD
+// <<<<<<< HEAD
 use App\Exports\RideExport;
-=======
+// =======
 use App\Exports\RiderExport;
->>>>>>> fae67dedd9bf3711514e98183d795f88000578d2
+// >>>>>>> fae67dedd9bf3711514e98183d795f88000578d2
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Ride;
 
