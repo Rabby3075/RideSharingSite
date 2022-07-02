@@ -487,7 +487,7 @@ class AdminController extends Controller
                 $riders = Rider::where('name','LIKE',"%$search%")->orWhere('email','LIKE',"%$search%")->get();
             }
             else{
-                $riders = Rider::all();
+                $riders = Rider::paginate(3);
             }
            $data = compact('riders','search');
             return view('admin.view.riderList')->with('riders', $riders);
