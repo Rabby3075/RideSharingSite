@@ -201,7 +201,18 @@ col-lg-8{
             <div class="dropdown-divider"></div>
            
         </div>
-    </div>
+    </div><br>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-none dropdown-toggle mt-2" data-bs-toggle="dropdown"><span>Ratings</span></button>
+        <div class="dropdown-menu">
+            <a href="{{route('customerRatings')}}" class="dropdown-item">Customer Ratings</a>
+            
+            <div class="dropdown-divider"></div>
+           
+        </div>
+    </div><br>
+
 </div>
 
 

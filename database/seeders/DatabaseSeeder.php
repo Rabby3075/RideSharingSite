@@ -27,7 +27,6 @@ class DatabaseSeeder extends Seeder
             RideSeeder::class,
             ReviewSeeder::class,
             PaymentSeeder::class,
-            ManagerSeeder::class,
             ChatSeeder::class,
             LocationSeeder::class,
             CustomerRatingSeeder::class

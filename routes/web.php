@@ -109,7 +109,10 @@ Route::get ('/barCharts',[AdminController::class,'barChartInfo'])->name('barChar
 //--export pdf--
 Route::get ('/exportpdf',[AdminController::class,'exportpdf'])->name('exportpdf')->middleware('Admin');
 //--export excel--
-Route::get('/excelExport',[AdminController::class, 'riderExport'])->name('excelExport');
+Route::get('/excelExport',[AdminController::class, 'riderExport'])->name('excelExport')->middleware('Admin');
+//--customer Ratings--
+Route::get('/userRatings',[AdminController::class, 'customerRatings'])->name('customerRatings')->middleware('Admin');
+
 
 //--Admin route end--
 

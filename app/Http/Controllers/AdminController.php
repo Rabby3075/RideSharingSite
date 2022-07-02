@@ -703,6 +703,18 @@ public function riderExport(){
     return Excel::download(new RiderExport, 'rider.xlsx');
 }
    
+
+
+public function customerRatings(){
+    $customers = Customer::all();
+    return view('admin.ratings.customerRatings')->with('customers', $customers);
+}
+
+
+
+
+
+
 }
 
  
