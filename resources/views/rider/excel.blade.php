@@ -134,6 +134,12 @@
         html_table_to_excel('xlsx');
     });
 
+   $(document).ready(function(){
+   window.setInterval(function(){
+   $("#rideData").load(" #rideData > *");
+   }, 1000);
+   });
+
 </script>
 
 @endsection

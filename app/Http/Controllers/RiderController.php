@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Rider;
+use App\Models\Ride;
 
 class RiderController extends Controller
 {
@@ -191,8 +192,8 @@ class RiderController extends Controller
      $request->session()->put('nid',$request->nid);
      $user->dlic = $request->dlic;
      $request->session()->put('dlic',$request->dlic);
-     $user->image = $nameImage;
-     $request->session()->put('image',$nameImage);
+     $user->image = $image;
+     $request->session()->put('image',$image);
  
      $result = $user->save();
      if($result){
@@ -250,4 +251,22 @@ class RiderController extends Controller
     }
    }
 
+   public function cashout(Request $request){
+    $validate = $request->validate([
+        'amount'=>'required|regex:/^\+?[1-9]\d*$/',  
+        'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:14',
+    ]
+   );
+   $rider = Rider::where('id',session()->get('id'))->first();
+   if($request->amount >  $rider->balance){
+    return redirect()->back()->with('failed', 'Doesnt have sufficient balance to cashout');
+    }
+    else{
+   $rider->balance= $rider->balance - $request->amount;
+   $result = $rider->save();
+   if($result){
+    return redirect()->back()->with('success', 'Transaction request is accepted. Please wait for 24 hours.');
+     }
+    }
+   }
 }

@@ -1,8 +1,8 @@
 @extends('rider.layouts.dash')
 @section('content')
 
-
-
+<head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <style>
 
@@ -79,7 +79,7 @@ a {
             
       <div class="table-responsive custom-table-responsive">
 
-        <table class="table custom-table">
+        <table class="table custom-table" id="here">
           <thead>
             <tr>  
 
@@ -121,6 +121,13 @@ a {
 
   </div>
   </body>
-
+  
+  <script>
+   $(document).ready(function(){
+   window.setInterval(function(){
+   $("#here").load(" #here > *");
+   }, 1000);
+   });
+</script>
 
 @endsection

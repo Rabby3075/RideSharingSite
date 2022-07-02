@@ -128,6 +128,10 @@ Route::get('/requestProgress',[RideController::class, 'rideProgs'])->name('rideP
 Route::post('/requestProgress',[RideController::class, 'progSub'])->name('ridess')->middleware('riderValid');
 Route::post('/requestCancel',[RideController::class, 'progCancel'])->name('ridecnl')->middleware('riderValid');
 Route::post('/requestComplete',[RideController::class, 'progComplete'])->name('ridecmplt')->middleware('riderValid');
+Route::get('/cashout', function () {return view('rider.cashOut');})->name('cashout')->middleware('riderValid');
+Route::post('/cashout',[RiderController::class, 'cashout'])->name('cashout')->middleware('riderValid');
+Route::get('/riderPoint',[RideController::class, 'riderPoint'])->name('riderPoint')->middleware('riderValid');
+Route::post('/riderPoint',[RideController::class, 'redeem'])->name('riderPoint')->middleware('riderValid');
 
 
 

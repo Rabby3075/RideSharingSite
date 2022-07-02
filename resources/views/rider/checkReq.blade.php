@@ -2,7 +2,8 @@
 @section('content')
 
 
-
+<head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <style>
 
@@ -147,7 +148,7 @@ a {
             
       <div class="table-responsive custom-table-responsive">
 
-        <table class="table custom-table">
+        <table class="table custom-table" id="here">
           <thead>
             <tr>  
 
@@ -182,7 +183,7 @@ a {
                 <td>{{$ride->pickupPoint}}</td>
                 <td>{{$ride->destination}}</td>
                 <td class="text-success">{{$ride->length}} KM</td>
-                <td class="text-success">{{$ride->rate}} BDT</td>
+                <td class="text-success">{{$ride->cost}} BDT</td>
                 <td><input type="submit" hidden> <button class="btn-green">
                     <span class="btn-gradient">
                     <i class="fa fa-check"></i>
@@ -212,5 +213,12 @@ a {
           @endif
   </body>
 
+  <script>
+   $(document).ready(function(){
+   window.setInterval(function(){
+   $("#here").load(" #here > *");
+   }, 30000);
+   });
+</script>
 
 @endsection
