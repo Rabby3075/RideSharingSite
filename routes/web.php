@@ -6,6 +6,8 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\RiderController;
 use App\Http\Controllers\RideController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\CustomerRatingController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,8 +33,10 @@ Route::post('/customerDashboard/rideRequest/submit',[RideController::class, 'rid
 Route::get('/customerDashboard/rideList',[RideController::class, 'rideList'])->name('rideList')->middleware('customerValid');
 Route::get('/customerDashboard/rideView/{id}',[RideController::class, 'getRideInformation'])->name('rideView')->middleware('customerValid');
 Route::post('/customerDashboard/rideCancelSubmit',[RideController::class, 'rideCancel'])->name('rideCancelSubmit')->middleware('customerValid');
-//Route::get('/customerDashboard/rideView/{id}',[RideController::class, 'rideView'])->name('rideView')->middleware('customerValid');
+Route::post('/customerDashboard/rideReview',[ReviewController::class, 'ReviewPost'])->name('rideReview')->middleware('customerValid');
 Route::get('/chat/{id}',[ChatController::class, 'chatUser'])->name('chatUser')->middleware('customerValid');
+Route::get('/customerDashboard/discount',[CustomerRatingController::class, 'discountList'])->name('discount')->middleware('customerValid');
+Route::get('/customerDashboard/discountclaim/{id}',[CustomerRatingController::class, 'discountClaim'])->name('discountClaim')->middleware('customerValid');
 //--Customer route end ---
 
 
@@ -72,7 +76,9 @@ Route::get('/riderDenay/{id}',[AdminController::class, 'riderDenay'])->name('rid
 
 
 Route::get('/export',[AdminController::class, 'export'])->name('export');
+Route::get('/rideexport',[AdminController::class, 'rideexport'])->name('rideexport');
 Route::get('/rideComplete',[AdminController::class, 'rideComplete'])->name('rideComplete');
+
 Route::post('/rideComplete',[AdminController::class, 'search_ride_btn'])->name('search_ride_btn');
 Route::get ('/adminDashboard',[AdminController::class,'completeRideCost'])->name('completeRideCost');
 
@@ -103,6 +109,10 @@ Route::get ('/barCharts',[AdminController::class,'barCharts'])->name('barCharts'
 Route::get ('/barCharts',[AdminController::class,'barChartInfo'])->name('barCharts')->middleware('Admin');
 //--export pdf--
 Route::get ('/exportpdf',[AdminController::class,'exportpdf'])->name('exportpdf')->middleware('Admin');
+//--export excel--
+Route::get('/excelExport',[AdminController::class, 'riderExport'])->name('excelExport')->middleware('Admin');
+//--customer Ratings--
+Route::get('/userRatings',[AdminController::class, 'customerRatings'])->name('customerRatings')->middleware('Admin');
 
 
 //--Admin route end--

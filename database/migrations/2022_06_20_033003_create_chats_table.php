@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('customerId')->references('id')->on('customers');
-            $table->foreign('riderId')->references('id')->on('riders')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('riderId')->references('id')->on('riders');
             
         });
     }

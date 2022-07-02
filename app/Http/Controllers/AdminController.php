@@ -15,6 +15,8 @@ use Auth;
 use Illuminate\Support\Facades\Hash;
 use PDF;
 use App\Exports\CustomerExport;
+use App\Exports\RideExport;
+use App\Exports\RiderExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Ride;
 
@@ -160,7 +162,12 @@ class AdminController extends Controller
 
        $customer = DB::table('customers')->count();
         $rider = DB::table('riders')->count();
-        return view('admin.adminDashboard',compact('customer','rider'));
+        $riders=customer::select(DB::raw("COUNT(*) as count"))
+                    ->whereYear('created_at', date('Y'))
+                    ->groupBy(DB::raw("Month(created_at)"))
+                    ->pluck('count');
+
+        return view('admin.adminDashboard',compact('customer','rider','riders'));
 
     }
     public function adminProfile(){
@@ -221,9 +228,35 @@ class AdminController extends Controller
     public function addAdmin(){
         return view('admin.addAdmin');
     }
+
     public function Adminadd(Request $request){
+        $request->validate(
+            [
+                'email'=>'required|email',
+                'name'=>'required|regex:/^[A-Z a-z .]+$/',
+                'password'=>'required|min:6',
+                'cpassword'=>'same:password',
+                'phone'=>'required|min:8|max:14',
+                'dob'=>'required|date',
+                
+
+            ],
+            [
+
+                'email.required'=>'Please provide your Email',
+                'name.required'=>'Please provide your Name',
+                'password.required'=>'Please provide your Password',
+                'cpassword.same'=>'The Confirm Password and Password must match.',
+                'phone.required'=>'Please provide your Phone Number',
+               
+                
+                
+            ]
+        );
          $admin = Admin::where('email',$request->email)
                             ->first();
+
+
 
             if($admin){
                 $request->session()->flash('reg', 'This account already exists');
@@ -283,6 +316,8 @@ class AdminController extends Controller
             }
     }
     //////////////////////END////////////////////////////////////
+    ///////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////
 
     /////////////////VIEW_Page////////////////////////////////////////
 
@@ -381,6 +416,12 @@ class AdminController extends Controller
         return Excel::download(new CustomerExport, 'customer.xlsx');
     }
 
+     public function rideexport(){
+        return Excel::download(new RideExport, 'rideHistory.xlsx');
+    }
+
+ 
+
     ////////////////////APPROVE///////////////
     public function riderStatus(){
         $riders = Rider::where('status','Pending')->get();
@@ -474,7 +515,12 @@ class AdminController extends Controller
                 $rider = DB::table('riders')->count();
                 $rides = Ride::where('customerStatus', 'Ride complete')
                                 ->where('riderStatus','Ride complete')->sum('cost');
-               return view('admin.adminDashboard',compact('customer','rider','rides'));
+                 $riders=customer::select(DB::raw("COUNT(*) as count"))
+                    ->whereYear('created_at', date('Y'))
+                    ->groupBy(DB::raw("Month(created_at)"))
+                    ->pluck('count');
+
+               return view('admin.adminDashboard',compact('customer','rider','rides','riders'));
           }
 
 
@@ -486,7 +532,7 @@ class AdminController extends Controller
                 $riders = Rider::where('name','LIKE',"%$search%")->orWhere('email','LIKE',"%$search%")->get();
             }
             else{
-                $riders = Rider::all();
+                $riders = Rider::paginate(3);
             }
            $data = compact('riders','search');
             return view('admin.view.riderList')->with('riders', $riders);
@@ -495,6 +541,7 @@ class AdminController extends Controller
         public function riderDelete(Request $request){
             $rider = Rider::where('id', $request->id)->first();
             //$rider->chats()->delete();
+            //$rider->rides()->delete();
             $rider->delete();
     
             return redirect()->route('riderList');
@@ -652,7 +699,22 @@ public function exportpdf(){
 }
 
 
+public function riderExport(){
+    return Excel::download(new RiderExport, 'rider.xlsx');
+}
    
+
+
+public function customerRatings(){
+    $customers = Customer::all();
+    return view('admin.ratings.customerRatings')->with('customers', $customers);
+}
+
+
+
+
+
+
 }
 
  

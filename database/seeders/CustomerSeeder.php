@@ -23,7 +23,10 @@ class CustomerSeeder extends Seeder
             'email' => 'someone@email.com',
             'password' => md5('12345678'),
             'image' => 'index.png',
-            'rating' => '0'
+            'rating' => 0,
+            'discount' => 0,
+            'created_at' => '2022-05-23 02:24:08',
+            'updated_at' => '2022-05-23 02:24:08'
 
         ]);
         \App\Models\Customer::factory()->create([
@@ -35,7 +38,10 @@ class CustomerSeeder extends Seeder
             'email' => 'akhi@email.com',
             'password' => md5('1845678'),
             'image' => 'index.png',
-            'rating' => '0'
+            'rating' => '1',
+            'discount' => 0,
+            'created_at' => '2022-03-23 02:24:08',
+            'updated_at' => '2022-03-23 02:24:08'
 
         ]);
         \App\Models\Customer::factory()->create([
@@ -47,7 +53,10 @@ class CustomerSeeder extends Seeder
             'email' => 'karim@email.com',
             'password' => md5('12345656'),
             'image' => 'index.png',
-            'rating' => '0'
+            'rating' => '2',
+            'discount' => 0,
+            'created_at' => '2022-01-23 02:24:08',
+            'updated_at' => '2022-01-23 02:24:08'
 
         ]);
         \App\Models\Customer::factory()->create([
@@ -59,7 +68,10 @@ class CustomerSeeder extends Seeder
             'email' => 'rahim@email.com',
             'password' => md5('12343478'),
             'image' => 'index.png',
-            'rating' => '0'
+            'rating' => '5',
+            'discount' => 0,
+            'created_at' => '2022-05-23 02:24:08',
+            'updated_at' => '2022-05-23 02:24:08'
 
         ]);
         \App\Models\Customer::factory()->create([
@@ -71,7 +83,10 @@ class CustomerSeeder extends Seeder
             'email' => 'provha@email.com',
             'password' => md5('12348778'),
             'image' => 'index.png',
-            'rating' => '0'
+            'rating' => '3',
+            'discount' => 0,
+            'created_at' => '2022-05-23 02:24:08',
+            'updated_at' => '2022-05-23 02:24:08'
 
         ]);
     }

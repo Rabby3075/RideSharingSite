@@ -1,5 +1,7 @@
 <html>
   <head>
+  <link rel="stylesheet" href="{{asset('css/admin/chart.css')}}">
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
@@ -29,7 +31,7 @@
     
   </head>
   <body>
-    <div id="piechart" style="width: 900px; height: 500px;"></div>
+    <div id="piechart" style="width: 900px; height: 600px; margin-top:100px;"></div>
   </body>
 </html>
 
@@ -57,6 +59,6 @@
     </script>
   </head>
   <body>
-    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+    <div id="piechart_3d" style="width: 900px; height: 600px;  margin-top:100px; margin-left:60px"></div>
   </body>
 </html>

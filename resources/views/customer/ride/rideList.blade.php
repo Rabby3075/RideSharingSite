@@ -27,6 +27,10 @@
                         {!! \Session::get('success') !!}
                         </div>
                         @endif
+
+
+    <button type="button" id="export" class="btn btn-outline-success" id="export">Download</button>
+
  <div class="table-responsive custom-table-responsive">
 
 
@@ -80,6 +84,10 @@
         <td ><span class="badge bg-info text-dark">Rider Approve</span> </td>
 
         @endif
+        @if($ride->customerStatus === "ongoing")
+        <td ><span class="badge bg-info text-primary">Rider Approve</span> </td>
+
+        @endif
 
         @if($ride->customerStatus === "Waiting for rider..." )
         <td><a class="btn btn-danger text-white" id="cancel-ride" href="javascript:void(0)" data-url="{{ route('rideView', $ride->id) }}"><i class="bi bi-x-circle-fill"></i> Cancel Ride</a></td>
@@ -93,6 +101,7 @@
         @if($ride->customerStatus === "Approve")
         <td><a href="/chat/{{$ride->id}}" class = "btn btn-info "><i class="bi bi-chat-dots me-1 text-dark"></i>Chat</a> <a class="btn btn-danger text-white" id="cancel-ride" href="javascript:void(0)" data-url="{{ route('rideView', $ride->id) }}"> <i class="bi bi-x-circle-fill"></i> Cancel Ride </a></td>
         @endif
+
     </tr>
     @endforeach
     </tbody>
@@ -115,7 +124,7 @@
       <div class="modal-body">
         <form action="{{route('rideCancelSubmit')}}" class="form-group" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
-            <input type="hidden" id="ride-id" name="rideid">
+            <input type="text" id="ride-id" name="rideid">
         <span class="text-dark">Are you sure to cancel your ride From </span><span class="text-dark" id="ride-pick"></span><span class="text-dark"> To </span><span class="text-dark" id="ride-destination"></span>
 
       </div>
@@ -138,8 +147,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!--<form action="" class="form-group" method="post" enctype="multipart/form-data">-->
+        <form action="{{route('rideReview')}}" class="form-group" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
+        <input type="text" id="rideId" name="rideid">
         <hr>
         <h4 class="d-flex justify-content-center">Rider Information</h4> <hr>
         <div class="text-center">
@@ -160,11 +170,13 @@
         <p>Rider Approval Time: <span class="riderAppTime"></span></p>
         <p>Departure Time: <span class="depTime"></span></p>
         <p>Arrival Time:  <span class="arrTime"></span></p>
+
         </div>
         </div>
 
         <hr>
-        <textarea class="form-control border border-primary" id="exampleFormControlTextarea1" rows="3" placeholder="Please type your review message"></textarea>
+
+        <textarea class="form-control border border-primary" id="msg" name = "msg" rows="3" placeholder="Please type your review message"></textarea>
         <input type="submit" class="btn btn-outline-primary mt-2 text-center" id="review" value="Submit your review">
         <hr>
     </form>
@@ -173,12 +185,14 @@
   </div>
 </div>
 
-</div>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 
 
 <script type="text/javascript">
+
 
 //-----------cancel ride---------------
     $(document).ready(function () {
@@ -194,7 +208,7 @@
           })
        });
 
-       detailsModal
+
 
     });
 
@@ -205,7 +219,7 @@ $('body').on('click', '#viewRide', function () {
   var userURL = $(this).data('url');
   $.get(userURL, function (data) {
       $('#detailsModal').modal('show');
-     // $('#ride-id').val(data.id);
+      $('#rideId').val(data.id);
       $('.riderName').text(data.riderName);
       $('.riderPhone').text(data.riderPhone);
       $('.pickPoint').text(data.pickupPoint);
@@ -223,6 +237,25 @@ $('body').on('click', '#viewRide', function () {
 
 
 });
+
+//----------Excel Convertion--------
+
+function html_table_to_excel(type)
+    {
+        var data = document.getElementById('myTable');
+
+        var file = XLSX.utils.table_to_book(data, {sheet: "Report"});
+
+        XLSX.write(file, { bookType: type, bookSST: true, type: 'base64' });
+
+        XLSX.writeFile(file, 'Ride_Report.' + type);
+    }
+
+const export_button = document.getElementById('export');
+
+    export_button.addEventListener('click', () =>  {
+        html_table_to_excel('xlsx');
+    });
 
 
 

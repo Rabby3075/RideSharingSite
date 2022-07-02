@@ -7,7 +7,7 @@
      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
         <img class="rounded-circle mt-5" width="150px" src="../customer_image/{{Session::get('image')}}">
         <span class="font-weight-bold"> ID: {{Session::get('id')}}</span>
-        <span class="text-black-50"> Rating: {{Session::get('rating')}} star</span>
+        <span class="text-black-50"> Point: {{Session::get('rating')}} point</span>
 
 
         <span> </span>

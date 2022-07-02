@@ -50,12 +50,12 @@
                 <div class="col col-md-6">Ride History Report</div>
                 <div class="col col-md-6 text-right">
                     <button type="button" id="export" class="btn btn-primary btn-sm">Download</button>
-                </div> 
+                </div>
             </div>
-        </div>   
+        </div>
 
-    @php        
-       $i = 1;  
+    @php
+       $i = 1;
     @endphp
 
         <div class="card-body">
@@ -86,7 +86,7 @@
 
 <table id="rideData" hidden>
           <thead>
-            <tr> 
+            <tr>
               <th>Customer Name</th>
               <th>Pickup Point</th>
               <th>Destination</th>

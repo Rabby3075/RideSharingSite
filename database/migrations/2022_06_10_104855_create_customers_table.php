@@ -23,8 +23,9 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('image');
-            $table->string('rating');
-            //$table->timestamps();
+            $table->Integer('rating');
+            $table->double('discount');
+            $table->timestamps();
         });
     }
 

@@ -8,7 +8,7 @@
 
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
+<link rel="stylesheet" href="{{asset('css/admin/changepass.css')}}">
 
 </head>
   
@@ -26,36 +26,36 @@
 
 
 
-    <div class="container">
-    <h1>Change Password</h1>
+    <div class="container p-5 rounded mt-5 w-50">
+    <h1 class="d-flex justify-content-center fw-bold">Change Password</h1>
 
-<form action="{{route('passwordUpdate')}}" class="form-group" method="post">
+<form action="{{route('passwordUpdate')}}" class="form-group ms-5" method="post" >
     {{csrf_field()}}
-    <div class="col-md-9 form-group">
+    <div class="col-md-9 form-group fs-5 mb-3 ms-5 mt-5 fw-bold">
         <span class="id">Current Password</span>
-        <input type="password" name="oldPassword"  class="form-control" placeholder="Current password" id="current_password">
+        <input type="password" name="oldPassword"  class="form-control fs-8 mt-3" placeholder="Enter Your Current Password" id="current_password">
         @error('oldPassword')
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>
-    <div class="col-md-9 form-group">
+    <div class="col-md-9 form-group fs-5 mb-3 ms-5 fw-bold">
         <span class="id">New Password</span>
-        <input type="password" name="newPassword"  class="form-control" placeholder="New password" id="newPassword">
+        <input type="password" name="newPassword"  class="form-control fs-6 mt-3" placeholder="Enter Your New Password" id="newPassword">
         @error('newPassword')
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>
-        <div class="col-md-9 form-group">
+        <div class="col-md-9 form-group fs-5 mb-5 ms-5 fw-bold">
         <span class="id">Confirm Password</span>
-        <input type="password" name="password_confirmation"  class="form-control" id="password_confirmation" placeholder="Confirm password">
+        <input type="password" name="password_confirmation"  class="form-control fs-6 mt-3" id="password_confirmation" placeholder="Enter Your Confirm Password">
        @error('password_confirmation')
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>
 
    
-    <div class="mt-3 mx-auto">
-            <input type="submit" class="btn btn-success" value="Change" >
+    <div class="mt-3 mx-auto ms-5 pb-3">
+            <input type="submit" class="btn btn-outline-dark fw-bold fs-6" value="Change" >
     </div>
 </div>
 
