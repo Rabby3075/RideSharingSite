@@ -7,6 +7,7 @@ use App\Http\Controllers\RiderController;
 use App\Http\Controllers\RideController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CustomerRatingController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,7 +33,7 @@ Route::post('/customerDashboard/rideRequest/submit',[RideController::class, 'rid
 Route::get('/customerDashboard/rideList',[RideController::class, 'rideList'])->name('rideList')->middleware('customerValid');
 Route::get('/customerDashboard/rideView/{id}',[RideController::class, 'getRideInformation'])->name('rideView')->middleware('customerValid');
 Route::post('/customerDashboard/rideCancelSubmit',[RideController::class, 'rideCancel'])->name('rideCancelSubmit')->middleware('customerValid');
-//Route::get('/customerDashboard/rideView/{id}',[RideController::class, 'rideView'])->name('rideView')->middleware('customerValid');
+Route::post('/customerDashboard/rideReview',[ReviewController::class, 'ReviewPost'])->name('rideReview')->middleware('customerValid');
 Route::get('/chat/{id}',[ChatController::class, 'chatUser'])->name('chatUser')->middleware('customerValid');
 Route::get('/customerDashboard/discount',[CustomerRatingController::class, 'discountList'])->name('discount')->middleware('customerValid');
 Route::get('/customerDashboard/discountclaim/{id}',[CustomerRatingController::class, 'discountClaim'])->name('discountClaim')->middleware('customerValid');

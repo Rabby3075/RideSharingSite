@@ -286,10 +286,10 @@ col-lg-8{
     var riders = <?php echo json_encode($riders)?>;
     Highcharts.chart('container', {
         title: {
-            text: 'New User 2021'
+            text: 'New User 2022'
         },
         subtitle: {
-            text: 'Bluebird youtube channel'
+            text: 'Total customer'
         },
         xAxis: {
             categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
@@ -298,7 +298,7 @@ col-lg-8{
         },
         yAxis: {
             title: {
-                text: 'Number of New Users'
+                text: 'Number of New Customer'
             }
         },
         legend: {
