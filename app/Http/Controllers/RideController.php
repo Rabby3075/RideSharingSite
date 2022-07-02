@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 use App\Models\Location;
 use App\Models\Ride;
+use App\Models\Customer;
 use App\Http\Requests\StoreRideRequest;
 use App\Http\Requests\UpdateRideRequest;
+use App\Http\Requests\UpdateCustomerRequest;
+use App\Http\Requests\StoreCustomerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -162,7 +165,14 @@ class RideController extends Controller
                $ride->rideRequestTime = $time;
                $result = $ride->save();
                if($result){
-                $success = "Congratulations your ride request confirm successfully";
+                $customer = Customer::where('id', $ride->customerId)->first();
+                $bonus_rating = 10;
+                $total_rating = $customer->rating + $bonus_rating;
+                $customer->rating = $total_rating;
+                $customer->save();
+                session()->put('rating',$total_rating);
+              
+                $success = "Congratulations your ride request confirm successfully. You got 10 rating points";
 
                 return redirect()->back()->with('success', $success)
                 ->with('destination',$distance.'kilo')
@@ -217,6 +227,12 @@ class RideController extends Controller
         $rideCancel->riderApprovalTime=null;
         $result = $rideCancel->save();
         if($result){
+            $customer = Customer::where('username', session()->get('customer_username'))->first();
+            $bonus_rating = 10;
+            $total_rating = $customer->rating - $bonus_rating;
+            $customer->rating = $total_rating;
+            $customer->save();
+            session()->put('rating',$total_rating);
             return redirect()->back()->with('success', 'Ride Cancel');
         }
 
@@ -242,8 +258,117 @@ class RideController extends Controller
         $req = "Ride complete";
         $rideHis = Ride::where('riderId',session()->get('id'))->where('customerStatus',$req)->where('riderStatus',$req)->get();
         return view('rider.excel')->with('rideHis', $rideHis);
-        
+
     }
+
+    public function checkReq(){
+        $req = "Waiting for rider...";
+        $chk = null;
+        $rs = "Approve"; 
+        $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+        $rideCol = Ride::where('riderId',$chk)->where('customerStatus',$req)->where('riderStatus',$chk)->get();
+        return view('rider.checkReq')->with('rideCol', $rideCol)->with('ridez', $ridez);
+
+    }
+
+        public function reqProg(Request $request){
+
+        $req = "Waiting for rider...";
+        $chk = null;
+        $rs = "Approve";
+        
+
+        date_default_timezone_set('Asia/Dhaka');
+        $time =  date('d F Y, h:i:s A');
+        
+        $ride = Ride::where('id', $request->id)->first();
+        
+        $ride->riderId = session()->get('id');
+        $ride->riderName = session()->get('name');
+        $ride->riderPhone = session()->get('phone');
+        $ride->customerStatus = $rs;
+        $ride->riderStatus = $rs;
+        $ride->riderApprovalTime= $time;
+        $result = $ride->save();
+        if($result){
+            $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+            $rideCol = Ride::where('riderId',$chk)->where('customerStatus',$req)->where('riderStatus',$chk)->get();
+            return view('rider.checkReq')->with('rideCol', $rideCol)->with('ridez', $ridez);
+        }
+
+    }
+
+    public function rideProgs(){
+
+        
+        $rs = "Approve"; 
+        $chk = null;
+        $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+        $start = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->where('riderStartingTie',$chk)->first();
+        return view('rider.reqProgress')->with('ridez', $ridez)->with('start', $start);
+
+    }
+
+    public function progSub(Request $request){
+        
+
+        date_default_timezone_set('Asia/Dhaka');
+        $time =  date('d F Y, h:i:s A');
+        $rs = "Approve"; 
+        $chk = null;
+        $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+        $ridez->riderStartingTie= $time;
+        $result = $ridez->save();
+        
+        if($result){
+            $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+            $start = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->where('riderStartingTie',$chk)->first();
+            return view('rider.reqProgress')->with('ridez', $ridez)->with('start',$start);
+        }
+
+    }
+
+    public function progCancel(Request $request){
+       
+        date_default_timezone_set('Asia/Dhaka');
+        $time =  date('d F Y, h:i:s A');
+        $rs = "Approve"; 
+        $cn = "Cancel";
+        $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+        $ridez->cancelTime= $time;
+        $ridez->riderStatus= $cn;
+        $ridez->customerStatus= $cn;
+        $result = $ridez->save();
+        
+        
+        if($result){
+            $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+            return view('rider.reqProgress')->with('ridez', $ridez);
+        }
+
+    }
+
+    public function progComplete(Request $request){
+       
+        date_default_timezone_set('Asia/Dhaka');
+        $time =  date('d F Y, h:i:s A');
+        $rs = "Approve"; 
+        $cn = "Ride complete";
+        $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+        $ridez->reachedTime= $time;
+        $ridez->riderStatus= $cn;
+        $ridez->customerStatus= $cn;
+        $result = $ridez->save();
+        
+        
+        if($result){
+            $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+            return view('rider.reqProgress')->with('ridez', $ridez);
+        }
+
+    }
+
+    
    //
 
 

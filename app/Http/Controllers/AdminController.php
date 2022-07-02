@@ -15,7 +15,11 @@ use Auth;
 use Illuminate\Support\Facades\Hash;
 use PDF;
 use App\Exports\CustomerExport;
+<<<<<<< HEAD
 use App\Exports\RideExport;
+=======
+use App\Exports\RiderExport;
+>>>>>>> fae67dedd9bf3711514e98183d795f88000578d2
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Ride;
 
@@ -491,7 +495,7 @@ class AdminController extends Controller
                 $riders = Rider::where('name','LIKE',"%$search%")->orWhere('email','LIKE',"%$search%")->get();
             }
             else{
-                $riders = Rider::all();
+                $riders = Rider::paginate(3);
             }
            $data = compact('riders','search');
             return view('admin.view.riderList')->with('riders', $riders);
@@ -500,6 +504,7 @@ class AdminController extends Controller
         public function riderDelete(Request $request){
             $rider = Rider::where('id', $request->id)->first();
             //$rider->chats()->delete();
+            //$rider->rides()->delete();
             $rider->delete();
     
             return redirect()->route('riderList');
@@ -657,6 +662,9 @@ public function exportpdf(){
 }
 
 
+public function riderExport(){
+    return Excel::download(new RiderExport, 'rider.xlsx');
+}
    
 }
 

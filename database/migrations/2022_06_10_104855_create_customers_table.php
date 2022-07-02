@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('image');
-            $table->string('rating');
+            $table->Integer('rating');
             //$table->timestamps();
         });
     }

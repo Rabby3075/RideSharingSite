@@ -6,6 +6,7 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\RiderController;
 use App\Http\Controllers\RideController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\CustomerRatingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,6 +34,7 @@ Route::get('/customerDashboard/rideView/{id}',[RideController::class, 'getRideIn
 Route::post('/customerDashboard/rideCancelSubmit',[RideController::class, 'rideCancel'])->name('rideCancelSubmit')->middleware('customerValid');
 //Route::get('/customerDashboard/rideView/{id}',[RideController::class, 'rideView'])->name('rideView')->middleware('customerValid');
 Route::get('/chat/{id}',[ChatController::class, 'chatUser'])->name('chatUser')->middleware('customerValid');
+Route::get('/customerDashboard/discount',[CustomerRatingController::class, 'discountList'])->name('discount')->middleware('customerValid');
 //--Customer route end ---
 
 
@@ -105,7 +107,8 @@ Route::get ('/barCharts',[AdminController::class,'barCharts'])->name('barCharts'
 Route::get ('/barCharts',[AdminController::class,'barChartInfo'])->name('barCharts')->middleware('Admin');
 //--export pdf--
 Route::get ('/exportpdf',[AdminController::class,'exportpdf'])->name('exportpdf')->middleware('Admin');
-
+//--export excel--
+Route::get('/excelExport',[AdminController::class, 'riderExport'])->name('excelExport');
 
 //--Admin route end--
 
@@ -124,5 +127,13 @@ Route::get('/riderLogout',[RiderController::class, 'logout'])->name('riderLogout
 Route::get('/rideHistory',[RideController::class, 'rideHis'])->name('rideHis')->middleware('riderValid');
 Route::get('/riderBalance',[RideController::class, 'riderBalance'])->name('riderBalance')->middleware('riderValid');
 Route::get('/riderReport',[RideController::class, 'rideexl'])->name('riderReport')->middleware('riderValid');
+Route::get('/checkRequest',[RideController::class, 'checkReq'])->name('checkReq')->middleware('riderValid');
+Route::post('/checkRequest',[RideController::class, 'reqProg'])->name('checkReq')->middleware('riderValid');
+Route::get('/requestProgress',[RideController::class, 'rideProgs'])->name('rideProgs')->middleware('riderValid');
+Route::post('/requestProgress',[RideController::class, 'progSub'])->name('ridess')->middleware('riderValid');
+Route::post('/requestCancel',[RideController::class, 'progCancel'])->name('ridecnl')->middleware('riderValid');
+Route::post('/requestComplete',[RideController::class, 'progComplete'])->name('ridecmplt')->middleware('riderValid');
+
+
 
 //--Rider route end--

@@ -28,7 +28,7 @@
           <a class="dropdown-item" href="{{route('passwordChanging')}}"><i class="fa-solid fa-pen-to-square me-2"></i>Change Password</a>
          </li>
          <li>
-          <a class="dropdown-item" href="#"><i class="bi bi-cash-stack me-2"></i>Apply Promo code</a>
+          <a class="dropdown-item" href="{{route('discount')}}"><i class="bi bi-cash-stack me-2"></i>Discount Details</a>
          </li>
          <div class="dropdown-divider"></div>
          <li class="logout">

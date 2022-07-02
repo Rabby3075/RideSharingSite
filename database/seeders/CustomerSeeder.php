@@ -23,7 +23,7 @@ class CustomerSeeder extends Seeder
             'email' => 'someone@email.com',
             'password' => md5('12345678'),
             'image' => 'index.png',
-            'rating' => '0'
+            'rating' => 0
 
         ]);
         \App\Models\Customer::factory()->create([

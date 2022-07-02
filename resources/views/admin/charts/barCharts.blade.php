@@ -5,6 +5,7 @@ $conn = new mysqli("localhost","root","","rideshare")
 
 <html>
   <head>
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
@@ -44,6 +45,6 @@ while ($data = mysqli_fetch_array($res)){
     </script>
   </head>
   <body>
-    <div id="barchart_material" style="width: 96%; height: 800px;"></div>
+    <div id="barchart_material" style="width: 96%; height: 800px; margin:40px;"></div>
   </body>
 </html>
