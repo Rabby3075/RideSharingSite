@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\customerRating;
 use App\Models\Ride;
+use App\Models\Customer;
 use App\Http\Requests\StorecustomerRatingRequest;
 use App\Http\Requests\UpdatecustomerRatingRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerRatingController extends Controller
 {
@@ -87,5 +90,32 @@ class CustomerRatingController extends Controller
     public function discountList(){
         $discount = customerRating::all();
         return view('customer.ride.discount')->with('discount', $discount);
+    }
+
+    public function discountClaim(Request $request){
+        $discount = customerRating::where('id',$request->id)->first();
+
+        if(session()->get('rating') >= $discount->point){
+
+
+        $point = $discount->point;
+
+         $discountAmount = $discount->amount;
+         $customer = Customer::where('username', session()->get('customer_username'))->first();
+         $currentpoint = $customer->rating;
+         $currentDiscount = $customer->discount;
+         $totalDiscount = $discountAmount + $currentDiscount;
+         $customer->discount = $totalDiscount;
+         $customer->rating = $currentpoint - $point;
+         session()->put('rating',$customer->rating);
+         $result = $customer->save();
+         if($result){
+            return redirect()->back()->with('success', '<strong>Congratulation</strong> You will get '.$totalDiscount.' TK discount on your next ride');
+         }
+        }
+        else{
+            return redirect()->back()->with('failed', '<strong>Sorry</strong> You have not sufficient point to claim this discount');
+        }
+
     }
 }

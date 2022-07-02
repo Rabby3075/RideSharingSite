@@ -146,9 +146,22 @@ class RideController extends Controller
               $distance = $this->getDistance($lat1, $long1, $lat2, $long2);
               $status = "Waiting for rider...";
 
+              $getDiscountAmount = Customer::where('id', session()->get('id'))->first();
+              $discountAmount = $getDiscountAmount->discount;
+
               $baseBill = 50;
               $perKiloBill = 10;
-              $bill = $baseBill + $perKiloBill * $distance;
+               if(($baseBill + ($perKiloBill * $distance) - $discountAmount)<0){
+                $bill = 0;
+                $getDiscountAmount->discount = -($baseBill + ($perKiloBill * $distance) - $discountAmount);
+                $getDiscountAmount->save();
+               }
+               else{
+                $bill = $baseBill + ($perKiloBill * $distance) - $discountAmount;
+                $getDiscountAmount->discount = 0;
+                $getDiscountAmount->save();
+               }
+
               //date_default_timezone_set('Asia/Dhaka');
                // $date = date('d-m-y h:i:s');
                date_default_timezone_set('Asia/Dhaka');
@@ -169,9 +182,10 @@ class RideController extends Controller
                 $bonus_rating = 10;
                 $total_rating = $customer->rating + $bonus_rating;
                 $customer->rating = $total_rating;
+
                 $customer->save();
                 session()->put('rating',$total_rating);
-              
+
                 $success = "Congratulations your ride request confirm successfully. You got 10 rating points";
 
                 return redirect()->back()->with('success', $success)
@@ -264,7 +278,7 @@ class RideController extends Controller
     public function checkReq(){
         $req = "Waiting for rider...";
         $chk = null;
-        $rs = "Approve"; 
+        $rs = "Approve";
         $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
         $rideCol = Ride::where('riderId',$chk)->where('customerStatus',$req)->where('riderStatus',$chk)->get();
         return view('rider.checkReq')->with('rideCol', $rideCol)->with('ridez', $ridez);
@@ -276,13 +290,13 @@ class RideController extends Controller
         $req = "Waiting for rider...";
         $chk = null;
         $rs = "Approve";
-        
+
 
         date_default_timezone_set('Asia/Dhaka');
         $time =  date('d F Y, h:i:s A');
-        
+
         $ride = Ride::where('id', $request->id)->first();
-        
+
         $ride->riderId = session()->get('id');
         $ride->riderName = session()->get('name');
         $ride->riderPhone = session()->get('phone');
@@ -300,8 +314,8 @@ class RideController extends Controller
 
     public function rideProgs(){
 
-        
-        $rs = "Approve"; 
+
+        $rs = "Approve";
         $chk = null;
         $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
         $start = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->where('riderStartingTie',$chk)->first();
@@ -310,16 +324,16 @@ class RideController extends Controller
     }
 
     public function progSub(Request $request){
-        
+
 
         date_default_timezone_set('Asia/Dhaka');
         $time =  date('d F Y, h:i:s A');
-        $rs = "Approve"; 
+        $rs = "Approve";
         $chk = null;
         $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
         $ridez->riderStartingTie= $time;
         $result = $ridez->save();
-        
+
         if($result){
             $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
             $start = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->where('riderStartingTie',$chk)->first();
@@ -329,18 +343,23 @@ class RideController extends Controller
     }
 
     public function progCancel(Request $request){
-       
+
         date_default_timezone_set('Asia/Dhaka');
         $time =  date('d F Y, h:i:s A');
-        $rs = "Approve"; 
+        $rs = "Approve";
         $cn = "Cancel";
         $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
         $ridez->cancelTime= $time;
         $ridez->riderStatus= $cn;
         $ridez->customerStatus= $cn;
+        $customer = Customer::where('id', $ridez->customerId)->first();
+            $bonus_rating = 10;
+            $total_rating = $customer->rating - $bonus_rating;
+            $customer->rating = $total_rating;
+            $customer->save();
         $result = $ridez->save();
-        
-        
+
+
         if($result){
             $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
             return view('rider.reqProgress')->with('ridez', $ridez);
@@ -349,18 +368,18 @@ class RideController extends Controller
     }
 
     public function progComplete(Request $request){
-       
+
         date_default_timezone_set('Asia/Dhaka');
         $time =  date('d F Y, h:i:s A');
-        $rs = "Approve"; 
+        $rs = "Approve";
         $cn = "Ride complete";
         $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
         $ridez->reachedTime= $time;
         $ridez->riderStatus= $cn;
         $ridez->customerStatus= $cn;
         $result = $ridez->save();
-        
-        
+
+
         if($result){
             $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
             return view('rider.reqProgress')->with('ridez', $ridez);
@@ -368,7 +387,7 @@ class RideController extends Controller
 
     }
 
-    
+
    //
 
 
