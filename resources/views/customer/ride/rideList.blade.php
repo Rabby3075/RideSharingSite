@@ -124,7 +124,7 @@
       <div class="modal-body">
         <form action="{{route('rideCancelSubmit')}}" class="form-group" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
-            <input type="hidden" id="ride-id" name="rideid">
+            <input type="text" id="ride-id" name="rideid">
         <span class="text-dark">Are you sure to cancel your ride From </span><span class="text-dark" id="ride-pick"></span><span class="text-dark"> To </span><span class="text-dark" id="ride-destination"></span>
 
       </div>
@@ -147,8 +147,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!--<form action="" class="form-group" method="post" enctype="multipart/form-data">-->
+        <form action="{{route('rideReview')}}" class="form-group" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
+        <input type="text" id="rideId" name="rideid">
         <hr>
         <h4 class="d-flex justify-content-center">Rider Information</h4> <hr>
         <div class="text-center">
@@ -169,11 +170,13 @@
         <p>Rider Approval Time: <span class="riderAppTime"></span></p>
         <p>Departure Time: <span class="depTime"></span></p>
         <p>Arrival Time:  <span class="arrTime"></span></p>
+
         </div>
         </div>
 
         <hr>
-        <textarea class="form-control border border-primary" id="exampleFormControlTextarea1" rows="3" placeholder="Please type your review message"></textarea>
+
+        <textarea class="form-control border border-primary" id="msg" name = "msg" rows="3" placeholder="Please type your review message"></textarea>
         <input type="submit" class="btn btn-outline-primary mt-2 text-center" id="review" value="Submit your review">
         <hr>
     </form>
@@ -205,7 +208,7 @@
           })
        });
 
-       detailsModal
+
 
     });
 
@@ -216,7 +219,7 @@ $('body').on('click', '#viewRide', function () {
   var userURL = $(this).data('url');
   $.get(userURL, function (data) {
       $('#detailsModal').modal('show');
-     // $('#ride-id').val(data.id);
+      $('#rideId').val(data.id);
       $('.riderName').text(data.riderName);
       $('.riderPhone').text(data.riderPhone);
       $('.pickPoint').text(data.pickupPoint);
