@@ -24,7 +24,9 @@ class CustomerSeeder extends Seeder
             'password' => md5('12345678'),
             'image' => 'index.png',
             'rating' => 0,
-            'discount' => 0
+            'discount' => 0,
+            'created_at' => '2022-05-23 02:24:08',
+            'updated_at' => '2022-05-23 02:24:08'
 
         ]);
         \App\Models\Customer::factory()->create([
@@ -37,7 +39,9 @@ class CustomerSeeder extends Seeder
             'password' => md5('1845678'),
             'image' => 'index.png',
             'rating' => '0',
-            'discount' => 0
+            'discount' => 0,
+            'created_at' => '2022-03-23 02:24:08',
+            'updated_at' => '2022-03-23 02:24:08'
 
         ]);
         \App\Models\Customer::factory()->create([
@@ -50,7 +54,9 @@ class CustomerSeeder extends Seeder
             'password' => md5('12345656'),
             'image' => 'index.png',
             'rating' => '0',
-            'discount' => 0
+            'discount' => 0,
+            'created_at' => '2022-01-23 02:24:08',
+            'updated_at' => '2022-01-23 02:24:08'
 
         ]);
         \App\Models\Customer::factory()->create([
@@ -63,7 +69,9 @@ class CustomerSeeder extends Seeder
             'password' => md5('12343478'),
             'image' => 'index.png',
             'rating' => '0',
-            'discount' => 0
+            'discount' => 0,
+            'created_at' => '2022-05-23 02:24:08',
+            'updated_at' => '2022-05-23 02:24:08'
 
         ]);
         \App\Models\Customer::factory()->create([
@@ -76,7 +84,9 @@ class CustomerSeeder extends Seeder
             'password' => md5('12348778'),
             'image' => 'index.png',
             'rating' => '0',
-            'discount' => 0
+            'discount' => 0,
+            'created_at' => '2022-05-23 02:24:08',
+            'updated_at' => '2022-05-23 02:24:08'
 
         ]);
     }

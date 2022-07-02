@@ -38,7 +38,7 @@
     <tr style="text-align: center;">
         <td>{{$ride->id}}</td>
        <td> <a href="{{route('viewCustomer',['id' => $ride->id])}}">{{$ride->customerId}}</a></td>
-        <td><a href="{{route('viewRider',['id' => $ride->id])}}">{{$ride->customerId}}</a></td>
+        <td><a href="{{route('viewRider',['id' => $ride->id])}}">{{$ride->riderId}}</a></td>
         <td>{{$ride->pickupPoint}}</td>
         <td>{{$ride->destination}}</td>
         <td>{{$ride->length}}</td>
@@ -49,7 +49,10 @@
         @endif
         @if($ride->riderStatus === "Cancel")
         <td ><span class="badge bg-danger">Ride Cancel</span></td>
+        @endif
 
+        @if($ride->riderStatus === "Approve")
+        <td ><span class="badge bg-info text-dark">Approve</span> </td>
         @endif
 
 
@@ -65,7 +68,7 @@
         <td ><span class="badge bg-danger">Ride Cancel</span></td>
         @endif
         @if($ride->customerStatus === "Approve")
-        <td ><span class="badge bg-info text-dark">kjgkkgj</span> </td>
+        <td ><span class="badge bg-info text-dark">Approve</span> </td>
 
         @endif
 

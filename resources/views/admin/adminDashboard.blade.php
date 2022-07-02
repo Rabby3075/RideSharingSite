@@ -1,4 +1,5 @@
-
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +10,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
  <link href="https://mdbootstrap.com/docs/standard/content-styles/icons/">
+
+     <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 
 <style type="text/css">
 	#btn:checked ~ .menu-btn{
@@ -119,6 +123,9 @@ col-lg-8{
     margin-left: 18%;
     color: red;
     
+   }
+   script{
+    width: 20%;
    }
 
 
@@ -249,34 +256,72 @@ col-lg-8{
 
 
 
-<div  class="col col-lg-4 mt-4"> 
-	<div class="container2">
-	<table class="table table-hover table-dark" border="1">
-    <tr style="color: #D2B48C; text-align: center;">
-        <th>Name</th>
-        <th>ID</th>
-        <th  style="vertical-align: middle;">Action</th>
-    </tr>
-
-    <tr style="text-align: center;">
-        <td>huraiya</td>
-        <td>5</td>
-        <td>
-          <button type="button" class="btn btn-primary"><i class="bi bi-eye" ></i></button>
-          <button type="button" class="btn btn-success"><i class="bi bi-check"></i></button>
-          <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-          </td>
-    </tr>
-
-</table>
-</div>
-</div>
 
 
-    <div>
+<!--     <div>
       <canvas id="pieChart" style="max-width: 500px;"></canvas>
-    </div>
-
+    </div> -->
+    <div id="container" style="width: 60%; margin-left: 25%; margin-bottom: 20px;"></div>
 
 </body>
+
+
+    
+
+
+
+
+<script type="text/javascript" style="color: red;" >
+    var riders = <?php echo json_encode($riders)?>;
+    Highcharts.chart('container', {
+        title: {
+            text: 'New User 2021'
+        },
+        subtitle: {
+            text: 'Bluebird youtube channel'
+        },
+        xAxis: {
+            categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+                'October', 'November', 'December'
+            ]
+        },
+        yAxis: {
+            title: {
+                text: 'Number of New Users'
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+        plotOptions: {
+            series: {
+                allowPointSelect: true
+            }
+        },
+        series: [{
+            name: 'New Users',
+            data: riders
+        }],
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 20
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+    });
+</script>
+
+</html>
+
+
 

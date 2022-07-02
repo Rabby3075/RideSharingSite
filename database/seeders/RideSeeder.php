@@ -35,7 +35,7 @@ class RideSeeder extends Seeder
         ]);
         \App\Models\Ride::factory()->create([
             'customerName' => 'Someone',
-            'customerId' => 1,
+            'customerId' => 2,
             'customerPhone' => '01711111111',
             'pickupPoint' => 'SegunBagicha',
             'destination' => 'Dhanmondi',

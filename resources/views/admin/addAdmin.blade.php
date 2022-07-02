@@ -72,6 +72,11 @@
             margin-bottom: 20px;
         }
 
+        .text-danger{
+        font-size: 15px;
+        background-color: black;
+        }
+
 
 
  
@@ -102,6 +107,9 @@
     <div class="col-md-9 form-group">
         <span class="id">Date of Birth</span>
         <input type="date" name="dob" value="{{old('dob')}}"class="form-control">
+        @error('dob')
+            <span class="text-danger">{{$message}}</span>
+        @enderror
     </div>
 
 
