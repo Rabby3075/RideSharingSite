@@ -122,5 +122,13 @@ Route::get('/riderLogout',[RiderController::class, 'logout'])->name('riderLogout
 Route::get('/rideHistory',[RideController::class, 'rideHis'])->name('rideHis')->middleware('riderValid');
 Route::get('/riderBalance',[RideController::class, 'riderBalance'])->name('riderBalance')->middleware('riderValid');
 Route::get('/riderReport',[RideController::class, 'rideexl'])->name('riderReport')->middleware('riderValid');
+Route::get('/checkRequest',[RideController::class, 'checkReq'])->name('checkReq')->middleware('riderValid');
+Route::post('/checkRequest',[RideController::class, 'reqProg'])->name('checkReq')->middleware('riderValid');
+Route::get('/requestProgress',[RideController::class, 'rideProgs'])->name('rideProgs')->middleware('riderValid');
+Route::post('/requestProgress',[RideController::class, 'progSub'])->name('ridess')->middleware('riderValid');
+Route::post('/requestCancel',[RideController::class, 'progCancel'])->name('ridecnl')->middleware('riderValid');
+Route::post('/requestComplete',[RideController::class, 'progComplete'])->name('ridecmplt')->middleware('riderValid');
+
+
 
 //--Rider route end--
