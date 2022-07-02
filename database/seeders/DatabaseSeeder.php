@@ -29,7 +29,8 @@ class DatabaseSeeder extends Seeder
             PaymentSeeder::class,
             ManagerSeeder::class,
             ChatSeeder::class,
-            LocationSeeder::class
+            LocationSeeder::class,
+            CustomerRatingSeeder::class
 
         ]);
     }
