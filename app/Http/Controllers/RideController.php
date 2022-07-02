@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 use App\Models\Location;
 use App\Models\Ride;
+use App\Models\Customer;
 use App\Http\Requests\StoreRideRequest;
 use App\Http\Requests\UpdateRideRequest;
+use App\Http\Requests\UpdateCustomerRequest;
+use App\Http\Requests\StoreCustomerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -162,7 +165,14 @@ class RideController extends Controller
                $ride->rideRequestTime = $time;
                $result = $ride->save();
                if($result){
-                $success = "Congratulations your ride request confirm successfully";
+                $customer = Customer::where('id', $ride->customerId)->first();
+                $bonus_rating = 10;
+                $total_rating = $customer->rating + $bonus_rating;
+                $customer->rating = $total_rating;
+                $customer->save();
+                session()->put('rating',$total_rating);
+              
+                $success = "Congratulations your ride request confirm successfully. You got 10 rating points";
 
                 return redirect()->back()->with('success', $success)
                 ->with('destination',$distance.'kilo')
@@ -217,6 +227,12 @@ class RideController extends Controller
         $rideCancel->riderApprovalTime=null;
         $result = $rideCancel->save();
         if($result){
+            $customer = Customer::where('username', session()->get('customer_username'))->first();
+            $bonus_rating = 10;
+            $total_rating = $customer->rating - $bonus_rating;
+            $customer->rating = $total_rating;
+            $customer->save();
+            session()->put('rating',$total_rating);
             return redirect()->back()->with('success', 'Ride Cancel');
         }
 
@@ -242,7 +258,7 @@ class RideController extends Controller
         $req = "Ride complete";
         $rideHis = Ride::where('riderId',session()->get('id'))->where('customerStatus',$req)->where('riderStatus',$req)->get();
         return view('rider.excel')->with('rideHis', $rideHis);
-        
+
     }
 
     public function checkReq(){

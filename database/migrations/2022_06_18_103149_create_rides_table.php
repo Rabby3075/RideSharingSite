@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('customerPhone');
             $table->string('pickupPoint');
             $table->string('destination');
-            $table->string('length');
-            $table->string('cost');
+            $table->Integer('length');
+            $table->Integer('cost');
             $table->unsignedBigInteger('riderId')->nullable();
             $table->string('riderName')->nullable();
             $table->string('riderPhone')->nullable();

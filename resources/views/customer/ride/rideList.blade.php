@@ -27,6 +27,10 @@
                         {!! \Session::get('success') !!}
                         </div>
                         @endif
+
+
+    <button type="button" id="export" class="btn btn-outline-success" id="export">Download</button>
+
  <div class="table-responsive custom-table-responsive">
 
 
@@ -173,12 +177,14 @@
   </div>
 </div>
 
-</div>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 
 
 <script type="text/javascript">
+
 
 //-----------cancel ride---------------
     $(document).ready(function () {
@@ -223,6 +229,25 @@ $('body').on('click', '#viewRide', function () {
 
 
 });
+
+//----------Excel Convertion--------
+
+function html_table_to_excel(type)
+    {
+        var data = document.getElementById('myTable');
+
+        var file = XLSX.utils.table_to_book(data, {sheet: "Report"});
+
+        XLSX.write(file, { bookType: type, bookSST: true, type: 'base64' });
+
+        XLSX.writeFile(file, 'Ride_Report.' + type);
+    }
+
+const export_button = document.getElementById('export');
+
+    export_button.addEventListener('click', () =>  {
+        html_table_to_excel('xlsx');
+    });
 
 
 

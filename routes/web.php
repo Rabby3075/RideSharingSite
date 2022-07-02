@@ -6,6 +6,7 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\RiderController;
 use App\Http\Controllers\RideController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\CustomerRatingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,6 +34,7 @@ Route::get('/customerDashboard/rideView/{id}',[RideController::class, 'getRideIn
 Route::post('/customerDashboard/rideCancelSubmit',[RideController::class, 'rideCancel'])->name('rideCancelSubmit')->middleware('customerValid');
 //Route::get('/customerDashboard/rideView/{id}',[RideController::class, 'rideView'])->name('rideView')->middleware('customerValid');
 Route::get('/chat/{id}',[ChatController::class, 'chatUser'])->name('chatUser')->middleware('customerValid');
+Route::get('/customerDashboard/discount',[CustomerRatingController::class, 'discountList'])->name('discount')->middleware('customerValid');
 //--Customer route end ---
 
 
