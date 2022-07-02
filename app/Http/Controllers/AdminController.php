@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\Customer;
 use App\Models\Rider;
 use App\Models\User;
+use App\Models\Chat;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ use Auth;
 use Illuminate\Support\Facades\Hash;
 use PDF;
 use App\Exports\CustomerExport;
+use App\Exports\RiderExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Ride;
 
@@ -414,10 +416,13 @@ class AdminController extends Controller
         return view('admin.ride.rideComplete')->with('rides', $rides);
     }
     public function search_ride_btn(Request $request){
-    $rides = Ride::where('riderApprovalTime','LIKE', "%{$request->search}%")->get();
+    $rides = Ride::where('riderApprovalTime','LIKE', "%{$request->search}%")
+                    ->orWhere('customerStatus','LIKE', "%{$request->search}%")->get();
     //return $rides;
      return view('admin.ride.rideComplete')->with('rides', $rides);
     }
+
+
 ///Add rider///
 
     public function addRider(){
@@ -468,7 +473,9 @@ class AdminController extends Controller
          public function viewRecord(){
                 $customer = DB::table('customers')->count();
                 $rider = DB::table('riders')->count();
-               return view('admin.adminDashboard',compact('customer','rider'));
+                $rides = Ride::where('customerStatus', 'Ride complete')
+                                ->where('riderStatus','Ride complete')->sum('cost');
+               return view('admin.adminDashboard',compact('customer','rider','rides'));
           }
 
 
@@ -488,6 +495,8 @@ class AdminController extends Controller
 
         public function riderDelete(Request $request){
             $rider = Rider::where('id', $request->id)->first();
+            //$rider->chats()->delete();
+            //$rider->rides()->delete();
             $rider->delete();
     
             return redirect()->route('riderList');
@@ -571,24 +580,69 @@ class AdminController extends Controller
 
     }
 
-    public function charts(){
+    public function pieCharts(){
             
-        return view('admin.charts');
+        return view('admin.charts.pieCharts');
     }
 
 
-    public function chartInfo(){
-  $result = DB::select(DB::raw("select count(*) as total_gender,gender from riders group by gender
-  "));
-  $chartData = "";
+    public function pieChartInfo(){
+  $result = DB::select(DB::raw(
+  "
+  SELECT name as name,
+  SUM(balance) as balance 
+  FROM riders 
+  GROUP BY name
+      
+  "
+));
+  $riderData = "";
   foreach($result as $list){
-    $chartData.="['".$list->gender."',".$list->total_gender."],";
+    $riderData.="['".$list->name."',".$list->balance."],";
   }
-  $arr['chartData'] = rtrim($chartData,",");
+  $arr['riderData'] = rtrim($riderData,",");
 
-   return view('admin.charts',$arr);
+
+  $res = DB::select(DB::raw(
+    "
+    SELECT count(*) as total_address, address FROM customers GROUP BY address     
+    "
+  ));
+
+  $cusData = "";
+  foreach($res as $cus){
+    $cusData.="['".$cus->address."',".$cus->total_address."],";
+  }
+  $arr['cusData'] = rtrim($cusData,",");
+
+   return view('admin.charts.pieCharts',$arr);
 
   }
+
+  public function barCharts(){
+            
+    return view('admin.charts.barCharts');
+}
+  public function barChartInfo(){
+          
+    $ress = DB::select(DB::raw(
+        "
+        SELECT count(*) as total_riderStatus, riderStatus FROM rides GROUP BY riderStatus     
+
+        "
+      ));
+        $statusData = "";
+        foreach($ress as $list){
+          $statusData.="['".$list->riderStatus."',".$list->total_riderStatus."],";
+        }
+        $arr['statusData'] = rtrim($statusData,",");
+       
+
+    return view('admin.charts.barCharts');
+}
+
+
+
 
 public function exportpdf(){
 
@@ -600,6 +654,9 @@ public function exportpdf(){
 }
 
 
+public function riderExport(){
+    return Excel::download(new RiderExport, 'rider.xlsx');
+}
    
 }
 

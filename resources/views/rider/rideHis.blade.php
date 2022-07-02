@@ -74,19 +74,6 @@ a {
   
 
           <h2 class="d-flex justify-content-center text-secondary">Your Ride History</h2>
-                        @if (\Session::has('failed'))
-                         <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        {!! \Session::get('failed') !!}
-                        </div>
-                        @endif
-
-                        @if (\Session::has('success'))
-                         <div class="alert alert-success alert-dismissible">
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        {!! \Session::get('success') !!}
-                        </div>
-                        @endif
 
             <br> <br>
             

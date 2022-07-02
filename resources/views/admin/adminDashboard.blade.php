@@ -141,7 +141,7 @@ col-lg-8{
 <div class="m-4" style="background: linear-gradient(45deg, #47cebe,#ef4a82);">
 
     <div class="btn-group">
-      <a class="home" href="{{route('admindashboard')}}">Dashboard</a>
+      <a class="home" href="#">Dashboard</a>
         
     </div>
 
@@ -180,7 +180,8 @@ col-lg-8{
     <div class="btn-group">
         <button type="button" class="btn btn-none dropdown-toggle mt-2" data-bs-toggle="dropdown"><span>Statistics</span></button>
         <div class="dropdown-menu">
-            <a href="{{route('charts')}}" class="dropdown-item">Charts</a>
+            <a href="{{route('pieCharts')}}" class="dropdown-item">Pie Charts</a>
+            <a href="{{route('barCharts')}}" class="dropdown-item">Bar Charts</a>
             <div class="dropdown-divider"></div>
         </div>
     </div><br>
@@ -213,7 +214,8 @@ col-lg-8{
       <div class="card-content">
         
        <span><i class="bi bi-cash" style="font-size: 3rem;" ></i> Total earn</span>
-        <div class="card-name">huraiya</div>
+       <h2>{{$rides}}</h2> 
+        <div class="card-name"></div>
         
       </div>
     </div>
@@ -229,7 +231,7 @@ col-lg-8{
       <div class="card-content">
         
         <span><i class='bi bi-bicycle' style="font-size: 3rem;"> </i>Total rider</span>
-        <h2>{{$rider}}</h2>
+         <h2>{{$rider}}</h2>
 
         <div class="card-name"></div>
         
