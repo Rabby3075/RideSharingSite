@@ -88,7 +88,11 @@ class ReviewController extends Controller
     }
 
     public function ReviewPost(Request $request){
-       
+        $reviewCount = Review::where('ride_id', $request->rideid)->first();
+        if($reviewCount){
+            return redirect()->route('rideList')->with('failed', 'You have already five review for Ride_' . $request->rideid);
+        }
+        else{
 
 
 
@@ -99,12 +103,12 @@ class ReviewController extends Controller
         $review = new Review();
         $review->From = 'Customer_' . $customerId;
         $review->To = 'Rider_' . $riderId;
-        $review->ride_id = 'Ride_'. $request->rideid;
+        $review->ride_id =  $request->rideid;
         $review->message = $request->msg;
         $res = $review->save();
         if($res){
             return redirect()->route('rideList')->with('success', 'Review for Ride_' . $request->rideid . ' successfully');
         }
-
+    }
     }
 }
