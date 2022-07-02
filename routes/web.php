@@ -103,7 +103,8 @@ Route::get ('/barCharts',[AdminController::class,'barCharts'])->name('barCharts'
 Route::get ('/barCharts',[AdminController::class,'barChartInfo'])->name('barCharts')->middleware('Admin');
 //--export pdf--
 Route::get ('/exportpdf',[AdminController::class,'exportpdf'])->name('exportpdf')->middleware('Admin');
-
+//--export excel--
+Route::get('/excelExport',[AdminController::class, 'riderExport'])->name('excelExport');
 
 //--Admin route end--
 

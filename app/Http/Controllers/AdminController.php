@@ -15,6 +15,7 @@ use Auth;
 use Illuminate\Support\Facades\Hash;
 use PDF;
 use App\Exports\CustomerExport;
+use App\Exports\RiderExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Ride;
 
@@ -495,6 +496,7 @@ class AdminController extends Controller
         public function riderDelete(Request $request){
             $rider = Rider::where('id', $request->id)->first();
             //$rider->chats()->delete();
+            //$rider->rides()->delete();
             $rider->delete();
     
             return redirect()->route('riderList');
@@ -652,6 +654,9 @@ public function exportpdf(){
 }
 
 
+public function riderExport(){
+    return Excel::download(new RiderExport, 'rider.xlsx');
+}
    
 }
 

@@ -15,6 +15,7 @@
       </a>
       <div>
     <a href="/exportpdf" class="btn btn-outline-secondary text-white fs-5 ps-3 pe-3">Export PDF</a>
+    <a href="{{route('excelExport')}}" type="button" class="btn btn-outline-success text-white fs-5 ps-3 pe-3">Export</a>
 </div>
      </div>
 </form>
