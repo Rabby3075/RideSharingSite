@@ -72,7 +72,9 @@ Route::get('/riderDenay/{id}',[AdminController::class, 'riderDenay'])->name('rid
 
 
 Route::get('/export',[AdminController::class, 'export'])->name('export');
+Route::get('/rideexport',[AdminController::class, 'rideexport'])->name('rideexport');
 Route::get('/rideComplete',[AdminController::class, 'rideComplete'])->name('rideComplete');
+
 Route::post('/rideComplete',[AdminController::class, 'search_ride_btn'])->name('search_ride_btn');
 Route::get ('/adminDashboard',[AdminController::class,'completeRideCost'])->name('completeRideCost');
 

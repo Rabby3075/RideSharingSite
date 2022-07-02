@@ -15,6 +15,7 @@ use Auth;
 use Illuminate\Support\Facades\Hash;
 use PDF;
 use App\Exports\CustomerExport;
+use App\Exports\RideExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Ride;
 
@@ -379,6 +380,10 @@ class AdminController extends Controller
 
     public function export(){
         return Excel::download(new CustomerExport, 'customer.xlsx');
+    }
+
+     public function rideexport(){
+        return Excel::download(new RideExport, 'rideHistory.xlsx');
     }
 
     ////////////////////APPROVE///////////////
