@@ -32,7 +32,7 @@
     @foreach($riders as $rider)
         <tr >
             <td ><a class="text-decoration-none text-dark fs-4" href="/{{$rider->id}}">{{$rider->name}}</a></td>
-            <td class="fs-4"><img src="{{asset('uploads/pictures/'.$rider->image)}}" alt="" width="140px" height="140px" ></td>
+            <td class="fs-4"><img src="{{asset('uploads/pictures/'.$rider->image)}}" alt="picture" width="140px" height="140px" ></td>
             <td class="fs-4">{{$rider->phone}}</td>
             <td class="fs-4">{{$rider->email}}</td>
             <td class="fs-4">{{$rider->id}}</td>
@@ -43,5 +43,8 @@
         </tr>
     @endforeach
 </table>
+<div class="row">
+    {{$riders->links()}}
 
+</div>
 @endsection
