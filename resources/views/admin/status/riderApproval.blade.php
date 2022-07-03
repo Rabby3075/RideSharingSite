@@ -33,7 +33,7 @@ h1{
 
 
 <div class="profile" style="background: linear-gradient(45deg, #47cebe,#ef4a82);">
-<img class="img" src="image/{{$riders->image}}"  width="2%">
+<img class="img" src="img/{{$riders->image}}"  width="2%">
 <h1 class="top" align="center">Name: {{$riders->name}}</h1>
 <h1 class="top" align="center">Id: {{$riders->id}}</h1>
 <h1 class="top" align="center">Gender: {{$riders->gender}}</h1>

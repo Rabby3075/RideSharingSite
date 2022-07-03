@@ -57,33 +57,33 @@ Route::post('changePicture',[AdminController::class,'changePictureSubmit'])->nam
 Route::post('/addAdmin',[AdminController::class, 'Adminadd'])->name('Adminadd')->middleware('Admin');
 Route::get ('/addCustomer',[AdminController::class,'addCustomer'])->name('addCustomer')->middleware('Admin');
 Route::post ('/addCustomer',[AdminController::class,'customerAdd'])->name('customerAdd')->middleware('Admin');
-Route::get ('/adminTable',[AdminController::class,'adminTable'])->name('adminTable');
-Route::post('/adminTable',[AdminController::class, 'search_btn'])->name('search_btn');
-Route::get('/adminDelete/{id}',[AdminController::class, 'adminDelete'])->name('adminDelete');
-Route::get('/adminUpdate',[AdminController::class, 'adminUpdate'])->name('adminUpdate');
-Route::post('/adminUpdate',[AdminController::class, 'adminUpdateSubmitted'])->name('adminUpdateSubmitted');
-Route::get('/viewAdmin',[AdminController::class, 'viewAdmin'])->name('viewAdmin');
+Route::get ('/adminTable',[AdminController::class,'adminTable'])->name('adminTable')->middleware('Admin');
+Route::post('/adminTable',[AdminController::class, 'search_btna'])->name('search_btna')->middleware('Admin');
+Route::get('/adminDelete/{id}',[AdminController::class, 'adminDelete'])->name('adminDelete')->middleware('Admin');
+Route::get('/adminUpdate',[AdminController::class, 'adminUpdate'])->name('adminUpdate')->middleware('Admin');
+Route::post('/adminUpdate',[AdminController::class, 'adminUpdateSubmitted'])->name('adminUpdateSubmitted')->middleware('Admin');
+Route::get('/viewAdmin',[AdminController::class, 'viewAdmin'])->name('viewAdmin')->middleware('Admin');
 
-Route::get ('/customerTable',[AdminController::class,'customerTable'])->name('customerTable');
-Route::post('/customerTable',[AdminController::class, 'searchc_btn'])->name('searchc_btn');
-Route::get('/viewCustomer',[AdminController::class, 'viewCustomer'])->name('viewCustomer');
-Route::get('/customerDelete/{id}',[AdminController::class, 'customerDelete'])->name('customerDelete');
-Route::get('/customerUpdate',[AdminController::class, 'customerUpdate'])->name('customerUpdate');
-Route::post('/customerUpdate',[AdminController::class, 'customerUpdateSubmitted'])->name('customerUpdateSubmitted');
+Route::get ('/customerTable',[AdminController::class,'customerTable'])->name('customerTable')->middleware('Admin');
+Route::post('/customerTable',[AdminController::class, 'searchc_btn'])->name('searchc_btn')->middleware('Admin');;
+Route::get('/viewCustomer',[AdminController::class, 'viewCustomer'])->name('viewCustomer')->middleware('Admin');;
+Route::get('/customerDelete/{id}',[AdminController::class, 'customerDelete'])->name('customerDelete')->middleware('Admin');
+Route::get('/customerUpdate',[AdminController::class, 'customerUpdate'])->name('customerUpdate')->middleware('Admin');
+Route::post('/customerUpdate',[AdminController::class, 'customerUpdateSubmitted'])->name('customerUpdateSubmitted')->middleware('Admin');
 
-Route::get('/riderStatus',[AdminController::class, 'riderStatus'])->name('riderStatus');
-Route::get('/riderApproval',[AdminController::class, 'riderApproval'])->name('riderApproval');
-Route::get('/riderApproved',[AdminController::class, 'riderApproved'])->name('riderApproved');
-Route::get('/riderDenay/{id}',[AdminController::class, 'riderDenay'])->name('riderDenay');
+Route::get('/riderStatus',[AdminController::class, 'riderStatus'])->name('riderStatus')->middleware('Admin');
+Route::get('/riderApproval',[AdminController::class, 'riderApproval'])->name('riderApproval')->middleware('Admin');
+Route::get('/riderApproved',[AdminController::class, 'riderApproved'])->name('riderApproved')->middleware('Admin');
+Route::get('/riderDenay/{id}',[AdminController::class, 'riderDenay'])->name('riderDenay')->middleware('Admin');
 
 
 
-Route::get('/export',[AdminController::class, 'export'])->name('export');
-Route::get('/rideexport',[AdminController::class, 'rideexport'])->name('rideexport');
-Route::get('/rideComplete',[AdminController::class, 'rideComplete'])->name('rideComplete');
+Route::get('/export',[AdminController::class, 'export'])->name('export')->middleware('Admin');
+Route::get('/rideexport',[AdminController::class, 'rideexport'])->name('rideexport')->middleware('Admin');
+Route::get('/rideComplete',[AdminController::class, 'rideComplete'])->name('rideComplete')->middleware('Admin');
 
-Route::post('/rideComplete',[AdminController::class, 'search_ride_btn'])->name('search_ride_btn');
-Route::get ('/adminDashboard',[AdminController::class,'completeRideCost'])->name('completeRideCost');
+Route::post('/rideComplete',[AdminController::class, 'search_ride_btn'])->name('search_ride_btn')->middleware('Admin');
+Route::get ('/adminDashboard',[AdminController::class,'completeRideCost'])->name('completeRideCost')->middleware('Admin');
 
 
 
