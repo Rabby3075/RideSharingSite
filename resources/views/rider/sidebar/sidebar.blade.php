@@ -31,7 +31,7 @@
 						<div class="card-body">
 							<ul class="list-group">
 								<li class="list-group-item"><a href="#"><i class="fa fa-paper-plane"></i> Sent</a></li>
-								<li class="list-group-item"><a href="#"><i class="fa fa-archive"></i> Archive </a></li>
+								<!--<li class="list-group-item"><a href="#"><i class="fa fa-archive"></i> Archive </a></li> -->
 							</ul>
 						</div>
 					</div>
@@ -89,8 +89,8 @@
 						<div class="card-body">
 							<ul class="list-group">										
 								<li class="list-group-item"><a href="{{route('riderBalance')}}"><i class="fa fa-money"></i> Balance</a></li>
-								<li class="list-group-item"><a href="#"><i class="fa fa-credit-card"></i> Cash-out</a></li>
-								<li class="list-group-item"><a href="#"><i class="fa fa-star-half-o"></i> Rider Point</a></li>			
+								<li class="list-group-item"><a href="{{route('cashout')}}"><i class="fa fa-credit-card"></i> Cash-out</a></li>
+								<li class="list-group-item"><a href="{{route('riderPoint')}}"><i class="fa fa-star-half-o"></i> Rider Point</a></li>			
 							</ul>
 						</div>
 					</div>

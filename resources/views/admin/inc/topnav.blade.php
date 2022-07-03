@@ -45,9 +45,9 @@
         <div class="dropdown-menu">
             <a href="{{route('adminTable')}}" class="dropdown-item">Admin Table</a>
             <a href="{{route('customerTable')}}" class="dropdown-item">Customer Table</a>
-            <a href="#" class="dropdown-item">Rider Table</a>
+            <a href="{{route('riderList')}}" class="dropdown-item">Rider Table</a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">Separated link</a>
+            <a href="#" class="dropdown-item"></a>
         </div>
     </div><br>
     <div class="btn-group">

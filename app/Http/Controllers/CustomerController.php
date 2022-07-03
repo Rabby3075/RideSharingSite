@@ -125,6 +125,7 @@ class CustomerController extends Controller
         $customer->password = md5($request->password);
         $customer->rating = $rating;
         $customer->image = $nameImage;
+        $customer->discount = 0;
         $result = $customer->save();
         if($result){
             //$image->storeAs('public/images',$nameImage);
