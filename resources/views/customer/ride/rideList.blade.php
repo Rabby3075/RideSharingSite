@@ -106,6 +106,9 @@
     @endforeach
     </tbody>
   </table>
+  <div class="pagination justify-content-center">
+{{$rideList->links()}}
+  </div>
   </div>
 
 </div>
