@@ -539,11 +539,10 @@ class AdminController extends Controller
         }
 
         public function riderDelete(Request $request){
-            $rider = Rider::where('id', $request->id)->first();
-            //$rider->chats()->delete();
-            //$rider->rides()->delete();
-            $rider->delete();
-    
+
+            $rider = DB::table("riders")->where("id",$request->id)->first();
+           DB::table("rides")->where("riderid",$rider->id)->delete();
+           $rider = DB::table("riders")->where("id",$request->id)->delete();
             return redirect()->route('riderList');
         }
         
