@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="bg-dark bg-gradient text-dark bg-opacity-25 w-50 p-3 container">
-      <img src="{{asset('uploads/pictures/'.$rider->image)}}" width="140px" height="140px" alt="">
+      <img src="{{asset('image/'.$rider->image)}}" width="140px" height="140px" alt="">
       <br><br>
       <h4 >Name: {{$rider->name}}</h4><br>
 <h4 >Username: {{$rider->username}}</h4><br>

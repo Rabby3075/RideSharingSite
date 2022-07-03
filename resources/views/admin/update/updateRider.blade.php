@@ -31,38 +31,29 @@
     </div>
    <div class="col-md-9 form-group fs-5 ms-5 mt-3 fw-bold">
         <span class="id">Full Name</span>
-        <input type="text" name="name" value="{{old('name')}}" class="form-control fs-8 mt-3">
+        <input type="text" name="name" value="{{$rider->name}}" class="form-control fs-8 mt-3">
         @error('name')
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>
 
-    <div class="col-md-9 fs-5 ms-5 mt-3 fw-bold">
-        
-    <span class="id">Gender</span>
-    <select class="form-select"  name="gender">
-            <option selected>Gender</option>
-            <option value="Male">Male</option>
-		    <option value="Female">Female</option>
-		    <option value="Others">Others</option>
-    </select>
-    </div>
+   
 
     <div class="col-md-9 form-group fs-5 ms-5 mt-3 fw-bold">
         <span class="id">Date of Birth</span>
-        <input type="date" name="dob" value="{{old('dob')}}"class="form-control fs-8 mt-3">
+        <input type="date" name="dob" value="{{$rider->dob}}"class="form-control fs-8 mt-3">
     </div>
 
     <div class="col-md-9 form-group fs-5 ms-5 mt-3 fw-bold">
         <span class="id">Permanent Address</span>
-        <input type="text" name="peraddress" class="form-control fs-8 mt-3">
+        <input type="text" name="peraddress" class="form-control fs-8 mt-3" value="{{$rider->peraddress}}">
         @error('peraaddress')
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>
     <div class="col-md-9 form-group fs-5 ms-5 mt-3 fw-bold">
         <span class="id">Present Address</span>
-        <input type="text"name="preaddress" class="form-control fs-8 mt-3">
+        <input type="text"name="preaddress" class="form-control fs-8 mt-3" value="{{$rider->preaddress}}">
         @error('preaddress')
             <span class="text-danger">{{$message}}</span>
         @enderror
@@ -71,7 +62,7 @@
 
     <div class="col-md-9 form-group fs-5 ms-5 mt-3 fw-bold">
         <span class="id">Phone</span>
-        <input type="text" name="phone" value="{{old('phone')}}" class="form-control fs-8 mt-3">
+        <input type="text" name="phone" value="{{$rider->phone}}" class="form-control fs-8 mt-3">
         @error('phone')
             <span class="text-danger">{{$message}}</span>
         @enderror
@@ -79,41 +70,30 @@
 
     <div class="col-md-9 form-group fs-5 ms-5 mt-3 fw-bold">
         <span class="id">Email</span>
-        <input type="text" name="email" value="{{old('email')}}" class="form-control fs-8 mt-3">
+        <input type="text" name="email" value="{{$rider->email}}" class="form-control fs-8 mt-3">
         @error('email')
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>
 
     
-	<div class="col-md-9 form-group fs-5 ms-5 mt-3 fw-bold">
-      <span class="id">NID No</span>
-
-        <input name="nid" class="form-control fs-8 mt-3" type="text">
-    </div> 
 
 	<div class="col-md-9 form-group fs-5 ms-5 mt-3 fw-bold">
       <span class="id">Driving License No</span>
 
-        <input name="dlic" class="form-control fs-8 mt-3" type="text">
+        <input name="dlic" class="form-control fs-8 mt-3" type="text" value="{{$rider->dlic}}">
      </div>
      
      
         <div class="col-md-9 form-group fs-5 ms-5 mt-3 fw-bold">
         <span class="id">Username</span>
-        <input type="text" name="username" value="{{old('username')}}" class="form-control fs-8 mt-3">
+        <input type="text" name="username" value="{{$rider->username}}" class="form-control fs-8 mt-3">
         @error('username')
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>
         
-    <div class="col-md-9 form-group fs-5 mb-5 ms-5 mt-3 fw-bold">
-        <span class="id">Password</span>
-        <input type="text" name="password" value="{{old('password')}}" class="form-control fs-8 mt-3" placeholder="Enter your password">
-        @error('password')
-            <span class="text-danger">{{$message}}</span>
-        @enderror
-    </div>
+   
        
 <!--
     <div class="col-md-9 form-group">

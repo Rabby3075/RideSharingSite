@@ -474,6 +474,25 @@ class AdminController extends Controller
       ->where('phone',$request->phone)
       ->first();
 
+         $validate = $request->validate([
+
+            "name"=>'required|max:20',
+              "gender"=>"required",
+              'dob'=>'required|date',
+              "peraddress"=>"required",
+              "preaddress"=>"required",
+              'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:10',
+              'email'=>'required|email',
+              'nid'=>'required|numeric|digits:10',
+              'dlic'=>'required|numeric|digits:10',
+              'username'=>'required|min:5',
+              'password'=>'required|min:8|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{5,20}$/',
+           
+            ],
+                 ['password.regex'=>"Please use atleast 1 uppercase, 1 lowercase, 1 special character, 1 numbers"]
+            );
+
+
            if($rider){
                $request->session()->flash('rider', 'Already Exists or Added');
                return redirect()->route('addRider');
@@ -502,13 +521,6 @@ class AdminController extends Controller
                 $file->move('image/',$filename);
                 $rider->image = $filename;
             }
-           
-            $rider->save();
-
-            return redirect()->route('riderList')->with('success', 'Rider added Successfully');
-
-
-
 
             $action = $rider->save();
 
@@ -570,26 +582,45 @@ class AdminController extends Controller
     }
     public function updateRiderSubmitted(Request $request){
         $rider = Rider::where('id', $request->id)->first();
+        $validate = $request->validate([
+
+            "name"=>'required|max:20',
+            'dob'=>'required|date',
+            "peraddress"=>"required",
+            "preaddress"=>"required",
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:10',
+            'email'=>'required|email',
+            'dlic'=>'required|numeric|digits:10',
+            'username'=>'required|min:5',
+            
+            ],
+ 
+            );
 
         $rider->name = $request->name;
-        $rider->gender = $request->gender;
         $rider->dob = $request->dob;
         $rider->peraddress = $request->peraddress;
         $rider->preaddress = $request->preaddress;
         $rider->phone = $request->phone;
         $rider->email = $request->email;
-        $rider->nid = $request->nid;
         $rider->dlic = $request->dlic;
-        $rider->status = 'approved';
-        $rider->rpoint = '0';
-        $rider->balance = '0';
         $rider->username = $request->username;
-        $rider->save();
-        return redirect()->route('riderList');
+       // return view('admin.view.riderList')->with('riders', $rider); 
+
+
+
+        $action = $rider->save();
+
+            if($action){
+                return redirect()->route('riderList')->with('success', 'Rider updated Successfully');
+            }
+            else{
+                return redirect()->back()->with('failed', 'Failed to update Rider');
+            }
 
     }
 
-
+   
     public function viewRider(Request $request){
         $rider = Rider::where('id', $request->id)->first();
         
