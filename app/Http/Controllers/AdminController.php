@@ -325,7 +325,7 @@ class AdminController extends Controller
         //return view('admin.view.adminTable');
    // }
     public function adminTable(){
-        $admins = Admin::paginate(1);
+        $admins = Admin::paginate(2);
         return view('admin.view.adminTable')->with('admins', $admins);
     }
 
@@ -356,7 +356,7 @@ class AdminController extends Controller
        return view('admin.view.viewadmin')->with('admins', $admins); 
     }
 
-    public function search_btn(Request $request){
+    public function search_btna(Request $request){
         $admins = Admin::where('name',$request->search)->get();
         //return $admins;
         return view('admin.view.adminTable')->with('admins', $admins);
@@ -364,7 +364,7 @@ class AdminController extends Controller
     ////////////////////CustomerView////////////////////
 
     public function customerTable(){
-        $customers = Customer::paginate(10);
+        $customers = Customer::paginate(4);
         return view('admin.view.customerTable')->with('customers', $customers);
     }
     public function viewCustomer(Request $request){

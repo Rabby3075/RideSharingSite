@@ -30,8 +30,8 @@ class RiderSeeder extends Seeder
             'username' => 'abc',
             'password' => md5('abc'),
             'image' => 'index.png',
-            'created_at' => '2022-06-23 02:24:08',
-            'updated_at' => '2022-06-23 02:24:08'
+            'created_at' => '2022-05-23 02:24:08',
+            'updated_at' => '2022-05-23 02:24:08'
 
         ]);
             \App\Models\Rider::factory()->create([
@@ -50,8 +50,8 @@ class RiderSeeder extends Seeder
             'username' => 'abc',
             'password' => md5('abc'),
             'image' => 'index.png',
-            'created_at' => '2022-06-23 02:24:08',
-            'updated_at' => '2022-06-23 02:24:08'
+            'created_at' => '2022-03-23 02:24:08',
+            'updated_at' => '2022-03-23 02:24:08'
 
         ]);
             \App\Models\Rider::factory()->create([
