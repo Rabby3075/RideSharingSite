@@ -8201,7 +8201,7 @@
   .login-wrap {
     position: relative;
     background: #fff h3;
-      background-font-weight: 300; }
+    font-weight: 300; }
 
   .form-group {
     position: relative; }
