@@ -179,6 +179,11 @@ class CustomerController extends Controller
         return redirect()->route('customerLogin');
     }
 
+    public function customerProfile(){
+        $user = Customer::where('username',session()->get('customer_username'))->first();
+        return view('customer.profile.updateProfile')->with('user', $user);
+    }
+
     public function customerEdit(Request $request){
        $validate = $request->validate([
             "name"=>"required",

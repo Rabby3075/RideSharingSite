@@ -59,7 +59,7 @@
 
         <td>{{$discounts->amount}}</td>
 
-        @if(Session::get('rating') >= $discounts->point)
+        @if($user->rating >= $discounts->point)
         <td><a href="/customerDashboard/discountclaim/{{$discounts->id}}" class="btn btn-outline-primary"> <i class="bi bi-coin"></i> Claim</a></td>
         @else
         <td><button class="btn btn-outline-primary" disabled> <i class="bi bi-coin"></i> Claim</a></td>

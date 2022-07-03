@@ -10,6 +10,9 @@ use App\Http\Controllers\CustomerRatingController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
+//---Dashbord---
+Route::get('/', function () {return view('index');})->name('home');
+
 
 // --- Customer route ---
 
@@ -22,7 +25,7 @@ Route::post('/customerLoginSubmit',[CustomerController::class, 'customerLoginSub
 //dashboard
 Route::get('/customerDashboard/home', function () {return view('customer.home');})->name('customerDash')->middleware('customerValid');
 Route::get('/customerDashboard/logout',[CustomerController::class, 'logout'])->name('customerLogout')->middleware('customerValid');
-Route::get('/customerDashboard/viewProfile', function () {return view('customer.profile.updateProfile');})->name('customerProfile')->middleware('customerValid');
+Route::get('/customerDashboard/viewProfile', [CustomerController::class, 'customerProfile'])->name('customerProfile')->middleware('customerValid');
 Route::post('/customerEdit',[CustomerController::class, 'customerEdit'])->name('customerEdit')->middleware('customerValid');
 Route::get('/customerDashboard/changePassword', function () {return view('customer.profile.changePass');})->name('passwordChanging')->middleware('customerValid');
 Route::post('/customerPasswordChange',[CustomerController::class, 'cpass'])->name('passwordChangingRequest')->middleware('customerValid');
