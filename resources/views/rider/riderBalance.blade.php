@@ -163,20 +163,6 @@ a {
 </head>
 <body> 
 
-                        @if (\Session::has('failed'))
-                         <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        {!! \Session::get('failed') !!}
-                        </div>
-                        @endif
-
-                        @if (\Session::has('success'))
-                         <div class="alert alert-success alert-dismissible">
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        {!! \Session::get('success') !!}
-                        </div>
-                        @endif
-
 
     @php        
        $i = 1;
@@ -195,7 +181,7 @@ a {
             <div class="card bg-c-yellow order-card cd">
                 <div class="card-block">
                     <h6 class="m-b-20">Balance</h6>
-                    <h2 class="text-right"><span class="f-left h1 fnt">{{$total-($total*0.10)}} BDT</span><img src="https://isometric.online/wp-content/uploads/2019/08/Money_SVG.svg" alt=""  class="f-right im"></h2>
+                    <h2 class="text-right"><span class="f-left h1 fnt">{{$rider->balance}} BDT</span><img src="https://isometric.online/wp-content/uploads/2019/08/Money_SVG.svg" alt=""  class="f-right im"></h2>
                 </div>
             </div>
         </div>      

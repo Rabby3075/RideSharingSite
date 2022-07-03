@@ -7,6 +7,7 @@ use App\Http\Controllers\RiderController;
 use App\Http\Controllers\RideController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CustomerRatingController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,7 +33,7 @@ Route::post('/customerDashboard/rideRequest/submit',[RideController::class, 'rid
 Route::get('/customerDashboard/rideList',[RideController::class, 'rideList'])->name('rideList')->middleware('customerValid');
 Route::get('/customerDashboard/rideView/{id}',[RideController::class, 'getRideInformation'])->name('rideView')->middleware('customerValid');
 Route::post('/customerDashboard/rideCancelSubmit',[RideController::class, 'rideCancel'])->name('rideCancelSubmit')->middleware('customerValid');
-//Route::get('/customerDashboard/rideView/{id}',[RideController::class, 'rideView'])->name('rideView')->middleware('customerValid');
+Route::post('/customerDashboard/rideReview',[ReviewController::class, 'ReviewPost'])->name('rideReview')->middleware('customerValid');
 Route::get('/chat/{id}',[ChatController::class, 'chatUser'])->name('chatUser')->middleware('customerValid');
 Route::get('/customerDashboard/discount',[CustomerRatingController::class, 'discountList'])->name('discount')->middleware('customerValid');
 Route::get('/customerDashboard/discountclaim/{id}',[CustomerRatingController::class, 'discountClaim'])->name('discountClaim')->middleware('customerValid');
@@ -109,7 +110,10 @@ Route::get ('/barCharts',[AdminController::class,'barChartInfo'])->name('barChar
 //--export pdf--
 Route::get ('/exportpdf',[AdminController::class,'exportpdf'])->name('exportpdf')->middleware('Admin');
 //--export excel--
-Route::get('/excelExport',[AdminController::class, 'riderExport'])->name('excelExport');
+Route::get('/excelExport',[AdminController::class, 'riderExport'])->name('excelExport')->middleware('Admin');
+//--customer Ratings--
+Route::get('/userRatings',[AdminController::class, 'customerRatings'])->name('customerRatings')->middleware('Admin');
+
 
 //--Admin route end--
 
@@ -134,6 +138,10 @@ Route::get('/requestProgress',[RideController::class, 'rideProgs'])->name('rideP
 Route::post('/requestProgress',[RideController::class, 'progSub'])->name('ridess')->middleware('riderValid');
 Route::post('/requestCancel',[RideController::class, 'progCancel'])->name('ridecnl')->middleware('riderValid');
 Route::post('/requestComplete',[RideController::class, 'progComplete'])->name('ridecmplt')->middleware('riderValid');
+Route::get('/cashout', function () {return view('rider.cashOut');})->name('cashout')->middleware('riderValid');
+Route::post('/cashout',[RiderController::class, 'cashout'])->name('cashout')->middleware('riderValid');
+Route::get('/riderPoint',[RideController::class, 'riderPoint'])->name('riderPoint')->middleware('riderValid');
+Route::post('/riderPoint',[RideController::class, 'redeem'])->name('riderPoint')->middleware('riderValid');
 
 
 

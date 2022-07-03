@@ -102,6 +102,9 @@ class CustomerRatingController extends Controller
 
          $discountAmount = $discount->amount;
          $customer = Customer::where('username', session()->get('customer_username'))->first();
+         if(($customer->discount)<=0){
+
+
          $currentpoint = $customer->rating;
          $currentDiscount = $customer->discount;
          $totalDiscount = $discountAmount + $currentDiscount;
@@ -112,6 +115,11 @@ class CustomerRatingController extends Controller
          if($result){
             return redirect()->back()->with('success', '<strong>Congratulation</strong> You will get '.$totalDiscount.' TK discount on your next ride');
          }
+        }
+        else{
+
+            return redirect()->back()->with('failed', '<strong>Sorry</strong> You can not claim more discount with using previous');
+        }
         }
         else{
             return redirect()->back()->with('failed', '<strong>Sorry</strong> You have not sufficient point to claim this discount');
