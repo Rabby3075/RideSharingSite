@@ -4,7 +4,7 @@
   <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Bootstrap Dropdowns within Buttons</title>
+<title></title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -39,10 +39,11 @@ col-lg-8{
 
 .cards{
   display: grid;
-  width: 85%;
-  padding: 20px 70px;
+  height: 70%;
+  width: 105%;
+  padding: 0px 90px;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 50px;
+  grid-gap: 70px;
   margin-left: 15%;
 
 
@@ -61,6 +62,7 @@ col-lg-8{
         top: 0px;
         bottom: 0;
         border: solid;
+        height: 100%;
         
 
       }
@@ -119,13 +121,13 @@ col-lg-8{
     margin-right: 15%;
     display: inline-block;
    }
-   div.head h1{
+   div.head {
     margin-left: 18%;
     color: red;
     
    }
    script{
-    width: 20%;
+    width: 60%;
    }
 
 
@@ -133,7 +135,7 @@ col-lg-8{
 </style>
 </head>
 <body style="background: black;">
-   <div class="head"><h1 style="font-style: italic;">Dashboard</h1><a style="text-align: center;" href="{{route('updateAdminProfile')}}">Welcome, {{Session::get('user')}}
+   <div class="head"><span class="text-danger  h4">Your</span><span class="text-white logo h4" >Ride</span><a style="text-align: center; margin-left: 24%" href="{{route('updateAdminProfile')}}">Welcome, {{Session::get('user')}}
     </a></div>
  <div class="btn">
     <img src="img/{{Session::get('picture')}}" >
@@ -245,15 +247,9 @@ col-lg-8{
         
       </div>
     </div>
-        <div class="card">
-      <div class="card-content">
-        <div class="number">87</div>
-        <div class="card-name">huraiya</div>
-        
-      </div>
-    </div>
-  </div>
+</div>
 
+<br>
 
 
 
@@ -261,7 +257,7 @@ col-lg-8{
 <!--     <div>
       <canvas id="pieChart" style="max-width: 500px;"></canvas>
     </div> -->
-    <div id="container" style="width: 60%; margin-left: 25%; margin-bottom: 20px;"></div>
+    <div id="container" style="width: 100%; margin-left: 15%; margin-bottom: 20px; margin-top: 0;"></div>
 
 </body>
 
@@ -278,7 +274,7 @@ col-lg-8{
             text: 'New User 2022'
         },
         subtitle: {
-            text: 'Total customer'
+            text: 'Total user'
         },
         xAxis: {
             categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
@@ -287,7 +283,7 @@ col-lg-8{
         },
         yAxis: {
             title: {
-                text: 'Number of New Customer'
+                text: 'Number of New user'
             }
         },
         legend: {

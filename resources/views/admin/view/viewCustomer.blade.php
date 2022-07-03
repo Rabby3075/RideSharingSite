@@ -30,7 +30,7 @@ h1{
 
 
 <div class="profile" style="background: linear-gradient(45deg, #47cebe,#ef4a82);">
-<img class="img" src="image/{{$customers->image}}"  width="2%">
+<img class="img" src="customer_image/{{$customers->image}}"  width="2%">
 <h1 class="top" align="center">Name: {{$customers->name}}</h1><br>
 <h1 align="center">Dath of birth: {{$customers->dob}}</h1><br>
 <h1 align="center">Phone number: {{$customers->phone}}</h1><br>
