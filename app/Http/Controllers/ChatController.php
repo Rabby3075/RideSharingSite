@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chat;
 use App\Models\Rider;
 use App\Models\Ride;
+use App\Models\Customer;
 use App\Http\Requests\StoreChatRequest;
 use App\Http\Requests\UpdateChatRequest;
 use Illuminate\Http\Request;
@@ -92,7 +93,49 @@ class ChatController extends Controller
         $ride = Ride::where('id', $request->id)->first();
         $rider = Rider::where('id',$ride->riderId)->first();
 
-        return view('chat.chat')->with('rider',$rider);
+        $cus = Customer::where('id',session()->get('id'))->first();
+
+        $chats = Chat::where('customerId',$cus->id)->where('riderId',$ride->riderId)->get();
+
+
+        return view('chat.chat')->with('rider',$rider)->with('cus',$cus)->with('chats',$chats);
+
+    }
+
+    public function userChatSend(Request $request){
+        $rs = "Approve";
+        $ridez = Ride::where('customerId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+
+            if(!empty($request->msg))
+            {
+            date_default_timezone_set('Asia/Dhaka');
+            $time =  date('d F Y, h:i:s A');
+            $cusID = $ridez->customerId;
+            $riderId = $ridez->riderId;
+            $cus = Customer::where('id',$cusID)->first();
+            $rider = Rider::where('id',$riderId)->first();
+            $chats = Chat::where('riderId',$riderId)->where('customerId',$cusID)->get();
+            $chatss = new Chat();
+            $chatss->customerId = $cusID;
+            $chatss->riderId = $riderId;
+            $chatss->rmessage = null;
+            $chatss->cmessage =  $request->msg;
+            $chatss->time = $time;
+            $result = $chatss->save();
+            if($result){
+            return redirect()->back()->with('rider', $rider)->with('cus', $cus)->with('chats', $chats);
+            }
+            }
+            else{
+
+                $cusID = $ridez->customerId;
+                $riderId = $ridez->riderId;
+                $cus = Customer::where('id',$cusID)->first();
+                $rider = Rider::where('id',$riderId)->first();
+                $chats = Chat::where('riderId',$riderId)->where('customerId',$cusID)->get();
+                return redirect()->back()->with('rider', $rider)->with('cus', $cus)->with('chats', $chats);
+            }
+
 
     }
 }

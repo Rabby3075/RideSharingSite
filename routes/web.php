@@ -38,6 +38,7 @@ Route::get('/customerDashboard/rideView/{id}',[RideController::class, 'getRideIn
 Route::post('/customerDashboard/rideCancelSubmit',[RideController::class, 'rideCancel'])->name('rideCancelSubmit')->middleware('customerValid');
 Route::post('/customerDashboard/rideReview',[ReviewController::class, 'ReviewPost'])->name('rideReview')->middleware('customerValid');
 Route::get('/chat/{id}',[ChatController::class, 'chatUser'])->name('chatUser')->middleware('customerValid');
+Route::post('/chat',[ChatController::class, 'userChatSend'])->name('userChatSend')->middleware('customerValid');
 Route::get('/customerDashboard/discount',[CustomerRatingController::class, 'discountList'])->name('discount')->middleware('customerValid');
 Route::get('/customerDashboard/discountclaim/{id}',[CustomerRatingController::class, 'discountClaim'])->name('discountClaim')->middleware('customerValid');
 //--Customer route end ---

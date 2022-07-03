@@ -493,9 +493,10 @@ class RideController extends Controller
                 $chats = Chat::where('riderId',session()->get('id'))->where('customerId',$cusID)->get();
                 return view('rider.chatapp')->with('ridez', $ridez)->with('rider', $rider)->with('cus', $cus)->with('chats', $chats);
             }
-        
+
 
     }
+   
 
 
 //
