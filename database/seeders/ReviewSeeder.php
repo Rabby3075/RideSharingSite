@@ -16,10 +16,10 @@ class ReviewSeeder extends Seeder
     {
 
         \App\Models\Review::factory()->create([
-            'by_id' => 'Abc',
-            'to_id' => 'male',
-            'message' => '2000-01-01',
-            'rating' => '5'
+            'From' => 'Customer_2',
+            'To' => 'Rider_1',
+            'ride_id' => '4',
+            'message' => 'Valo'
 
         ]);
         //$table->timestamps();

@@ -101,20 +101,26 @@ class RiderController extends Controller
     $loginCheck = Rider::where('username',$request->username)->where('password',md5($request->password))->first();
 
     if($loginCheck){
-        $request->session()->put('id',$loginCheck->id);
-        $request->session()->put('name',$loginCheck->name);
-        $request->session()->put('gender',$loginCheck->gender);
-        $request->session()->put('dob',$loginCheck->dob);
-        $request->session()->put('phone',$loginCheck->phone);
-        $request->session()->put('email',$loginCheck->email);
-        $request->session()->put('peraddress',$loginCheck->peraddress);
-        $request->session()->put('preaddress',$loginCheck->preaddress);
-        $request->session()->put('nid',$loginCheck->nid);
-        $request->session()->put('dlic',$loginCheck->dlic);
-        $request->session()->put('username',$loginCheck->username);
-        $request->session()->put('password',$loginCheck->password);
-        $request->session()->put('image',$loginCheck->image);
-        return  redirect()->route('riderDash');
+        if($loginCheck->status == "Approved")
+        {
+            $request->session()->put('id',$loginCheck->id);
+            $request->session()->put('name',$loginCheck->name);
+            $request->session()->put('gender',$loginCheck->gender);
+            $request->session()->put('dob',$loginCheck->dob);
+            $request->session()->put('phone',$loginCheck->phone);
+            $request->session()->put('email',$loginCheck->email);
+            $request->session()->put('peraddress',$loginCheck->peraddress);
+            $request->session()->put('preaddress',$loginCheck->preaddress);
+            $request->session()->put('nid',$loginCheck->nid);
+            $request->session()->put('dlic',$loginCheck->dlic);
+            $request->session()->put('username',$loginCheck->username);
+            $request->session()->put('password',$loginCheck->password);
+            $request->session()->put('image',$loginCheck->image);
+            return  redirect()->route('riderDash');
+        }
+        else{
+            return redirect()->back()->with('failed', 'Your Registered id is in observation, Please wait for Admins approval');
+        }
     }
     else{
         return redirect()->back()->with('failed', 'Invalid username or password');

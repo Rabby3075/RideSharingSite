@@ -142,6 +142,8 @@ Route::get('/cashout', function () {return view('rider.cashOut');})->name('casho
 Route::post('/cashout',[RiderController::class, 'cashout'])->name('cashout')->middleware('riderValid');
 Route::get('/riderPoint',[RideController::class, 'riderPoint'])->name('riderPoint')->middleware('riderValid');
 Route::post('/riderPoint',[RideController::class, 'redeem'])->name('riderPoint')->middleware('riderValid');
+Route::get('/chatbox', [RideController::class, 'chatapp'])->name('chatbox')->middleware('riderValid');
+Route::post('/chatbox', [RideController::class, 'chatsend'])->name('chatbox')->middleware('riderValid');
 
 
 

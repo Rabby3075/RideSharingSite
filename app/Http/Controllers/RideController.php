@@ -5,7 +5,7 @@ use App\Models\Location;
 use App\Models\Ride;
 
 use App\Models\Rider;
-
+use App\Models\Chat;
 use App\Models\Customer;
 
 use App\Http\Requests\StoreRideRequest;
@@ -280,7 +280,7 @@ class RideController extends Controller
 
     }
 
-        public function reqProg(Request $request){
+    public function reqProg(Request $request){
 
         $req = "Waiting for rider...";
         $chk = null;
@@ -378,9 +378,6 @@ class RideController extends Controller
         $time =  date('d F Y, h:i:s A');
 
         $rs = "ongoing";
-
-        $rs = "ongoing";
-
         $cn = "Ride complete";
         $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
 
@@ -443,8 +440,64 @@ class RideController extends Controller
 
     }
 
+    public function chatapp(){
+        $rs = "Approve";
+        $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+        if(empty($ridez->customerId))
+        {
+            $cusID = 0;
+            $cus = Customer::where('id',$cusID)->first();
+            $rider = Rider::where('id',session()->get('id'))->first();
+            $chats = Chat::where('riderId',session()->get('id'))->where('customerId',$cusID)->get();
+            return view('rider.chatapp')->with('ridez', $ridez)->with('rider', $rider)->with('cus', $cus)->with('chats', $chats);
+        }
+        else
+        {
+            $cusID = $ridez->customerId;
+            $cus = Customer::where('id',$cusID)->first();
+            $rider = Rider::where('id',session()->get('id'))->first();
+            $chats = Chat::where('riderId',session()->get('id'))->where('customerId',$cusID)->get();
+            return view('rider.chatapp')->with('ridez', $ridez)->with('rider', $rider)->with('cus', $cus)->with('chats', $chats);
+        }
+
+    }
+
+    public function chatsend(Request $request){
+        $rs = "Approve";
+        $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+
+            if(!empty($request->msg))
+            {
+            date_default_timezone_set('Asia/Dhaka');
+            $time =  date('d F Y, h:i:s A');
+            $cusID = $ridez->customerId;
+            $cus = Customer::where('id',$cusID)->first();
+            $rider = Rider::where('id',session()->get('id'))->first();
+            $chats = Chat::where('riderId',session()->get('id'))->where('customerId',$cusID)->get();
+            $chatss = new Chat();
+            $chatss->customerId = $cusID;
+            $chatss->riderId = session()->get('id');
+            $chatss->cmessage = null;
+            $chatss->rmessage =  $request->msg;
+            $chatss->time = $time;
+            $result = $chatss->save();
+            if($result){
+            return view('rider.chatapp')->with('ridez', $ridez)->with('rider', $rider)->with('cus', $cus)->with('chats', $chats);
+            }
+            }
+            else{
+
+                $cusID = $ridez->customerId;
+                $cus = Customer::where('id',$cusID)->first();
+                $rider = Rider::where('id',session()->get('id'))->first();
+                $chats = Chat::where('riderId',session()->get('id'))->where('customerId',$cusID)->get();
+                return view('rider.chatapp')->with('ridez', $ridez)->with('rider', $rider)->with('cus', $cus)->with('chats', $chats);
+            }
+        
+
+    }
 
 
-
+//
 
 }
