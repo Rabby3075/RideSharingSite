@@ -499,13 +499,25 @@ class AdminController extends Controller
                 $file = $request->file('image');
                 $extension = $file->getClientOriginalExtension();
                 $filename = time().'.'.$extension;
-                $file->move('uploads/pictures/',$filename);
+                $file->move('image/',$filename);
                 $rider->image = $filename;
             }
            
             $rider->save();
 
-            return redirect()->route('riderList');
+            return redirect()->route('riderList')->with('success', 'Rider added Successfully');
+
+
+
+
+            $action = $rider->save();
+
+            if($action){
+                return redirect()->route('riderList')->with('success', 'Rider added Successfully');
+            }
+            else{
+                return redirect()->back()->with('failed', 'Failed to add Rider');
+            }
            }
    }
 
@@ -532,7 +544,7 @@ class AdminController extends Controller
                 $riders = Rider::where('name','LIKE',"%$search%")->orWhere('email','LIKE',"%$search%")->get();
             }
             else{
-                $riders = Rider::paginate(3);
+                $riders = Rider::all();
             }
            $data = compact('riders','search');
             return view('admin.view.riderList')->with('riders', $riders);
@@ -543,7 +555,9 @@ class AdminController extends Controller
             $rider = DB::table("riders")->where("id",$request->id)->first();
            DB::table("rides")->where("riderid",$rider->id)->delete();
            $rider = DB::table("riders")->where("id",$request->id)->delete();
-            return redirect()->route('riderList');
+
+
+            return redirect()->route('riderList')->with('success', 'Rider Deleted Successfully');
         }
         
 
@@ -705,7 +719,7 @@ public function riderExport(){
 
 
 public function customerRatings(){
-    $customers = Customer::all();
+    $customers = Customer::paginate(3);
     return view('admin.ratings.customerRatings')->with('customers', $customers);
 }
 
