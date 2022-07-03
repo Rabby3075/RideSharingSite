@@ -7,11 +7,11 @@
 
     </style>
 </head>
-<form action="{{route('search_btn')}}" class="form-group" method="post" align="center">
+<form action="{{route('search_btna')}}" class="form-group" method="post" align="center">
     <!-- Cross Site Request Forgery-->
     {{csrf_field()}}
     <input type="text" name="search" >
-    <input type="submit" name="search_btn" value="Search">
+    <input type="submit" name="search_btna" value="Search">
     <a href="{{route('adminTable')}}" type="button"><i class="bi bi-arrow-clockwise"></i></a>
 <div  class="col col-lg-4 mt-4"> 
 	<div class="container2">
@@ -35,7 +35,7 @@
 </table>
 </div>
 </div>
-@if(!isset($_POST['search_btn']))
+@if(!isset($_POST['search_btna']))
 <div class="d-flex justify-content-center">
     {!! $admins->links() !!}
 </div>

@@ -30,7 +30,7 @@
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 						<div class="card-body">
 							<ul class="list-group">
-								<li class="list-group-item"><a href="#"><i class="fa fa-paper-plane"></i> Sent</a></li>
+								<li class="list-group-item"><a href="{{route('chatbox')}}"><i class="fa fa-paper-plane"></i> Sent</a></li>
 								<!--<li class="list-group-item"><a href="#"><i class="fa fa-archive"></i> Archive </a></li> -->
 							</ul>
 						</div>

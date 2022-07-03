@@ -19,7 +19,11 @@ class ReviewSeeder extends Seeder
             'From' => 'Customer_2',
             'To' => 'Rider_1',
             'ride_id' => '4',
+
             'message' => 'hola'
+
+            
+
 
         ]);
         //$table->timestamps();

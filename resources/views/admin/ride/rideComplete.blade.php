@@ -72,6 +72,12 @@
 
         @endif
 
+               
+        @if($ride->customerStatus === "ongoing")
+        <td ><span class="badge bg-primary">Ride Ongoing</span></td>
+
+        @endif
+
     </tr>
     @endforeach
 </table>

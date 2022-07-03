@@ -310,7 +310,11 @@ class AdminController extends Controller
                     $customer->username= $request->username;
                     $customer->password = md5($request->password);
                     $customer->rating='0';
+                    $customer->discount='0';
+
                     $customer->image = 'index.png';
+                    
+
                     $customer->save();
                     return redirect()->route('customerTable');
             }
@@ -325,7 +329,7 @@ class AdminController extends Controller
         //return view('admin.view.adminTable');
    // }
     public function adminTable(){
-        $admins = Admin::paginate(1);
+        $admins = Admin::paginate(2);
         return view('admin.view.adminTable')->with('admins', $admins);
     }
 
@@ -356,7 +360,7 @@ class AdminController extends Controller
        return view('admin.view.viewadmin')->with('admins', $admins); 
     }
 
-    public function search_btn(Request $request){
+    public function search_btna(Request $request){
         $admins = Admin::where('name',$request->search)->get();
         //return $admins;
         return view('admin.view.adminTable')->with('admins', $admins);
@@ -364,7 +368,7 @@ class AdminController extends Controller
     ////////////////////CustomerView////////////////////
 
     public function customerTable(){
-        $customers = Customer::paginate(10);
+        $customers = Customer::paginate(4);
         return view('admin.view.customerTable')->with('customers', $customers);
     }
     public function viewCustomer(Request $request){
@@ -406,7 +410,8 @@ class AdminController extends Controller
     }
 
     public function searchc_btn(Request $request){
-        $customers = Customer::where('name', 'LIKE', "%{$request->search}%")->get();
+        $customers = Customer::where('name', 'LIKE', "%{$request->search}%")
+        ->orWhere('id','LIKE', "%{$request->search}%")->get();
         //return $admins;
         return view('admin.view.customerTable')->with('customers', $customers);
     }
@@ -474,6 +479,25 @@ class AdminController extends Controller
       ->where('phone',$request->phone)
       ->first();
 
+         $validate = $request->validate([
+
+            "name"=>'required|max:20',
+              "gender"=>"required",
+              'dob'=>'required|date',
+              "peraddress"=>"required",
+              "preaddress"=>"required",
+              'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:10',
+              'email'=>'required|email',
+              'nid'=>'required|numeric|digits:10',
+              'dlic'=>'required|numeric|digits:10',
+              'username'=>'required|min:5',
+              'password'=>'required|min:8|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{5,20}$/',
+           
+            ],
+                 ['password.regex'=>"Please use atleast 1 uppercase, 1 lowercase, 1 special character, 1 numbers"]
+            );
+
+
            if($rider){
                $request->session()->flash('rider', 'Already Exists or Added');
                return redirect()->route('addRider');
@@ -499,13 +523,18 @@ class AdminController extends Controller
                 $file = $request->file('image');
                 $extension = $file->getClientOriginalExtension();
                 $filename = time().'.'.$extension;
-                $file->move('uploads/pictures/',$filename);
+                $file->move('image/',$filename);
                 $rider->image = $filename;
             }
-           
-            $rider->save();
 
-            return redirect()->route('riderList');
+            $action = $rider->save();
+
+            if($action){
+                return redirect()->route('riderList')->with('success', 'Rider added Successfully');
+            }
+            else{
+                return redirect()->back()->with('failed', 'Failed to add Rider');
+            }
            }
    }
 
@@ -532,7 +561,7 @@ class AdminController extends Controller
                 $riders = Rider::where('name','LIKE',"%$search%")->orWhere('email','LIKE',"%$search%")->get();
             }
             else{
-                $riders = Rider::paginate(3);
+                $riders = Rider::all();
             }
            $data = compact('riders','search');
             return view('admin.view.riderList')->with('riders', $riders);
@@ -543,7 +572,9 @@ class AdminController extends Controller
             $rider = DB::table("riders")->where("id",$request->id)->first();
            DB::table("rides")->where("riderid",$rider->id)->delete();
            $rider = DB::table("riders")->where("id",$request->id)->delete();
-            return redirect()->route('riderList');
+
+
+            return redirect()->route('riderList')->with('success', 'Rider Deleted Successfully');
         }
         
 
@@ -556,26 +587,45 @@ class AdminController extends Controller
     }
     public function updateRiderSubmitted(Request $request){
         $rider = Rider::where('id', $request->id)->first();
+        $validate = $request->validate([
+
+            "name"=>'required|max:20',
+            'dob'=>'required|date',
+            "peraddress"=>"required",
+            "preaddress"=>"required",
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:10',
+            'email'=>'required|email',
+            'dlic'=>'required|numeric|digits:10',
+            'username'=>'required|min:5',
+            
+            ],
+ 
+            );
 
         $rider->name = $request->name;
-        $rider->gender = $request->gender;
         $rider->dob = $request->dob;
         $rider->peraddress = $request->peraddress;
         $rider->preaddress = $request->preaddress;
         $rider->phone = $request->phone;
         $rider->email = $request->email;
-        $rider->nid = $request->nid;
         $rider->dlic = $request->dlic;
-        $rider->status = 'approved';
-        $rider->rpoint = '0';
-        $rider->balance = '0';
         $rider->username = $request->username;
-        $rider->save();
-        return redirect()->route('riderList');
+       // return view('admin.view.riderList')->with('riders', $rider); 
+
+
+
+        $action = $rider->save();
+
+            if($action){
+                return redirect()->route('riderList')->with('success', 'Rider updated Successfully');
+            }
+            else{
+                return redirect()->back()->with('failed', 'Failed to update Rider');
+            }
 
     }
 
-
+   
     public function viewRider(Request $request){
         $rider = Rider::where('id', $request->id)->first();
         
@@ -705,7 +755,7 @@ public function riderExport(){
 
 
 public function customerRatings(){
-    $customers = Customer::all();
+    $customers = Customer::paginate(3);
     return view('admin.ratings.customerRatings')->with('customers', $customers);
 }
 

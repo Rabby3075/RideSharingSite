@@ -15,12 +15,14 @@
 <body>        
 
 @if(session('failed'))
-<div class = "alert alert-danger alert-dismissible fade show" role="alert">
+<div class="d-flex justify-content-center mt-5">
+<div class = "alert alert-danger alert-dismissible fade show w-25 fs-6 d-flex justify-content-center " role="alert">
 <strong>{{session('failed')}}</strong>
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 <span aria-hidden="true">&times;</span>
 </button>
 
+</div>
 </div>
 @endif
 
