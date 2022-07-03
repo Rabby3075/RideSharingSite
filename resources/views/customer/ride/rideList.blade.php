@@ -257,6 +257,15 @@ const export_button = document.getElementById('export');
         html_table_to_excel('xlsx');
     });
 
+    //-----Auto Reload-----
+
+   $(document).ready(function(){
+   window.setInterval(function(){
+   $("#myTable").load(" #myTable > *");
+   }, 3000);
+   });
+
+
 
 
 </script>
