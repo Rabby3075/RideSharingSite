@@ -113,5 +113,6 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
+@include('rider.footer.footer')
 </body>
 </html>

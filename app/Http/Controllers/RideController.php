@@ -272,11 +272,13 @@ class RideController extends Controller
 
     public function checkReq(){
         $req = "Waiting for rider...";
+        $on = "ongoing";
         $chk = null;
         $rs = "Approve";
         $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+        $ongo = Ride::where('riderId',session()->get('id'))->where('customerStatus',$on)->where('riderStatus',$on)->first();
         $rideCol = Ride::where('riderId',$chk)->where('customerStatus',$req)->where('riderStatus',$chk)->get();
-        return view('rider.checkReq')->with('rideCol', $rideCol)->with('ridez', $ridez);
+        return view('rider.checkReq')->with('rideCol', $rideCol)->with('ridez', $ridez)->with('ridez', $ridez);
 
     }
 

@@ -144,7 +144,7 @@ a {
                         @endif
 
             <br> <br>
-            @if(empty($ridez))
+            @if(empty($ridez) && empty($ongo))
             
       <div class="table-responsive custom-table-responsive">
 

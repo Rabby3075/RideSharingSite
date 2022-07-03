@@ -70,7 +70,7 @@
 								<li class="list-group-item"><a href="{{route('checkReq')}}"><i class="fa fa-list-alt"></i> Check Request</a></li>
 								<li class="list-group-item"><a href="{{route('rideProgs')}}"><i class="fa fa-spinner"></i> Ride Progress </a></li>
 								<!-- <li class="list-group-item"><a href="#"><i class="fa fa-male"></i> Customer History</a></li> -->	
-								<li class="list-group-item"><a href="#"><i class="fa fa-star"></i> Customer Review</a></li>			
+								<!--<li class="list-group-item"><a href="#"><i class="fa fa-star"></i> Customer Review</a></li>	 -->			
 							</ul>
 						</div>
 					</div>
