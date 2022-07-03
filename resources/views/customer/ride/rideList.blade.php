@@ -85,7 +85,7 @@
 
         @endif
         @if($ride->customerStatus === "ongoing")
-        <td ><span class="badge bg-info text-primary">Rider Approve</span> </td>
+        <td ><span class="badge bg-info text-primary">Ride Ongoing</span></td>
 
         @endif
 
@@ -124,7 +124,7 @@
       <div class="modal-body">
         <form action="{{route('rideCancelSubmit')}}" class="form-group" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
-            <input type="text" id="ride-id" name="rideid">
+            <input type="hidden" id="ride-id" name="rideid">
         <span class="text-dark">Are you sure to cancel your ride From </span><span class="text-dark" id="ride-pick"></span><span class="text-dark"> To </span><span class="text-dark" id="ride-destination"></span>
 
       </div>
@@ -149,7 +149,7 @@
       <div class="modal-body">
         <form action="{{route('rideReview')}}" class="form-group" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
-        <input type="text" id="rideId" name="rideid">
+        <input type="hidden" id="rideId" name="rideid">
         <hr>
         <h4 class="d-flex justify-content-center">Rider Information</h4> <hr>
         <div class="text-center">

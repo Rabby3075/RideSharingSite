@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 use App\Models\Location;
 use App\Models\Ride;
-<<<<<<< HEAD
+
 use App\Models\Rider;
-=======
+
 use App\Models\Customer;
->>>>>>> f1696dd23a5a516174d9c797e6522eb01125863d
+
 use App\Http\Requests\StoreRideRequest;
 use App\Http\Requests\UpdateRideRequest;
 use App\Http\Requests\UpdateCustomerRequest;
@@ -319,14 +319,14 @@ class RideController extends Controller
 
     public function rideProgs(){
 
-<<<<<<< HEAD
-        
-        $rs = "Approve"; 
-        $on = "ongoing"; 
-=======
+
 
         $rs = "Approve";
->>>>>>> f1696dd23a5a516174d9c797e6522eb01125863d
+        $on = "ongoing";
+
+
+        $rs = "Approve";
+
         $chk = null;
         $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
         $ongoing = Ride::where('riderId',session()->get('id'))->where('customerStatus',$on)->where('riderStatus',$on)->first();
@@ -340,12 +340,12 @@ class RideController extends Controller
 
         date_default_timezone_set('Asia/Dhaka');
         $time =  date('d F Y, h:i:s A');
-<<<<<<< HEAD
-        $rs = "Approve"; 
-        $on = "ongoing"; 
-=======
+
         $rs = "Approve";
->>>>>>> f1696dd23a5a516174d9c797e6522eb01125863d
+        $on = "ongoing";
+
+        $rs = "Approve";
+
         $chk = null;
         $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
         $ridez->riderStartingTie= $time;
@@ -390,11 +390,11 @@ class RideController extends Controller
 
         date_default_timezone_set('Asia/Dhaka');
         $time =  date('d F Y, h:i:s A');
-<<<<<<< HEAD
-        $rs = "ongoing"; 
-=======
+
+        $rs = "ongoing";
+
         $rs = "Approve";
->>>>>>> f1696dd23a5a516174d9c797e6522eb01125863d
+
         $cn = "Ride complete";
         $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
         $ridez->reachedTime= $time;
@@ -402,15 +402,13 @@ class RideController extends Controller
         $ridez->customerStatus= $cn;
         $result = $ridez->save();
 
-<<<<<<< HEAD
+
         $rider = Rider::where('id',session()->get('id'))->first();
         $rider->balance= $rider->balance + $request->bal;
         $rider->rpoint= $rider->rpoint + 3;
         $rider->save();
-        
-=======
 
->>>>>>> f1696dd23a5a516174d9c797e6522eb01125863d
+
         if($result){
             $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
             return view('rider.reqProgress')->with('ridez', $ridez);
@@ -419,7 +417,7 @@ class RideController extends Controller
     }
 
 
-<<<<<<< HEAD
+
     public function riderPoint(){
         $req = "Ride complete";
         $rideHis = Ride::where('riderId',session()->get('id'))->where('customerStatus',$req)->where('riderStatus',$req)->get();
@@ -446,13 +444,10 @@ class RideController extends Controller
         else{
             return redirect()->back()->with('failed', 'Doesnt have sufficient point to Redeem');
         }
-        
+
     }
-    
-    
-=======
->>>>>>> f1696dd23a5a516174d9c797e6522eb01125863d
-   //
+
+
 
 
 
