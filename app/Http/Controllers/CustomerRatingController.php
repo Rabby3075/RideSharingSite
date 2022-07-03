@@ -89,19 +89,21 @@ class CustomerRatingController extends Controller
     }
     public function discountList(){
         $discount = customerRating::all();
-        return view('customer.ride.discount')->with('discount', $discount);
+        $user = Customer::where('username',session()->get('customer_username'))->first();
+        return view('customer.ride.discount')->with('discount', $discount)->with('user', $user);
     }
 
     public function discountClaim(Request $request){
+        $customer = Customer::where('username', session()->get('customer_username'))->first();
         $discount = customerRating::where('id',$request->id)->first();
 
-        if(session()->get('rating') >= $discount->point){
+        if($customer->rating >= $discount->point){
 
 
         $point = $discount->point;
 
          $discountAmount = $discount->amount;
-         $customer = Customer::where('username', session()->get('customer_username'))->first();
+
          if(($customer->discount)<=0){
 
 
