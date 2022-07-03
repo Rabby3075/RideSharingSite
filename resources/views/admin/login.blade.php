@@ -26,13 +26,16 @@
     </style>
 </head>
 <body>
+
     @if(session('success'))
-<div class = "alert alert-success alert-dismissible fade show" role="alert">
+    <div class="d-flex justify-content-center mt-5">
+<div class = "alert alert-success alert-dismissible fade show w-25 fs-6 d-flex justify-content-center " role="alert">
 <strong>{{session('success')}}</strong>
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 <span aria-hidden="true">&times;</span>
 </button>
 
+</div>
 </div>
 @endif
 <section class="vh-100">

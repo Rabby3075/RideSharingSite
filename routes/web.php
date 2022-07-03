@@ -10,6 +10,9 @@ use App\Http\Controllers\CustomerRatingController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
+//---Dashbord---
+Route::get('/', function () {return view('index');})->name('home');
+
 
 // --- Customer route ---
 
