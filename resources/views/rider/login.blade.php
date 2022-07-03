@@ -48,7 +48,7 @@
 			</form>
 			<div class="social-login">
 				<br><br><br>
-				<a href="{{route('riderRegistration')}}" ><h3>Sign-Up</h3></a>
+				<a href="{{route('riderRegistration')}}" ><h3>Sign-Up?</h3></a>
 			</div>
 		</div>
 		<div class="screen__background">
