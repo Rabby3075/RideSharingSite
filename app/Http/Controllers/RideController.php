@@ -182,15 +182,10 @@ class RideController extends Controller
                $ride->rideRequestTime = $time;
                $result = $ride->save();
                if($result){
-                $customer = Customer::where('id', $ride->customerId)->first();
-                $bonus_rating = 10;
-                $total_rating = $customer->rating + $bonus_rating;
-                $customer->rating = $total_rating;
 
-                $customer->save();
-                session()->put('rating',$total_rating);
+               // session()->put('rating',$total_rating);
 
-                $success = "Congratulations your ride request confirm successfully. You got 10 rating points";
+                $success = "Congratulations your ride request confirm successfully. You will 10 rating points after the ride complete";
 
                 return redirect()->back()->with('success', $success)
                 ->with('destination',$distance.'kilo')
@@ -245,12 +240,7 @@ class RideController extends Controller
         $rideCancel->riderApprovalTime=null;
         $result = $rideCancel->save();
         if($result){
-            $customer = Customer::where('username', session()->get('customer_username'))->first();
-            $bonus_rating = 10;
-            $total_rating = $customer->rating - $bonus_rating;
-            $customer->rating = $total_rating;
-            $customer->save();
-            session()->put('rating',$total_rating);
+
             return redirect()->back()->with('success', 'Ride Cancel');
         }
 
@@ -371,11 +361,7 @@ class RideController extends Controller
         $ridez->cancelTime= $time;
         $ridez->riderStatus= $cn;
         $ridez->customerStatus= $cn;
-        $customer = Customer::where('id', $ridez->customerId)->first();
-            $bonus_rating = 10;
-            $total_rating = $customer->rating - $bonus_rating;
-            $customer->rating = $total_rating;
-            $customer->save();
+
         $result = $ridez->save();
 
 
@@ -393,14 +379,24 @@ class RideController extends Controller
 
         $rs = "ongoing";
 
-        $rs = "Approve";
+        $rs = "ongoing";
 
         $cn = "Ride complete";
         $ridez = Ride::where('riderId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+
         $ridez->reachedTime= $time;
         $ridez->riderStatus= $cn;
         $ridez->customerStatus= $cn;
         $result = $ridez->save();
+
+        if ($result) {
+            $customer = Customer::where('id', $ridez->customerId)->first();
+            $bonus_rating = 10;
+            $total_rating = $customer->rating + $bonus_rating;
+            $customer->rating = $total_rating;
+
+            $customer->save();
+        }
 
 
         $rider = Rider::where('id',session()->get('id'))->first();
