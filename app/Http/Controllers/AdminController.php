@@ -310,7 +310,11 @@ class AdminController extends Controller
                     $customer->username= $request->username;
                     $customer->password = md5($request->password);
                     $customer->rating='0';
+                    $customer->discount='0';
+
                     $customer->image = 'index.png';
+                    
+
                     $customer->save();
                     return redirect()->route('customerTable');
             }
