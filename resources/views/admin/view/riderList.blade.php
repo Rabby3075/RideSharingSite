@@ -1,6 +1,33 @@
 @extends('admin.layouts.design')
 @section('content')
 
+
+@if(session('success'))
+    <div class="d-flex justify-content-center mt-5">
+<div class = "alert alert-success alert-dismissible fade show w-25 fs-6 d-flex justify-content-center " role="alert">
+<strong>{{session('success')}}</strong>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+
+</div>
+</div>
+@endif
+
+@if(session('failed'))
+<div class="d-flex justify-content-center mt-5">
+<div class = "alert alert-danger alert-dismissible fade show w-25 fs-6 d-flex justify-content-center " role="alert">
+<strong>{{session('failed')}}</strong>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+
+</div>
+</div>
+@endif
+
+
+
 <form action="" class="col-8 ">
      <div class="d-flex justify-content-evenly mb-5">
 
@@ -32,7 +59,8 @@
     @foreach($riders as $rider)
         <tr >
             <td ><a class="text-decoration-none text-dark fs-4" href="/{{$rider->id}}">{{$rider->name}}</a></td>
-            <td class="fs-4"><img src="{{asset('uploads/pictures/'.$rider->image)}}" alt="picture" width="140px" height="140px" ></td>
+            <td class="fs-4">
+            <img src="{{asset('image/'.$rider->image)}}"  alt="picture" width="140px" height="140px" ></td>
             <td class="fs-4">{{$rider->phone}}</td>
             <td class="fs-4">{{$rider->email}}</td>
             <td class="fs-4">{{$rider->id}}</td>
@@ -43,8 +71,5 @@
         </tr>
     @endforeach
 </table>
-<div class="row">
-    {{$riders->links()}}
-
-</div>
+ 
 @endsection

@@ -18,8 +18,8 @@
 </tr>
 @foreach($customers as $customer)
 <tr>
-  <td>{{$customer->name}}</td>
-  <td class="text-decoration-none text-dark fs-4"><img src="{{asset('customer_image'.$customer->image)}}" alt="picture" width="140px" height="140px" ></td>
+  <td class="text-decoration-none text-dark fs-4" >{{$customer->name}}</td>
+  <td class="text-decoration-none text-dark fs-4"><img src="{{asset('customer_image/'.$customer->image)}}" alt="picture" width="140px" height="140px" ></td>
   <td class="text-decoration-none text-dark fs-4">{{$customer->phone}}</td>
  
   @if($customer->rating === 0)
@@ -50,7 +50,9 @@
 </tr>
 @endforeach
 </table>
-
+<div class="row">
+{!! $customers->links() !!}
+</div>
 </body>
 
 
