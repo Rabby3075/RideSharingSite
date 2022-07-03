@@ -406,7 +406,8 @@ class AdminController extends Controller
     }
 
     public function searchc_btn(Request $request){
-        $customers = Customer::where('name', 'LIKE', "%{$request->search}%")->get();
+        $customers = Customer::where('name', 'LIKE', "%{$request->search}%")
+        ->orWhere('id','LIKE', "%{$request->search}%")->get();
         //return $admins;
         return view('admin.view.customerTable')->with('customers', $customers);
     }
