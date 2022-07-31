@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\customerRegConfirmation;
 use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class CustomerController extends Controller
 {
@@ -112,6 +114,12 @@ class CustomerController extends Controller
         return redirect()->back()->with('failed', 'Username already exist');
     }
     else{
+        $emailCheck = Customer::where('email',$request->email)->first();
+        if($emailCheck){
+            return redirect()->back()->with('failed', 'Email already exist');
+        }
+        else{
+
         $nameImage = $request->file('image')->getClientOriginalName();
         $folder = $request->file('image')->move(public_path('customer_image').'/',$nameImage);
 
@@ -126,14 +134,24 @@ class CustomerController extends Controller
         $customer->rating = $rating;
         $customer->image = $nameImage;
         $customer->discount = 0;
+            $code = rand(1000,9000);
+            $details = [
+                'title' => 'Registration Confirmation',
+                'code' => $code
+            ];
+
+            Mail::to($request->email)->send(new customerRegConfirmation($details));
         $result = $customer->save();
+
         if($result){
+
             //$image->storeAs('public/images',$nameImage);
             return redirect()->back()->with('success', 'Registration Done successfully');
         }
         else{
             return redirect()->back()->with('failed', 'Registration Failed');
         }
+    }
     }
 
     }
