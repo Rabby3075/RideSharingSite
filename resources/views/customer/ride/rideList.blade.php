@@ -28,7 +28,7 @@
                         </div>
                         @endif
 
-
+                        @if($rideList->count()>0)
     <button type="button" id="export" class="btn btn-outline-success" id="export">Download</button>
 
  <div class="table-responsive custom-table-responsive">
@@ -48,7 +48,9 @@
         <th>Action</th>
       </tr>
     </thead>
+
     <tbody>
+
     @foreach($rideList as $ride)
 
 
@@ -105,10 +107,14 @@
     </tr>
     @endforeach
     </tbody>
+
   </table>
   <div class="pagination justify-content-center">
 {{$rideList->links()}}
   </div>
+  @else
+    <h1 class="text-danger d-flex justify-content-center m-5">You have not complete any ride</h1>
+    @endif
   </div>
 
 </div>

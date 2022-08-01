@@ -526,7 +526,7 @@ class AdminController extends Controller
                 $file = $request->file('image');
                 $extension = $file->getClientOriginalExtension();
                 $filename = time().'.'.$extension;
-                $file->move('image/',$filename);
+                $file->move('img/',$filename);
                 $rider->image = $filename;
             }
 
