@@ -1,0 +1,63 @@
+import React from "react";
+import  "./sidebar.scss";
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
+import PersonIcon from '@mui/icons-material/Person';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+
+
+const Sidebar = () => {
+    return(
+            
+                <div className="sidebar">
+                <div className="top">
+                    <span className="logo">Your Ride</span>
+                </div>
+                <hr/>
+                <div className="center">
+                    <ul>
+                        <li>
+                        <DashboardIcon/>
+                            <span>Dashboard</span>
+                        </li>
+                        
+                        <p className="title">ADD</p>
+                        <li>
+                        <SupervisorAccountIcon className="icon" />
+                            <span>Admin</span>
+                        </li>
+                        <li>
+                            <DirectionsBikeIcon className="icon"/>
+                            <span>Rider</span>
+                        </li>
+                        <li>
+                            <PersonIcon className="icon"/>
+                            <span>Customer</span>
+                        </li>
+                        <p className="title">View</p>
+                        <li>
+                            <VisibilityIcon className="icon" />
+                            <span>Admin</span>
+                        </li>
+                        <li>
+                             <VisibilityIcon className="icon" />
+                            <span>Rider</span>
+                        </li>
+                        <li>
+                            <VisibilityIcon className="icon" />
+                            <span>Customer</span>
+                        </li>
+                    </ul>
+                    
+
+                </div>
+                <div className="foot"> color option </div>
+                </div>
+           
+
+    )
+}
+
+
+export default Sidebar; 
