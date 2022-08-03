@@ -7,7 +7,9 @@ import Navbar from './components/adminComponents/Navbar/Navbar';
 import Sidebar from './components/adminComponents/Sidebar/Sidebar';
 import Dashboard from './components/adminComponents/Dashboard/Dashboard';
 import Login from './components/adminComponents/Login/Login';
+import Addcustomer from './components/adminComponents/AddCustomer/Addcustomer';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,7 +22,7 @@ root.render(
     <Routes>
     <Route  path='/adminlogin' element={<Login/>} />
     <Route  path='/admindashboard' element={<Dashboard/>} />
-    
+    <Route  path='/addcustomer' element={<Addcustomer/>} />
     </Routes>
     </Router>
     

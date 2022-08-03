@@ -6,6 +6,8 @@ import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
 import PersonIcon from '@mui/icons-material/Person';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
+import { Link } from "react-router-dom";
+
 
 const Sidebar = () => {
     return(
@@ -23,18 +25,24 @@ const Sidebar = () => {
                         </li>
                         
                         <p className="title">ADD</p>
+                        <Link to="/adminlogin" style={{ textDecoration:"none" }}>
                         <li>
                         <SupervisorAccountIcon className="icon" />
                             <span>Admin</span>
                         </li>
+                        </Link>
+                        <Link to="/addadmin" style={{textDecorate:"none"}}>
                         <li>
                             <DirectionsBikeIcon className="icon"/>
                             <span>Rider</span>
                         </li>
+                        </Link>
+                        <Link to="/addcustomer" style={{textDecoration:"none"}}>
                         <li>
                             <PersonIcon className="icon"/>
                             <span>Customer</span>
                         </li>
+                        </Link>
                         <p className="title">View</p>
                         <li>
                             <VisibilityIcon className="icon" />
