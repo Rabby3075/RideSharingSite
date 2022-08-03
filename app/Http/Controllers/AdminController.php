@@ -786,13 +786,14 @@ public function customerRatings(){
     public function  adminapilogin(Request $req){
         
 
-        $user = Customer::where('username',$req->username)->where('password',$req->password)->first();
+        $user = Admin::where('email',$req->email)->where('password',md5($req->password))->first();
         if($user){
             $api_token = Str::random(64);
             $token = new Token();
             $token->userid = $user->id;
             $token->token = $api_token;
             $token->created_at = new DateTime();
+            $token->expire_at="null";
             $token->save();
             return $token;
         }

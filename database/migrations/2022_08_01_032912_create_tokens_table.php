@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('userid');
             $table->string('token');
             $table->string('created_at');
-            $table->string('expire_at');
+            $table->string('expire_at')->nullable();
             
         });
     }
