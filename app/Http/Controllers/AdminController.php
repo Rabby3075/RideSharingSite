@@ -19,6 +19,9 @@ use App\Exports\RideExport;
 use App\Exports\RiderExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Ride;
+use App\Models\Token;
+use Illuminate\Support\Str;
+use DateTime;
 
 
 
@@ -764,6 +767,42 @@ public function customerRatings(){
 
 
 
-}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////API//////////////////////////////
+
+    public function  adminapilogin(Request $req){
+        
+
+        $user = Admin::where('email',$req->email)->where('password',md5($req->password))->first();
+        if($user){
+            $api_token = Str::random(64);
+            $token = new Token();
+            $token->userid = $user->id;
+            $token->token = $api_token;
+            $token->created_at = new DateTime();
+            $token->expire_at="null";
+            $token->save();
+            return $token;
+        }
+        return "No user found";
+
+    }
+    
+    
+
+    
+}
  

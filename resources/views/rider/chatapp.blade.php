@@ -8,7 +8,7 @@
 <style>
 
 body{
-    background:#eee;    
+    background:#eee;
 }
 .chat-list {
     padding: 0;
@@ -112,7 +112,7 @@ body{
 }
 
 .content{
-    margin-top:-30px;    
+    margin-top:-30px;
 }
 
 .ccd {
@@ -170,7 +170,7 @@ body{
   background-color: #a3d063;
 }
 
-.btn-gradientt {    
+.btn-gradientt {
     width:20%;
     position: relative;
     display: inline-block;
@@ -212,7 +212,7 @@ body{
                     @if(!empty($chat->cmessage))
         				<li class="in">
         					<div class="chat-img">
-        						<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar1.png">
+        						<img alt="Avtar" src="../customer_image/{{$cus->image}}">
         					</div>
         					<div class="chat-body">
         						<div class="chat-message">
@@ -229,7 +229,7 @@ body{
                         @if(!empty($chat->rmessage))
         				<li class="out">
         					<div class="chat-img">
-        						<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar6.png">
+        						<img alt="Avtar" src="../image/{{$rider->image}}">
         					</div>
         					<div class="chat-body">
         						<div class="chat-message">
