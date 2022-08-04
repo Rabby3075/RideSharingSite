@@ -513,7 +513,7 @@ class AdminController extends Controller
             $rider->email = $request->email;
             $rider->nid = $request->nid;
             $rider->dlic = $request->dlic;
-            $rider->status = 'approved';
+            $rider->status = 'pending';
             $rider->rpoint = '0';
             $rider->balance = '0';
             $rider->username = $request->username;
