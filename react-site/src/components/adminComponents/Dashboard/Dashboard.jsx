@@ -3,6 +3,7 @@ import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import Login from "../Login/Login";
 import "./dashboard.scss"
+import Dropdownlist from "../Dropdownlist/Dropdownlist";
 
 
 
@@ -13,6 +14,7 @@ const Dashboard = () => {
                 <div className="dashboardContainer">
                     <Navbar/>
                     dashboard
+                    <Dropdownlist/>
                 </div>
             </div>
     )

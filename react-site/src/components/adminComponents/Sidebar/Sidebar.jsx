@@ -25,13 +25,13 @@ const Sidebar = () => {
                         </li>
                         
                         <p className="title">ADD</p>
-                        <Link to="/adminlogin" style={{ textDecoration:"none" }}>
+                        <Link to="/addadmin" style={{ textDecoration:"none" }}>
                         <li>
                         <SupervisorAccountIcon className="icon" />
                             <span>Admin</span>
                         </li>
                         </Link>
-                        <Link to="/addadmin" style={{textDecorate:"none"}}>
+                        <Link to="/addadmin" style={{textDecoration:"none"}}>
                         <li>
                             <DirectionsBikeIcon className="icon"/>
                             <span>Rider</span>
@@ -52,10 +52,12 @@ const Sidebar = () => {
                              <VisibilityIcon className="icon" />
                             <span>Rider</span>
                         </li>
+                        <Link to="/customerview" style={{textDecoration:"none"}}>
                         <li>
                             <VisibilityIcon className="icon" />
                             <span>Customer</span>
                         </li>
+                        </Link>
                     </ul>
                     
 

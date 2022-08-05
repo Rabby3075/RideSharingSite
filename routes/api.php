@@ -19,3 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
  Route::post('/adminlogin',[AdminController::class,'adminapilogin']); 
+ Route::get('/customerView',[AdminController::class,'customerView']);
+ Route::get('/formcustomer/{id}',[AdminController::class,'formCustomer']);

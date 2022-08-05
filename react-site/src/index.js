@@ -10,6 +10,12 @@ import Login from './components/adminComponents/Login/Login';
 import Addcustomer from './components/adminComponents/AddCustomer/Addcustomer';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import { Link } from "react-router-dom";
+import Addadmin from './components/adminComponents/Addadmin/Addadmin';
+import Dropdownlist from './components/adminComponents/Dropdownlist/Dropdownlist';
+import Customerview from './components/adminComponents/Customerview/Customerview';
+import Customerviewprops from './components/adminComponents/Customerview/Customerviewprops';
+
+import Formview from './components/adminComponents/Form/Formview';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,6 +29,11 @@ root.render(
     <Route  path='/adminlogin' element={<Login/>} />
     <Route  path='/admindashboard' element={<Dashboard/>} />
     <Route  path='/addcustomer' element={<Addcustomer/>} />
+    <Route path='/addadmin' element={<Addadmin/>}/>
+    <Route path='/dropdown' element={<Dropdownlist/>}/>
+    <Route path='/customerview' element={<Customerview/>}/>
+    <Route path='/customerviewprops' element={<Customerviewprops/>}/>
+    <Route path='/formview/:id' element={<Formview/>}/>
     </Routes>
     </Router>
     

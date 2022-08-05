@@ -19,9 +19,13 @@ const Login = ()=>{
             var user = {userId: token.userid, access_token:token.token};
             localStorage.setItem('user',JSON.stringify(user));
             //  console.log(localStorage.getItem('user'))
-            navigate('/admindashboard');
+            if(token == "No user found"){
+            navigate('/adminlogin');
 
-             
+            }
+            else{
+                navigate('/admindashboard');
+            }
         }).catch(err=>{
             console.log(err);
         });
