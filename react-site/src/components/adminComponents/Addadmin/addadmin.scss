@@ -17,8 +17,9 @@
             box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
             padding: 2px;
             margin: 10px;
+            padding-bottom: 10px;
             .reg{
-                flex: 1;
+                flex: 2;
             
             form{
                 display: flex;
@@ -41,19 +42,17 @@
                     }
 
                 }
+                button{
+                    width: 200px;
+                    padding: 10px;
+                    border: none;
+                    background-color: teal;
+                    color: white;
+                    font-weight: bold;
+                    cursor: pointer;
+                    margin-left: 35%;
 
-            }
-            button{
-                width: 150px;
-                padding: 10px;
-                border: none;
-                background-color: teal;
-                color: white;
-                font-weight: bold;
-                cursor: pointer;
-                margin-left: 400px;
-                margin-top: 15px;
-
+                }
             }
             }
         }

@@ -1,17 +1,17 @@
 import Navbar from "../Navbar/Navbar"
 import Sidebar from "../Sidebar/Sidebar"
-import "./addcustomer.scss"
+import "./addadmin.scss"
 
 
 
-const Addcustomer =() => {
+const Addadmin =() => {
     return (
         <div className="add">
             <Sidebar/>
             <div className="addcontainer">
             <Navbar/>
             <div className="top">
-                <h3>Add New Customer</h3>
+                <h3>Add New Admin</h3>
             </div>
             <div className="bottom">
                 
@@ -20,19 +20,14 @@ const Addcustomer =() => {
                 
                 <div className="inputform"><label>Name</label><input type="text" placeholder="Enter name"></input></div>
                 <div className="inputform"><label>Date of birth</label><input type="date" placeholder="Enter date of birth"></input></div>
+                <div className="inputform"><label>Email</label><input type="text" placeholder="Enter Email"></input></div>
                 <div className="inputform"><label>Phone</label><input type="text" placeholder="Enter phone number"></input></div>
-                <div className="inputform"><label>Address</label><input type="text" placeholder="Enter address"></input></div>
-                <div className="inputform"><label>Username</label><input type="text" placeholder="Enter a username"></input></div>
-                <div className="inputform"><label>Email</label><input type="text" placeholder="Enter email"></input></div>
-                <div className="inputform"><label>Password</label><input type="password" placeholder="Enter password"></input></div>
-
-                </form>
-                <div>
+                <div className="inputform"><label>Password</label><input type="text" placeholder="Enter a password"></input></div>
+                <div className="inputform"><label>Confirm Password</label><input type="text" placeholder=""></input></div>
                  <button>Submit</button>
-                 </div>
-                </div>
-
                 
+                </form>
+                </div>
                 
             </div>
             </div>
@@ -41,4 +36,4 @@ const Addcustomer =() => {
     )
 }
 
-export default Addcustomer;
+export default Addadmin;

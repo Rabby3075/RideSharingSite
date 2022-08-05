@@ -93,7 +93,7 @@ class RiderController extends Controller
 
     public function riderLoginSubmit(Request $request){
         $validate = $request->validate([
-            'username'=>'required|min:8|max:15',
+            'username'=>'required|min:5|max:15',
             'password'=>'required|min:8|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{5,20}$/'
         ],
         ['password.regex'=>"Please use atleast 1 uppercase, 1 lowercase, 1 special charactee, 1 number"]
