@@ -847,7 +847,18 @@ public function RiderAPIPost(Request $req){
         return "No user found";
 
     }
+
+
+       public function customerView(){
+        $customer = Customer::all();
+        return $customer;
+    }
     
+        public function formCustomer(Request $request){
+        $customers = Customer::where('id', $request->id)->first();
+        return $customers;
+        //return view('admin.view.viewCustomer')->with('customers', $customers);
+      }
     
 
     

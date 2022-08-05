@@ -21,8 +21,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
  Route::post('/adminlogin',[AdminController::class,'adminapilogin']); 
 
+ Route::get('/customerView',[AdminController::class,'customerView']);
+ Route::get('/formcustomer/{id}',[AdminController::class,'formCustomer']);
+
+
  Route::get('/riderList',[AdminController::class,'RiderAPIList']);
  Route::post('/riderList',[AdminController::class,'RiderAPIPost']);
+
 //-------------------Customer APi---------------------------
 Route::post('/customerRegistrationSubmit',[CustomerController::class, 'CustomerRegistrationApi'])->name('CustomerRegistrationApi');
 //-------------------Customer APi---------------------------

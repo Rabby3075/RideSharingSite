@@ -44,7 +44,9 @@ const Sidebar = () => {
                         </li>
                     </Link>
                     <p className="title">View</p>
+                    
                     <li>
+                        
                         <VisibilityIcon className="icon" />
                         <span>Admin</span>
                     </li>
@@ -56,10 +58,12 @@ const Sidebar = () => {
                             <span>Rider</span>
                         </li>
                     </Link>
+                    <Link to="/customerview" style={{ textDecoration: "none" }}>
                     <li>
                         <VisibilityIcon className="icon" />
                         <span>Customer</span>
                     </li>
+                    </Link>
                 </ul>
 
 
