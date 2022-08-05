@@ -9,6 +9,26 @@ const CustomerLogin = () =>{
     let[username, setUsername] = useState("");
     let[password, setPassword] = useState("");
 
+    const CustomerLoginSubmit = () =>{
+        var obj = {username: username, password: password};
+        console.log(obj);
+        axios.post("http://127.0.0.1:8000/api/customerLoginSubmit",obj)
+        .then(resp=>{
+            var token = resp.data;
+            console.log(token);
+            //var user = {userId: token.userid, access_token:token.token};
+            //localStorage.setItem('user',JSON.stringify(user));
+           /* if(token == "No user found"){
+               // navigate('/login');
+            }else{
+                //navigate('/allproducts');
+            }*/
+            // console.log(localStorage.getItem('user'));
+        }).catch(err=>{
+            console.log(err);
+        });
+    }
+
     return(
 
         <div className='container-fluid vh-100 '>
@@ -44,7 +64,7 @@ const CustomerLogin = () =>{
 
                          </form>
                                 <div className="d-grid col-12 mx-auto p-4">
-                                    <button type='submit' className="btn btn-primary" >Sign In</button>
+                                    <button type='submit' className="btn btn-primary" onClick={CustomerLoginSubmit}>Sign In</button>
                                 </div>
                                 <div className="d-grid col-12 mx-auto p-4">
                                 <h1 id='msg'></h1>
