@@ -15,7 +15,7 @@
 
 	</head>
 	<body>
-	<section class="ftco-section">
+	<div class="ftco-section">
 		<div class="container">
 
 			<div class="row justify-content-center">
@@ -41,7 +41,7 @@
                             {{csrf_field()}}
                             @if ($errors->any())
                             <div class="alert alert-danger alert-dismissible">
-                           
+
                                      <ul>
                                          @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
@@ -81,7 +81,7 @@
 			</div>
 		</div>
 
-	</section>
+</div>
 
 
 
