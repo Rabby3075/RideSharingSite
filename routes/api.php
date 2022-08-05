@@ -19,3 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
  Route::post('/adminlogin',[AdminController::class,'adminapilogin']); 
+
+ Route::get('/riderList',[AdminController::class,'RiderAPIList']);
+ Route::post('/riderList',[AdminController::class,'RiderAPIPost']);

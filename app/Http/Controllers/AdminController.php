@@ -762,7 +762,54 @@ public function customerRatings(){
     return view('admin.ratings.customerRatings')->with('customers', $customers);
 }
 
+//////************API***********////////////
 
+public function RiderAPIList(){
+    return Rider::all();
+}
+
+
+public function RiderAPIPost(Request $req){
+    $rider = new Rider();
+    $rider->id= $req->id;
+    $rider->name= $req->name;
+    $rider->gender= $req->gender;
+    $rider->dob= $req->dob;
+    $rider->peraddress= $req->peraddress;
+    $rider->preaddress= $req->preaddress;
+    $rider->phone= $req->phone;
+    $rider->email= $req->email;
+    $rider->nid = $req->nid;
+    $rider->dlic = $req->dlic;
+    $rider->status = 'pending';
+    $rider->rpoint = '0';
+    $rider->balance = '0';
+    $rider->username = $req->username;
+    $rider->password= md5($req->password);
+    $rider->image= 'index.js' ;
+    $rider->save();
+// if($req->hasfile('image'))
+//             {
+//                 $file = $request->file('image');
+//                 $extension = $file->getClientOriginalExtension();
+//                 $filename = time().'.'.$extension;
+//                 $file->move('img/',$filename);
+//                 $rider->image = $filename;
+//             }
+
+//             $action = $rider->save();
+
+            // if($action){
+            //     return redirect()->route('riderList')->with('success', 'Rider added Successfully');
+            // }
+            // else{
+            //     return redirect()->back()->with('failed', 'Failed to add Rider');
+            // }
+           
+
+ 
+    return $req;
+}
 
 
 
