@@ -275,4 +275,51 @@ class RiderController extends Controller
      }
     }
    }
+
+   public function rideHisApi(){
+    $req = "Ride complete";
+    return Ride::where('riderId',10)->where('customerStatus',$req)->where('riderStatus',$req)->get();
+    }
+
+       public function riderCountApi(){
+        $req = "Ride complete";
+        $rideCount = Ride::where('riderId',10)->where('customerStatus',$req)->where('riderStatus',$req)->get()->count();
+        return $rideCount;
+    }
+    public function riderBalanceApi(){
+        return  Rider::where('id',10)->first();
+    }
+
+    public function totalPayApi(){
+        $req = "Ride complete";
+        $total = 0;
+        $rideHis = Ride::where('riderId',10)->where('customerStatus',$req)->where('riderStatus',$req)->get();
+
+        foreach($rideHis as $ride)
+        {
+            $total += $ride->cost;
+        }
+        return $total;
+        }
+
+        
+    public function redeemApi(Request $request){
+
+        $req = "Ride complete";
+        $rider = Rider::where('id',10)->first();
+        $rider->balance= $rider->balance + $rider->rpoint;
+        $rider->rpoint= $rider->rpoint - $rider->rpoint;
+        $result = $rider->save();
+
+    }
+    
+   public function cashoutApi(Request $request){
+
+   $rider = Rider::where('id',10)->first();
+   $rider->balance= $rider->balance - $request->amount;
+   $result = $rider->save();
+
+   }
+
+
 }

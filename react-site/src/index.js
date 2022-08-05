@@ -11,6 +11,15 @@ import Login from './components/adminComponents/Login/Login';
 import Addcustomer from './components/adminComponents/AddCustomer/Addcustomer';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import { Link } from "react-router-dom";
+//rider
+import "bootstrap/dist/css/bootstrap.min.css";
+import RiderHis from './components/riderComponents/RiderHis/RiderHis';
+import RiderBal from './components/riderComponents/RiderBal/RiderBal';
+import Redeem from './components/riderComponents/Redeem/Redeem';
+import CashOut from './components/riderComponents/CashOut/CashOut';
+import NavBar from './components/riderComponents/NavBar/NavBar';
+import SideBar from './components/riderComponents/SideBar/SideBar';
+import Footer from './components/riderComponents/Footer/Footer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,18 +31,42 @@ root.render(
     {/* <Login/> */}
     <Routes>
 
-    <Route  path='/customerRegistration' element={<CustomerRegistration/>} />
-    <Route  path='/adminlogin' element={<Login/>} />
-    <Route  path='/admindashboard' element={<Dashboard/>} />
-<<<<<<< HEAD
+    <Route   path='/customerRegistration' element={<CustomerRegistration/>} />
+    <Route   path='/adminlogin' element={<Login/>} />
+    <Route   path='/admindashboard' element={<Dashboard/>} />
 
-=======
-    <Route  path='/addcustomer' element={<Addcustomer/>} />
->>>>>>> 313b7448defdf39af662a3d1f028b057d99a1e54
+    <Route   path='/addcustomer' element={<Addcustomer/>} />
+
+
     </Routes>
     </Router>
 
+    {/* rider start */}
+    <Router>
+    <NavBar/>
+    <div className="container-fluid mt-5">
+	  <div className="row">
+    <div className="col-lg-2">
+    <SideBar/>
+    </div>
+    <div className="col-lg-10">
+		<div className="jumbotron">
+    <Routes>
 
+    <Route  exact path='/rideHistory' element={<RiderHis/>} />
+    <Route  exact path='/RiderBal' element={<RiderBal/>} />
+    <Route  exact path='/Redeem' element={<Redeem/>} />
+    <Route  exact path='/CashOut' element={<CashOut/>} />
+    
+
+    </Routes>
+    </div>
+		</div>
+	  </div>
+    </div>
+    <Footer/>
+    </Router>
+    {/* rider end */}
 
   </React.StrictMode>
 );
