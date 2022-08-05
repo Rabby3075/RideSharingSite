@@ -156,6 +156,74 @@ class CustomerController extends Controller
 
     }
 
+    public function CustomerRegistrationApi(Request $request){
+
+    $rating = 0;
+    $ErrorMsg = "User name doesn't exist";
+
+
+    $userCheck = Customer::where('username',$request->username)->first();
+    if($userCheck){
+
+        //return redirect()->back()->with('failed', 'Username already exist');
+        return response()->json([
+            'message'=>'Username already exist'
+        ]);
+    }
+    else{
+        $emailCheck = Customer::where('email',$request->email)->first();
+        if($emailCheck){
+            //return redirect()->back()->with('failed', 'Email already exist');
+            return response()->json([
+                'message'=>'Email already exist'
+            ]);
+        }
+        else{
+
+       /* $nameImage = $request->file('image')->getClientOriginalName();
+        $folder = $request->file('image')->move(public_path('customer_image').'/',$nameImage);*/
+
+
+
+
+      $customer = new Customer();
+        $customer->name = $request->name;
+        $customer->dob = $request->dob;
+        $customer->phone = $request->phone;
+        $customer->address = $request->address;
+        $customer->username = $request->username;
+        $customer->email = $request->email;
+        $customer->password = md5($request->password);
+        $customer->rating = $rating;
+        $customer->image ="profile.jpg";
+        $customer->discount = 0;
+            $code = rand(1000,9000);
+            $details = [
+                'title' => 'Registration Confirmation',
+                'code' => $code
+            ];
+
+            Mail::to($request->email)->send(new customerRegConfirmation($details));
+        $result = $customer->save();
+
+        if($result){
+
+            //$image->storeAs('public/images',$nameImage);
+            //return redirect()->back()->with('success', 'Registration Done successfully');
+            return response()->json([
+                'message'=>'Registration Successful'
+            ]);
+        }
+        else{
+            //return redirect()->back()->with('failed', 'Registration Failed');
+            return response()->json([
+                'message'=>'Registration Failed'
+            ]);
+        }
+    }
+    }
+    }
+
     public function customerLoginSubmit(Request $request){
         $validate = $request->validate([
             'username'=>'required',
