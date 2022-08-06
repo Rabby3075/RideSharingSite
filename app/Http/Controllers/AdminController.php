@@ -768,8 +768,70 @@ public function RiderAPIList(){
     return Rider::all();
 }
 
+public function RiderGetAPI($id){
+    return Rider::find($id);
+}
+public function RiderDeleteAPI($id){
+   
+    $result = Rider::where('id',$id)->delete();
+    if($result)
+    {
+        return ["result"=>"Product has been deleted"];
+    }
+    else{
+        return ["result"=>"operation failed"];
+
+    }
+}
+public function RiderViewAPI($id){
+
+   return Rider::find($id);
+
+}
+
 
 public function RiderAPIPost(Request $req){
+    $rider = new Rider();
+    $rider->id= $req->id;
+    $rider->name= $req->name;
+    $rider->gender= $req->gender;
+    $rider->dob= $req->dob;
+    $rider->peraddress= $req->peraddress;
+    $rider->preaddress= $req->preaddress;
+    $rider->phone= $req->phone;
+    $rider->email= $req->email;
+    $rider->nid = $req->nid;
+    $rider->dlic = $req->dlic;
+    $rider->status = 'pending';
+    $rider->rpoint = '0';
+    $rider->balance = '0';
+    $rider->username = $req->username;
+    $rider->password= md5($req->password);
+    $rider->image= 'index.jpg';
+
+    //$rider->image= $req->file('file')->store('AddRider_image');
+    $rider->save();
+// if($req->hasfile('image'))
+//             {
+//                 $file = $request->file('image');
+//                 $extension = $file->getClientOriginalExtension();
+//                 $filename = time().'.'.$extension;
+//                 $file->move('img/',$filename);
+//                 $rider->image = $filename;
+//             }
+
+//             $action = $rider->save();
+
+           
+
+ 
+    return $req;
+
+
+
+}
+
+public function RiderUpdateAPI(Request $req){
     $rider = new Rider();
     $rider->id= $req->id;
     $rider->name= $req->name;
@@ -809,6 +871,14 @@ public function RiderAPIPost(Request $req){
 
  
     return $req;
+}
+
+
+public function RiderSearchAPI($key){
+
+    return Rider::where('name','Like',"%$key%")->get();
+   
+         
 }
 
 
