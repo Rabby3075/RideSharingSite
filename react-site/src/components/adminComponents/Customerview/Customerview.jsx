@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 
 
-const Customerview =() => {
+const Customerview =(props) => {
     const [posts, setPosts] = useState([]);
     useEffect(()=>{
         axios.get("http://127.0.0.1:8000/api/customerView")

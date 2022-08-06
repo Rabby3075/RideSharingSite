@@ -885,6 +885,7 @@ public function RiderAPIPost(Request $req){
                     $customer->image = 'index.png';
                     $customer->save();
                     // return $request;
+                    
                     echo "registration successful";
     }
 

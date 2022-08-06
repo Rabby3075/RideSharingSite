@@ -71,7 +71,6 @@ root.render(
     <Route path='/customerview' element={<Customerview/>}/>
     <Route path='/customerviewprops' element={<Customerviewprops/>}/>
     <Route path='/formview/:id' element={<Formview/>}/>
-
     <Route path='/riderstatus' element={<Pendingstatus/>}/>
     <Route path='/ridecomplete' element={<RideComplete/>}/>
 
@@ -83,19 +82,9 @@ root.render(
       <Routes>
 
         <Route path='/customerRegistration' element={<CustomerRegistration />} />
-
-
-
         <Route path='/addRider' element={<AddRider></AddRider>} />
         <Route path='/riderList' element={<RiderList></RiderList>} />
-
-
         <Route path='/customerLogin' element={<CustomerLogin />} />
-
-
-
-        <Route path='/addcustomer' element={<Addcustomer />} />
-
 
       </Routes>
 
@@ -103,14 +92,14 @@ root.render(
 
     {/* rider start */}
     <Router>
-    <NavBar/>
+    {/* <NavBar/>
     <div className="container-fluid mt-5">
 	  <div className="row">
     <div className="col-lg-2">
     <SideBar/>
     </div>
     <div className="col-lg-10">
-		<div className="jumbotron">
+		<div className="jumbotron"> */}
     <Routes>
 
     <Route  exact path='/rideHistory' element={<RiderHis/>} />
@@ -120,10 +109,10 @@ root.render(
 
 
     </Routes>
-    </div>
+    {/* </div>
 		</div>
 	  </div>
-    </div>
+    </div> */}
     <Footer/>
     </Router>
     {/* rider end */}
