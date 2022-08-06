@@ -22,6 +22,9 @@ Route::post('/customerRegistrationSubmit',[CustomerController::class, 'customerC
 Route::get('/customerLogin', function () {return view('customer.authentication.login');})->name('customerLogin');
 Route::post('/customerLoginSubmit',[CustomerController::class, 'customerLoginSubmit'])->name('customerLoginSubmit');
 
+Route::get('/customerOtp', function () {return view('customer.email.otpCheck');})->name('customerOtp');
+Route::post('/customerOtpSubmit',[CustomerController::class, 'otp'])->name('customerOtpSubmit');
+
 //dashboard
 Route::get('/customerDashboard/home', function () {return view('customer.home');})->name('customerDash')->middleware('customerValid');
 Route::get('/customerDashboard/logout',[CustomerController::class, 'logout'])->name('customerLogout')->middleware('customerValid');

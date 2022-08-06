@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('image');
             $table->Integer('rating');
             $table->double('discount');
+            $table->string('otp')->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }

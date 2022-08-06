@@ -135,11 +135,13 @@ class CustomerController extends Controller
         $customer->rating = $rating;
         $customer->image = $nameImage;
         $customer->discount = 0;
-            $code = rand(1000,9000);
+        $customer->status = "0";
+        $code = rand(1000,9000);
             $details = [
                 'title' => 'Registration Confirmation',
                 'code' => $code
             ];
+            $customer->otp = $code;
 
             Mail::to($request->email)->send(new customerRegConfirmation($details));
         $result = $customer->save();
@@ -147,7 +149,7 @@ class CustomerController extends Controller
         if($result){
 
             //$image->storeAs('public/images',$nameImage);
-            return redirect()->back()->with('success', 'Registration Done successfully');
+            return redirect()->back()->with('success', 'Registration Done successfully. An otp already send in your email.');
         }
         else{
             return redirect()->back()->with('failed', 'Registration Failed');
@@ -245,7 +247,14 @@ class CustomerController extends Controller
         $request->session()->put('password',$loginCheck->password);
         $request->session()->put('image',$loginCheck->image);
         $request->session()->put('rating',$loginCheck->rating);
-        return  redirect()->route('customerDash');
+
+        if($loginCheck->status === "0"){
+            return  redirect()->route('customerOtp');
+        }
+        else{
+            return  redirect()->route('customerDash');
+        }
+
     }
     else{
         return redirect()->back()->with('failed', 'Invalid username or password');
@@ -302,6 +311,30 @@ class CustomerController extends Controller
         session()->forget('rating');
         return redirect()->route('customerLogin');
     }
+
+
+    public function otp(Request $request){
+        $validate = $request->validate([
+            'otp'=>'required',
+
+        ]
+    );
+
+    $user = Customer::where('username',session()->get('customer_username'))->first();
+
+    if($user->otp === $request->otp){
+        $user->status = "1";
+        $user->otp = "";
+        $user->save();
+        return  redirect()->route('customerDash');
+    }
+    else{
+        return redirect()->back()->with('failed', 'Wrong OTP');
+    }
+
+    }
+
+
 
     public function customerProfile(){
         $user = Customer::where('username',session()->get('customer_username'))->first();
