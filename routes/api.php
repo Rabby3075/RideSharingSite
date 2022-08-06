@@ -24,6 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
  Route::get('/customerView',[AdminController::class,'customerView']);
  Route::get('/formcustomer/{id}',[AdminController::class,'formCustomer']);
+ Route::post('/customerView',[AdminController::class,'CaddAPIPost']);
+ Route::get('/riderstatus',[AdminController::class,'riderStatusApi']);
+
 
 
  Route::get('/riderList',[AdminController::class,'RiderAPIList']);
@@ -32,4 +35,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //-------------------Customer APi---------------------------
 Route::post('/customerRegistrationSubmit',[CustomerController::class, 'CustomerRegistrationApi'])->name('CustomerRegistrationApi');
 //-------------------Customer APi---------------------------
- Route::post('/adminlogin',[AdminController::class,'adminapilogin']);
+

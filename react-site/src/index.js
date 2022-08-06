@@ -25,6 +25,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import Popper from '@popperjs/core';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import Pendingstatus from './components/adminComponents/Status/Pendingstatus';
+import RideComplete from './components/adminComponents/Ridecomplete/RideComplete';
+
 
 
 
@@ -46,6 +49,9 @@ root.render(
     <Route path='/customerview' element={<Customerview/>}/>
     <Route path='/customerviewprops' element={<Customerviewprops/>}/>
     <Route path='/formview/:id' element={<Formview/>}/>
+    <Route path='/riderstatus' element={<Pendingstatus/>}/>
+    <Route path='/ridecomplete' element={<RideComplete/>}/>
+
     </Routes>
 
       {/* <Dashboard/> */}
@@ -53,8 +59,6 @@ root.render(
       <Routes>
 
         <Route path='/customerRegistration' element={<CustomerRegistration />} />
-        <Route path='/adminlogin' element={<Login />} />
-        <Route path='/admindashboard' element={<Dashboard />} />
 
 
       
@@ -63,9 +67,6 @@ root.render(
 
       
         <Route path='/customerLogin' element={<CustomerLogin />} />
-       
-      
-        <Route path='/addcustomer' element={<Addcustomer />} />
 
       </Routes>
 

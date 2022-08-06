@@ -22,6 +22,8 @@ use App\Models\Ride;
 use App\Models\Token;
 use Illuminate\Support\Str;
 use DateTime;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 
 
 
@@ -859,7 +861,39 @@ public function RiderAPIPost(Request $req){
         return $customers;
         //return view('admin.view.viewCustomer')->with('customers', $customers);
       }
-    
+
+        public function CaddAPIPost(Request $request){
+                    $details = [
+                        'title' => 'Mail from Your Ride',
+                        'body' => 'Hello '
+                    ];
+                   
+                    Mail::to($request->email)->send(new SendMail($details));
+                   
+                    echo "Mail send";
+                    
+                    $customer = new  Customer();
+                    $customer->email = $request->email;
+                    $customer->name = $request->name;
+                    $customer->phone = $request->phone;
+                    $customer->dob = $request->dob;
+                    $customer->address = $request->address;
+                    $customer->username= $request->username;
+                    $customer->password = md5($request->password);
+                    $customer->rating='0';
+                    $customer->discount='0';
+                    $customer->image = 'index.png';
+                    $customer->save();
+                    // return $request;
+                    echo "registration successful";
+    }
+
+        public function riderStatusApi(){
+        $riders = Rider::where('status','Pending')->get();
+        // return view('admin.status.riderStatus')->with('riders', $riders);
+        return $riders;
+    }
+
 
     
 }
