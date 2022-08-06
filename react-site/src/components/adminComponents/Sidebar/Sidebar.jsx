@@ -64,6 +64,14 @@ const Sidebar = () => {
                         <span>Customer</span>
                     </li>
                     </Link>
+                    <Link to="/riderstatus" style={{ textDecoration: "none" }}>
+                    <p className="title">Status</p>
+                    <li><span>Pending rider</span></li>
+                    </Link>
+                    <Link to="/ridecomplete" style={{ textDecoration: "none" }}>
+                    <p className="title">Ride</p>
+                    <li><span>Ride complete</span></li>
+                    </Link>
                 </ul>
 
 
