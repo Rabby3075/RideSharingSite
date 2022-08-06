@@ -25,6 +25,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import Popper from '@popperjs/core';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import RiderUpdate from './components/adminComponents/RiderUpdate/RiderUpdate';
+import RiderView from './components/adminComponents/RiderList/RiderView';
 
 
 
@@ -35,18 +37,18 @@ root.render(
 
     <Router>
 
-    {/* <Dashboard/> */}
-    {/* <Login/> */}
-    <Routes>
-    <Route  path='/adminlogin' element={<Login/>} />
-    <Route  path='/admindashboard' element={<Dashboard/>} />
-    <Route  path='/addcustomer' element={<Addcustomer/>} />
-    <Route path='/addadmin' element={<Addadmin/>}/>
-    <Route path='/dropdown' element={<Dropdownlist/>}/>
-    <Route path='/customerview' element={<Customerview/>}/>
-    <Route path='/customerviewprops' element={<Customerviewprops/>}/>
-    <Route path='/formview/:id' element={<Formview/>}/>
-    </Routes>
+      {/* <Dashboard/> */}
+      {/* <Login/> */}
+      <Routes>
+        <Route path='/adminlogin' element={<Login />} />
+        <Route path='/admindashboard' element={<Dashboard />} />
+        <Route path='/addcustomer' element={<Addcustomer />} />
+        <Route path='/addadmin' element={<Addadmin />} />
+        <Route path='/dropdown' element={<Dropdownlist />} />
+        <Route path='/customerview' element={<Customerview />} />
+        <Route path='/customerviewprops' element={<Customerviewprops />} />
+        <Route path='/formview/:id' element={<Formview />} />
+      </Routes>
 
       {/* <Dashboard/> */}
       {/* <Login/> */}
@@ -57,14 +59,16 @@ root.render(
         <Route path='/admindashboard' element={<Dashboard />} />
 
 
-      
+
         <Route path='/addRider' element={<AddRider></AddRider>} />
         <Route path='/riderList' element={<RiderList></RiderList>} />
+        <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
+        <Route path='/riderView/:id' element={<RiderView></RiderView>} />
 
-      
+
         <Route path='/customerLogin' element={<CustomerLogin />} />
-       
-      
+
+
         <Route path='/addcustomer' element={<Addcustomer />} />
 
       </Routes>
