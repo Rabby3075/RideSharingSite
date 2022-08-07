@@ -1,9 +1,26 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const RiderData = (props) => {
 
-      const { id, name, email, phone, image } = props.riders;
+      const { id, name, email, dob, phone, image } = props.riders;
+      const [riders, setRiders] = useState([]);
+      useEffect(() => {
+            loadRider();
+      }, [])
+
+
+      const deleteRider = (id) => {
+            axios.delete(`http://127.0.0.1:8000/api/riderList/${id}`);
+
+            loadRider();
+      };
+      const loadRider = async () => {
+            const result = await axios.get("http://127.0.0.1:8000/api/riderList");
+            result = await result.json();
+            setRiders(result);
+      }
 
       return (
 
@@ -40,21 +57,29 @@ const RiderData = (props) => {
 
 
                               </td> */}
-                              {/* <th>
-                                    <Link className="btn btn-sm btn-secondary text-dark mt-4" to={"/RiderDetails" + "/" + id + "/" + name + "/" + dob + "/" + email + "/" + phone} > </Link >
-                              </th> */}
+                              <th>
+                                    <Link className="btn btn-sm btn-secondary text-dark mt-4" to={`/riderView/${id}`}> View</Link >
+                              </th>
 
 
-                              <th>View </th>
 
-                              <th>Update</th>
-                              <th>Delete</th>
+
+                              <th>
+
+                                    <Link className="btn btn-sm btn-secondary text-dark mt-4" to={`/riderUpdate/${id}`} > Update</Link >
+
+
+                              </th>
+                              <th>
+                                    <button className="btn btn-sm btn-secondary text-dark mt-4" onClick={() => deleteRider(id)}>Delete</button>
+
+                              </th>
                         </tbody>
 
 
 
                   </table>
-            </div>
+            </div >
       );
 };
 

@@ -1,30 +1,53 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const RiderView = () => {
 
 
-      // const { id } = useParams();
-      // const { name } = useParams();
-      // const { cus_id } = useParams();
-      // const { dob } = useParams();
-      // const { email } = useParams();
-      // const { phone } = useParams();
+      const { id } = useParams();
+
+      const [riders, setRiders] = useState([]);
+
+      useEffect(() => {
+            axios.get(`http://127.0.0.1:8000/api/riderList/${id}`)
+
+                  .then(resp => {
+                        console.log(resp);
+                        setRiders(resp.data);
+                  }).catch(err => {
+                        console.log(err);
+                  });
+      }, []);
+
+
+
       return (
             <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
 
 
-                  {/* 
+
                   <div className='rounded fs-6' style={{ padding: "50px", background: "#B0C4DE" }}>
-                        <h1>Customer Information</h1>
+                        <h1>Rider Information</h1>
                         <br />
                         <p>UserID: {id}</p>
-                        <p>Customer Name: {name}</p>
-                        <p>Customer Id: {cus_id}</p>
-                        <p>Date of Birth: {dob}</p>
-                        <p>Email: {email}</p>
-                        <p>Phone: {phone}</p>
-                  </div> */}
+                        <p>Rider Name: {riders.name}</p>
+                        <p>Gender: {riders.gender}</p>
+
+                        <p>Date of Birth: {riders.dob}</p>
+                        <p>Email: {riders.email}</p>
+                        <p>Phone: {riders.phone}</p>
+                        <p>Permanent Address: {riders.peraddress}</p>
+                        <p>Present Address: {riders.preaddress}</p>
+                        <p>NID No: {riders.nid}</p>
+                        <p>Driving License No: {riders.dlic}</p>
+                        <p>Status: {riders.status}</p>
+                        <p>Rider Point: {riders.rpoint}</p>
+                        <p>Rider Balance: {riders.balance}</p>
+                        <p>Username: {riders.username}</p>
+                        <p>Picture: {riders.image}</p>
+                  </div>
 
 
             </div>

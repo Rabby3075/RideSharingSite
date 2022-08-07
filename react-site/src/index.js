@@ -36,8 +36,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import Popper from '@popperjs/core';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import RiderUpdate from './components/adminComponents/RiderUpdate/RiderUpdate';
+import RiderView from './components/adminComponents/RiderList/RiderView';
 import Pendingstatus from './components/adminComponents/Status/Pendingstatus';
 import RideComplete from './components/adminComponents/Ridecomplete/RideComplete';
+import Customerinfo from './components/adminComponents/Customerview/Customerinfo';
+import Editcustomer from './components/adminComponents/Customerview/Editcustomer';
+
+
 
 
 
@@ -50,6 +56,7 @@ root.render(
 
     <Router>
 
+
     {/* <Dashboard/> */}
     {/* <Login/> */}
     <Routes>
@@ -58,40 +65,55 @@ root.render(
     <Route   path='/customerRegistration' element={<CustomerRegistration/>} />
     <Route   path='/adminlogin' element={<Login/>} />
     <Route   path='/admindashboard' element={<Dashboard/>} />
-
     <Route   path='/addcustomer' element={<Addcustomer/>} />
-
-
-
-    <Route  path='/adminlogin' element={<Login/>} />
-    <Route  path='/admindashboard' element={<Dashboard/>} />
     <Route  path='/addcustomer' element={<Addcustomer/>} />
     <Route path='/addadmin' element={<Addadmin/>}/>
     <Route path='/dropdown' element={<Dropdownlist/>}/>
     <Route path='/customerview' element={<Customerview/>}/>
-    <Route path='/customerviewprops' element={<Customerviewprops/>}/>
-    <Route path='/formview/:id' element={<Formview/>}/>
+    {/* <Route path='/customerviewprops' element={<Customerviewprops/>}/> */}
+    <Route path='/customerinfo/:id' element={<Customerinfo/>}/>
     <Route path='/riderstatus' element={<Pendingstatus/>}/>
     <Route path='/ridecomplete' element={<RideComplete/>}/>
+    <Route path='/editcustomer/:id' element={<Editcustomer/>}/>
+ 
 
 
     </Routes>
+
 
       {/* <Dashboard/> */}
       {/* <Login/> */}
       <Routes>
 
+
         <Route path='/customerRegistration' element={<CustomerRegistration />} />
+
         <Route path='/addRider' element={<AddRider></AddRider>} />
         <Route path='/riderList' element={<RiderList></RiderList>} />
         <Route path='/customerLogin' element={<CustomerLogin />} />
 
       </Routes>
 
+       
+     
+      <Routes>
+       
+        <Route path='/riderstatus' element={<Pendingstatus />} />
+        <Route path='/ridecomplete' element={<RideComplete />} />
+        <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
+        <Route path='/riderView/:id' element={<RiderView></RiderView>} />
+        
+
+      </Routes>
+
+
+
+
     </Router>
 
     {/* rider start */}
     <Router>
+
     {/* <NavBar/>
     <div className="container-fluid mt-5">
 	  <div className="row">
@@ -113,7 +135,31 @@ root.render(
 		</div>
 	  </div>
     </div> */}
-    <Footer/>
+    {/* <Footer/>
+
+      <NavBar />
+      <div className="container-fluid mt-5">
+        <div className="row">
+          <div className="col-lg-2">
+            <SideBar />
+          </div>
+          <div className="col-lg-10">
+            <div className="jumbotron">
+              <Routes>
+
+                <Route exact path='/rideHistory' element={<RiderHis />} />
+                <Route exact path='/RiderBal' element={<RiderBal />} />
+                <Route exact path='/Redeem' element={<Redeem />} />
+                <Route exact path='/CashOut' element={<CashOut />} />
+
+
+              </Routes>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer /> */}
+
     </Router>
     {/* rider end */}
 
