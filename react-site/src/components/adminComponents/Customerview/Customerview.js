@@ -16,14 +16,14 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 
 const Customerview =(props) =>  {
-   const [riders, setRiders] = useState([]);
+   const [customers, setCustomers] = useState([]);
 
       useEffect(() => {
             axios.get("http://127.0.0.1:8000/api/customerView1")
 
                   .then(resp => {
                         console.log(resp);
-                        setRiders(resp.data);
+                        setCustomers(resp.data);
                   }).catch(err => {
                         console.log(err);
                   });
@@ -36,19 +36,19 @@ const Customerview =(props) =>  {
                 <div className="bottom">
                 <div className="reg">
                 <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
+                  <thead>
+                  <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
 
             
 
                   {
-                        riders.map(customers =>
+                        customers.map(customers =>
                               <tr key={customers.id}>
                     <td >{customers.id}</td>
                     <td >{customers.name}</td>
