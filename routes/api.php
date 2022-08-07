@@ -3,9 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RiderController;
-
+use App\Http\Controllers\CustomerRatingController;
+use App\Http\Controllers\RideController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,9 +60,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //-------------------Customer APi---------------------------
 Route::post('/customerRegistrationSubmit',[CustomerController::class, 'CustomerRegistrationApi'])->name('CustomerRegistrationApi');
-Route::post('/customerLoginSubmit',[CustomerController::class, 'customerLoginSubmitApi'])->name('customerLoginSubmitApi');
+Route::post('/customerLoginSubmit',[CustomerController::class, 'customerLoginSubmitApi'])->name('customerLoginSubmitApi')->middleware('api-session');
+Route::get('/discountApi',[CustomerRatingController::class, 'discountListApi'])->name('discountListApi')->middleware('api-session');
+Route::get('/locationList',[RideController::class, 'LocationList'])->name('locationList');
+Route::post('/ridereq',[RideController::class, 'rideRequestSubmitApi'])->name('rideRequestSubmitApi')->middleware('api-session');
 //-------------------Customer APi---------------------------
 
- 
+
 
 

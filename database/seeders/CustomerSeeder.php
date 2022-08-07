@@ -25,6 +25,8 @@ class CustomerSeeder extends Seeder
             'image' => 'index.png',
             'rating' => 0,
             'discount' => 0,
+            'status' => 0,
+            'otp' => 1312,
             'created_at' => '2022-05-23 02:24:08',
             'updated_at' => '2022-05-23 02:24:08'
 
@@ -40,6 +42,8 @@ class CustomerSeeder extends Seeder
             'image' => 'index.png',
             'rating' => '1',
             'discount' => 0,
+            'status' => 0,
+            'otp' => 1232,
             'created_at' => '2022-03-23 02:24:08',
             'updated_at' => '2022-03-23 02:24:08'
 
@@ -55,6 +59,8 @@ class CustomerSeeder extends Seeder
             'image' => 'index.png',
             'rating' => '2',
             'discount' => 0,
+            'status' => 0,
+            'otp' => 2412,
             'created_at' => '2022-01-23 02:24:08',
             'updated_at' => '2022-01-23 02:24:08'
 
@@ -70,6 +76,8 @@ class CustomerSeeder extends Seeder
             'image' => 'index.png',
             'rating' => '5',
             'discount' => 0,
+            'status' => 0,
+            'otp' => 4392,
             'created_at' => '2022-05-23 02:24:08',
             'updated_at' => '2022-05-23 02:24:08'
 
@@ -85,6 +93,8 @@ class CustomerSeeder extends Seeder
             'image' => 'index.png',
             'rating' => '3',
             'discount' => 0,
+            'status' => 0,
+            'otp' => 9987,
             'created_at' => '2022-05-23 02:24:08',
             'updated_at' => '2022-05-23 02:24:08'
 
