@@ -9,7 +9,7 @@ import  "./pendingstatus.scss"
 import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 
-const Viewrider = () => {
+const Viewrider = (props) => {
 
       const [riders, setRiders] = useState([]);
 

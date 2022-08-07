@@ -1,29 +1,33 @@
 import React, {useState, userEffect} from 'react';
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useNavigate  } from "react-router-dom"
 
 
 const CustomerLogin = () =>{
-
+    let[token, setToken]= useState("");
     let[username, setUsername] = useState("");
     let[password, setPassword] = useState("");
+    const navigate  = useNavigate("");
 
     const CustomerLoginSubmit = () =>{
         var obj = {username: username, password: password};
         console.log(obj);
         axios.post("http://127.0.0.1:8000/api/customerLoginSubmit",obj)
         .then(resp=>{
-            var token = resp.data;
-            console.log(token);
-            //var user = {userId: token.userid, access_token:token.token};
-            //localStorage.setItem('user',JSON.stringify(user));
-           /* if(token == "No user found"){
-               // navigate('/login');
-            }else{
-                //navigate('/allproducts');
-            }*/
-            // console.log(localStorage.getItem('user'));
+            var response = resp.data;
+            console.log(response);
+           var user = {userId: response.token.userid, access_token:response.token.token};
+            localStorage.setItem('user',JSON.stringify(user));
+            console.log(localStorage.getItem('user'))
+            if(response.message === "Login Failed"){
+                    document.getElementById('msg').innerHTML = response.message;
+            }
+            else{
+
+                navigate('/customer/home');
+        }
+
         }).catch(err=>{
             console.log(err);
         });
@@ -70,7 +74,7 @@ const CustomerLogin = () =>{
                                 <h1 id='msg'></h1>
                                 </div>
 
-                                <h1 id='msg'></h1>
+                                <h1 id='msg' class='text-danger'></h1>
 
                                 <p className="text-center mt-3">Do not have any account?
                                     <span className="text-primary"><Link to='/customerRegistration'>Sign up</Link></span>

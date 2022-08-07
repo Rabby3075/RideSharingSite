@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateCustomerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
@@ -200,11 +201,13 @@ class CustomerController extends Controller
         $customer->rating = $rating;
         $customer->image ="profile.jpg";
         $customer->discount = 0;
+        $customer->status = "0";
             $code = rand(1000,9000);
             $details = [
                 'title' => 'Registration Confirmation',
                 'code' => $code
             ];
+            $customer->otp = $code;
 
             Mail::to($request->email)->send(new customerRegConfirmation($details));
         $result = $customer->save();
@@ -214,7 +217,7 @@ class CustomerController extends Controller
             //$image->storeAs('public/images',$nameImage);
             //return redirect()->back()->with('success', 'Registration Done successfully');
             return response()->json([
-                'message'=>'Registration Successful'
+                'message'=>'Registration Successful. An otp send in your Email.'
             ]);
         }
         else{
@@ -266,7 +269,7 @@ class CustomerController extends Controller
     $loginCheck = Customer::where('username',$request->username)->where( 'password',md5($request->password))->first();
 
     if($loginCheck){
-       /* $request->session()->put('id',$loginCheck->id);
+        $request->session()->put('id',$loginCheck->id);
         $request->session()->put('name',$loginCheck->name);
         $request->session()->put('dob',$loginCheck->dob);
         $request->session()->put('phone',$loginCheck->phone);
@@ -276,7 +279,7 @@ class CustomerController extends Controller
         $request->session()->put('password',$loginCheck->password);
         $request->session()->put('image',$loginCheck->image);
         $request->session()->put('rating',$loginCheck->rating);
-        $api_token = Str::random(64);
+            $api_token = Str::random(64);
             $token = new Token();
             $token->userid = $loginCheck->id;
             $token->token = $api_token;
@@ -284,10 +287,11 @@ class CustomerController extends Controller
             $time =  date('d F Y, h:i:s A');
             $token->created_at = $time;
             $token->save();
-            return $token;*/
+
         //return  redirect()->route('customerDash');
         return response()->json([
-            'message'=>'Login successful'
+            'message'=>'Login successful',
+            'token'=>$token
         ]);
     }
     else{

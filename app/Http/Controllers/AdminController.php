@@ -833,8 +833,9 @@ public function RiderAPIPost(Request $req){
 
 }
 
+
 public function RiderUpdateAPI(Request $req){
-    $rider = new Rider();
+    $rider = Rider::where('id', $req->id)->first();
     $rider->id= $req->id;
     $rider->name= $req->name;
     $rider->gender= $req->gender;
@@ -872,7 +873,7 @@ public function RiderUpdateAPI(Request $req){
            
 
  
-    return $req;
+    return $rider;
 }
 
 

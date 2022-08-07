@@ -16,8 +16,11 @@ class customerValid
      */
     public function handle(Request $request, Closure $next)
     {
+
         if($request->session()->get('customer_username')){
+
             return $next($request);
+
         }
         return redirect()->route('customerLogin');
     }

@@ -1,0 +1,39 @@
+.add-ride-back {
+      background-color: #dee2e6;
+}
+
+.ride-info-text {
+      color: rgb(188, 14, 75);
+}
+
+
+.rider-info-text p {
+      color: #300703;
+      font-size: 18px;
+      font-weight: 600;
+}
+
+
+
+.Rider_view_bbody {
+
+      background-position: center;
+      background-origin: content-box;
+      background-repeat: no-repeat;
+      background-size: cover;
+      min-height: 100vh;
+      font-family: 'Noto Sans', sans-serif;
+}
+
+
+
+.Rider-Data_View_box {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(240, 240, 240, 0.89);
+      border-radius: 3px;
+      padding: 70px 100px;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
