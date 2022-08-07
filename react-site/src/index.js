@@ -20,7 +20,7 @@ import CustomerNavbar from './components/CustomerComponents/Dashboard/Navbar/Cus
 import RideReq from './components/CustomerComponents/Dashboard/RideRequest/RideReq';
 import Discount from './components/CustomerComponents/Dashboard/Discount/Discount';
 import Home from './components/CustomerComponents/Dashboard/Homepage/Home';
-
+import Otp from './components/CustomerComponents/Dashboard/Otp/otp';
 
 //rider
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -97,9 +97,9 @@ root.render(
     <Route path='/ridecomplete' element={<RideComplete/>}/>
     <Route path='/editcustomer/:id' element={<Editcustomer/>}/>
     <Route path='/riderviewinfo/:id' element={<Viewinfo/>}/>
-    
-    
- 
+
+
+
 
 
     </Routes>
@@ -112,17 +112,17 @@ root.render(
 
 
 
-       
-        
-       
-    
-       
-       
-       
+
+
+
+
+
+
+
         {/* <Route path='/customerviewprops' element={<Customerviewprops/>}/> */}
-      
-        
-        
+
+
+
         <Route path='/editcustomer/:id' element={<Editcustomer />} />
         <Route path='/addRider' element={<AddRider></AddRider>} />
         <Route path='/riderList' element={<RiderData></RiderData>} />
@@ -131,15 +131,15 @@ root.render(
 
       </Routes>
 
-       
-     
+
+
       <Routes>
         <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
         <Route path='/riderView/:id' element={<RiderView></RiderView>} />
         <Route path='/customerLogin' element={<CustomerLogin />} />
         <Route path='/logout' element={<LogOut></LogOut>} />
 
-       
+
         <Route path='/ridecomplete' element={<RideComplete />} />
         <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
         <Route path='/riderView/:id' element={<RiderView></RiderView>} />
@@ -155,19 +155,19 @@ root.render(
 
 
 
-    
+
 
     {/* rider start */}
 
-    
 
 
 
 
 
-    
 
-    
+
+
+
       <Routes>
 
         {/*------------------------ Customer ----------------- */}
@@ -177,14 +177,14 @@ root.render(
         <Route path='/customer/home' element={<Home />} />
         <Route path='/customer/riderequest' element={<RideReq />} />
         <Route path='/customer/discount' element={<Discount />} />
-
+        <Route path='/customer/otp' element={<Otp />} />
 
         {/*------------------------ Customer ----------------- */}
       </Routes>
-    
+
 
     {/* rider start */}
-    
+
 
 
       {/* <NavBar/>
@@ -211,7 +211,7 @@ root.render(
 
 
 
-      
+
       {/* </div>
 		</div>
 	  </div>
@@ -238,7 +238,7 @@ root.render(
       </div>
       <Footer /> */}
 
-    
+
 
     {/* rider end */}
 

@@ -338,6 +338,10 @@ class CustomerController extends Controller
 
     }
 
+    public function OtpApi(Request $request){
+        
+    }
+
 
 
     public function customerProfile(){
