@@ -2,12 +2,17 @@ import React, {useState, useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import "./Riderbal.css";
+import NavBar from '../NavBar/NavBar';
+import SideBar from '../SideBar/SideBar';
+import Footer from '../Footer/Footer';
 
 const RiderBal = ()=>{
     const [balncs, setBalncs] = useState([]);
+    let user = JSON.parse(localStorage.getItem('user'));
+    var userid = {token: user.access_token};
 
     useEffect(()=>{
-        axios.get("http://127.0.0.1:8000/api/riderBalance")
+        axios.post("http://127.0.0.1:8000/api/riderBalance",userid)
         .then(resp=>{
             console.log(resp.data);
             setBalncs(resp.data);
@@ -19,7 +24,7 @@ const RiderBal = ()=>{
     const [totals, setTotals] = useState([]);
 
     useEffect(()=>{
-        axios.get("http://127.0.0.1:8000/api/totalPay")
+        axios.post("http://127.0.0.1:8000/api/totalPay",userid)
         .then(resp=>{
             console.log(resp.data);
             setTotals(resp.data);
@@ -31,7 +36,7 @@ const RiderBal = ()=>{
     const [counts, setCounts] = useState([]);
 
     useEffect(()=>{
-        axios.get("http://127.0.0.1:8000/api/riderCount")
+        axios.post("http://127.0.0.1:8000/api/riderCount",userid)
         .then(resp=>{
             console.log(resp.data);
             setCounts(resp.data);
@@ -43,7 +48,7 @@ const RiderBal = ()=>{
     const [historys, setHistorys] = useState([]);
 
     useEffect(()=>{
-        axios.get("http://127.0.0.1:8000/api/rideHistory")
+        axios.post("http://127.0.0.1:8000/api/rideHistory",userid)
         .then(resp=>{
             console.log(resp.data);
             setHistorys(resp.data);
@@ -53,7 +58,14 @@ const RiderBal = ()=>{
     },[]);
     return(
 <div>
-    
+<NavBar/>
+    <div className="container-fluid mt-5">
+	  <div className="row">
+    <div className="col-lg-2">
+    <SideBar/>
+    </div>
+    <div className="col-lg-10">
+		<div className="jumbotron">
 <div className="row">
         <div className="col-md-4 col-xl-12">
             <div className="card bg-c-yellow order-card cd">
@@ -134,6 +146,11 @@ const RiderBal = ()=>{
           </tbody>
         </table>
   </div> 
+  </div>
+		</div>
+	  </div>
+    </div>
+    <Footer/>
 </div>
     )
 }

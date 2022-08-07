@@ -18,8 +18,7 @@ return(
 
 						<div className="card-body">
 							<ul className="list-group">
-								<li className="list-group-item"><Link to="#"><i className="fa fa-pencil"></i> Edit Profile</Link></li>
-								<li className="list-group-item"><Link to="#"><i className="fa fa-key"></i> Change Password</Link></li>
+								<li className="list-group-item"><Link to="/RProfile"><i className="fa fa-pencil"></i> Edit Profile</Link></li>
 							</ul>
 						</div>
 

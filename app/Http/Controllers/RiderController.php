@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Rider;
 use App\Models\Ride;
+use App\Models\Token;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RiderRegMail;
+use DateTime;
 
 class RiderController extends Controller
 {
@@ -72,12 +77,21 @@ class RiderController extends Controller
           $rider->rpoint = $rpoint;
           $rider->balance = $balance;
           $rider->username = $request->username;
+          $request->session()->put('username',$request->username);
           $rider->password = md5($request->password);
           $rider->image = $image;
+          $code = rand(1000,9000);
+          $details = [
+              'title' => 'Registration Confirmation',
+              'code' => $code
+          ];
+          $rider->otp = $code;
+
+          Mail::to($request->email)->send(new RiderRegMail($details));
           $result = $rider->save();
           if($result){
               $folder = $request->file('image')->move(public_path('img').'/',$image);
-              return redirect()->route('riderLogin');
+              return redirect()->route('riderOtp');
           }
           else{
               return redirect()->back()->with('failed', 'Registration Failed');
@@ -90,6 +104,24 @@ class RiderController extends Controller
     }
     }
 
+
+    public function otpsend (Request $request){
+        $validate = $request->validate([
+            'otp'=>'required',
+        ]);
+
+    $user = Rider::where('username',session()->get('username'))->first();
+
+    if($user->otp === $request->otp){
+        $user->otp = "";
+        $user->save();
+        return  redirect()->route('riderLogin');
+    }
+    else{
+        return redirect()->back()->with('failed', 'Wrong OTP');
+    }
+
+    }
 
     public function riderLoginSubmit(Request $request){
         $validate = $request->validate([
@@ -275,51 +307,6 @@ class RiderController extends Controller
      }
     }
    }
-
-   public function rideHisApi(){
-    $req = "Ride complete";
-    return Ride::where('riderId',10)->where('customerStatus',$req)->where('riderStatus',$req)->get();
-    }
-
-       public function riderCountApi(){
-        $req = "Ride complete";
-        $rideCount = Ride::where('riderId',10)->where('customerStatus',$req)->where('riderStatus',$req)->get()->count();
-        return $rideCount;
-    }
-    public function riderBalanceApi(){
-        return  Rider::where('id',10)->first();
-    }
-
-    public function totalPayApi(){
-        $req = "Ride complete";
-        $total = 0;
-        $rideHis = Ride::where('riderId',10)->where('customerStatus',$req)->where('riderStatus',$req)->get();
-
-        foreach($rideHis as $ride)
-        {
-            $total += $ride->cost;
-        }
-        return $total;
-        }
-
-        
-    public function redeemApi(Request $request){
-
-        $req = "Ride complete";
-        $rider = Rider::where('id',10)->first();
-        $rider->balance= $rider->balance + $rider->rpoint;
-        $rider->rpoint= $rider->rpoint - $rider->rpoint;
-        $result = $rider->save();
-
-    }
-    
-   public function cashoutApi(Request $request){
-
-   $rider = Rider::where('id',10)->first();
-   $rider->balance= $rider->balance - $request->amount;
-   $result = $rider->save();
-
-   }
-
+   
 
 }
