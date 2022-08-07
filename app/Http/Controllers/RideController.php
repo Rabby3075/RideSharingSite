@@ -7,6 +7,7 @@ use App\Models\Ride;
 use App\Models\Rider;
 use App\Models\Chat;
 use App\Models\Customer;
+use App\Models\Token;
 
 use App\Http\Requests\StoreRideRequest;
 use App\Http\Requests\UpdateRideRequest;
@@ -539,10 +540,10 @@ class RideController extends Controller
                       $distance = $this->getDistance($lat1, $long1, $lat2, $long2);
                       $status = "Waiting for rider...";
 
-                    //  $getDiscountAmount = Customer::where('id', session()->get('id'))->first();
-                    $token = $request->header("Authorization");
-                    $token = json_decode($token);
-                    return $token;
+                     $getDiscountAmount = Customer::where('id', session()->get('id'))->first();
+                     return $getDiscountAmount;
+
+
 
                     }
 

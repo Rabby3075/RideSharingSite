@@ -17,14 +17,15 @@ const CustomerLogin = () =>{
         .then(resp=>{
             var response = resp.data;
             console.log(response);
-           var user = {userId: response.token.userid, access_token:response.token.token};
-            localStorage.setItem('user',JSON.stringify(user));
-            console.log(localStorage.getItem('user'))
+
             if(response.message === "Login Failed"){
+
                     document.getElementById('msg').innerHTML = response.message;
             }
             else{
-
+                var user = {userId: response.token.userid, access_token:response.token.token};
+                localStorage.setItem('user',JSON.stringify(user));
+                console.log(localStorage.getItem('user'))
                 navigate('/customer/home');
         }
 
