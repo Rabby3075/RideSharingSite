@@ -49,6 +49,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  Route::post('/riderList',[AdminController::class,'RiderAPIPost']);
  ////////////Rider Update API////////////
  Route::put('/riderList/{id}',[AdminController::class,'RiderUpdateAPI']);
+ Route::post('/riderList/{id}',[AdminController::class,'RiderUpdateAPI']);
   ////////////Rider Delete API////////////
   Route::get('/riderList/{id}',[AdminController::class,'RiderGetAPI']);
  Route::delete('/riderList/{id}',[AdminController::class,'RiderDeleteAPI']);
