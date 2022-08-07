@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 
-export default function Formview(props) {
+export default function Formview(props){
     const navigate = useNavigate();
     const [inputs,setInputs] = useState({});
     const {id} = useParams();
@@ -59,3 +59,4 @@ export default function Formview(props) {
 
     )
 }
+

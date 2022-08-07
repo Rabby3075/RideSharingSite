@@ -25,7 +25,7 @@ const Sidebar = () => {
                     </li>
 
                     <p className="title">ADD</p>
-                    <Link to="/adminlogin" style={{ textDecoration: "none" }}>
+                    <Link to="/addadmin" style={{ textDecoration: "none" }}>
                         <li>
                             <SupervisorAccountIcon className="icon" />
                             <span>Admin</span>

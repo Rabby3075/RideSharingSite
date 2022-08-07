@@ -833,8 +833,9 @@ public function RiderAPIPost(Request $req){
 
 }
 
+
 public function RiderUpdateAPI(Request $req){
-    $rider = new Rider();
+    $rider = Rider::where('id', $req->id)->first();
     $rider->id= $req->id;
     $rider->name= $req->name;
     $rider->gender= $req->gender;
@@ -872,7 +873,7 @@ public function RiderUpdateAPI(Request $req){
            
 
  
-    return $req;
+    return $rider;
 }
 
 
@@ -925,12 +926,32 @@ public function RiderSearchAPI($key){
         $customer = Customer::all();
         return $customer;
     }
+
+           public function AaddAPIPost(Request $request){
+
+                    $details = [
+                        'title' => 'Mail from Your Ride',
+                        'body' => 'Hello '
+                    ];
+                   
+                    Mail::to($request->email)->send(new SendMail($details));
+                   
+                    echo "Mail send";
+                    
+                    $admin = new  Admin();
+                    $admin->email = $request->email;
+                    $admin->name = $request->name;
+                    $admin->phone = $request->phone;
+                    $admin->dob = $request->dob;
+                    $admin->password = $request->password;
+                    $admin->cpassword = $request->cpassword;
+                    $admin->picture = 'user.jpg';
+                    $admin->save();
+                    echo"registration done";
+    }
     
-        public function formCustomer(Request $request){
-        $customers = Customer::where('id', $request->id)->first();
-        return $customers;
-        //return view('admin.view.viewCustomer')->with('customers', $customers);
-      }
+    
+
 
         public function CaddAPIPost(Request $request){
                     $details = [
@@ -955,6 +976,7 @@ public function RiderSearchAPI($key){
                     $customer->image = 'index.png';
                     $customer->save();
                     // return $request;
+                    
                     echo "registration successful";
     }
 
@@ -963,6 +985,24 @@ public function RiderSearchAPI($key){
         // return view('admin.status.riderStatus')->with('riders', $riders);
         return $riders;
     }
+
+                public function Customerinfo($id){
+                return customer::find($id);
+            }
+
+            public function CustomerEdit(Request $request){
+                 $customer = Customer::where('id', $request->id)->first();
+                
+                $customer->email = $request->email;
+                $customer->name = $request->name;
+                $customer->phone = $request->phone;
+                $customer->dob = $request->dob;
+                $customer->address = $request->address;
+                $customer->username= $request->username;
+                $customer->save();
+                return $customer;
+
+            }
 
 
     
