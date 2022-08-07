@@ -40,6 +40,7 @@ import RiderUpdate from './components/adminComponents/RiderUpdate/RiderUpdate';
 import RiderView from './components/adminComponents/RiderList/RiderView';
 import Pendingstatus from './components/adminComponents/Status/Pendingstatus';
 import RideComplete from './components/adminComponents/Ridecomplete/RideComplete';
+import LogOut from './components/adminComponents/LogOut/LogOut';
 
 
 
@@ -81,6 +82,7 @@ root.render(
         <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
         <Route path='/riderView/:id' element={<RiderView></RiderView>} />
         <Route path='/customerLogin' element={<CustomerLogin />} />
+        <Route path='/logout' element={<LogOut></LogOut>} />
 
       </Routes>
 
@@ -89,7 +91,7 @@ root.render(
     </Router>
 
     {/* rider start */}
-    <Router>
+    {/* <Router>
       <NavBar />
       <div className="container-fluid mt-5">
         <div className="row">
@@ -112,7 +114,7 @@ root.render(
         </div>
       </div>
       <Footer />
-    </Router>
+    </Router> */}
     {/* rider end */}
 
   </React.StrictMode >
