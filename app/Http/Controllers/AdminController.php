@@ -1007,9 +1007,9 @@ public function RiderSearchAPI($key){
             public function CustomerDeleteAPI(Request $request){
    
  
-        $customer = Customer::where('id', $request->id)->first();
-        $customer->delete();
-        return $request;
+            $customer = Customer::where('id', $request->id)->first();
+             $customer->delete();
+              return $request;
     }
 
 

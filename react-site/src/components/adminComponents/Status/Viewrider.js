@@ -42,7 +42,7 @@ const Viewrider = (props) => {
                   </thead>
                   <tbody>
 
-            
+                
 
                   {
            riders.map(riders =>
@@ -55,13 +55,9 @@ const Viewrider = (props) => {
 
   )
   
+  
                   }
-                  {/* 
-    {
-                posts.map(post=>(
-                    <Customerviewprops name={post.name} phone={post.phone} key={post.id}></Customerviewprops>
-                ))
-            } */}
+
             
             </tbody>
     </Table>

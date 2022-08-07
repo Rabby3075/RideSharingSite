@@ -139,7 +139,7 @@ root.render(
         <Route path='/customerLogin' element={<CustomerLogin />} />
         <Route path='/logout' element={<LogOut></LogOut>} />
 
-        <Route path='/riderstatus' element={<Pendingstatus />} />
+       
         <Route path='/ridecomplete' element={<RideComplete />} />
         <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
         <Route path='/riderView/:id' element={<RiderView></RiderView>} />
