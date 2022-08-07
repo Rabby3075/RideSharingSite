@@ -25,7 +25,7 @@ const RiderView = () => {
 
 
       return (
-            <div className="d-flex justify-content-center align-items-center box" style={{ height: '83vh' }}>
+            <div className="d-flex justify-content-center align-items-center Rider-Data_View_box" style={{ height: '83vh' }}>
 
                   <h1 className='me-4'>Rider<span className='ride-info-text'> Information</span> </h1>
                   <div className='rounded fs-6 rider-info-text' >
