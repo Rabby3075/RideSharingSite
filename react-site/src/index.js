@@ -3,15 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import CustomerRegistration from './components/CustomerComponents/Authentication/CustomerRegistration';
+
 import Navbar from './components/adminComponents/Navbar/Navbar';
 import Sidebar from './components/adminComponents/Sidebar/Sidebar';
 import Dashboard from './components/adminComponents/Dashboard/Dashboard';
 import Login from './components/adminComponents/Login/Login';
-import CustomerLogin from './components/CustomerComponents/Authentication/CustomerLogin';
+
 import Addcustomer from './components/adminComponents/AddCustomer/Addcustomer';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Link } from "react-router-dom";
+//-------Customer-------------
+import CustomerRegistration from './components/CustomerComponents/Authentication/CustomerRegistration';
+import CustomerLogin from './components/CustomerComponents/Authentication/CustomerLogin';
+import CustomerNavbar from './components/CustomerComponents/Dashboard/Navbar/CustomerNavbar';
+import RideReq from './components/CustomerComponents/Dashboard/RideRequest/RideReq';
+import Discount from './components/CustomerComponents/Dashboard/Discount/Discount';
+
 
 //rider
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -63,7 +70,7 @@ root.render(
       <Routes>
 
 
-        <Route path='/customerRegistration' element={<CustomerRegistration />} />
+
         <Route path='/adminlogin' element={<Login />} />
         <Route path='/admindashboard' element={<Dashboard />} />
         <Route path='/addcustomer' element={<Addcustomer />} />
@@ -78,13 +85,13 @@ root.render(
         <Route path='/editcustomer/:id' element={<Editcustomer />} />
         <Route path='/addRider' element={<AddRider></AddRider>} />
         <Route path='/riderList' element={<RiderList></RiderList>} />
-        <Route path='/customerLogin' element={<CustomerLogin />} />
+
         <Route path='/riderstatus' element={<Pendingstatus />} />
         <Route path='/ridecomplete' element={<RideComplete />} />
         <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
         <Route path='/riderView/:id' element={<RiderView></RiderView>} />
 
-        <Route path='/customerLogin' element={<CustomerLogin />} />
+
         <Route path='/logout' element={<LogOut></LogOut>} />
 
 
@@ -97,6 +104,20 @@ root.render(
 
 
 
+    </Router>
+
+    <Router>
+        <Routes>
+
+        {/*------------------------ Customer ----------------- */}
+        <Route path='/customerLogin' element={<CustomerLogin />} />
+        <Route path='/customerRegistration' element={<CustomerRegistration />} />
+        <Route path='/customer/riderequest' element={<RideReq />} />
+        <Route path='/customer/discount' element={<Discount />} />
+
+
+         {/*------------------------ Customer ----------------- */}
+        </Routes>
     </Router>
 
     {/* rider start */}
