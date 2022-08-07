@@ -6,14 +6,14 @@ import Table from 'react-bootstrap/Table';
 
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import EditIcon from '@mui/icons-material/Edit';
-import  "./customerview.scss"
+import  "./ridecomplete.scss"
 import { Link } from "react-router-dom";
 
 
 
 
 
-const Customerview =() => {
+const RideComplete =() => {
     const [posts, setPosts] = useState([]);
     useEffect(()=>{
         axios.get("http://127.0.0.1:8000/api/customerView")
@@ -65,4 +65,4 @@ const Customerview =() => {
     )
 }
 
-export default Customerview;
+export default RideComplete;

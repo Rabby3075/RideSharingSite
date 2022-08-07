@@ -7,6 +7,7 @@ use App\Models\Ride;
 use App\Models\Rider;
 use App\Models\Chat;
 use App\Models\Customer;
+use App\Models\Token;
 
 use App\Http\Requests\StoreRideRequest;
 use App\Http\Requests\UpdateRideRequest;
@@ -142,7 +143,7 @@ class RideController extends Controller
 
 
                 $lat1 = $pickLocation->latitude;
-              $long1 = $pickLocation->longitude;
+                $long1 = $pickLocation->longitude;
 
               $lat2 = $dropLocation->latitude;
               $long2 = $dropLocation->longitude;
@@ -151,6 +152,7 @@ class RideController extends Controller
               $status = "Waiting for rider...";
 
               $getDiscountAmount = Customer::where('id', session()->get('id'))->first();
+
               $discountAmount = $getDiscountAmount->discount;
 
               $baseBill = 50;
@@ -497,8 +499,66 @@ class RideController extends Controller
             }
 
 
+
+
     }
-   
+//--------------------API-------------------------------------------------------------------
+    public function LocationList(){
+        $location = Location::all();
+        return $location;
+    }
+
+    public function rideRequestSubmitApi(Request $request)
+    {
+
+        $pickLocation = Location::where('location', $request->pickLocation)->first();
+        $dropLocation = Location::where('location', $request->dropLocation)->first();
+        if($pickLocation){
+
+            if($dropLocation){
+                $rideValid = Ride::
+                where(function ($query) {
+                    $query->where('customerId',session()->get('id'));
+                })
+                ->Where(function($q) {
+                    $q->orWhere('customerStatus', 'Waiting for rider...');
+                    $q->orWhere('customerStatus', 'Approve');
+                    $q->orWhere('customerStatus', 'ongoing');
+                    })
+                ->first();
+
+                if($rideValid){
+                    //return redirect()->back()->with('failed', 'You have already requested for a ride. Please Cancel it for new request or if ride on going after this ride you can request for new ride');
+                      //return $rideValid;
+                    }
+                    else{
+                        $lat1 = $pickLocation->latitude;
+                        $long1 = $pickLocation->longitude;
+
+                      $lat2 = $dropLocation->latitude;
+                      $long2 = $dropLocation->longitude;
+                      $distance = $this->getDistance($lat1, $long1, $lat2, $long2);
+                      $status = "Waiting for rider...";
+
+                     $getDiscountAmount = Customer::where('id', session()->get('id'))->first();
+                     return $getDiscountAmount;
+
+
+
+                    }
+
+
+            }
+            else{
+               // return redirect()->back()->with('failed', 'Drop Location is not correct.Please check correct location from your suggestion box');
+            }
+
+        }
+        else{
+           // return redirect()->back()->with('failed', 'Pickup location is not correct.Please check correct location from your suggestion box');
+          }
+    }
+
 
 
 //

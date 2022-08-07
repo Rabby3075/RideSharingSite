@@ -93,6 +93,12 @@ class CustomerRatingController extends Controller
         return view('customer.ride.discount')->with('discount', $discount)->with('user', $user);
     }
 
+    public function discountListApi(){
+        $discount = customerRating::all();
+       // $user = Customer::where('username',session()->get('customer_username'))->first();
+        return $discount;
+    }
+
     public function discountClaim(Request $request){
         $customer = Customer::where('username', session()->get('customer_username'))->first();
         $discount = customerRating::where('id',$request->id)->first();

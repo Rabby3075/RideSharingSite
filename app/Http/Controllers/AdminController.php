@@ -22,6 +22,8 @@ use App\Models\Ride;
 use App\Models\Token;
 use Illuminate\Support\Str;
 use DateTime;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 
 
 
@@ -768,9 +770,72 @@ public function RiderAPIList(){
     return Rider::all();
 }
 
+public function RiderGetAPI($id){
+    return Rider::find($id);
+}
+public function RiderDeleteAPI($id){
+   
+    $result = Rider::where('id',$id)->delete();
+    if($result)
+    {
+        return ["result"=>"Product has been deleted"];
+    }
+    else{
+        return ["result"=>"operation failed"];
+
+    }
+}
+public function RiderViewAPI($id){
+
+   return Rider::find($id);
+
+}
+
 
 public function RiderAPIPost(Request $req){
     $rider = new Rider();
+    $rider->id= $req->id;
+    $rider->name= $req->name;
+    $rider->gender= $req->gender;
+    $rider->dob= $req->dob;
+    $rider->peraddress= $req->peraddress;
+    $rider->preaddress= $req->preaddress;
+    $rider->phone= $req->phone;
+    $rider->email= $req->email;
+    $rider->nid = $req->nid;
+    $rider->dlic = $req->dlic;
+    $rider->status = 'pending';
+    $rider->rpoint = '0';
+    $rider->balance = '0';
+    $rider->username = $req->username;
+    $rider->password= md5($req->password);
+    $rider->image= 'index.jpg';
+
+    //$rider->image= $req->file('file')->store('AddRider_image');
+    $rider->save();
+// if($req->hasfile('image'))
+//             {
+//                 $file = $request->file('image');
+//                 $extension = $file->getClientOriginalExtension();
+//                 $filename = time().'.'.$extension;
+//                 $file->move('img/',$filename);
+//                 $rider->image = $filename;
+//             }
+
+//             $action = $rider->save();
+
+           
+
+ 
+    return $req;
+
+
+
+}
+
+
+public function RiderUpdateAPI(Request $req){
+    $rider = Rider::where('id', $req->id)->first();
     $rider->id= $req->id;
     $rider->name= $req->name;
     $rider->gender= $req->gender;
@@ -808,7 +873,15 @@ public function RiderAPIPost(Request $req){
            
 
  
-    return $req;
+    return $rider;
+}
+
+
+public function RiderSearchAPI($key){
+
+    return Rider::where('name','Like',"%$key%")->get();
+   
+         
 }
 
 
@@ -853,13 +926,94 @@ public function RiderAPIPost(Request $req){
         $customer = Customer::all();
         return $customer;
     }
+
+           public function AaddAPIPost(Request $request){
+
+                    $details = [
+                        'title' => 'Mail from Your Ride',
+                        'body' => 'Hello '
+                    ];
+                   
+                    Mail::to($request->email)->send(new SendMail($details));
+                   
+                    echo "Mail send";
+                    
+                    $admin = new  Admin();
+                    $admin->email = $request->email;
+                    $admin->name = $request->name;
+                    $admin->phone = $request->phone;
+                    $admin->dob = $request->dob;
+                    $admin->password = $request->password;
+                    $admin->cpassword = $request->cpassword;
+                    $admin->picture = 'user.jpg';
+                    $admin->save();
+                    echo"registration done";
+    }
     
-        public function formCustomer(Request $request){
-        $customers = Customer::where('id', $request->id)->first();
-        return $customers;
-        //return view('admin.view.viewCustomer')->with('customers', $customers);
-      }
     
+
+
+        public function CaddAPIPost(Request $request){
+                    $details = [
+                        'title' => 'Mail from Your Ride',
+                        'body' => 'Hello '
+                    ];
+                   
+                    Mail::to($request->email)->send(new SendMail($details));
+                   
+                    echo "Mail send";
+                    
+                    $customer = new  Customer();
+                    $customer->email = $request->email;
+                    $customer->name = $request->name;
+                    $customer->phone = $request->phone;
+                    $customer->dob = $request->dob;
+                    $customer->address = $request->address;
+                    $customer->username= $request->username;
+                    $customer->password = md5($request->password);
+                    $customer->rating='0';
+                    $customer->discount='0';
+                    $customer->image = 'index.png';
+                    $customer->save();
+                    // return $request;
+                    
+                    echo "registration successful";
+    }
+
+        public function riderStatusApi(){
+        $riders = Rider::where('status','Pending')->get();
+        // return view('admin.status.riderStatus')->with('riders', $riders);
+        return $riders;
+    }
+
+                public function Customerinfo($id){
+                return customer::find($id);
+            }
+
+            public function CustomerEdit(Request $request){
+                 $customer = Customer::where('id', $request->id)->first();
+                
+                $customer->email = $request->email;
+                $customer->name = $request->name;
+                $customer->phone = $request->phone;
+                $customer->dob = $request->dob;
+                $customer->address = $request->address;
+                $customer->username= $request->username;
+                $customer->save();
+                return $customer;
+
+            }
+
+            public function CustomerDeleteAPI(Request $request){
+   
+ 
+            $customer = Customer::where('id', $request->id)->first();
+             $customer->delete();
+              return $request;
+    }
+
+
+
 
     
 }

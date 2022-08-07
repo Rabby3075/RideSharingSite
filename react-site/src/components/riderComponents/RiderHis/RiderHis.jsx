@@ -39,7 +39,7 @@ const RiderHis = ()=>{
 <div className="table-responsive custom-table-responsive">
 <table className="table custom-table">
 <thead>
-<tr>  
+<tr>
   <th scope="col">
     <label className="control control--checkbox">
       <div className="control__indicator"></div>

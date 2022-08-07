@@ -1,0 +1,80 @@
+.add-ride-back {
+  background-color: #dee2e6;
+}
+
+.Add_Ridertext {
+  color: mediumpurple;
+}
+
+
+.Rider_btn_form-submit {
+  width: 200px;
+  height: 55px;
+  background-color: rgba(140, 53, 255, 0.3);
+  border-radius: 5px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.Rider_btn_form-submit:hover {
+  background-color: rgba(27, 109, 117, 0.5);
+}
+
+.rider_addtext-center {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 23px;
+  margin: -50px 0 80px 0;
+  display: block;
+  text-align: center;
+}
+
+.rider_addtbox {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(240, 240, 240, 0.89);
+  border-radius: 3px;
+  padding: 70px 100px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.rider_addinput-container {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.rider_addinput-container label {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 16px;
+  color: #fff;
+  pointer-event: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.rider_addinput-container input {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 93%;
+  padding: 8px 0 5px 0;
+  font-size: 16px;
+  color: rgb(83, 7, 7);
+}
+
+.rider_addinput-container input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #e74c3c;
+}
+
+.rider_addinput-container input:focus~label,
+.rider_addinput-container input:valid~label {
+  top: -12px;
+  font-size: 12px;
+
+}

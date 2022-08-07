@@ -1,60 +1,77 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './RiderData.css';
 
-const RiderData = (props) => {
+const RiderData = () => {
 
-      const { id, name, email, phone, image } = props.riders;
+      // const { id, name, email, dob, phone, image } = props.riders;
+      const [riders, setRiders] = useState([]);
+      useEffect(() => {
+            loadRider();
+      }, [])
+
+
+      const deleteRider = (id) => {
+            axios.delete(`http://127.0.0.1:8000/api/riderList/${id}`);
+
+            loadRider();
+      };
+      const loadRider = async () => {
+            const result = await axios.get("http://127.0.0.1:8000/api/riderList");
+            result = await result.json();
+            setRiders(result);
+      }
+
+      useEffect(() => {
+            axios.get("http://127.0.0.1:8000/api/riderList")
+
+                  .then(resp => {
+                        console.log(resp);
+                        setRiders(resp.data);
+                  }).catch(err => {
+                        console.log(err);
+                  });
+      }, []);
 
       return (
 
-
-            <div class="overflow-x-auto w-full">
-                  <table class="table w-full ">
+            <div className=' RiderDataTable-boox '>
+                  <table class="table table-striped w-full">
                         <thead>
-
-                              <th>ID</th>
-                              <th>Name</th>
-                              <th>Phone</th>
-                              <th>Email</th>
-                              {/* <th>picture</th> */}
-
-
+                              <tr className='bg-dark text-white'>
+                                    <th scope="col">#</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Action</th>
+                              </tr>
                         </thead>
                         <tbody>
+                              {riders.map((rider, index) => (
+                                    <tr>
+                                          <th scope="row">{index + 1} </th>
+                                          <td>{rider.id}</td>
+                                          <td>{rider.name}</td>
+                                          <td>{rider.phone}</td>
+                                          <td>{rider.email}</td>
+                                          <td>
 
-                              <td>{id}</td>
-                              <td> {name}</td>
-                              <td> {phone}</td>
-                              <td>{email}</td>
-                              {/* <td>
-                                    <div class="flex items-center space-x-3">
-                                          <div class="avatar">
-                                                <div class="mask mask-squircle w-12 h-12">
-                                                      {image}
-                                                </div>
-                                          </div>
+                                                <Link className="btn btn-outline-secondary  m-1 text-dark mt-4" to={`/riderView/${rider.id}`}><i class="fa fa-eye"></i></Link >
 
+                                                <Link className="btn btn-secondary  text-dark mt-4" to={`/riderUpdate/${rider.id}`} > <i className="fa fa-edit text-white fs-2xl"></i></Link >
 
-
-                                    </div>
-
-
-                              </td> */}
-                              {/* <th>
-                                    <Link className="btn btn-sm btn-secondary text-dark mt-4" to={"/RiderDetails" + "/" + id + "/" + name + "/" + dob + "/" + email + "/" + phone} > </Link >
-                              </th> */}
+                                                <button className="btn btn-outline-dark m-1  text-white mt-4" onClick={() => deleteRider(rider.id)}><i class="fa fa-trash-o text-danger"></i></button>
+                                          </td>
 
 
-                              <th>View </th>
-
-                              <th>Update</th>
-                              <th>Delete</th>
+                                    </tr>
+                              ))}
                         </tbody>
-
-
-
                   </table>
             </div>
+
       );
 };
 

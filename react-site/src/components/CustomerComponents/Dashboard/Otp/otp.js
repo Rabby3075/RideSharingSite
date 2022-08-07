@@ -4,14 +4,14 @@ import { Link, Navigate } from "react-router-dom";
 import { useNavigate  } from "react-router-dom"
 
 
-const CustomerLogin = () =>{
-    let[token, setToken]= useState("");
-    let[username, setUsername] = useState("");
-    let[password, setPassword] = useState("");
+const Otp = () =>{
+
+    let[otp, setOtp] = useState("");
+
     const navigate  = useNavigate("");
 
-    const CustomerLoginSubmit = () =>{
-        var obj = {username: username, password: password};
+    const CustomerOtpSubmit = () =>{
+        var obj = {otp: otp};
         console.log(obj);
         axios.post("http://127.0.0.1:8000/api/customerLoginSubmit",obj)
         .then(resp=>{
@@ -50,26 +50,20 @@ const CustomerLogin = () =>{
 
                                 <div className='input-group mb-3'>
                                     <span className='input-group-text bg-primary'>
-                                        <i className='bi bi-person-plus-fill text-white'></i>
+                                        <i className='bi bi-key text-white'></i>
                                     </span>
-                                    <input type="text" className='form-control' name="username" id="username" placeholder='Username' value={username} onChange={(e)=>setUsername(e.target.value)}></input>
+                                    <input type="text" className='form-control' name="otp" id="otp" placeholder='otp' value={otp} onChange={(e)=>setOtp(e.target.value)}></input>
                                 </div>
 
 
 
-                                <div className='input-group mb-3'>
-                                    <span className='input-group-text bg-primary'>
-                                        <i className='bi bi-key-fill text-white'></i>
-                                    </span>
-                                    <input type="password" className='form-control' name="password" id="password" placeholder='Password' value={password} onChange={(e)=>setPassword(e.target.value)}></input>
-                                </div>
 
 
 
 
                          </form>
                                 <div className="d-grid col-12 mx-auto p-4">
-                                    <button type='submit' className="btn btn-primary" onClick={CustomerLoginSubmit}>Sign In</button>
+                                    <button type='submit' className="btn btn-primary" onClick={CustomerOtpSubmit}>Sign In</button>
                                 </div>
                                 <div className="d-grid col-12 mx-auto p-4">
                                 <h1 id='msg'></h1>
@@ -91,4 +85,4 @@ const CustomerLogin = () =>{
 
     )
 }
-export default CustomerLogin;
+export default Otp;

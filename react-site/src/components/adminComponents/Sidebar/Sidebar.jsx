@@ -25,7 +25,7 @@ const Sidebar = () => {
                     </li>
 
                     <p className="title">ADD</p>
-                    <Link to="/adminlogin" style={{ textDecoration: "none" }}>
+                    <Link to="/addadmin" style={{ textDecoration: "none" }}>
                         <li>
                             <SupervisorAccountIcon className="icon" />
                             <span>Admin</span>
@@ -63,6 +63,14 @@ const Sidebar = () => {
                         <VisibilityIcon className="icon" />
                         <span>Customer</span>
                     </li>
+                    </Link>
+                    <Link to="/riderstatus" style={{ textDecoration: "none" }}>
+                    <p className="title">Status</p>
+                    <li><span>Pending rider</span></li>
+                    </Link>
+                    <Link to="/ridecomplete" style={{ textDecoration: "none" }}>
+                    <p className="title">Ride</p>
+                    <li><span>Ride complete</span></li>
                     </Link>
                 </ul>
 
