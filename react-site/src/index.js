@@ -1,3 +1,4 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -45,6 +46,7 @@ import Editcustomer from './components/adminComponents/Customerview/Editcustomer
 
 
 import LogOut from './components/adminComponents/LogOut/LogOut';
+import RiderData from './components/adminComponents/RiderList/RiderData';
 
 
 
@@ -53,6 +55,7 @@ import LogOut from './components/adminComponents/LogOut/LogOut';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
     {/* <Login/> */}
 
     <Router>
@@ -77,7 +80,7 @@ root.render(
         <Route path='/ridecomplete' element={<RideComplete />} />
         <Route path='/editcustomer/:id' element={<Editcustomer />} />
         <Route path='/addRider' element={<AddRider></AddRider>} />
-        <Route path='/riderList' element={<RiderList></RiderList>} />
+        <Route path='/riderList' element={<RiderData></RiderData>} />
         <Route path='/customerLogin' element={<CustomerLogin />} />
         <Route path='/riderstatus' element={<Pendingstatus />} />
         <Route path='/ridecomplete' element={<RideComplete />} />
