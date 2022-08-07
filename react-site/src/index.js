@@ -40,10 +40,14 @@ import RiderUpdate from './components/adminComponents/RiderUpdate/RiderUpdate';
 import RiderView from './components/adminComponents/RiderList/RiderView';
 import Pendingstatus from './components/adminComponents/Status/Pendingstatus';
 import RideComplete from './components/adminComponents/Ridecomplete/RideComplete';
+<<<<<<< HEAD
 import Customerinfo from './components/adminComponents/Customerview/Customerinfo';
 import Editcustomer from './components/adminComponents/Customerview/Editcustomer';
 
 
+=======
+import LogOut from './components/adminComponents/LogOut/LogOut';
+>>>>>>> 95b5efd7a2d8fa6e39c29c957c5baa3948be4370
 
 
 
@@ -102,7 +106,12 @@ root.render(
         <Route path='/ridecomplete' element={<RideComplete />} />
         <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
         <Route path='/riderView/:id' element={<RiderView></RiderView>} />
+<<<<<<< HEAD
         
+=======
+        <Route path='/customerLogin' element={<CustomerLogin />} />
+        <Route path='/logout' element={<LogOut></LogOut>} />
+>>>>>>> 95b5efd7a2d8fa6e39c29c957c5baa3948be4370
 
       </Routes>
 
@@ -112,6 +121,7 @@ root.render(
     </Router>
 
     {/* rider start */}
+<<<<<<< HEAD
     <Router>
 
     {/* <NavBar/>
@@ -137,6 +147,9 @@ root.render(
     </div> */}
     {/* <Footer/>
 
+=======
+    {/* <Router>
+>>>>>>> 95b5efd7a2d8fa6e39c29c957c5baa3948be4370
       <NavBar />
       <div className="container-fluid mt-5">
         <div className="row">
@@ -158,9 +171,14 @@ root.render(
           </div>
         </div>
       </div>
+<<<<<<< HEAD
       <Footer /> */}
 
     </Router>
+=======
+      <Footer />
+    </Router> */}
+>>>>>>> 95b5efd7a2d8fa6e39c29c957c5baa3948be4370
     {/* rider end */}
 
   </React.StrictMode >
