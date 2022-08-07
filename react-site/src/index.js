@@ -18,6 +18,7 @@ import CustomerLogin from './components/CustomerComponents/Authentication/Custom
 import CustomerNavbar from './components/CustomerComponents/Dashboard/Navbar/CustomerNavbar';
 import RideReq from './components/CustomerComponents/Dashboard/RideRequest/RideReq';
 import Discount from './components/CustomerComponents/Dashboard/Discount/Discount';
+import Home from './components/CustomerComponents/Dashboard/Homepage/Home';
 
 
 //rider
@@ -110,8 +111,10 @@ root.render(
         <Routes>
 
         {/*------------------------ Customer ----------------- */}
+
         <Route path='/customerLogin' element={<CustomerLogin />} />
         <Route path='/customerRegistration' element={<CustomerRegistration />} />
+        <Route path='/customer/home' element={<Home />} />
         <Route path='/customer/riderequest' element={<RideReq />} />
         <Route path='/customer/discount' element={<Discount />} />
 
