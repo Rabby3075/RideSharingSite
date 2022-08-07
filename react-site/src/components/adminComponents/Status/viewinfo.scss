@@ -1,11 +1,9 @@
-.mid{
+.middle{
     height: 80%;
    
     margin-right: 30%;
     margin-left: 30%;
-   box-shadow: inset;
-   background-color: cornflowerblue;
-    
+   box-shadow: inset; 
     border-radius: 30px;
     h1{
         margin-top: 5%;
@@ -16,8 +14,11 @@
     p{
         color: black;
         text-align: center;
-        font-weight: 200;
+        font-weight: 300;
+
         
-        
+    }
+    button{
+        background-color: red;
     }
 }

@@ -41,7 +41,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  Route::get('/customerView/{id}',[AdminController::class,'Customerinfo']);
  Route::put('/customerView/{id}',[AdminController::class,'CustomerEdit']);
  Route::post('/customerView/{id}',[AdminController::class,'CustomerEdit']);
+ Route::post('/customerdelete/{id}',[AdminController::class,'CustomerDeleteApi']);
  Route::get('/riderstatus',[AdminController::class,'riderStatusApi']);
+
 
 
 ////////////Rider List API////////////
