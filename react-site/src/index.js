@@ -3,16 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import CustomerRegistration from './components/CustomerComponents/Authentication/CustomerRegistration';
+
 import Navbar from './components/adminComponents/Navbar/Navbar';
 import Sidebar from './components/adminComponents/Sidebar/Sidebar';
 import Dashboard from './components/adminComponents/Dashboard/Dashboard';
 import Login from './components/adminComponents/Login/Login';
-import CustomerLogin from './components/CustomerComponents/Authentication/CustomerLogin';
+
+import CustomerNavbar from './components/CustomerComponents/Dashboard/Navbar/CustomerNavbar';
 import Addcustomer from './components/adminComponents/AddCustomer/Addcustomer';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Link } from "react-router-dom";
 
+//customer
+import CustomerRegistration from './components/CustomerComponents/Authentication/CustomerRegistration';
+import CustomerLogin from './components/CustomerComponents/Authentication/CustomerLogin';
+import Home from './components/CustomerComponents/Dashboard/Homepage/Home';
+import Discount from './components/CustomerComponents/Dashboard/Discount/Discount';
+import RideReq from './components/CustomerComponents/Dashboard/RideRequest/RideReq';
 //rider
 import "bootstrap/dist/css/bootstrap.min.css";
 import RiderHis from './components/riderComponents/RiderHis/RiderHis';
@@ -57,8 +64,19 @@ root.render(
       {/* <Login/> */}
       <Routes>
 
-
+        {/*---------------------- Customer------------ */}
         <Route path='/customerRegistration' element={<CustomerRegistration />} />
+
+        <Route path='/customerLogin' element={<CustomerLogin />} />
+        <Route path='/customer/nav' element={<CustomerNavbar />} />
+        <Route path='/customer/home' element={<Home />} />
+        <Route path='/customer/discount' element={<Discount />} />
+        <Route path='/customer/riderequest' element={<RideReq />} />
+
+        {/*---------------------- Customer------------ */}
+
+
+
         <Route path='/adminlogin' element={<Login />} />
         <Route path='/admindashboard' element={<Dashboard />} />
 
@@ -80,7 +98,7 @@ root.render(
         <Route path='/riderList' element={<RiderList></RiderList>} />
         <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
         <Route path='/riderView/:id' element={<RiderView></RiderView>} />
-        <Route path='/customerLogin' element={<CustomerLogin />} />
+
 
       </Routes>
 
@@ -88,32 +106,7 @@ root.render(
 
     </Router>
 
-    {/* rider start */}
-    <Router>
-      <NavBar />
-      <div className="container-fluid mt-5">
-        <div className="row">
-          <div className="col-lg-2">
-            <SideBar />
-          </div>
-          <div className="col-lg-10">
-            <div className="jumbotron">
-              <Routes>
 
-                <Route exact path='/rideHistory' element={<RiderHis />} />
-                <Route exact path='/RiderBal' element={<RiderBal />} />
-                <Route exact path='/Redeem' element={<Redeem />} />
-                <Route exact path='/CashOut' element={<CashOut />} />
-
-
-              </Routes>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer />
-    </Router>
-    {/* rider end */}
 
   </React.StrictMode >
 );
