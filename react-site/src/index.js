@@ -13,8 +13,7 @@ import Login from './components/adminComponents/Login/Login';
 import Addcustomer from './components/adminComponents/AddCustomer/Addcustomer';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-=======
+
 //-------Customer-------------
 import CustomerRegistration from './components/CustomerComponents/Authentication/CustomerRegistration';
 import CustomerLogin from './components/CustomerComponents/Authentication/CustomerLogin';
@@ -23,7 +22,7 @@ import RideReq from './components/CustomerComponents/Dashboard/RideRequest/RideR
 import Discount from './components/CustomerComponents/Dashboard/Discount/Discount';
 import Home from './components/CustomerComponents/Dashboard/Homepage/Home';
 import Otp from './components/CustomerComponents/Dashboard/Otp/otp';
->>>>>>> 94e9fa2921e2da44156be9488f9a7d352b9e0a88
+
 
 //rider
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -31,17 +30,17 @@ import RiderHis from './components/riderComponents/RiderHis/RiderHis';
 import RiderBal from './components/riderComponents/RiderBal/RiderBal';
 import Redeem from './components/riderComponents/Redeem/Redeem';
 import CashOut from './components/riderComponents/CashOut/CashOut';
-<<<<<<< HEAD
+
 import RLogin from './components/riderComponents/RLogin/RLogin';
 import RReg from './components/riderComponents/RReg/RReg';
 import ProfEdit from './components/riderComponents/ProfEdit/ProfEdit';
 
 //end
-=======
+
 import NavBar from './components/riderComponents/NavBar/NavBar';
 import SideBar from './components/riderComponents/SideBar/SideBar';
 import Footer from './components/riderComponents/Footer/Footer';
->>>>>>> 94e9fa2921e2da44156be9488f9a7d352b9e0a88
+
 
 import Addadmin from './components/adminComponents/Addadmin/Addadmin';
 import Dropdownlist from './components/adminComponents/Dropdownlist/Dropdownlist';
@@ -78,10 +77,7 @@ import RiderData from './components/adminComponents/RiderList/RiderData';
 
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 94e9fa2921e2da44156be9488f9a7d352b9e0a88
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -89,7 +85,7 @@ root.render(
     {/* <Login/> */}
 
     <Router>
-<<<<<<< HEAD
+
     {/* <Dashboard/> */}
     {/* <Login/> */}
     <Routes>
@@ -121,16 +117,17 @@ root.render(
     <Route  exact path='/RLogin' element={<RLogin/>} />
     <Route  exact path='/RReg' element={<RReg/>} />
     <Route  exact path='/RProfile' element={<ProfEdit/>} />
-    
+
 
     </Routes>
     </Router>
-=======
+
 
 
 
     {/* <Dashboard/> */}
     {/* <Login/> */}
+     <Router>
     <Routes>
 
 
@@ -291,7 +288,7 @@ root.render(
 
 
 
->>>>>>> 94e9fa2921e2da44156be9488f9a7d352b9e0a88
+
     {/* rider end */}
 
   </React.StrictMode >

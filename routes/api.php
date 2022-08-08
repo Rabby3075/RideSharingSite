@@ -3,17 +3,17 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-<<<<<<< HEAD
+
 use App\Http\Controllers\RiderController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RiderApiController;
 
-=======
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\RiderController;
+
+
+
 use App\Http\Controllers\CustomerRatingController;
 use App\Http\Controllers\RideController;
->>>>>>> 94e9fa2921e2da44156be9488f9a7d352b9e0a88
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
  //Rider//
-<<<<<<< HEAD
+
  Route::post('/rideHistory',[RiderApiController::class, 'rideHisApi'])->name('rideHis');//->middleware('apiValid');//
  Route::post('/riderCount',[RiderApiController::class, 'riderCountApi'])->name('riderCount');//->middleware('apiValid');//
  Route::post('/riderBalance',[RiderApiController::class, 'riderBalanceApi'])->name('riderBalance');//->middleware('apiValid');//
@@ -50,7 +50,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
  Route::get('/customerView',[AdminController::class,'customerView']);
  Route::get('/formcustomer/{id}',[AdminController::class,'formCustomer']);
-=======
+
  Route::get('/rideHistory',[RiderController::class, 'rideHisApi'])->name('rideHis');
  Route::get('/riderCount',[RiderController::class, 'riderCountApi'])->name('riderCount');
  Route::get('/riderBalance',[RiderController::class, 'riderBalanceApi'])->name('riderBalance');
@@ -67,7 +67,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  Route::post('/customerView/{id}',[AdminController::class,'CustomerEdit']);
  Route::post('/customerdelete/{id}',[AdminController::class,'CustomerDeleteApi']);
  Route::get('/riderstatus',[AdminController::class,'riderStatusApi']);
->>>>>>> 94e9fa2921e2da44156be9488f9a7d352b9e0a88
+
 
 
 
@@ -91,12 +91,15 @@ Route::post('/customerLoginSubmit',[CustomerController::class, 'customerLoginSub
 Route::get('/discountApi',[CustomerRatingController::class, 'discountListApi'])->name('discountListApi')->middleware('api-session');
 Route::get('/locationList',[RideController::class, 'LocationList'])->name('locationList');
 Route::post('/ridereq',[RideController::class, 'rideRequestSubmitApi'])->name('rideRequestSubmitApi')->middleware('api-session');
+Route::post('/LoginApi',[CustomerController::class, 'loginApi'])->name('LoginApi');
+Route::post('/customerInfo',[CustomerController::class, 'CustomerInfoApi'])->name('CustomerInfoApi');
+Route::post('/customerOtp',[CustomerController::class, 'OtpApi'])->name('OtpApi');
 //-------------------Customer APi---------------------------
-<<<<<<< HEAD
+
  Route::post('/adminlogin',[AdminController::class,'adminapilogin']);
-=======
 
 
 
->>>>>>> 94e9fa2921e2da44156be9488f9a7d352b9e0a88
+
+
 

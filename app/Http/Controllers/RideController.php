@@ -530,6 +530,9 @@ class RideController extends Controller
                 if($rideValid){
                     //return redirect()->back()->with('failed', 'You have already requested for a ride. Please Cancel it for new request or if ride on going after this ride you can request for new ride');
                       //return $rideValid;
+                      return response()->json([
+                        'error'=>'You have already requested for a ride. Please Cancel it for new request or if ride on going after this ride you can request for new ride'
+                    ]);
                     }
                     else{
                         $lat1 = $pickLocation->latitude;
@@ -540,9 +543,55 @@ class RideController extends Controller
                       $distance = $this->getDistance($lat1, $long1, $lat2, $long2);
                       $status = "Waiting for rider...";
 
-                     $getDiscountAmount = Customer::where('id', session()->get('id'))->first();
-                     return $getDiscountAmount;
+                    // $getDiscountAmount = Customer::where('id', session()->get('id'))->first();
+                    $token = Token::where('token',$request->token)->first();
+                    $getDiscountAmount = Customer::where('id', $token->userid)->first();
+                    $discountAmount = $getDiscountAmount->discount;
 
+                    $baseBill = 50;
+                    $perKiloBill = 10;
+                     if(($baseBill + ($perKiloBill * $distance) - $discountAmount)<0){
+                      $bill = 0;
+                      $getDiscountAmount->discount = -($baseBill + ($perKiloBill * $distance) - $discountAmount);
+                      $getDiscountAmount->save();
+                     }
+                     else{
+                      $bill = $baseBill + ($perKiloBill * $distance) - $discountAmount;
+                      $getDiscountAmount->discount = 0;
+                      $getDiscountAmount->save();
+                     }
+
+                    //date_default_timezone_set('Asia/Dhaka');
+                     // $date = date('d-m-y h:i:s');
+                     date_default_timezone_set('Asia/Dhaka');
+                     $time =  date('d F Y, h:i:s A');
+                    $ride = new Ride();
+                     $ride->customerName = $getDiscountAmount->name;
+                     $ride->customerId = $getDiscountAmount->id;
+                     $ride->customerPhone = $getDiscountAmount->phone;
+                     $ride->pickupPoint = $request->pickLocation;
+                     $ride->destination = $request->dropLocation;
+                     $ride->length = $distance;
+                     $ride->cost = $bill;
+                     $ride->customerStatus = $status;
+                     $ride->rideRequestTime = $time;
+                     $result = $ride->save();
+                     if($result){
+
+                        // session()->put('rating',$total_rating);
+
+                         $success = "Congratulations your ride request confirm successfully. You will 10 rating points after the ride complete";
+
+                        /* return redirect()->back()->with('success', $success)
+                         ->with('destination',$distance.'kilo')
+                         ->with('price','Bill: '.$bill.'Tk');*/
+                         return response()->json([
+                            'statusId'=>200,
+                            'success'=> $success,
+                            'destination'=> $distance,
+                            'price'=>$bill,
+                        ]);
+                        }
 
 
                     }
@@ -551,12 +600,19 @@ class RideController extends Controller
             }
             else{
                // return redirect()->back()->with('failed', 'Drop Location is not correct.Please check correct location from your suggestion box');
+               return response()->json([
+                'error'=> 'Drop Location is not correct.Please check correct location from your suggestion box',
+
+            ]);
             }
 
         }
         else{
            // return redirect()->back()->with('failed', 'Pickup location is not correct.Please check correct location from your suggestion box');
-          }
+          }return response()->json([
+            'error'=> 'Pickup location is not correct.Please check correct location from your suggestion box',
+
+        ]);
     }
 
 
