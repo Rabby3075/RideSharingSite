@@ -83,7 +83,7 @@ const RiderBal = ()=>{
             <div className="card bg-c-green order-card cd">
                 <div className="card-block">
                     <h6 className="m-b-20">Total Earning</h6>
-                     <h2 className="text-right"><i className="fa fa-money f-left ic"></i><span>{totals} BDT</span></h2>
+                     <h2 className="text-right"><span>{totals} BDT</span></h2>
                     <h6 className="m-b-0 text-dark">Completed Rides<span className="f-right">{counts}</span></h6>
                 </div>
             </div>
@@ -94,7 +94,7 @@ const RiderBal = ()=>{
             <div className="card bg-c-pink order-card cd">
                 <div className="card-block">
                     <h6 className="m-b-20">Company's Revenue</h6>
-                    <h2 className="text-right"><i className="fa fa-money f-left ic"></i><span>{totals*0.10} BDT</span></h2>
+                    <h2 className="text-right"><span>{totals*0.10} BDT</span></h2>
                     <br/>
                 </div>
             </div>

@@ -27,7 +27,7 @@ const RLogin = () => {
 				alert("No User Found!");
             }else{
 				
-                navigate('/rideHistory');
+                navigate('/RDash');
             }
         }).catch(err=>{
             console.log(err);

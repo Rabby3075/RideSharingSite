@@ -28,7 +28,7 @@ return(
 <div>
 <nav className="navbar navbar-expand-md bg-light navbar-light sticky-top shadow-sm">
 <div className="container">
-<Link to="#" className="navbar-brand"><span className="text-danger  h4">Your</span><span className="text-dark logo h4" >Ride</span></Link>
+<Link to="/RDash" className="navbar-brand"><span className="text-danger  h4">Your</span><span className="text-dark logo h4" >Ride</span></Link>
 <div class="d-flex justify-content-end">
         <img  src={process.env.PUBLIC_URL+"index.png"} alt="profile pic"  width="40" height="40" className="rounded-circle" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" onClick={logout}>Logout</button>
         </div>

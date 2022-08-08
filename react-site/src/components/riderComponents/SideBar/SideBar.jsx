@@ -64,7 +64,7 @@ return(
 					</div>
 						<div className="card-body">
 							<ul className="list-group">										
-								<li className="list-group-item"><Link to="#"><i className="fa fa-list-alt"></i> Check Request</Link></li>
+								<li className="list-group-item"><Link to="/CheckReq"><i className="fa fa-list-alt"></i> Check Request</Link></li>
 								<li className="list-group-item"><Link to="#"><i className="fa fa-spinner"></i> Ride Progress </Link></li>		
 							</ul>
 						</div>
