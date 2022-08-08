@@ -16,7 +16,7 @@ const RLogin = () => {
 		e.preventDefault();
         var obj = {username: username, password: password};
         console.log(obj);
-		axios.post("http://127.0.0.1:8000/api/LoginApi",obj)
+		axios.post("http://127.0.0.1:8000/api/RLoginApi",obj)
         .then(resp=>{
             var token = resp.data;
             console.log(token);
@@ -26,7 +26,7 @@ const RLogin = () => {
                 navigate('/RLogin');
 				alert("No User Found!");
             }else{
-				
+
                 navigate('/RDash');
             }
         }).catch(err=>{

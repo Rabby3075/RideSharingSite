@@ -3,11 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-<<<<<<< HEAD
-use App\Http\Controllers\RiderController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\RiderApiController;
-=======
 
 use App\Http\Controllers\RiderController;
 use App\Http\Controllers\CustomerController;
@@ -16,7 +11,12 @@ use App\Http\Controllers\RiderApiController;
 
 
 
->>>>>>> 202fa7169aa112a9c7344d624c49d7ea22897d7b
+
+
+
+
+
+
 use App\Http\Controllers\CustomerRatingController;
 use App\Http\Controllers\RideController;
 
@@ -40,7 +40,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
  //Rider//
-<<<<<<< HEAD
+
  Route::post('/rideHistory',[RiderController::class, 'rideHisApi'])->name('rideHis');//->middleware('apiValid');//
  Route::post('/riderCount',[RiderController::class, 'riderCountApi'])->name('riderCount');//->middleware('apiValid');//
  Route::post('/riderBalance',[RiderController::class, 'riderBalanceApi'])->name('riderBalance');//->middleware('apiValid');//
@@ -48,25 +48,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  Route::post('/redeem',[RiderController::class, 'redeemApi'])->name('redeem');//->middleware('apiValid');//
  Route::post('/CashOut',[RiderController::class, 'cashoutApi'])->name('CashOut');//->middleware('apiValid');//
  Route::post('/RegApi',[RiderController::class, 'regApi'])->name('RegApi');
- Route::post('/LoginApi',[RiderController::class, 'loginApi'])->name('LoginApi');
+ Route::post('/RLoginApi',[RiderController::class, 'loginApi'])->name('LoginApi');
  Route::post('/CheckReqApi',[RiderController::class, 'checkReqApi'])->name('CheckReqApi');
  Route::post('/LogoutApi',[RiderController::class, 'logoutApi'])->name('LogoutApi');
  Route::post('/RiderInfoApi',[RiderController::class, 'riderInfoApi'])->name('RiderInfoApi');//->middleware('apiValid');//
  Route::post('/InfoUpApi',[RiderController::class, 'riderInfoUpApi'])->name('InfoUpApi');//->middleware('apiValid');//
-=======
 
- Route::post('/rideHistory',[RiderApiController::class, 'rideHisApi'])->name('rideHis');//->middleware('apiValid');//
- Route::post('/riderCount',[RiderApiController::class, 'riderCountApi'])->name('riderCount');//->middleware('apiValid');//
- Route::post('/riderBalance',[RiderApiController::class, 'riderBalanceApi'])->name('riderBalance');//->middleware('apiValid');//
- Route::post('/totalPay',[RiderApiController::class, 'totalPayApi'])->name('totalPay');//->middleware('apiValid');//
- Route::post('/redeem',[RiderApiController::class, 'redeemApi'])->name('redeem');//->middleware('apiValid');//
- Route::post('/CashOut',[RiderApiController::class, 'cashoutApi'])->name('CashOut');//->middleware('apiValid');//
- Route::post('/RegApi',[RiderApiController::class, 'regApi'])->name('RegApi');
- Route::post('/LoginApi',[RiderApiController::class, 'loginApi'])->name('LoginApi');
- Route::post('/LogoutApi',[RiderApiController::class, 'logoutApi'])->name('LogoutApi');
- Route::post('/RiderInfoApi',[RiderApiController::class, 'riderInfoApi'])->name('RiderInfoApi');//->middleware('apiValid');//
- Route::post('/InfoUpApi',[RiderApiController::class, 'riderInfoUpApi'])->name('InfoUpApi');//->middleware('apiValid');//
->>>>>>> 202fa7169aa112a9c7344d624c49d7ea22897d7b
+
  //End//
 
  Route::get('/customerView',[AdminController::class,'customerView']);
@@ -120,10 +108,4 @@ Route::post('/customerOtp',[CustomerController::class, 'OtpApi'])->name('OtpApi'
  Route::post('/adminlogin',[AdminController::class,'adminapilogin']);
 
 
-<<<<<<< HEAD
-=======
 
-
-
-
->>>>>>> 202fa7169aa112a9c7344d624c49d7ea22897d7b
