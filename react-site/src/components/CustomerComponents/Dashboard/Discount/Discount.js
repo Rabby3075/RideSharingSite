@@ -13,7 +13,27 @@ const Discount = ()=>{
         }).catch(err=>{
             console.log(err);
         });
+        let user = JSON.parse(localStorage.getItem('user'));
+        var userid = {token: user.access_token};
+        axios.post("http://127.0.0.1:8000/api/customerInfo",userid)
+        .then(resp=>{
+            var data = resp.data;
+            console.log(data)
+            document.getElementById('userPoint').innerHTML = data.rating + ' Point';
+
+            //setPosts(resp.data);
+        }).catch(err=>{
+            console.log(err);
+        });
     },[]);
+
+
+
+
+
+
+
+
 
     return(
         <div>
@@ -29,7 +49,7 @@ const Discount = ()=>{
            <div className="card bg-c-pink order-card cd">
                 <div className="card-block">
                     <h6 className="m-b-20">User Point</h6>
-                    <h2 className="text-right"><span className="f-left h1 fnt"> point</span><img src="https://www.svgrepo.com/show/89912/coin.svg" alt="Picture"  className="f-right im"/></h2>
+                    <h2 className="text-right"><span className="f-left h1 fnt" id="userPoint"></span><img src="https://www.svgrepo.com/show/89912/coin.svg" alt="Picture"  className="f-right im"/></h2>
                 </div>
 
             </div>
@@ -44,7 +64,7 @@ const Discount = ()=>{
         <th>ID</th>
         <th>Point</th>
         <th>Amount</th>
-        <th>Action</th>
+       
 
       </tr>
     </thead>
@@ -59,7 +79,7 @@ const Discount = ()=>{
         <td >{post.amount}</td>
 
 
-        <td><a href="" className="btn btn-outline-primary"> <i className="bi bi-coin"></i> Claim</a></td>
+
 
 
 

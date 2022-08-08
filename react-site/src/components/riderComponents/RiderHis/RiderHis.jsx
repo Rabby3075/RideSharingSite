@@ -2,12 +2,17 @@ import React, {useState, useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import "./RiderHis.css";
+import NavBar from '../NavBar/NavBar';
+import SideBar from '../SideBar/SideBar';
+import Footer from '../Footer/Footer';
 
 const RiderHis = ()=>{
     const [posts, setPosts] = useState([]);
+    let user = JSON.parse(localStorage.getItem('user'));
+    var userid = {token: user.access_token};
 
     useEffect(()=>{
-        axios.get("http://127.0.0.1:8000/api/rideHistory")
+        axios.post("http://127.0.0.1:8000/api/rideHistory",userid)
         .then(resp=>{
             console.log(resp.data);
             setPosts(resp.data);
@@ -16,7 +21,17 @@ const RiderHis = ()=>{
         });
     },[]);
     return(
+
+
 <div>
+<NavBar/>
+    <div className="container-fluid mt-5">
+	  <div className="row">
+    <div className="col-lg-2">
+    <SideBar/>
+    </div>
+    <div className="col-lg-10">
+		<div className="jumbotron">
         <div className ="bgt">
  <br /> <br /> <br />
 <h2 className="d-flex justify-content-center text-dark">Your Ride History</h2>
@@ -62,6 +77,11 @@ const RiderHis = ()=>{
 <br /> <br /> <br /><br /> <br />
 </div>
 </div>
+</div>
+		</div>
+	  </div>
+    </div>
+    <Footer/>
 </div>
     )
 }

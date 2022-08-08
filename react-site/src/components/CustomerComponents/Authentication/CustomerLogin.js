@@ -17,15 +17,31 @@ const CustomerLogin = () =>{
         .then(resp=>{
             var response = resp.data;
             console.log(response);
-           var user = {userId: response.token.userid, access_token:response.token.token};
-            localStorage.setItem('user',JSON.stringify(user));
-            console.log(localStorage.getItem('user'))
+
             if(response.message === "Login Failed"){
+
                     document.getElementById('msg').innerHTML = response.message;
             }
             else{
-
-                navigate('/customer/home');
+                var user = {userId: response.token.userid, access_token:response.token.token};
+                localStorage.setItem('user',JSON.stringify(user));
+                console.log(localStorage.getItem('user'))
+                var userid = {token: user.access_token};
+                axios.post("http://127.0.0.1:8000/api/customerInfo",userid)
+                .then(resp=>{
+                    var data = resp.data;
+                    console.log(data)
+                    if(data.status === "0"){
+                         navigate('/customer/otp');
+                    }
+                    else{
+                        navigate('/customer/home');
+                    }
+                    //setPosts(resp.data);
+                }).catch(err=>{
+                    console.log(err);
+                });
+               // navigate('/customer/home');
         }
 
         }).catch(err=>{

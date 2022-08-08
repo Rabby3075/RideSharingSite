@@ -13,55 +13,42 @@ import { Link } from "react-router-dom";
 
 
 
-const Pendingstatus =() => {
-    const [posts, setPosts] = useState([]);
-    useEffect(()=>{
-        axios.get("http://127.0.0.1:8000/api/riderstatus")
-        .then(resp=>{
-            console.log(resp.data);
-            setPosts(resp.data);
-        }).catch(err=>{
-            console.log(err);
-        });
-    },[]);
+const Pendingstatus =(props) => {
+    const { id, name, email, dob, phone, image,status} = props.riders;
+    const [riders, setRiders] = useState([]);
+
+    useEffect(() => {
+        loadRider();
+  }, [])
+
+  const deleteRider = (id) => {
+    axios.delete(`http://127.0.0.1:8000/api/riderList/${id}`);
+
+    loadRider();
+};
+
+    const loadRider = async () => {
+        const result = await axios.get("http://127.0.0.1:8000/api/riderList")
+        result = await result.json();
+        setRiders(result);
+  }
+   
+    // useEffect(()=>{
+    //     axios.get("http://127.0.0.1:8000/api/riderstatus")
+    //     .then(resp=>{
+    //         console.log(resp.data);
+    //         setRiders(resp.data);
+    //     }).catch(err=>{
+    //         console.log(err);
+    //     });
+    // },[]);
 
     return (
-        <div className="add">
-            <Sidebar/>
-            <div className="addcontainer">
-                <Navbar/>
-                <div className="bottom">
-                <div className="reg">
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Status</th>
-          <th>View</th>
-        </tr>
-      </thead>
-      <tbody>
-      {posts.map(post=>(
-                <tr key={post.id}>
-                    <td >{post.id}</td>
-                    <td >{post.name}</td>
-                    <tb>{post.status}</tb>
-                    <td><Link class="btn btn-primary" to={{pathname:"/riderstatus/"}}><RemoveRedEyeIcon/>View</Link></td>
-                </tr>
-                    ))}
-      </tbody>
-    </Table>
-{/* 
-    {
-                posts.map(post=>(
-                    <Customerviewprops name={post.name} phone={post.phone} key={post.id}></Customerviewprops>
-                ))
-            } */}
-            </div>
-            </div>
-            </div>
-        </div>
+
+  <div>
+    
+  </div>
+
     )
 }
 

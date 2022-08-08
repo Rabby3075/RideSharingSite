@@ -1,0 +1,20 @@
+
+  .cdl
+  {
+    max-width: 600px; 
+    margin: auto; 
+    border-radius: 30px;
+  }
+  .cdn
+  {
+    max-width: 400px;
+  }
+
+  .cs{
+    width: 88%;
+    padding: 12px 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
