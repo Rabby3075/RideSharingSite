@@ -17,13 +17,23 @@ const RideReq = () =>{
             console.log(err);
         });
     },[]);
+
+    let user = JSON.parse(localStorage.getItem('user'));
+
+
    const rideSubmit = () =>{
-    var obj = {pickLocation: pickLocation, dropLocation: dropLocation};
+    var obj = {pickLocation: pickLocation, dropLocation: dropLocation,token: user.access_token};
     console.log(obj);
     axios.post("http://127.0.0.1:8000/api/ridereq",obj)
     .then(resp=>{
         var response = resp.data;
         console.log(response);
+
+        if(response.statusId === 200){
+            document.getElementById('success').innerHTML = response.success;
+            document.getElementById('destination').innerHTML = response.destination;
+            document.getElementById('bill').innerHTML = response.price;
+        }
 
     }).catch(err=>{
         console.log(err);
@@ -44,6 +54,9 @@ const RideReq = () =>{
             <div className="col-md-5 col-sm-6 shadow-lg bg-white my-4">
                 <div className="text-center col-sm-12 mt-2">
                     <h3 id="hijibi">Request for a ride</h3>
+                    <p id="success"></p>
+                    <p id="distance"></p>
+                    <p id="bill"></p>
                 </div>
         <form>
 

@@ -11,27 +11,25 @@ const Otp = () =>{
     const navigate  = useNavigate("");
 
     const CustomerOtpSubmit = () =>{
-        var obj = {otp: otp};
+        let user = JSON.parse(localStorage.getItem('user'));
+        var obj = {otp: otp,token: user.access_token};
         console.log(obj);
-        axios.post("http://127.0.0.1:8000/api/customerLoginSubmit",obj)
+       axios.post("http://127.0.0.1:8000/api/customerOtp",obj)
         .then(resp=>{
             var response = resp.data;
             console.log(response);
+           if(response.message==="Login Successfully"){
+            navigate('/customer/home');
+           }
+           else{
+            document.getElementById('msg').innerHTML = response.message;
+           }
 
-            if(response.message === "Login Failed"){
-
-                    document.getElementById('msg').innerHTML = response.message;
-            }
-            else{
-                var user = {userId: response.token.userid, access_token:response.token.token};
-                localStorage.setItem('user',JSON.stringify(user));
-                console.log(localStorage.getItem('user'))
-                navigate('/customer/home');
-        }
 
         }).catch(err=>{
             console.log(err);
         });
+
     }
 
     return(

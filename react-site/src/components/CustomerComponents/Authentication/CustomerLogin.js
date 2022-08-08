@@ -26,7 +26,22 @@ const CustomerLogin = () =>{
                 var user = {userId: response.token.userid, access_token:response.token.token};
                 localStorage.setItem('user',JSON.stringify(user));
                 console.log(localStorage.getItem('user'))
-                navigate('/customer/home');
+                var userid = {token: user.access_token};
+                axios.post("http://127.0.0.1:8000/api/customerInfo",userid)
+                .then(resp=>{
+                    var data = resp.data;
+                    console.log(data)
+                    if(data.status === "0"){
+                         navigate('/customer/otp');
+                    }
+                    else{
+                        navigate('/customer/home');
+                    }
+                    //setPosts(resp.data);
+                }).catch(err=>{
+                    console.log(err);
+                });
+               // navigate('/customer/home');
         }
 
         }).catch(err=>{
