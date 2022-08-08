@@ -85,7 +85,7 @@ root.render(
     <Router>
 
     <Routes>
-    <Route path='/customerRegistration' element={<CustomerRegistration/>} />
+
     <Route   path='/adminlogin' element={<Login/>} />
     <Route path='/admindashboard' element={<Dashboard/>} />
     <Route path='/addcustomer' element={<Addcustomer/>} />
@@ -98,7 +98,7 @@ root.render(
 
     <Route path='/addRider' element={<AddRider></AddRider>} />
     <Route path='/riderList' element={<RiderList></RiderList>} />
-    <Route path='/customerLogin' element={<CustomerLogin />} />
+
 
     </Routes>
     </Router>
@@ -183,6 +183,13 @@ root.render(
         {/*------------------------ Customer ----------------- */}
 
         <Route path='/customerviewprops' element={<Customerviewprops />} />
+        <Route   path='/customerRegistration' element={<CustomerRegistration/>} />
+        <Route path='/customerLogin' element={<CustomerLogin />} />
+        <Route path='/customer/home' element={<Home />} />
+        <Route path='/customer/discount' element={<Discount />} />
+        <Route path='/customer/riderequest' element={<RideReq />} />
+        <Route path='/customer/otp' element={<Otp />} />
+
 
         {/*------------------------ Customer ----------------- */}
         </Routes>
