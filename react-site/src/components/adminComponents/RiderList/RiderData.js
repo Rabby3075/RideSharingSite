@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import './RiderData.css';
 
 const RiderData = () => {
-
+      const navigate = useNavigate();
       // const { id, name, email, dob, phone, image } = props.riders;
       const [riders, setRiders] = useState([]);
       useEffect(() => {
@@ -14,8 +15,8 @@ const RiderData = () => {
 
       const deleteRider = (id) => {
             axios.delete(`http://127.0.0.1:8000/api/riderList/${id}`);
-
-            loadRider();
+            navigate('/admindashboard');
+            // loadRider();
       };
       const loadRider = async () => {
             const result = await axios.get("http://127.0.0.1:8000/api/riderList");
