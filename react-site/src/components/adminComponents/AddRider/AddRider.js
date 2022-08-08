@@ -16,9 +16,15 @@ const AddRider = () => {
             axios.post("http://127.0.0.1:8000/api/riderList")
 
                   .then(resp => {
-                        console.log(resp);
-                        setRiders(resp.data);
-                        navigate('/riderList');
+                        // console.log(resp);
+                        // setRiders(resp.data);
+                        // navigate('/riderList');
+
+                        var token = resp.data;
+                        setRiders(token);
+                        var user = { email: token.email };
+                        localStorage.setItem('user', JSON.stringify(user));
+                        document.getElementById('msg').innerHTML = token.message;
                   }).catch(err => {
                         console.log(err);
                   });

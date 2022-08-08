@@ -121,6 +121,8 @@ Route::get('/excelExport',[AdminController::class, 'riderExport'])->name('excelE
 //--customer Ratings--
 Route::get('/userRatings',[AdminController::class, 'customerRatings'])->name('customerRatings')->middleware('Admin');
 
+Route::get('/riderOtp', function () {return view('admin.email.otpCheck');})->name('riderOtp');
+Route::post('/riderOtpSubmit',[AdminController::class, 'otp'])->name('riderOtpSubmit');
 
 //--Admin route end--
 

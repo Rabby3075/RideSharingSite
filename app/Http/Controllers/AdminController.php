@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Mail\riderRegConfirmation;
 
 use App\Models\Admin;
 use App\Models\Customer;
@@ -793,6 +794,15 @@ public function RiderViewAPI($id){
 
 
 public function RiderAPIPost(Request $req){
+
+    $emailCheck = Rider::where('email',$req->email)->first();
+    if($emailCheck){
+        return response()->json([
+            'message'=>'Email already exist'
+        ]);
+    }
+    else{
+
     $rider = new Rider();
     $rider->id= $req->id;
     $rider->name= $req->name;
@@ -810,9 +820,30 @@ public function RiderAPIPost(Request $req){
     $rider->username = $req->username;
     $rider->password= md5($req->password);
     $rider->image= 'index.jpg';
+    $code = rand(1000,9000);
+    $details = [
+        'title' => 'Registration Confirmation',
+        'code' => $code
+    ];
+    $rider->otp = $code;
 
+    Mail::to($req->email)->send(new riderRegConfirmation($details));
+$result = $rider->save();
+
+if($result){
+
+   
+    return response()->json([
+        'message'=>'Registration Successful. An otp send in your Email.'
+    ]);
+}
+else{
+    return response()->json([
+        'message'=>'Registration Failed'
+    ]);
+}
     //$rider->image= $req->file('file')->store('AddRider_image');
-    $rider->save();
+  
 // if($req->hasfile('image'))
 //             {
 //                 $file = $request->file('image');
@@ -825,11 +856,27 @@ public function RiderAPIPost(Request $req){
 //             $action = $rider->save();
 
            
+}
+}
 
- 
-    return $req;
+
+public function otp(Request $request){
+    $validate = $request->validate([
+        'otp'=>'required',
+
+    ]
+);
 
 
+if($user->otp === $request->otp){
+    $user->status = "1";
+    $user->otp = "";
+    $user->save();
+    return  redirect()->route('addRider');
+}
+else{
+    return redirect()->back()->with('failed', 'Wrong OTP');
+}
 
 }
 
