@@ -88,7 +88,11 @@ Route::get('/adminView/{id}',[AdminController::class,'Admininfo']);
 
 
 
+ 
+ Route::middleware(['auth:sanctum'])->group(function(){
+  Route::post('/Logout',[AdminController::class, 'adminLogoutAPI']);
 
+ });
 ////////////Rider List API////////////
  Route::get('/riderList',[AdminController::class,'RiderAPIList']);
  ////////////Rider add API////////////
@@ -101,7 +105,7 @@ Route::get('/adminView/{id}',[AdminController::class,'Admininfo']);
  Route::delete('/riderList/{id}',[AdminController::class,'RiderDeleteAPI']);
   ////////////Rider View API////////////
   Route::get('/riderList/{id}',[AdminController::class,'RiderViewAPI']);
-  Route::get('/riderList/{key}',[AdminController::class,'RiderSearchAPI']);
+  Route::get('/search/{key}',[AdminController::class,'RiderSearchAPI']);
 
 //-------------------Customer APi---------------------------
 Route::post('/customerRegistrationSubmit',[CustomerController::class, 'CustomerRegistrationApi'])->name('CustomerRegistrationApi');

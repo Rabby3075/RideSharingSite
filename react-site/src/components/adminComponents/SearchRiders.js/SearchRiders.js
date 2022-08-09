@@ -2,24 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import './RiderData.css';
-
-const RiderData = () => {
-      const navigate = useNavigate();
-      const [currentPage, setCurrentPage] = useState(1);
-      const [postsPerPage, setPostsPerPage] = useState(8);
 
 
-      // const { id, name, email, dob, phone, image } = props.riders;
+const SearchRiders = () => {
       const [riders, setRiders] = useState([]);
-
-
-
-      const deleteRider = (id) => {
-            axios.delete(`http://127.0.0.1:8000/api/riderList/${id}`);
-            navigate('/admindashboard');
-            // loadRider();
-      };
 
 
       useEffect(() => {
@@ -32,10 +18,20 @@ const RiderData = () => {
                         console.log(err);
                   });
       }, []);
+      async function search(key) {
 
+            console.warn(key);
+            const result = await axios.get(`http://127.0.0.1:8000/api/riderList/${key}`);
+            result = await result.json();
+            console.warn(result);
+
+            setRiders(result);
+      }
       return (
-
             <div className=' RiderDataTable-boox '>
+                  <h1>Search Rider</h1>
+                  <br></br>
+                  <input type="text" onChange={(e) => search(e.target.value)} className="form-control" placeholder='Search Rider' />
                   <table class="table table-striped w-full">
                         <thead>
                               <tr className='bg-dark text-white'>
@@ -55,14 +51,7 @@ const RiderData = () => {
                                           <td>{rider.name}</td>
                                           <td>{rider.phone}</td>
                                           <td>{rider.email}</td>
-                                          <td>
 
-                                                <Link className="btn btn-outline-secondary  m-1 text-dark mt-4" to={`/riderView/${rider.id}`}><i class="fa fa-eye"></i></Link >
-
-                                                <Link className="btn btn-secondary  text-dark mt-4" to={`/riderUpdate/${rider.id}`} > <i className="fa fa-edit text-white fs-2xl"></i></Link >
-
-                                                <button className="btn btn-outline-dark m-1  text-white mt-4" onClick={() => deleteRider(rider.id)}><i class="fa fa-trash-o text-danger"></i></button>
-                                          </td>
 
 
                                     </tr>
@@ -70,8 +59,7 @@ const RiderData = () => {
                         </tbody>
                   </table>
             </div>
-
       );
 };
 
-export default RiderData;
+export default SearchRiders;

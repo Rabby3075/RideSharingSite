@@ -1,6 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
+axios.interceptors.request.use(function (config) {
+  const token = localStorage.getItem('accessToken');
+  config.headers.Authorization = token ? `Bearer ${token}` : '';
+  return config;
+})
 function App() {
   return (
     <div className="App">

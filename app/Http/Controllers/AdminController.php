@@ -927,11 +927,34 @@ public function RiderUpdateAPI(Request $req){
 public function RiderSearchAPI($key){
 
     return Rider::where('name','Like',"%$key%")->get();
-   
+   //return $key;
          
 }
 
+public function  adminLogoutAPI(Request $request){
 
+    // $token = Token::where('token',$request->token)->first();
+
+    // if($token){
+    //     $token->expire_at = new DateTime();
+    //     $token->save();
+    //     return "Logout";
+    // }
+
+
+// $token =$request->user()->token();
+// $token->revoke();
+// $response=["message"=>"you have successfully logout"];
+// return response($response,200);
+
+
+
+auth()->user()->tokens()->delete();
+return response()->json([
+    'status'=>200,
+    'message'=>'Logout successfully',
+]);
+}
 
 
 

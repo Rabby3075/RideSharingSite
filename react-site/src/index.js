@@ -53,7 +53,6 @@ import Customerviewprops from './components/adminComponents/Customerview/Custome
 
 import Formview from './components/adminComponents/Form/Formview';
 import AddRider from './components/adminComponents/AddRider/AddRider';
-import RiderList from './components/adminComponents/RiderList/RiderList';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Popper from '@popperjs/core';
@@ -77,6 +76,9 @@ import Editadmin from './components/adminComponents/Adminview/Editadmin';
 import LogOut from './components/adminComponents/LogOut/LogOut';
 import Viewinfo from './components/adminComponents/Status/Viewinfo';
 import RiderData from './components/adminComponents/RiderList/RiderData';
+import RiderHistoty from './components/adminComponents/Charts/RiderHistoty';
+import SearchRiders from './components/adminComponents/SearchRiders.js/SearchRiders';
+
 import Editprofile from './components/adminComponents/Editprofile/Editprofile';
 
 
@@ -91,95 +93,67 @@ root.render(
   <React.StrictMode>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
-   {/* Admin start */}
+    {/* Admin start */}
     <Router>
 
-    <Routes>
-
-    <Route   path='/adminlogin' element={<Login/>} />
-    <Route path='/admindashboard' element={<Dashboard/>} />
-    <Route path='/addcustomer' element={<Addcustomer/>} />
-    <Route path='/addadmin' element={<Addadmin/>}/>
-    <Route path='/dropdown' element={<Dropdownlist/>}/>
-    <Route path='/customerview' element={<Customerview/>}/>
-    <Route path='/customerviewprops' element={<Customerviewprops/>}/>
-    <Route path='/formview/:id' element={<Formview/>}/>
-    <Route  exact path='/editprofile' element={<Editprofile/>} />
-    <Route path='/addRider' element={<AddRider></AddRider>} />
-    <Route path='/riderList' element={<RiderList></RiderList>} />
+      <Routes>
 
 
-  
+        <Route path='/addadmin' element={<Addadmin />} />
+        <Route path='/customerview' element={<Customerview />} />
+        <Route path='/formview/:id' element={<Formview />} />
+        <Route exact path='/editprofile' element={<Editprofile />} />
 
 
-    {/* rider start */}
-
-   
-
-    <Route  exact path='/rideHistory' element={<RiderHis/>} />
-    <Route  exact path='/RiderBal' element={<RiderBal/>} />
-    <Route  exact path='/Redeem' element={<Redeem/>} />
-    <Route  exact path='/CashOut' element={<CashOut/>} />
-    <Route  exact path='/RLogin' element={<RLogin/>} />
-    <Route  exact path='/RReg' element={<RReg/>} />
-    <Route  exact path='/RProfile' element={<ProfEdit/>} />
+        {/* <Dashboard/> */}
+        {/* <Login/> */}
 
 
 
 
 
+        <Route path='/adminlogin' element={<Login />} />
+        <Route path='/admindashboard' element={<Dashboard />} />
+        <Route path='/addcustomer' element={<Addcustomer />} />
+        <Route path='/dropdown' element={<Dropdownlist />} />
+        <Route exact path='/adminview' element={<Adminview />} />
 
 
 
-    {/* <Dashboard/> */}
-    {/* <Login/> */}
+        <Route path='/customerdelete' element={<Customerview />} />
+        {/* <Route path='/customerviewprops' element={<Customerviewprops/>}/> */}
+        <Route path='/customerinfo/:id' element={<Customerinfo />} />
+        <Route path='/admininfo/:id' element={<Admininfo />} />
+        <Route path='/riderstatus' element={<Viewrider />} />
+        <Route path='/ridecomplete' element={<RideComplete />} />
+        <Route path='/riderviewinfo/:id' element={<Viewinfo />} />
+        <Route path='/editcustomer/:id' element={<Editcustomer />} />
+        <Route path='/customerLogin' element={<CustomerLogin />} />
+        <Route path='/editadmin/:id' element={<Editadmin />} />
+        {/*  rider  Admin Part start */}
 
- 
-
-
-
-    <Route   path='/adminlogin' element={<Login/>} />
-    <Route   path='/admindashboard' element={<Dashboard/>} />
-    <Route   path='/addcustomer' element={<Addcustomer/>} />
-    <Route   path='/dropdown' element={<Dropdownlist/>}/>
-    <Route exact path='/adminview' element={<Adminview/>}/>
-
-
-
-    <Route path='/customerdelete' element={<Customerview/>}/>
-    {/* <Route path='/customerviewprops' element={<Customerviewprops/>}/> */}
-    <Route path='/customerinfo/:id' element={<Customerinfo/>}/>
-    <Route path='/admininfo/:id' element={<Admininfo/>}/>
-    <Route path='/riderstatus' element={<Viewrider/>}/>
-    <Route path='/ridecomplete' element={<RideComplete/>}/>
-    <Route path='/editcustomer/:id' element={<Editcustomer/>}/>
-    <Route path='/riderviewinfo/:id' element={<Viewinfo/>}/>
-    <Route path='/addRider' element={<AddRider></AddRider>} />
-    <Route path='/riderList' element={<RiderData></RiderData>} />
-    <Route path='/riderList' element={<RiderList></RiderList>} />
-
-    <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
-    <Route path='/riderView/:id' element={<RiderView></RiderView>} />
-    <Route path='/customerLogin' element={<CustomerLogin />} />
-    <Route path='/logout' element={<LogOut></LogOut>} />
-    <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
-    <Route path='/riderView/:id' element={<RiderView></RiderView>} />
-    <Route path='/logout' element={<LogOut></LogOut>} />
-
-    
-  
-
-    
-
-
-    {/* ADmin End */}
+        <Route path='/logout' element={<LogOut></LogOut>} />
+        <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
+        <Route path='/riderView/:id' element={<RiderView></RiderView>} />
+        <Route path='/addRider' element={<AddRider></AddRider>} />
+        <Route path='/riderList' element={<RiderData></RiderData>} />
+        <Route path='/riderHistoty' element={<RiderHistoty></RiderHistoty>} />
+        <Route path='/search' element={<SearchRiders></SearchRiders>} />
 
 
 
 
-      {/* <Dashboard/> */}
-      {/* <Login/> */}
-      
+
+
+
+        {/* ADmin End */}
+
+
+
+
+        {/* <Dashboard/> */}
+        {/* <Login/> */}
+
 
 
 
@@ -194,61 +168,42 @@ root.render(
 
 
 
-        <Route path='/editcustomer/:id' element={<Editcustomer />} />
-        <Route path='/editadmin/:id' element={<Editadmin />} />
-        <Route path='/addRider' element={<AddRider></AddRider>} />
-        <Route path='/riderList' element={<RiderData></RiderData>} />
-        <Route path='/riderList' element={<RiderList></RiderList>} />
- 
 
 
 
-   
-        <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
-        <Route path='/riderView/:id' element={<RiderView></RiderView>} />
-        <Route path='/customerLogin' element={<CustomerLogin />} />
-        <Route path='/logout' element={<LogOut></LogOut>} />
+      </Routes>
+      {/* ADmin End */}
+
+      <Routes>
 
 
 
 
 
+        {/* rider start */}
+
+
+        <Route exact path='/rideHistory' element={<RiderHis />} />
+        <Route exact path='/RiderBal' element={<RiderBal />} />
+        <Route exact path='/Redeem' element={<Redeem />} />
+        <Route exact path='/CashOut' element={<CashOut />} />
+        <Route exact path='/RLogin' element={<RLogin />} />
+        <Route exact path='/RReg' element={<RReg />} />
+        <Route exact path='/RProfile' element={<ProfEdit />} />
+        <Route exact path='/RDash' element={<Rdash />} />
+        <Route exact path='/CheckReq' element={<CheckReq />} />
 
 
 
-      
+
+        {/* rider End */}
 
 
 
-
-
-
-
-
-    {/* rider start */}
-
- 
-    <Route  exact path='/rideHistory' element={<RiderHis/>} />
-    <Route  exact path='/RiderBal' element={<RiderBal/>} />
-    <Route  exact path='/Redeem' element={<Redeem/>} />
-    <Route  exact path='/CashOut' element={<CashOut/>} />
-    <Route  exact path='/RLogin' element={<RLogin/>} />
-    <Route  exact path='/RReg' element={<RReg/>} />
-    <Route  exact path='/RProfile' element={<ProfEdit/>} />
-    <Route  exact path='/RDash' element={<Rdash/>} />
-    <Route  exact path='/CheckReq' element={<CheckReq/>} />
-
-  
-
-
-    {/* rider End */}
-
-
- 
         {/*------------------------ Customer ----------------- */}
 
         <Route path='/customerviewprops' element={<Customerviewprops />} />
-        <Route   path='/customerRegistration' element={<CustomerRegistration/>} />
+        <Route path='/customerRegistration' element={<CustomerRegistration />} />
         <Route path='/customerLogin' element={<CustomerLogin />} />
         <Route path='/customer/home' element={<Home />} />
         <Route path='/customer/discount' element={<Discount />} />
@@ -261,16 +216,16 @@ root.render(
 
         {/*------------------------ Customer ----------------- */}
 
-      
 
 
 
 
-    {/* rider start */}
+
+        {/* rider start */}
 
 
 
-      {/* <NavBar/>
+        {/* <NavBar/>
     <div className="container-fluid mt-5">
 	  <div className="row">
     <div className="col-lg-2">
@@ -280,17 +235,10 @@ root.render(
 		<div className="jumbotron"> */}
 
 
-      
-
-
-        <Route exact path='/rideHistory' element={<RiderHis />} />
-        <Route exact path='/RiderBal' element={<RiderBal />} />
-        <Route exact path='/Redeem' element={<Redeem />} />
-        <Route exact path='/CashOut' element={<CashOut />} />
 
 
 
-    </Routes>
+      </Routes>
 
 
     </Router>
@@ -299,11 +247,11 @@ root.render(
 
 
 
-      {/* </div>
+    {/* </div>
 		</div>
 	  </div>
     </div> */}
-      {/* <Footer/>
+    {/* <Footer/>
     {/* <Router>
       <NavBar />
       <div className="container-fluid mt-5">
