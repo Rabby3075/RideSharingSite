@@ -374,6 +374,34 @@ class CustomerController extends Controller
         return  Customer::where('id', $token->userid)->first();
     }
 
+    public function CustomerEditApi(Request $request){
+        $token = Token::where('token',$request->token)->first();
+        $user =  Customer::where('id', $token->userid)->first();
+        $user->name = $request->name;
+        $user->dob = $request->dob;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $result = $user->save();
+        if($result){
+
+            //return redirect()->back()->with('success', 'Profile Update successfully');
+            return response()->json([
+                'status'=>1,
+                'success'=>'Profile Update successfully',
+                'customer'=>$user
+            ]);
+        }
+        else{
+            //return redirect()->back()->with('failed', 'Registration Failed');
+            return response()->json([
+                'status'=>0,
+                'error'=>'Profile Updating failed'
+            ]);
+        }
+
+    }
+
 
 
     public function customerProfile(){
@@ -465,6 +493,54 @@ else{
     else{
         return redirect()->back()->with('failed', 'wrong password inserted');
     }
+
+
+    }
+
+    public function cpassApi(Request $request){
+
+        $token = Token::where('token',$request->token)->first();
+        $user =  Customer::where('id', $token->userid)->first();
+        if($user->password === md5($request->cpass)){
+
+            if($request->npass === $request->rpass){
+
+                $user->password = md5($request->npass);
+
+                $result = $user->save();
+                if($result){
+               // return redirect()->back()->with('success', 'Password Updated');
+               return response()->json([
+                'status'=>1,
+                'success'=>'Password Updated'
+            ]);
+
+                }
+                else{
+                    //return redirect()->back()->with('failed', 'Password Changing failed');
+                    return response()->json([
+                        'status'=>0,
+                        'error'=>'Password Changing failed'
+                    ]);
+                }
+
+            }
+            else{
+                //return redirect()->back()->with('failed', 'retype password doesnt match');
+                return response()->json([
+                    'status'=>0,
+                    'msg'=>'retype password doesnt match'
+                ]);
+            }
+
+        }
+        else{
+            //return redirect()->back()->with('failed', 'wrong password inserted');
+            return response()->json([
+                'status'=>0,
+                'msg'=>'wrong password inserted'
+            ]);
+        }
 
 
     }

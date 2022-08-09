@@ -22,6 +22,7 @@ const RideReq = () =>{
 
 
    const rideSubmit = () =>{
+    console.log(user);
     var obj = {pickLocation: pickLocation, dropLocation: dropLocation,token: user.access_token};
     console.log(obj);
     axios.post("http://127.0.0.1:8000/api/ridereq",obj)
@@ -31,14 +32,28 @@ const RideReq = () =>{
 
         if(response.statusId === 200){
             document.getElementById('success').innerHTML = response.success;
-            document.getElementById('destination').innerHTML = response.destination;
-            document.getElementById('bill').innerHTML = response.price;
+            document.getElementById('distance').innerHTML = 'Total Distance: '+response.distance;
+            document.getElementById('bill').innerHTML = 'Total Bill: '+response.bill;
+        }
+        else{
+            document.getElementById('error').innerHTML = response.error;
         }
 
     }).catch(err=>{
         console.log(err);
     });
    }
+   /*var obj = {token: user.access_token};
+   axios.post("http://127.0.0.1:8000/api/rideInfo",obj)
+   .then(resp=>{
+    var response = resp.data;
+    if(response.error === 404){
+
+    }
+   }).catch(err=>{
+    console.log(err);
+});*/
+
 
 
     return(
@@ -57,6 +72,7 @@ const RideReq = () =>{
                     <p id="success"></p>
                     <p id="distance"></p>
                     <p id="bill"></p>
+                    <p id="error"></p>
                 </div>
         <form>
 
@@ -72,6 +88,7 @@ const RideReq = () =>{
                             <input className="form-control pickLocation" list="datalistOptions" name="pickLocation" id="pickLocation" placeholder="Choose Pickup point" value={pickLocation} onChange={(e)=>setpickLocation(e.target.value)}/>
                             <datalist id="datalistOptions">
                             {locations.map(location=>(
+
                                 <option value={location.location}></option>
                                 ))}
 

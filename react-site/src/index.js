@@ -22,7 +22,9 @@ import RideReq from './components/CustomerComponents/Dashboard/RideRequest/RideR
 import Discount from './components/CustomerComponents/Dashboard/Discount/Discount';
 import Home from './components/CustomerComponents/Dashboard/Homepage/Home';
 import Otp from './components/CustomerComponents/Dashboard/Otp/otp';
-
+import RideHistory from './components/CustomerComponents/Dashboard/RideHistory/RideHistory';
+import ViewProfile from './components/CustomerComponents/Dashboard/Profile/ViewProfile';
+import ChangePass from './components/CustomerComponents/Dashboard/ChangePass/ChangePass';
 
 //rider
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -107,8 +109,8 @@ root.render(
     <Route path='/riderList' element={<RiderList></RiderList>} />
 
 
-    
-   
+  
+
 
     {/* rider start */}
 
@@ -135,7 +137,7 @@ root.render(
  
 
 
-    <Route   path='/customerRegistration' element={<CustomerRegistration/>} />
+
     <Route   path='/adminlogin' element={<Login/>} />
     <Route   path='/admindashboard' element={<Dashboard/>} />
     <Route   path='/addcustomer' element={<Addcustomer/>} />
@@ -163,8 +165,13 @@ root.render(
     <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
     <Route path='/riderView/:id' element={<RiderView></RiderView>} />
     <Route path='/logout' element={<LogOut></LogOut>} />
+
     
   
+
+    
+
+
     {/* ADmin End */}
 
 
@@ -176,38 +183,36 @@ root.render(
 
 
 
-       
-        
-       
-    
-       
-       
-       
+
+
+
+
+
+
+
         {/* <Route path='/customerviewprops' element={<Customerviewprops/>}/> */}
-      
-        
-        
+
+
+
         <Route path='/editcustomer/:id' element={<Editcustomer />} />
         <Route path='/editadmin/:id' element={<Editadmin />} />
         <Route path='/addRider' element={<AddRider></AddRider>} />
         <Route path='/riderList' element={<RiderData></RiderData>} />
         <Route path='/riderList' element={<RiderList></RiderList>} />
+ 
 
 
-      
 
-       
-     
-    
+   
         <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
         <Route path='/riderView/:id' element={<RiderView></RiderView>} />
         <Route path='/customerLogin' element={<CustomerLogin />} />
         <Route path='/logout' element={<LogOut></LogOut>} />
-        
-     
 
 
-        
+
+
+
 
 
 
@@ -217,7 +222,7 @@ root.render(
 
 
 
-    
+
 
 
     {/* rider start */}
@@ -232,12 +237,14 @@ root.render(
     <Route  exact path='/RProfile' element={<ProfEdit/>} />
     <Route  exact path='/RDash' element={<Rdash/>} />
     <Route  exact path='/CheckReq' element={<CheckReq/>} />
- 
- 
+
+  
+
+
     {/* rider End */}
 
 
-    
+ 
         {/*------------------------ Customer ----------------- */}
 
         <Route path='/customerviewprops' element={<Customerviewprops />} />
@@ -247,11 +254,16 @@ root.render(
         <Route path='/customer/discount' element={<Discount />} />
         <Route path='/customer/riderequest' element={<RideReq />} />
         <Route path='/customer/otp' element={<Otp />} />
+        <Route path='/customer/ridehistory' element={<RideHistory />} />
+        <Route path='/customer/viewprofile' element={<ViewProfile />} />
+        <Route path='/customer/changepassword' element={<ChangePass />} />
 
 
         {/*------------------------ Customer ----------------- */}
-        
-  
+
+      
+
+
 
 
     {/* rider start */}
@@ -266,8 +278,10 @@ root.render(
     </div>
     <div className="col-lg-10">
 		<div className="jumbotron"> */}
-   
-     
+
+
+      
+
 
         <Route exact path='/rideHistory' element={<RiderHis />} />
         <Route exact path='/RiderBal' element={<RiderBal />} />

@@ -111,6 +111,10 @@ Route::get('/locationList',[RideController::class, 'LocationList'])->name('locat
 Route::post('/ridereq',[RideController::class, 'rideRequestSubmitApi'])->name('rideRequestSubmitApi')->middleware('api-session');
 Route::post('/customerInfo',[CustomerController::class, 'CustomerInfoApi'])->name('CustomerInfoApi');
 Route::post('/customerOtp',[CustomerController::class, 'OtpApi'])->name('OtpApi');
+Route::post('/rideInfo',[RideController::class, 'RideStatus'])->name('RideStatus');
+Route::post('/rideHistory',[RideController::class, 'RideHistory'])->name('RideHistory');
+Route::post('/customerEdit',[CustomerController::class, 'CustomerEditApi'])->name('CustomerEditApi');
+Route::post('/customerpassChange',[CustomerController::class, 'cpassApi'])->name('cpassApi');
 //-------------------Customer APi---------------------------
 
  Route::post('/adminlogin',[AdminController::class,'adminapilogin']);

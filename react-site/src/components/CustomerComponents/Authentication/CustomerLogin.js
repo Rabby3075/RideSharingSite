@@ -1,7 +1,8 @@
 import React, {useState, userEffect} from 'react';
 import axios from "axios";
 import { Link, Navigate } from "react-router-dom";
-import { useNavigate  } from "react-router-dom"
+import { useNavigate  } from "react-router-dom";
+import Home from '../Dashboard/Homepage/Home';
 
 
 const CustomerLogin = () =>{
