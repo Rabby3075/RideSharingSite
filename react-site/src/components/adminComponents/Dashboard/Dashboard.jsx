@@ -4,6 +4,7 @@ import Sidebar from "../Sidebar/Sidebar";
 
 import "./dashboard.scss"
 import Dropdownlist from "../Dropdownlist/Dropdownlist";
+import Widget from "../Widget/Widget";
 
 
 
@@ -13,8 +14,10 @@ const Dashboard = () => {
                 <Sidebar/>
                 <div className="dashboardContainer">
                     <Navbar/>
-                    dashboard
-                    <Dropdownlist/>
+                    <div className="widgets">
+                        <Widget/>
+                    </div>
+
                 </div>
             </div>
     )

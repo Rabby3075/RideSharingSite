@@ -1099,6 +1099,27 @@ public function RiderSearchAPI($key){
 
 
 
+    public function adminInfoApi(Request $request){
+
+    $token = Token::where('token',$request->token)->first();
+
+    return  Admin::where('id', $token->userid)->first();
+}
+
+
+        public function adminInfoUpApi(Request $request){
+
+         $token = Token::where('token',$request->token)->first();
+         $user = Admin::where('id', $token->userid)->first();
+
+                    $admin->email = $request->email;
+                    $admin->name = $request->name;
+                    $admin->phone = $request->phone;
+                    $admin->dob = $request->dob;
+                    $admin->save();
+                    return $request;
+         }
+
 
     
 }

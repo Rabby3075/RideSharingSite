@@ -1,6 +1,7 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { height } from '@mui/system';
+import { Link } from 'react-router-dom';
 
 
 const Dropdownlist = () =>{
@@ -12,8 +13,11 @@ const Dropdownlist = () =>{
 
     <Dropdown.Menu>
       <Dropdown.Item eventKey="1">About profile</Dropdown.Item>
-      <Dropdown.Item eventKey="2">Update profile</Dropdown.Item>
-      <Dropdown.Item eventKey="3" active>
+      
+      
+      <Dropdown.Item eventKey="" active><Link to="/editprofile">Update profile</Link></Dropdown.Item>
+      
+      <Dropdown.Item eventKey="3">
         Change password
       </Dropdown.Item>
       <Dropdown.Divider />
