@@ -51,7 +51,6 @@ import Customerviewprops from './components/adminComponents/Customerview/Custome
 
 import Formview from './components/adminComponents/Form/Formview';
 import AddRider from './components/adminComponents/AddRider/AddRider';
-import RiderList from './components/adminComponents/RiderList/RiderList';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Popper from '@popperjs/core';
@@ -68,6 +67,8 @@ import Viewrider from './components/adminComponents/Status/Viewrider';
 import LogOut from './components/adminComponents/LogOut/LogOut';
 import Viewinfo from './components/adminComponents/Status/Viewinfo';
 import RiderData from './components/adminComponents/RiderList/RiderData';
+import RiderHistoty from './components/adminComponents/Charts/RiderHistoty';
+import SearchRiders from './components/adminComponents/SearchRiders.js/SearchRiders';
 
 
 
@@ -118,11 +119,12 @@ root.render(
         <Route path='/editcustomer/:id' element={<Editcustomer />} />
         <Route path='/addRider' element={<AddRider></AddRider>} />
         <Route path='/riderList' element={<RiderData></RiderData>} />
+        <Route path='/riderHistoty' element={<RiderHistoty></RiderHistoty>} />
+        <Route path='/search' element={<SearchRiders></SearchRiders>} />
 
         <Route path='/ridecomplete' element={<RideComplete />} />
         <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
         <Route path='/riderView/:id' element={<RiderView></RiderView>} />
-        <Route path='/logout' element={<LogOut></LogOut>} />
       </Routes>
       {/* ADmin End */}
 
