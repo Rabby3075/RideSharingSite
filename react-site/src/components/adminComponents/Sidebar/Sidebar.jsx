@@ -44,12 +44,14 @@ const Sidebar = () => {
                         </li>
                     </Link>
                     <p className="title">View</p>
+                    <Link to="/adminview" style={{ textDecoration: "none" }}>
                     
                     <li>
                         
                         <VisibilityIcon className="icon" />
                         <span>Admin</span>
                     </li>
+                    </Link>
                     <Link to="/riderList" style={{ textDecoration: "none" }}>
 
                         <li>

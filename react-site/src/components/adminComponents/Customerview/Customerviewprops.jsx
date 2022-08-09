@@ -11,21 +11,21 @@ import Table from 'react-bootstrap/Table';
 const Customerviewprops = (props) => {
     
     const { id, name, email, dob, phone, image } = props.customers;
-    const [riders, setRiders] = useState([]);
+    const [customers, setCustomers] = useState([]);
     useEffect(() => {
           loadRider();
     }, [])
 
 
-    // const deleteRider = (id) => {
-    //       axios.delete(`http://127.0.0.1:8000/api/customerView/${id}`);
+    const deleteCustomers = (id) => {
+          axios.delete(`http://127.0.0.1:8000/api/customerView/${id}`);
 
-    //       loadRider();
-    // };
+          loadRider();
+    };
     const loadRider = async () => {
-          const result = await axios.get("http://127.0.0.1:8000/api/customerView");
+          const result = await axios.get("http://127.0.0.1:8000/api/customerView1");
           result = await result.json();
-          setRiders(result);
+          setCustomers(result);
     }
 
     return (

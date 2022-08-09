@@ -53,7 +53,9 @@ import RideComplete from './components/adminComponents/Ridecomplete/RideComplete
 import Customerinfo from './components/adminComponents/Customerview/Customerinfo';
 import Editcustomer from './components/adminComponents/Customerview/Editcustomer';
 import Viewrider from './components/adminComponents/Status/Viewrider';
-
+import Adminview from './components/adminComponents/Adminview/Adminview';
+import Admininfo from './components/adminComponents/Adminview/Admininfo';
+import Editadmin from './components/adminComponents/Adminview/Editadmin';
 
 
 import LogOut from './components/adminComponents/LogOut/LogOut';
@@ -87,12 +89,14 @@ root.render(
     <Route   path='/adminlogin' element={<Login/>} />
     <Route   path='/admindashboard' element={<Dashboard/>} />
     <Route   path='/addcustomer' element={<Addcustomer/>} />
-    <Route path='/addadmin' element={<Addadmin/>}/>
-    <Route path='/dropdown' element={<Dropdownlist/>}/>
+    <Route   path='/addadmin' element={<Addadmin/>}/>
+    <Route   path='/dropdown' element={<Dropdownlist/>}/>
     <Route path='/customerview' element={<Customerview/>}/>
+    <Route exact path='/adminview' element={<Adminview/>}/>
     <Route path='/customerdelete' element={<Customerview/>}/>
     {/* <Route path='/customerviewprops' element={<Customerviewprops/>}/> */}
     <Route path='/customerinfo/:id' element={<Customerinfo/>}/>
+    <Route path='/admininfo/:id' element={<Admininfo/>}/>
     <Route path='/riderstatus' element={<Viewrider/>}/>
     <Route path='/ridecomplete' element={<RideComplete/>}/>
     <Route path='/editcustomer/:id' element={<Editcustomer/>}/>
@@ -124,6 +128,7 @@ root.render(
         
         
         <Route path='/editcustomer/:id' element={<Editcustomer />} />
+        <Route path='/editadmin/:id' element={<Editadmin />} />
         <Route path='/addRider' element={<AddRider></AddRider>} />
         <Route path='/riderList' element={<RiderData></RiderData>} />
         <Route path='/riderList' element={<RiderList></RiderList>} />
@@ -141,11 +146,11 @@ root.render(
 
        
         <Route path='/ridecomplete' element={<RideComplete />} />
-        <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
-        <Route path='/riderView/:id' element={<RiderView></RiderView>} />
+        
+     
 
 
-        <Route path='/logout' element={<LogOut></LogOut>} />
+        
 
 
 
@@ -211,36 +216,7 @@ root.render(
 
 
 
-      
-      {/* </div>
-		</div>
-	  </div>
-    </div> */}
-      {/* <Footer/>
-    {/* <Router>
-      <NavBar />
-      <div className="container-fluid mt-5">
-        <div className="row">
-          <div className="col-lg-2">
-            <SideBar />
-          </div>
-          <div className="col-lg-10">
-            <div className="jumbotron">
-              <Routes>
-                <Route exact path='/rideHistory' element={<RiderHis />} />
-                <Route exact path='/RiderBal' element={<RiderBal />} />
-                <Route exact path='/Redeem' element={<Redeem />} />
-                <Route exact path='/CashOut' element={<CashOut />} />
-              </Routes>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer /> */}
-
-    
-
-    {/* rider end */}
+ 
 
   </React.StrictMode >
 );
