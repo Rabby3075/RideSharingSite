@@ -109,7 +109,7 @@ root.render(
 
 
     </Routes>
-   
+
 
     {/* rider start */}
 
@@ -165,7 +165,7 @@ root.render(
     <Route path='/riderView/:id' element={<RiderView></RiderView>} />
     <Route path='/logout' element={<LogOut></LogOut>} />
     </Routes>
-  
+
     {/* ADmin End */}
 
 
@@ -177,38 +177,38 @@ root.render(
 
 
 
-       
-        
-       
-    
-       
-       
-       
+
+
+
+
+
+
+
         {/* <Route path='/customerviewprops' element={<Customerviewprops/>}/> */}
-      
-        
-        
+
+
+
         <Route path='/editcustomer/:id' element={<Editcustomer />} />
         <Route path='/editadmin/:id' element={<Editadmin />} />
         <Route path='/addRider' element={<AddRider></AddRider>} />
         <Route path='/riderList' element={<RiderData></RiderData>} />
         <Route path='/riderList' element={<RiderList></RiderList>} />
-
+ 
 
       </Routes>
 
-       
-     
+
+
       <Routes>
         <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
         <Route path='/riderView/:id' element={<RiderView></RiderView>} />
         <Route path='/customerLogin' element={<CustomerLogin />} />
         <Route path='/logout' element={<LogOut></LogOut>} />
-        
-     
 
 
-        
+
+
+
 
 
 
@@ -218,7 +218,7 @@ root.render(
 
 
 
-    
+
 
 
     {/* rider start */}
@@ -234,7 +234,7 @@ root.render(
     <Route  exact path='/RDash' element={<Rdash/>} />
     <Route  exact path='/CheckReq' element={<CheckReq/>} />
     </Routes>
- 
+
     {/* rider End */}
 
 
@@ -255,7 +255,7 @@ root.render(
 
         {/*------------------------ Customer ----------------- */}
         </Routes>
-  
+
 
 
     {/* rider start */}
@@ -270,7 +270,7 @@ root.render(
     </div>
     <div className="col-lg-10">
 		<div className="jumbotron"> */}
-   
+
       <Routes>
 
         <Route exact path='/rideHistory' element={<RiderHis />} />
