@@ -25,7 +25,7 @@ import Otp from './components/CustomerComponents/Dashboard/Otp/otp';
 import RideHistory from './components/CustomerComponents/Dashboard/RideHistory/RideHistory';
 import ViewProfile from './components/CustomerComponents/Dashboard/Profile/ViewProfile';
 import ChangePass from './components/CustomerComponents/Dashboard/ChangePass/ChangePass';
-
+import CustomerChat from './components/CustomerComponents/Dashboard/Chat/CustomerChat';
 //rider
 import "bootstrap/dist/css/bootstrap.min.css";
 import RiderHis from './components/riderComponents/RiderHis/RiderHis';
@@ -212,6 +212,7 @@ root.render(
         <Route path='/customer/ridehistory' element={<RideHistory />} />
         <Route path='/customer/viewprofile' element={<ViewProfile />} />
         <Route path='/customer/changepassword' element={<ChangePass />} />
+        <Route path='/customer/chat/:id' element={<CustomerChat />} />
 
 
         {/*------------------------ Customer ----------------- */}

@@ -359,9 +359,10 @@ class CustomerController extends Controller
     public function  logoutApi(Request $request){
 
         $token = Token::where('token',$request->token)->first();
-
+        date_default_timezone_set('Asia/Dhaka');
+        $time =  date('d F Y, h:i:s A');
         if($token){
-            $token->expire_at = new DateTime();
+            $token->expire_at = $time;
             $token->save();
             return "Logout";
         }
@@ -372,6 +373,10 @@ class CustomerController extends Controller
         $token = Token::where('token',$request->token)->first();
 
         return  Customer::where('id', $token->userid)->first();
+    }
+    public function CustomerApi(Request $request){
+
+        return  Customer::where('id', $request->id)->first();
     }
 
     public function CustomerEditApi(Request $request){
@@ -544,5 +549,7 @@ else{
 
 
     }
+
+
 
 }

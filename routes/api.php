@@ -10,6 +10,7 @@ use App\Http\Controllers\RiderApiController;
 
 use App\Http\Controllers\CustomerRatingController;
 use App\Http\Controllers\RideController;
+use App\Http\Controllers\ChatController;
 
 
 /*
@@ -88,7 +89,7 @@ Route::get('/adminView/{id}',[AdminController::class,'Admininfo']);
 
 
 
- 
+
  Route::middleware(['auth:sanctum'])->group(function(){
   Route::post('/Logout',[AdminController::class, 'adminLogoutAPI']);
 
@@ -121,6 +122,8 @@ Route::post('/customerEdit',[CustomerController::class, 'CustomerEditApi'])->nam
 Route::post('/customerpassChange',[CustomerController::class, 'cpassApi'])->name('cpassApi');
 Route::post('/rideInformation',[RideController::class, 'getRideInformation'])->name('rideView');
 Route::post('/ride/cancel',[RideController::class, 'rideCancelApi'])->name('rideCancelApi');
+Route::post('/customer/logout',[CustomerController::class, 'logoutApi'])->name('CustomerLogoutApi');
+Route::post('/customer/chat',[ChatController::class, 'chatUserApi'])->name('chatUserApi');
 //-------------------Customer APi---------------------------
 
  Route::post('/adminlogin',[AdminController::class,'adminapilogin']);

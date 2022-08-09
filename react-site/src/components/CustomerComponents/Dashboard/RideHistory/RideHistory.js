@@ -2,7 +2,7 @@ import React, {useState, useEffect,useRef} from "react";
 import axios from "axios";
 import CustomerNavbar from "../Navbar/CustomerNavbar";
 import Footer from "../../../riderComponents/Footer/Footer";
-import { useDownloadExcel } from 'react-export-table-to-excel';
+import { Link } from "react-router-dom";
 
 const RideHistory = () =>{
 
@@ -82,13 +82,7 @@ const RideHistory = () =>{
         filename: 'Ride List table',
         sheet: 'Users'
     })*/
-    const Download = ()=>{
-        useDownloadExcel({
-        currentTableRef: tableRef.current,
-        filename: 'Ride List table',
-        sheet: 'Users'
-        })
-    }
+
 
 
 
@@ -102,12 +96,12 @@ const RideHistory = () =>{
 
 
 
-    <button type="button" id="export" className="btn btn-outline-success" onClick={Download}>Download</button>
+    <button type="button" id="export" className="btn btn-outline-success">Download</button>
 
  <div className="table-responsive custom-table-responsive">
 
 
-  <table className="table my-3 bg-light" id="myTable" ref={tableRef}>
+  <table className="table my-3 bg-light" id="myTable">
     <thead>
       <tr>
         <th>Ride ID</th>
@@ -161,7 +155,7 @@ const RideHistory = () =>{
                 ride.customerStatus === 'Cancel' &&<p className="text-danger"> Ride Cancel at <strong>{ride.cancelTime}</strong></p>
             }
             {
-               ride.customerStatus === 'Approve' && <a href="/chat/{{$ride->id}}" className = "btn btn-info me-2"><i className="bi bi-chat-dots me-1 text-dark"></i>Chat</a>
+               ride.customerStatus === 'Approve' && <Link  className="btn btn-info me-2" to={`/customer/chat/${ride.id}`}><i className="bi bi-chat-dots me-1 text-dark"></i>Chat</Link>
             }
              {
                ride.customerStatus === 'Approve' && <button className="btn btn-danger text-white" onClick={(e)=>showCancel(ride.id)} data-bs-toggle="modal" data-bs-target="#cancelModal"><i className="bi bi-x-circle-fill"></i> Cancel Ride</button>
