@@ -1,8 +1,11 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { height } from '@mui/system';
+
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+
+import { Link } from 'react-router-dom';
 
 const Dropdownlist = () => {
   const navigate = useNavigate();
@@ -31,7 +34,7 @@ const Dropdownlist = () => {
 
       <Dropdown.Menu>
         <Dropdown.Item eventKey="1">About profile</Dropdown.Item>
-        <Dropdown.Item eventKey="2">Update profile</Dropdown.Item>
+        <Dropdown.Item eventKey="" active><Link to="/editprofile">Update profile</Link></Dropdown.Item>
         <Dropdown.Item eventKey="3" active>
           Change password
         </Dropdown.Item>
@@ -39,6 +42,8 @@ const Dropdownlist = () => {
         <Dropdown.Item eventKey="1" onClick={adminLogout}>Logout</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
+
+
   );
 }
 

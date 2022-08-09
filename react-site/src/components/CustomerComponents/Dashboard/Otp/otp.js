@@ -40,7 +40,7 @@ const Otp = () =>{
                 <div className='rounded d-flex justify-content-center mt-10'>
                     <div className='col-md-4 col-sm-12 shadow-lg bg-light'>
                         <div className='text-center'>
-                            <h3 className='text-primary '>Login</h3>
+                            <h3 className='text-primary '>OTP</h3>
                         </div>
                         <form className='form-group p-4 '>
 

@@ -991,6 +991,12 @@ return response()->json([
 
     }
 
+           public function adminView(){
+        $admin = Admin::all();
+        return $admin;
+    }
+
+
 
        public function customerView(){
         $customer = Customer::all();
@@ -1056,8 +1062,12 @@ return response()->json([
         return $riders;
     }
 
-                public function Customerinfo($id){
+            public function Customerinfo($id){
                 return customer::find($id);
+            }
+
+            public function Admininfo($id){
+                return admin::find($id);
             }
 
             public function CustomerEdit(Request $request){
@@ -1074,6 +1084,18 @@ return response()->json([
 
             }
 
+            public function AdminEdit(Request $request){
+                 $admin = Admin::where('id', $request->id)->first();
+                
+                    $admin->email = $request->email;
+                    $admin->name = $request->name;
+                    $admin->phone = $request->phone;
+                    $admin->dob = $request->dob;
+                    $admin->save();
+                    return $admin;
+
+            }
+
             public function CustomerDeleteAPI(Request $request){
    
  
@@ -1082,7 +1104,44 @@ return response()->json([
               return $request;
     }
 
+                public function StatusDeleteAPI(Request $request){
+   
+ 
+            $rider = Rider::where('id', $request->id)->first();
+             $rider->delete();
+             echo"delete";
+              return $request;
+    }
 
+        public function riderApprove(Request $request){
+    $riders = Rider::where('id', $request->id)->first();
+    $riders->status = "Approved";
+    $riders->save();
+    // return redirect()->route('riderStatus')->with('riders', $riders); 
+    }
+
+
+
+    public function adminInfoApi(Request $request){
+
+    $token = Token::where('token',$request->token)->first();
+
+    return  Admin::where('id', $token->userid)->first();
+}
+
+
+        public function adminInfoUpApi(Request $request){
+
+         $token = Token::where('token',$request->token)->first();
+         $user = Admin::where('id', $token->userid)->first();
+
+                    $admin->email = $request->email;
+                    $admin->name = $request->name;
+                    $admin->phone = $request->phone;
+                    $admin->dob = $request->dob;
+                    $admin->save();
+                    return $request;
+         }
 
 
     
