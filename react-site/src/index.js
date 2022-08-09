@@ -22,7 +22,9 @@ import RideReq from './components/CustomerComponents/Dashboard/RideRequest/RideR
 import Discount from './components/CustomerComponents/Dashboard/Discount/Discount';
 import Home from './components/CustomerComponents/Dashboard/Homepage/Home';
 import Otp from './components/CustomerComponents/Dashboard/Otp/otp';
-
+import RideHistory from './components/CustomerComponents/Dashboard/RideHistory/RideHistory';
+import ViewProfile from './components/CustomerComponents/Dashboard/Profile/ViewProfile';
+import ChangePass from './components/CustomerComponents/Dashboard/ChangePass/ChangePass';
 
 //rider
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -128,7 +130,7 @@ root.render(
     <Routes>
 
 
-    <Route   path='/customerRegistration' element={<CustomerRegistration/>} />
+
     <Route   path='/adminlogin' element={<Login/>} />
     <Route   path='/admindashboard' element={<Dashboard/>} />
     <Route   path='/addcustomer' element={<Addcustomer/>} />
@@ -189,6 +191,9 @@ root.render(
         <Route path='/customer/discount' element={<Discount />} />
         <Route path='/customer/riderequest' element={<RideReq />} />
         <Route path='/customer/otp' element={<Otp />} />
+        <Route path='/customer/ridehistory' element={<RideHistory />} />
+        <Route path='/customer/viewprofile' element={<ViewProfile />} />
+        <Route path='/customer/changepassword' element={<ChangePass />} />
 
 
         {/*------------------------ Customer ----------------- */}

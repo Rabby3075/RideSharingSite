@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 //import axiosConfig from './axiosConfig';
 import CustomerNavbar from "../Navbar/CustomerNavbar";
+import Footer from "../../../riderComponents/Footer/Footer";
 const Discount = ()=>{
     const [posts, setPosts] = useState([]);
 
@@ -64,7 +65,7 @@ const Discount = ()=>{
         <th>ID</th>
         <th>Point</th>
         <th>Amount</th>
-       
+
 
       </tr>
     </thead>
@@ -78,12 +79,6 @@ const Discount = ()=>{
         <td >{post.point}</td>
         <td >{post.amount}</td>
 
-
-
-
-
-
-
     </tr>
      ))}
 
@@ -93,6 +88,7 @@ const Discount = ()=>{
 
 
 </div>
+<Footer />
 </div>
     )
 }
