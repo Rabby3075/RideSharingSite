@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect,useRef} from "react";
 import axios from "axios";
 import CustomerNavbar from "../Navbar/CustomerNavbar";
 import Footer from "../../../riderComponents/Footer/Footer";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import { useDownloadExcel } from 'react-export-table-to-excel';
 
 const RideHistory = () =>{
 
@@ -77,6 +76,20 @@ const RideHistory = () =>{
             console.log(err);
         });
     }
+    const tableRef = useRef(null);
+    /*const { Download } = useDownloadExcel({
+        currentTableRef: tableRef.current,
+        filename: 'Ride List table',
+        sheet: 'Users'
+    })*/
+    const Download = ()=>{
+        useDownloadExcel({
+        currentTableRef: tableRef.current,
+        filename: 'Ride List table',
+        sheet: 'Users'
+        })
+    }
+
 
 
 
@@ -89,12 +102,12 @@ const RideHistory = () =>{
 
 
 
-    <button type="button" id="export" className="btn btn-outline-success" >Download</button>
+    <button type="button" id="export" className="btn btn-outline-success" onClick={Download}>Download</button>
 
  <div className="table-responsive custom-table-responsive">
 
 
-  <table className="table my-3 bg-light" id="myTable">
+  <table className="table my-3 bg-light" id="myTable" ref={tableRef}>
     <thead>
       <tr>
         <th>Ride ID</th>
@@ -148,10 +161,10 @@ const RideHistory = () =>{
                 ride.customerStatus === 'Cancel' &&<p className="text-danger"> Ride Cancel at <strong>{ride.cancelTime}</strong></p>
             }
             {
-               ride.customerStatus === 'Approve' && <a href="/chat/{{$ride->id}}" className = "btn btn-info "><i className="bi bi-chat-dots me-1 text-dark"></i>Chat</a>
+               ride.customerStatus === 'Approve' && <a href="/chat/{{$ride->id}}" className = "btn btn-info me-2"><i className="bi bi-chat-dots me-1 text-dark"></i>Chat</a>
             }
              {
-               ride.customerStatus === 'Approve' && <a className="btn btn-danger text-white" id="cancel-ride" href="javascript:void(0)" data-url="{{ route('rideView', $ride->id) }}"><i className="bi bi-x-circle-fill"></i> Cancel Ride</a>
+               ride.customerStatus === 'Approve' && <button className="btn btn-danger text-white" onClick={(e)=>showCancel(ride.id)} data-bs-toggle="modal" data-bs-target="#cancelModal"><i className="bi bi-x-circle-fill"></i> Cancel Ride</button>
             }
         </td>
 
