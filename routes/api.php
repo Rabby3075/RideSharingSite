@@ -69,6 +69,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  Route::get('/totalPay',[RiderController::class, 'totalPayApi'])->name('totalPay');
 
  Route::get('/customerView1',[AdminController::class,'customerView']);
+Route::get('/adminView1',[AdminController::class,'adminView']);
+Route::get('/adminView/{id}',[AdminController::class,'Admininfo']);
+ Route::put('/adminView/{id}',[AdminController::class,'AdminEdit']);
+ Route::post('/adminView/{id}',[AdminController::class,'AdminEdit']);
  Route::get('/formcustomer',[AdminController::class,'formCustomer']);
  Route::post('/customerView',[AdminController::class,'CaddAPIPost']);
  Route::post('/adminView',[AdminController::class,'AaddAPIPost']);
@@ -76,6 +80,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  Route::put('/customerView/{id}',[AdminController::class,'CustomerEdit']);
  Route::post('/customerView/{id}',[AdminController::class,'CustomerEdit']);
  Route::post('/customerdelete/{id}',[AdminController::class,'CustomerDeleteApi']);
+ Route::get('/riderstatusdelete/{id}',[AdminController::class,'StatusDeleteApi']);
+ Route::post('/riderapprove/{id}',[AdminController::class,'RiderApprove']);
  Route::get('/riderstatus',[AdminController::class,'riderStatusApi']);
 
 

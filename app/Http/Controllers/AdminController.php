@@ -968,6 +968,12 @@ public function RiderSearchAPI($key){
 
     }
 
+           public function adminView(){
+        $admin = Admin::all();
+        return $admin;
+    }
+
+
 
        public function customerView(){
         $customer = Customer::all();
@@ -1033,8 +1039,12 @@ public function RiderSearchAPI($key){
         return $riders;
     }
 
-                public function Customerinfo($id){
+            public function Customerinfo($id){
                 return customer::find($id);
+            }
+
+            public function Admininfo($id){
+                return admin::find($id);
             }
 
             public function CustomerEdit(Request $request){
@@ -1051,12 +1061,40 @@ public function RiderSearchAPI($key){
 
             }
 
+            public function AdminEdit(Request $request){
+                 $admin = Admin::where('id', $request->id)->first();
+                
+                    $admin->email = $request->email;
+                    $admin->name = $request->name;
+                    $admin->phone = $request->phone;
+                    $admin->dob = $request->dob;
+                    $admin->save();
+                    return $admin;
+
+            }
+
             public function CustomerDeleteAPI(Request $request){
    
  
             $customer = Customer::where('id', $request->id)->first();
              $customer->delete();
               return $request;
+    }
+
+                public function StatusDeleteAPI(Request $request){
+   
+ 
+            $rider = Rider::where('id', $request->id)->first();
+             $rider->delete();
+             echo"delete";
+              return $request;
+    }
+
+        public function riderApprove(Request $request){
+    $riders = Rider::where('id', $request->id)->first();
+    $riders->status = "Approved";
+    $riders->save();
+    // return redirect()->route('riderStatus')->with('riders', $riders); 
     }
 
 

@@ -67,6 +67,13 @@ import RideComplete from './components/adminComponents/Ridecomplete/RideComplete
 import Customerinfo from './components/adminComponents/Customerview/Customerinfo';
 import Editcustomer from './components/adminComponents/Customerview/Editcustomer';
 import Viewrider from './components/adminComponents/Status/Viewrider';
+
+import Adminview from './components/adminComponents/Adminview/Adminview';
+import Admininfo from './components/adminComponents/Adminview/Admininfo';
+import Editadmin from './components/adminComponents/Adminview/Editadmin';
+
+
+
 import LogOut from './components/adminComponents/LogOut/LogOut';
 import Viewinfo from './components/adminComponents/Status/Viewinfo';
 import RiderData from './components/adminComponents/RiderList/RiderData';
@@ -96,17 +103,16 @@ root.render(
     <Route path='/customerview' element={<Customerview/>}/>
     <Route path='/customerviewprops' element={<Customerviewprops/>}/>
     <Route path='/formview/:id' element={<Formview/>}/>
-    <Route path='/adminlogin' element={<Login />} />
 
     <Route path='/addRider' element={<AddRider></AddRider>} />
     <Route path='/riderList' element={<RiderList></RiderList>} />
 
 
     </Routes>
-    </Router>
+   
 
     {/* rider start */}
-    <Router>
+
     <Routes>
 
     <Route  exact path='/rideHistory' element={<RiderHis/>} />
@@ -119,14 +125,14 @@ root.render(
 
 
     </Routes>
-    </Router>
+
 
 
 
 
     {/* <Dashboard/> */}
     {/* <Login/> */}
-     <Router>
+
     <Routes>
 
 
@@ -134,19 +140,19 @@ root.render(
     <Route   path='/adminlogin' element={<Login/>} />
     <Route   path='/admindashboard' element={<Dashboard/>} />
     <Route   path='/addcustomer' element={<Addcustomer/>} />
-    <Route path='/addadmin' element={<Addadmin/>}/>
-    <Route path='/dropdown' element={<Dropdownlist/>}/>
-    <Route path='/customerview' element={<Customerview/>}/>
+    <Route   path='/dropdown' element={<Dropdownlist/>}/>
+    <Route exact path='/adminview' element={<Adminview/>}/>
+
+
 
     <Route path='/customerdelete' element={<Customerview/>}/>
     {/* <Route path='/customerviewprops' element={<Customerviewprops/>}/> */}
     <Route path='/customerinfo/:id' element={<Customerinfo/>}/>
+    <Route path='/admininfo/:id' element={<Admininfo/>}/>
     <Route path='/riderstatus' element={<Viewrider/>}/>
     <Route path='/ridecomplete' element={<RideComplete/>}/>
     <Route path='/editcustomer/:id' element={<Editcustomer/>}/>
     <Route path='/riderviewinfo/:id' element={<Viewinfo/>}/>
-
-    <Route path='/editcustomer/:id' element={<Editcustomer />} />
     <Route path='/addRider' element={<AddRider></AddRider>} />
     <Route path='/riderList' element={<RiderData></RiderData>} />
     <Route path='/riderList' element={<RiderList></RiderList>} />
@@ -155,17 +161,68 @@ root.render(
     <Route path='/riderView/:id' element={<RiderView></RiderView>} />
     <Route path='/customerLogin' element={<CustomerLogin />} />
     <Route path='/logout' element={<LogOut></LogOut>} />
-    <Route path='/ridecomplete' element={<RideComplete />} />
     <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
     <Route path='/riderView/:id' element={<RiderView></RiderView>} />
     <Route path='/logout' element={<LogOut></LogOut>} />
     </Routes>
-    </Router>
+  
     {/* ADmin End */}
 
 
+
+
+      {/* <Dashboard/> */}
+      {/* <Login/> */}
+      <Routes>
+
+
+
+       
+        
+       
+    
+       
+       
+       
+        {/* <Route path='/customerviewprops' element={<Customerviewprops/>}/> */}
+      
+        
+        
+        <Route path='/editcustomer/:id' element={<Editcustomer />} />
+        <Route path='/editadmin/:id' element={<Editadmin />} />
+        <Route path='/addRider' element={<AddRider></AddRider>} />
+        <Route path='/riderList' element={<RiderData></RiderData>} />
+        <Route path='/riderList' element={<RiderList></RiderList>} />
+
+
+      </Routes>
+
+       
+     
+      <Routes>
+        <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
+        <Route path='/riderView/:id' element={<RiderView></RiderView>} />
+        <Route path='/customerLogin' element={<CustomerLogin />} />
+        <Route path='/logout' element={<LogOut></LogOut>} />
+        
+     
+
+
+        
+
+
+
+      </Routes>
+
+
+
+
+
+    
+
+
     {/* rider start */}
-    <Router>
+
     <Routes>
     <Route  exact path='/rideHistory' element={<RiderHis/>} />
     <Route  exact path='/RiderBal' element={<RiderBal/>} />
@@ -177,10 +234,10 @@ root.render(
     <Route  exact path='/RDash' element={<Rdash/>} />
     <Route  exact path='/CheckReq' element={<CheckReq/>} />
     </Routes>
-    </Router>
+ 
     {/* rider End */}
 
-    <Router>
+
     <Routes>
         {/*------------------------ Customer ----------------- */}
 
@@ -198,7 +255,7 @@ root.render(
 
         {/*------------------------ Customer ----------------- */}
         </Routes>
-        </Router>
+  
 
 
     {/* rider start */}
@@ -213,7 +270,7 @@ root.render(
     </div>
     <div className="col-lg-10">
 		<div className="jumbotron"> */}
-        <Router>
+   
       <Routes>
 
         <Route exact path='/rideHistory' element={<RiderHis />} />
@@ -227,6 +284,7 @@ root.render(
 
 
     </Router>
+
 
 
 
@@ -261,6 +319,7 @@ root.render(
 
 
     {/* rider end */}
+
 
 
   </React.StrictMode >
