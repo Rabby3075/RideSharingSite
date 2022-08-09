@@ -1,0 +1,23 @@
+.Reg{
+    background: rgb(36,0,31);
+    background: linear-gradient(90deg, rgba(36,0,31,1) 0%, rgb(126, 109, 56) 34%, rgba(0,212,255,1) 100%);
+  }
+  .cdl
+  {
+    max-width: 600px; 
+    margin: auto; 
+    border-radius: 30px;
+  }
+  .cdn
+  {
+    max-width: 400px;
+  }
+
+  .cs{
+    width: 88%;
+    padding: 12px 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }

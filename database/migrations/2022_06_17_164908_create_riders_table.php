@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('username');
             $table->string('password');
             $table->string('image');
+            $table->string('otp')->nullable();
             $table->timestamps();
         });
     }

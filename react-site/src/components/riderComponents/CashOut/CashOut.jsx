@@ -1,12 +1,17 @@
 import React, {useState, useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import { useNavigate  } from "react-router-dom"
+import { useNavigate  } from "react-router-dom";
+import NavBar from '../NavBar/NavBar';
+import SideBar from '../SideBar/SideBar';
+import Footer from '../Footer/Footer';
 import "./CashOut.css";
 
 const CashOut = ()=>{
 
    
+    let user = JSON.parse(localStorage.getItem('user'));
+    var userid = {token: user.access_token};
 
     let[amount, setAmount] = useState("");
     const navigate  = useNavigate("");
@@ -14,7 +19,7 @@ const CashOut = ()=>{
     const [balnc, setBalnc] = useState([]);
 
     useEffect(()=>{
-        axios.get("http://127.0.0.1:8000/api/riderBalance")
+        axios.post("http://127.0.0.1:8000/api/riderBalance",userid)
         .then(resp=>{
             console.log(resp.data);
             setBalnc(resp.data);
@@ -27,18 +32,19 @@ const CashOut = ()=>{
         const submit= ()=>{
             if(amount<(balnc.balance))
             {
-            var obj = {amount: amount};
+            var obj = {amount: amount,token: user.access_token};
             axios.post("http://127.0.0.1:8000/api/CashOut",obj)
             .then(function (response) {
                 console.log(response);
                 window.location.reload();
+                alert("Transaction request is accepted. Please wait for 24 hours.!");
               })
               .catch(function (error) {
                 console.log(error);
             });
            }
         else{
-            navigate('/RiderBal');
+            alert("Doesnt have sufficient balance to cashout!");
         }
     
         }
@@ -49,6 +55,14 @@ const CashOut = ()=>{
 
 return(
 <div>
+<NavBar/>
+    <div className="container-fluid mt-5">
+	  <div className="row">
+    <div className="col-lg-2">
+    <SideBar/>
+    </div>
+    <div className="col-lg-10">
+		<div className="jumbotron">
 <br /><br /><br />
 <div className="container">
 
@@ -97,7 +111,12 @@ return(
 </article>
 </div> 
 </div> 
-<br /><br /><br /><br />    
+<br /><br /><br /><br />   
+</div>
+		</div>
+	  </div>
+    </div>
+    <Footer/> 
 </div>
     )
 }

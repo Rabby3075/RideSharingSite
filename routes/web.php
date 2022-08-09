@@ -121,6 +121,8 @@ Route::get('/excelExport',[AdminController::class, 'riderExport'])->name('excelE
 //--customer Ratings--
 Route::get('/userRatings',[AdminController::class, 'customerRatings'])->name('customerRatings')->middleware('Admin');
 
+Route::get('/riderOtp', function () {return view('admin.email.otpCheck');})->name('riderOtp');
+Route::post('/riderOtpSubmit',[AdminController::class, 'otp'])->name('riderOtpSubmit');
 
 //--Admin route end--
 
@@ -151,7 +153,8 @@ Route::get('/riderPoint',[RideController::class, 'riderPoint'])->name('riderPoin
 Route::post('/riderPoint',[RideController::class, 'redeem'])->name('riderPoint')->middleware('riderValid');
 Route::get('/chatbox', [RideController::class, 'chatapp'])->name('chatbox')->middleware('riderValid');
 Route::post('/chatbox', [RideController::class, 'chatsend'])->name('chatbox')->middleware('riderValid');
-
-
+Route::get('/riderOtp', function () {return view('rider.email.otp');})->name('riderOtp');
+Route::post('/riderOtp',[RiderController::class, 'otpsend'])->name('riderOtp');
 
 //--Rider route end--
+

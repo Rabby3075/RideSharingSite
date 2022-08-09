@@ -338,6 +338,42 @@ class CustomerController extends Controller
 
     }
 
+    public function OtpApi(Request $request){
+        $token = Token::where('token',$request->token)->first();
+        $user = Customer::where('id',$token->userid)->first();
+        if($user->otp === $request->otp){
+            $user->status = "1";
+            $user->otp = "";
+            $user->save();
+            return response()->json([
+                'message'=>'Login Successfully'
+            ]);
+        }
+        else{
+            return response()->json([
+                'message'=>'Wrong code'
+            ]);
+        }
+
+    }
+    public function  logoutApi(Request $request){
+
+        $token = Token::where('token',$request->token)->first();
+
+        if($token){
+            $token->expire_at = new DateTime();
+            $token->save();
+            return "Logout";
+        }
+
+    }
+    public function CustomerInfoApi(Request $request){
+
+        $token = Token::where('token',$request->token)->first();
+
+        return  Customer::where('id', $token->userid)->first();
+    }
+
 
 
     public function customerProfile(){

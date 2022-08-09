@@ -17,10 +17,10 @@ const CustomerNavbar = () =>{
 <div className="collapse navbar-collapse" id="collapsibleNavbar">
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
         <li className="nav-item me-4">
-          <a className="nav-link" href=""><i className="fa-solid fa-house-chimney me-1"></i>Home</a>
+          <a className="nav-link" href="/customer/home"><i className="fa-solid fa-house-chimney me-1"></i>Home</a>
         </li>
         <li className="nav-item me-4">
-          <a className="nav-link" href=""><i className="fa-solid fa-car-on me-1"></i>Request for a ride</a>
+          <a className="nav-link" href="/customer/riderequest"><i className="fa-solid fa-car-on me-1"></i>Request for a ride</a>
         </li>
         <li className="nav-item me-4">
           <a className="nav-link" href=""><i className="bi bi-clipboard2-data-fill me-1"></i>Ride History</a>
@@ -36,7 +36,7 @@ const CustomerNavbar = () =>{
          </li>
          <li>
           <a className="dropdown-item" href="/customer/discount"><i className="bi bi-cash-stack me-2"></i>Discount Details</a>
-          
+
          </li>
          <div className="dropdown-divider"></div>
          <li className="logout">
