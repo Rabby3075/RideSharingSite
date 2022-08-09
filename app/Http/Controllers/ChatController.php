@@ -102,6 +102,25 @@ class ChatController extends Controller
 
     }
 
+    public function chatUserApi(Request $request){
+
+
+        $ride = Ride::where('id', $request->id)->first();
+        $rider = Rider::where('id',$ride->riderId)->first();
+
+        $cus = Customer::where('id',$ride->customerId)->first();
+
+        $chats = Chat::where('customerId',$cus->id)->where('riderId',$ride->riderId)->get();
+
+
+        return response()->json([
+            'rider'=>$rider,
+            'customer'=>$cus,
+            'chats'=>$chats
+        ]);
+
+    }
+
     public function userChatSend(Request $request){
         $rs = "Approve";
         $ridez = Ride::where('customerId',session()->get('id'))->where('customerStatus',$rs)->where('riderStatus',$rs)->first();

@@ -9,9 +9,9 @@ const Otp = () =>{
     let[otp, setOtp] = useState("");
 
     const navigate  = useNavigate("");
-
+    let user = JSON.parse(localStorage.getItem('user'));
     const CustomerOtpSubmit = () =>{
-        let user = JSON.parse(localStorage.getItem('user'));
+
         var obj = {otp: otp,token: user.access_token};
         console.log(obj);
        axios.post("http://127.0.0.1:8000/api/customerOtp",obj)
@@ -31,6 +31,21 @@ const Otp = () =>{
         });
 
     }
+    const logout = () =>{
+        var obj = {token: user.access_token};
+        axios.post("http://127.0.0.1:8000/api/customer/logout",obj)
+        .then(resp=>{
+            var data = resp.data;
+            console.log(data);
+            if(data === "Logout"){
+                localStorage.clear();
+                navigate('/customerLogin')
+            }
+            //navigate('/RLogin');
+        }).catch(err=>{
+            console.log(err);
+        });
+    }
 
     return(
 
@@ -40,7 +55,7 @@ const Otp = () =>{
                 <div className='rounded d-flex justify-content-center mt-10'>
                     <div className='col-md-4 col-sm-12 shadow-lg bg-light'>
                         <div className='text-center'>
-                            <h3 className='text-primary '>Login</h3>
+                            <h3 className='text-primary '>OTP</h3>
                         </div>
                         <form className='form-group p-4 '>
 
@@ -69,9 +84,9 @@ const Otp = () =>{
 
                                 <h1 id='msg' class='text-danger'></h1>
 
-                                <p className="text-center mt-3">Do not have any account?
-                                    <span className="text-primary"><Link to='/customerRegistration'>Sign up</Link></span>
-                                </p>
+                                <div className="d-grid col-12 mx-auto p-4">
+                                    <button type='submit' className="btn btn-danger" onClick={logout}>Logout</button>
+                                </div>
 
 
 

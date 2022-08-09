@@ -26,7 +26,7 @@ const RLogin = () => {
                 navigate('/RLogin');
 				alert("No User Found!");
             }else{
-				
+
                 navigate('/RDash');
             }
         }).catch(err=>{

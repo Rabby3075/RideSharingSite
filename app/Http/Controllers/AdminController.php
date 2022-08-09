@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Mail\riderRegConfirmation;
 
 use App\Models\Admin;
 use App\Models\Customer;
@@ -793,6 +794,15 @@ public function RiderViewAPI($id){
 
 
 public function RiderAPIPost(Request $req){
+
+    $emailCheck = Rider::where('email',$req->email)->first();
+    if($emailCheck){
+        return response()->json([
+            'message'=>'Email already exist'
+        ]);
+    }
+    else{
+
     $rider = new Rider();
     $rider->id= $req->id;
     $rider->name= $req->name;
@@ -810,9 +820,30 @@ public function RiderAPIPost(Request $req){
     $rider->username = $req->username;
     $rider->password= md5($req->password);
     $rider->image= 'index.jpg';
+    $code = rand(1000,9000);
+    $details = [
+        'title' => 'Registration Confirmation',
+        'code' => $code
+    ];
+    $rider->otp = $code;
 
+    Mail::to($req->email)->send(new riderRegConfirmation($details));
+$result = $rider->save();
+
+if($result){
+
+   
+    return response()->json([
+        'message'=>'Registration Successful. An otp send in your Email.'
+    ]);
+}
+else{
+    return response()->json([
+        'message'=>'Registration Failed'
+    ]);
+}
     //$rider->image= $req->file('file')->store('AddRider_image');
-    $rider->save();
+  
 // if($req->hasfile('image'))
 //             {
 //                 $file = $request->file('image');
@@ -825,11 +856,27 @@ public function RiderAPIPost(Request $req){
 //             $action = $rider->save();
 
            
+}
+}
 
- 
-    return $req;
+
+public function otp(Request $request){
+    $validate = $request->validate([
+        'otp'=>'required',
+
+    ]
+);
 
 
+if($user->otp === $request->otp){
+    $user->status = "1";
+    $user->otp = "";
+    $user->save();
+    return  redirect()->route('addRider');
+}
+else{
+    return redirect()->back()->with('failed', 'Wrong OTP');
+}
 
 }
 
@@ -880,11 +927,34 @@ public function RiderUpdateAPI(Request $req){
 public function RiderSearchAPI($key){
 
     return Rider::where('name','Like',"%$key%")->get();
-   
+   //return $key;
          
 }
 
+public function  adminLogoutAPI(Request $request){
 
+    // $token = Token::where('token',$request->token)->first();
+
+    // if($token){
+    //     $token->expire_at = new DateTime();
+    //     $token->save();
+    //     return "Logout";
+    // }
+
+
+// $token =$request->user()->token();
+// $token->revoke();
+// $response=["message"=>"you have successfully logout"];
+// return response($response,200);
+
+
+
+auth()->user()->tokens()->delete();
+return response()->json([
+    'status'=>200,
+    'message'=>'Logout successfully',
+]);
+}
 
 
 
@@ -920,6 +990,12 @@ public function RiderSearchAPI($key){
         return "No user found";
 
     }
+
+           public function adminView(){
+        $admin = Admin::all();
+        return $admin;
+    }
+
 
 
        public function customerView(){
@@ -986,8 +1062,12 @@ public function RiderSearchAPI($key){
         return $riders;
     }
 
-                public function Customerinfo($id){
+            public function Customerinfo($id){
                 return customer::find($id);
+            }
+
+            public function Admininfo($id){
+                return admin::find($id);
             }
 
             public function CustomerEdit(Request $request){
@@ -1004,6 +1084,18 @@ public function RiderSearchAPI($key){
 
             }
 
+            public function AdminEdit(Request $request){
+                 $admin = Admin::where('id', $request->id)->first();
+                
+                    $admin->email = $request->email;
+                    $admin->name = $request->name;
+                    $admin->phone = $request->phone;
+                    $admin->dob = $request->dob;
+                    $admin->save();
+                    return $admin;
+
+            }
+
             public function CustomerDeleteAPI(Request $request){
    
  
@@ -1012,7 +1104,44 @@ public function RiderSearchAPI($key){
               return $request;
     }
 
+                public function StatusDeleteAPI(Request $request){
+   
+ 
+            $rider = Rider::where('id', $request->id)->first();
+             $rider->delete();
+             echo"delete";
+              return $request;
+    }
 
+        public function riderApprove(Request $request){
+    $riders = Rider::where('id', $request->id)->first();
+    $riders->status = "Approved";
+    $riders->save();
+    // return redirect()->route('riderStatus')->with('riders', $riders); 
+    }
+
+
+
+    public function adminInfoApi(Request $request){
+
+    $token = Token::where('token',$request->token)->first();
+
+    return  Admin::where('id', $token->userid)->first();
+}
+
+
+        public function adminInfoUpApi(Request $request){
+
+         $token = Token::where('token',$request->token)->first();
+         $user = Admin::where('id', $token->userid)->first();
+
+                    $admin->email = $request->email;
+                    $admin->name = $request->name;
+                    $admin->phone = $request->phone;
+                    $admin->dob = $request->dob;
+                    $admin->save();
+                    return $request;
+         }
 
 
     

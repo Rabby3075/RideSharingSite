@@ -516,103 +516,152 @@ class RideController extends Controller
         if($pickLocation){
 
             if($dropLocation){
-                $rideValid = Ride::
-                where(function ($query) {
-                    $query->where('customerId',session()->get('id'));
-                })
-                ->Where(function($q) {
-                    $q->orWhere('customerStatus', 'Waiting for rider...');
-                    $q->orWhere('customerStatus', 'Approve');
-                    $q->orWhere('customerStatus', 'ongoing');
-                    })
-                ->first();
 
-                if($rideValid){
-                    //return redirect()->back()->with('failed', 'You have already requested for a ride. Please Cancel it for new request or if ride on going after this ride you can request for new ride');
-                      //return $rideValid;
-                      return response()->json([
-                        'error'=>'You have already requested for a ride. Please Cancel it for new request or if ride on going after this ride you can request for new ride'
-                    ]);
-                    }
-                    else{
+                $token = Token::where('token', $request->token)->first();
+                $customer = Customer::where('id', $token->userid)->first();
+
+                if($customer->status === "1"){
+
+                    $rideControl = Ride::where('customerId',$customer->id)
+                    ->Where(function($q) {
+                        $q->orWhere('customerStatus', 'Waiting for rider...');
+                        $q->orWhere('customerStatus', 'Approve');
+                        $q->orWhere('customerStatus', 'ongoing');
+                        })
+                        ->first();
+                    if(!$rideControl){
                         $lat1 = $pickLocation->latitude;
                         $long1 = $pickLocation->longitude;
 
-                      $lat2 = $dropLocation->latitude;
-                      $long2 = $dropLocation->longitude;
-                      $distance = $this->getDistance($lat1, $long1, $lat2, $long2);
-                      $status = "Waiting for rider...";
+                         $lat2 = $dropLocation->latitude;
+                         $long2 = $dropLocation->longitude;
 
-                    // $getDiscountAmount = Customer::where('id', session()->get('id'))->first();
-                    $token = Token::where('token',$request->token)->first();
-                    $getDiscountAmount = Customer::where('id', $token->userid)->first();
-                    $discountAmount = $getDiscountAmount->discount;
-
-                    $baseBill = 50;
-                    $perKiloBill = 10;
-                     if(($baseBill + ($perKiloBill * $distance) - $discountAmount)<0){
-                      $bill = 0;
-                      $getDiscountAmount->discount = -($baseBill + ($perKiloBill * $distance) - $discountAmount);
-                      $getDiscountAmount->save();
-                     }
-                     else{
-                      $bill = $baseBill + ($perKiloBill * $distance) - $discountAmount;
-                      $getDiscountAmount->discount = 0;
-                      $getDiscountAmount->save();
-                     }
-
-                    //date_default_timezone_set('Asia/Dhaka');
-                     // $date = date('d-m-y h:i:s');
-                     date_default_timezone_set('Asia/Dhaka');
-                     $time =  date('d F Y, h:i:s A');
-                    $ride = new Ride();
-                     $ride->customerName = $getDiscountAmount->name;
-                     $ride->customerId = $getDiscountAmount->id;
-                     $ride->customerPhone = $getDiscountAmount->phone;
-                     $ride->pickupPoint = $request->pickLocation;
-                     $ride->destination = $request->dropLocation;
-                     $ride->length = $distance;
-                     $ride->cost = $bill;
-                     $ride->customerStatus = $status;
-                     $ride->rideRequestTime = $time;
-                     $result = $ride->save();
-                     if($result){
-
-                        // session()->put('rating',$total_rating);
-
+                        $distance = $this->getDistance($lat1, $long1, $lat2, $long2);
+                        $status = "Waiting for rider...";
+                        $discountAmount = $customer->discount;
+                        $baseBill = 70;
+                        $perKiloBill = 10;
+                        $bill = $baseBill + ($perKiloBill * $distance) - $discountAmount;
+                        date_default_timezone_set('Asia/Dhaka');
+                        $time =  date('d F Y, h:i:s A');
+                        $ride = new Ride();
+                        $ride->customerName = $customer->name;
+                        $ride->customerId = $customer->id;
+                        $ride->customerPhone = $customer->phone;
+                        $ride->pickupPoint = $request->pickLocation;
+                        $ride->destination = $request->dropLocation;
+                        $ride->length = $distance;
+                        $ride->cost = $bill;
+                        $ride->customerStatus = $status;
+                        $ride->rideRequestTime = $time;
+                        $result = $ride->save();
+                        if($result){
                          $success = "Congratulations your ride request confirm successfully. You will 10 rating points after the ride complete";
-
-                        /* return redirect()->back()->with('success', $success)
-                         ->with('destination',$distance.'kilo')
-                         ->with('price','Bill: '.$bill.'Tk');*/
                          return response()->json([
                             'statusId'=>200,
-                            'success'=> $success,
-                            'destination'=> $distance,
-                            'price'=>$bill,
+                            'success'=>$success,
+                            'bill'=>$bill,
+                            'distance'=>$distance,
                         ]);
+
+                        }
+                        else{
+                            return response()->json([
+                                'error'=>'Sorry..!Failed to take your ride request',
+                            ]);
                         }
 
-
+                    }
+                    else{
+                        return response()->json([
+                            'error'=>'Please complete a ride before request for a new ride'
+                        ]);
                     }
 
+                }
+                else{
+                    return response()->json([
+                        'error'=>'Please valid your email for a ride request'
+                    ]);
+                }
 
             }
             else{
-               // return redirect()->back()->with('failed', 'Drop Location is not correct.Please check correct location from your suggestion box');
-               return response()->json([
-                'error'=> 'Drop Location is not correct.Please check correct location from your suggestion box',
+                return response()->json([
+                    'error'=>'Please select your drop location from our suggestion box'
+                ]);
 
-            ]);
             }
 
         }
         else{
-           // return redirect()->back()->with('failed', 'Pickup location is not correct.Please check correct location from your suggestion box');
-          }return response()->json([
-            'error'=> 'Pickup location is not correct.Please check correct location from your suggestion box',
+            return response()->json([
+                'error'=>'Please select your pickup location from our suggestion box'
+            ]);
+        }
+    }
 
-        ]);
+    public function RideStatus(Request $request){
+        $token = Token::where('token', $request->token)->first();
+        $customer = Customer::where('id', $token->userid)->first();
+        $rideControl = Ride::where('customerId',$customer->id)
+        ->Where(function($q) {
+            $q->orWhere('customerStatus', 'Waiting for rider...');
+            $q->orWhere('customerStatus', 'Approve');
+            $q->orWhere('customerStatus', 'ongoing');
+            })
+            ->first();
+            if($rideControl){
+                return response()->json([
+                    'error'=>404
+                ]);
+            }
+            else{
+                return response()->json([
+                    'success'=>200
+                ]);
+            }
+    }
+
+    public function RideHistory(Request $request){
+        $token = Token::where('token', $request->token)->first();
+        $customer = Customer::where('id',$token->userid)->first();
+        $rideList = Ride::where('customerId',$customer->id)->get();
+        return $rideList;
+
+
+
+    }
+    public function rideCancelApi(Request $request){
+
+        $rideCancel = Ride::where('id',$request->rideid)->first();
+
+        date_default_timezone_set('Asia/Dhaka');
+       $time =  date('d F Y, h:i:s A');
+
+        $rideCancel->customerStatus = "Cancel";
+        $rideCancel->cancelTime = $time;
+        $rideCancel->riderId=null;
+        $rideCancel->riderName=null;
+        $rideCancel->riderPhone=null;
+        $rideCancel->riderStatus=null;
+        $rideCancel->riderApprovalTime=null;
+        $result = $rideCancel->save();
+        if($result){
+
+            //return redirect()->back()->with('success', 'Ride Cancel');
+            return response()->json([
+                'status'=>1,
+                'message'=>'Ride Cancel'
+            ]);
+        }
+        else{
+            return response()->json([
+                'status'=>0,
+                'message'=>'Ride Cancelation failed'
+            ]);
+        }
+
     }
 
 

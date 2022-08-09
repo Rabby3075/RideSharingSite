@@ -44,12 +44,15 @@ const Sidebar = () => {
                         </li>
                     </Link>
                     <p className="title">View</p>
-                    
-                    <li>
-                        
-                        <VisibilityIcon className="icon" />
-                        <span>Admin</span>
-                    </li>
+
+                    <Link to="/adminview" style={{ textDecoration: "none" }}>
+
+                        <li>
+
+                            <VisibilityIcon className="icon" />
+                            <span>Admin</span>
+                        </li>
+                    </Link>
                     <Link to="/riderList" style={{ textDecoration: "none" }}>
 
                         <li>
@@ -59,18 +62,22 @@ const Sidebar = () => {
                         </li>
                     </Link>
                     <Link to="/customerview" style={{ textDecoration: "none" }}>
-                    <li>
-                        <VisibilityIcon className="icon" />
-                        <span>Customer</span>
-                    </li>
+                        <li>
+                            <VisibilityIcon className="icon" />
+                            <span>Customer</span>
+                        </li>
                     </Link>
                     <Link to="/riderstatus" style={{ textDecoration: "none" }}>
-                    <p className="title">Status</p>
-                    <li><span>Pending rider</span></li>
+                        <p className="title">Status</p>
+                        <li><span>Pending rider</span></li>
                     </Link>
                     <Link to="/ridecomplete" style={{ textDecoration: "none" }}>
-                    <p className="title">Ride</p>
-                    <li><span>Ride complete</span></li>
+                        <p className="title">Ride</p>
+                        <li><span>Ride complete</span></li>
+                    </Link>
+                    <Link to="/riderHistoty" style={{ textDecoration: "none" }}>
+                        <p className="title">Statistics</p>
+                        <li><span>Rider Histoty</span></li>
                     </Link>
                 </ul>
 

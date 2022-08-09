@@ -26,7 +26,7 @@ return new class extends Migration
             $table->Integer('rating');
             $table->double('discount');
             $table->string('otp')->nullable();
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

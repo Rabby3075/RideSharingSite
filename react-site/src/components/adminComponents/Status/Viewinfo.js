@@ -9,6 +9,7 @@ import { useNavigate  } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import"./viewinfo.scss"
 import { Button } from 'react-bootstrap'
+import { Link } from "react-router-dom";
 
 const Viewinfo= (props) => {
 
@@ -21,6 +22,11 @@ const Viewinfo= (props) => {
 
       const deleteRider = (id) => {
         axios.delete(`http://127.0.0.1:8000/api/riderList/${id}`);
+    
+        navigate('/riderstatus');
+    };
+    const approveRider = (id) => {
+        axios.post(`http://127.0.0.1:8000/api/riderapprove/${id}`);
     
         navigate('/riderstatus');
     };
@@ -68,7 +74,8 @@ const Viewinfo= (props) => {
                         <p>Username: {riders.username}</p>
                         <p>Picture: {riders.image}</p>
                         <div>
-                        <button>Accept</button>
+                        < Button color='success' onClick={() => approveRider(id)}>Accept</Button>
+                        {/* <Link class="btn btn-danger" to={`http://127.0.0.1:8000/api/riderstatusdelete/${id}`}>View</Link> */}
                         < Button color='danger' onClick={() => deleteRider(id)}>Delete</Button>
                         </div>
                         

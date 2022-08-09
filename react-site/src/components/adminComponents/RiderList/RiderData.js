@@ -1,27 +1,26 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import './RiderData.css';
 
 const RiderData = () => {
+      const navigate = useNavigate();
+      const [currentPage, setCurrentPage] = useState(1);
+      const [postsPerPage, setPostsPerPage] = useState(8);
+
 
       // const { id, name, email, dob, phone, image } = props.riders;
       const [riders, setRiders] = useState([]);
-      useEffect(() => {
-            loadRider();
-      }, [])
+
 
 
       const deleteRider = (id) => {
             axios.delete(`http://127.0.0.1:8000/api/riderList/${id}`);
-
-            loadRider();
+            navigate('/admindashboard');
+            // loadRider();
       };
-      const loadRider = async () => {
-            const result = await axios.get("http://127.0.0.1:8000/api/riderList");
-            result = await result.json();
-            setRiders(result);
-      }
+
 
       useEffect(() => {
             axios.get("http://127.0.0.1:8000/api/riderList")

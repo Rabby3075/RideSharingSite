@@ -16,7 +16,7 @@ const Home = () =>{
             </div>
             <div class="carousel-inner">
                     <div class="carousel-item active">
-                    <img src="http://unb.com.bd/filemanager/photos/64/uber.jpg" class="d-block w-100" alt="1st pic" height="480"/>
+                    <img src="https://static.lightoj.com/images/problem-1446/ride-share-1613819543101.jpg?style=smallme,haveborder,rightme" class="d-block w-100" alt="1st pic" height="480"/>
                     </div>
                     <div class="carousel-item">
                     <img src="https://static.lightoj.com/images/problem-1446/ride-share-1613819543101.jpg?style=smallme,haveborder,rightme" class="d-block w-100" alt="2nd pic" height="480"/>
