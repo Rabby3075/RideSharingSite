@@ -29,11 +29,13 @@ const RReg = ()=>{
         {
         e.preventDefault();
         var obj = {fname: fname,gender: gender,dob: dob,peraddress: peraddress,preaddress: preaddress,phone: phone,email: email,nid: nid,dlic: dlic,username: username,password: password,image: image};
-        console.log(obj);
         axios.post("http://127.0.0.1:8000/api/RegApi",obj)
         .then(function (response) {
+            var token = response.data;
             console.log(response);
-            navigate('/RLogin');
+            var user = {userId: token.userid, access_token:token.token};
+            localStorage.setItem('user',JSON.stringify(user));
+            navigate('/Rotp');
             alert("Registration Successfully Done!");
           })
           .catch(function (error) {

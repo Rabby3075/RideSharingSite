@@ -14,7 +14,7 @@ const  NavBar = ()=>{
 
         const logout = () =>{
         var obj = {token: user.access_token};
-        axios.post("http://127.0.0.1:8000/api/LogoutApi",obj)
+        axios.post("http://127.0.0.1:8000/api/RLogoutApi",obj)
         .then(resp=>{
             var data = resp.data;
             console.log(data);

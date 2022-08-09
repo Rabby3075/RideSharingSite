@@ -124,12 +124,12 @@ class RiderController extends Controller
     }
 
     public function riderLoginSubmit(Request $request){
-        $validate = $request->validate([
-            'username'=>'required|min:5|max:15',
-            'password'=>'required|min:8|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{5,20}$/'
-        ],
-        ['password.regex'=>"Please use atleast 1 uppercase, 1 lowercase, 1 special charactee, 1 number"]
-    );
+    //     $validate = $request->validate([
+    //         'username'=>'required|min:5|max:15',
+    //         'password'=>'required|min:8|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{5,20}$/'
+    //     ],
+    //     ['password.regex'=>"Please use atleast 1 uppercase, 1 lowercase, 1 special charactee, 1 number"]
+    // );
     $loginCheck = Rider::where('username',$request->username)->where('password',md5($request->password))->first();
 
     if($loginCheck){
@@ -446,6 +446,215 @@ public function riderInfoUpApi(Request $request){
     $req = "Waiting for rider...";
     $chk = null;
     return Ride::where('riderId',$chk)->where('customerStatus',$req)->where('riderStatus',$chk)->get();
+
+}
+
+public function ongoingReq(Request $request){
+
+    $token = Token::where('token',$request->token)->first();
+    $on = "ongoing";
+    $re = 1;
+    $user = Ride::where('riderId',$token->userid)->where('customerStatus',$on)->where('riderStatus',$on)->first();
+    if($user){
+        return $re;
+    }
+
+}
+public function approveReq(Request $request){
+
+    $token = Token::where('token',$request->token)->first();
+    $rs = "Approve";
+    $re = 1;
+    $user = Ride::where('riderId',$token->userid)->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+    if($user){
+        return $re;
+    }
+
+}
+
+public function reqApi(Request $request){
+
+
+    
+    $token = Token::where('token',$request->token)->first();
+    $user = Rider::where('id', $token->userid)->first();
+    date_default_timezone_set('Asia/Dhaka');
+    $time =  date('d F Y, h:i:s A');
+    $rs = "Approve";
+    $ride = Ride::where('id', $request->rid)->first();
+
+    $ride->riderId = $user->id;
+    $ride->riderName = $user->name;
+    $ride->riderPhone = $user->phone;
+    $ride->customerStatus = $rs;
+    $ride->riderStatus = $rs;
+    $ride->riderApprovalTime= $time;
+    $ride->save();
+    return  $ride;
+}
+
+
+
+public function rideProgApi(Request $request){
+
+    $token = Token::where('token',$request->token)->first();
+    $rs = "Approve";
+    $on = "ongoing";
+    $user = Ride::where('riderId',$token->userid)->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+    $useron = Ride::where('riderId',$token->userid)->where('customerStatus',$on)->where('riderStatus',$on)->first();
+    if($user){
+        return  Ride::where('riderId',$token->userid)->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+    }
+    elseif($useron)
+    {
+        return Ride::where('riderId',$token->userid)->where('customerStatus',$on)->where('riderStatus',$on)->first();
+    }
+    
+    
+
+}
+public function rideButtonApi(Request $request){
+
+    $token = Token::where('token',$request->token)->first();
+    $rs = "Approve";
+    $on = "ongoing";
+    $re =1;
+    $user = Ride::where('riderId',$token->userid)->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+    $useron = Ride::where('riderId',$token->userid)->where('customerStatus',$on)->where('riderStatus',$on)->first();
+    if($user || $useron){
+        return $re;
+    }
+
+}
+
+public function riderCombutton(Request $request){
+
+    $token = Token::where('token',$request->token)->first();
+    $on = "ongoing";
+    $re =1;
+    $useron = Ride::where('riderId',$token->userid)->where('customerStatus',$on)->where('riderStatus',$on)->first();
+    if($useron){
+        return $re;
+    }
+
+}
+
+
+public function startApi(Request $request){
+
+
+    date_default_timezone_set('Asia/Dhaka');
+    $time =  date('d F Y, h:i:s A');
+    $rs = "Approve";
+    $on = "ongoing";
+    $token = Token::where('token',$request->token)->first();
+    $ridez = Ride::where('riderId',$token->userid)->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+    $ridez->riderStartingTie= $time;
+    $ridez->riderStatus= $on;
+    $ridez->customerStatus= $on;
+    $result = $ridez->save();
+    return $result;
+
+}
+
+public function cancelApi(Request $request){
+
+    date_default_timezone_set('Asia/Dhaka');
+    $time =  date('d F Y, h:i:s A');
+    $cn = "Cancel";
+    $token = Token::where('token',$request->token)->first();
+    $ridez = Ride::where('riderId',$token->userid)->where('customerStatus',$rs)->where('riderStatus',$rs)->first();
+    $ridez->cancelTime= $time;
+    $ridez->riderStatus= $cn;
+    $ridez->customerStatus= $cn;
+    $result = $ridez->save();
+    return $result;
+}
+
+public function completeApi(Request $request){
+
+    date_default_timezone_set('Asia/Dhaka');
+    $time =  date('d F Y, h:i:s A');
+    $rs = "ongoing";
+    $rs = "Ride complete";
+    $token = Token::where('token',$request->token)->first();
+    $ridez = Ride::where('riderId',$token->userid)->where('customerStatus',$on)->where('riderStatus',$on)->first();
+
+    $ridez->reachedTime= $time;
+    $ridez->riderStatus= $rs;
+    $ridez->customerStatus= $rs;
+    $ridez->save();
+   
+    $rider = Rider::where('id',$token->userid)->first();
+    $rider->balance= $rider->balance +  $ridez->cost;
+    $rider->rpoint= $rider->rpoint + 3;
+    $rider->save();
+    $result = "done";
+    return $result;
+
+
+}
+
+public function riderRegistrationApi(Request $request){
+
+    // $api_token = Str::random(64);
+    // $token = new Token();
+    // $token->userid = $user->id;
+    // $token->token = $api_token;
+    // $token->created_at = new DateTime();
+    // $token->save();
+
+    $status = "pending";
+    $balance = 0;
+    $rpoint = 0;
+    $code = rand(1000,9000);
+    $userCheck = Rider::where('username',$request->username)->first();
+    if(!$userCheck){
+        $rider = new Rider();
+        $rider->name = $request->fname;
+        $rider->gender = $request->gender;
+        $rider->dob = $request->dob;
+        $rider->peraddress = $request->peraddress;
+        $rider->preaddress = $request->preaddress;
+        $rider->phone = $request->digit.$request->phone;
+        $rider->email = $request->email;
+        $rider->nid = $request->nid;
+        $rider->dlic = $request->dlic;
+        $rider->status = $status;
+        $rider->rpoint = $rpoint;
+        $rider->balance = $balance;
+        $rider->username = $request->username;
+        $rider->password = md5($request->password);
+        $rider->image = $request->image;
+        $details = [
+                'title' => 'Registration Confirmation',
+                'code' => $code
+        ];
+        $rider->otp = $code;
+        Mail::to($request->email)->send(new RiderRegMail($details));
+        $result = $rider->save();
+
+    }
+    }
+    
+
+
+
+public function OtpApi(Request $request){
+    $token = Token::where('token',$request->token)->first();
+    $user = Rider::where('id',$token->userid)->first();
+    if($user->otp === $request->otp){
+        $user->otp = "";
+        $user->save();
+        return response()->json([
+            'message'=>'Login Successfully'
+        ]);
+    }
+    else{
+        return response()->json([
+            'message'=>'Wrong code'
+        ]);
+    }
 
 }
 

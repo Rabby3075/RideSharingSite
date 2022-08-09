@@ -30,25 +30,18 @@ import RiderHis from './components/riderComponents/RiderHis/RiderHis';
 import RiderBal from './components/riderComponents/RiderBal/RiderBal';
 import Redeem from './components/riderComponents/Redeem/Redeem';
 import CashOut from './components/riderComponents/CashOut/CashOut';
-<<<<<<< HEAD
 import Rdash from './components/riderComponents/dashboard/Rdash';
-=======
-
->>>>>>> 202fa7169aa112a9c7344d624c49d7ea22897d7b
 import RLogin from './components/riderComponents/RLogin/RLogin';
 import RReg from './components/riderComponents/RReg/RReg';
+import Rotp from './components/riderComponents/Rotp/Rotp';
 import ProfEdit from './components/riderComponents/ProfEdit/ProfEdit';
 import CheckReq from './components/riderComponents/CheckReq/CheckReq';
-
+import RideProg from './components/riderComponents/RideProg/RideProg';
 //end
 
 import NavBar from './components/riderComponents/NavBar/NavBar';
 import SideBar from './components/riderComponents/SideBar/SideBar';
 import Footer from './components/riderComponents/Footer/Footer';
-<<<<<<< HEAD
-=======
-
->>>>>>> 202fa7169aa112a9c7344d624c49d7ea22897d7b
 
 import Addadmin from './components/adminComponents/Addadmin/Addadmin';
 import Dropdownlist from './components/adminComponents/Dropdownlist/Dropdownlist';
@@ -76,13 +69,6 @@ import Viewinfo from './components/adminComponents/Status/Viewinfo';
 import RiderData from './components/adminComponents/RiderList/RiderData';
 
 
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> 202fa7169aa112a9c7344d624c49d7ea22897d7b
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -90,17 +76,8 @@ root.render(
    
    {/* Admin start */}
     <Router>
-<<<<<<< HEAD
-=======
-
-    {/* <Dashboard/> */}
-    {/* <Login/> */}
-    <Routes>
->>>>>>> 202fa7169aa112a9c7344d624c49d7ea22897d7b
 
     <Routes>
-    <Route path='/customerRegistration' element={<CustomerRegistration/>} />
-    <Route   path='/adminlogin' element={<Login/>} />
     <Route path='/admindashboard' element={<Dashboard/>} />
     <Route path='/addcustomer' element={<Addcustomer/>} />
     <Route path='/addadmin' element={<Addadmin/>}/>
@@ -109,54 +86,11 @@ root.render(
     <Route path='/customerviewprops' element={<Customerviewprops/>}/>
     <Route path='/formview/:id' element={<Formview/>}/>
     <Route path='/adminlogin' element={<Login />} />
-<<<<<<< HEAD
-=======
-    <Route path='/addRider' element={<AddRider></AddRider>} />
-    <Route path='/riderList' element={<RiderList></RiderList>} />
-    <Route path='/customerLogin' element={<CustomerLogin />} />
 
-    </Routes>
-    </Router>
-
-    {/* rider start */}
-    <Router>
-    <Routes>
-
-    <Route  exact path='/rideHistory' element={<RiderHis/>} />
-    <Route  exact path='/RiderBal' element={<RiderBal/>} />
-    <Route  exact path='/Redeem' element={<Redeem/>} />
-    <Route  exact path='/CashOut' element={<CashOut/>} />
-    <Route  exact path='/RLogin' element={<RLogin/>} />
-    <Route  exact path='/RReg' element={<RReg/>} />
-    <Route  exact path='/RProfile' element={<ProfEdit/>} />
-
-
-    </Routes>
-    </Router>
-
-
-
-
-    {/* <Dashboard/> */}
-    {/* <Login/> */}
-     <Router>
-    <Routes>
-
-
-    <Route   path='/customerRegistration' element={<CustomerRegistration/>} />
-    <Route   path='/adminlogin' element={<Login/>} />
-    <Route   path='/admindashboard' element={<Dashboard/>} />
-    <Route   path='/addcustomer' element={<Addcustomer/>} />
-    <Route path='/addadmin' element={<Addadmin/>}/>
-    <Route path='/dropdown' element={<Dropdownlist/>}/>
-    <Route path='/customerview' element={<Customerview/>}/>
->>>>>>> 202fa7169aa112a9c7344d624c49d7ea22897d7b
     <Route path='/customerdelete' element={<Customerview/>}/>
     {/* <Route path='/customerviewprops' element={<Customerviewprops/>}/> */}
     <Route path='/customerinfo/:id' element={<Customerinfo/>}/>
     <Route path='/riderstatus' element={<Viewrider/>}/>
-    <Route path='/ridecomplete' element={<RideComplete/>}/>
-    <Route path='/editcustomer/:id' element={<Editcustomer/>}/>
     <Route path='/riderviewinfo/:id' element={<Viewinfo/>}/>
 
     <Route path='/editcustomer/:id' element={<Editcustomer />} />
@@ -165,11 +99,7 @@ root.render(
     <Route path='/riderList' element={<RiderList></RiderList>} />
   
     <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
-    <Route path='/riderView/:id' element={<RiderView></RiderView>} />
-    <Route path='/customerLogin' element={<CustomerLogin />} />
-    <Route path='/logout' element={<LogOut></LogOut>} />
     <Route path='/ridecomplete' element={<RideComplete />} />
-    <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
     <Route path='/riderView/:id' element={<RiderView></RiderView>} />
     <Route path='/logout' element={<LogOut></LogOut>} />
     </Routes>
@@ -186,9 +116,11 @@ root.render(
     <Route  exact path='/CashOut' element={<CashOut/>} />
     <Route  exact path='/RLogin' element={<RLogin/>} />
     <Route  exact path='/RReg' element={<RReg/>} />
+    <Route  exact path='Rotp' element={<Rotp />} />
     <Route  exact path='/RProfile' element={<ProfEdit/>} />
     <Route  exact path='/RDash' element={<Rdash/>} />
     <Route  exact path='/CheckReq' element={<CheckReq/>} />
+    <Route  exact path='/RideProg' element={<RideProg/>} />
     </Routes>
     </Router>
     {/* rider End */}
@@ -207,70 +139,6 @@ root.render(
         {/*------------------------ Customer ----------------- */}
         </Routes>
         </Router>
-
-
-<<<<<<< HEAD
-=======
-    {/* rider start */}
-
-
-
-      {/* <NavBar/>
-    <div className="container-fluid mt-5">
-	  <div className="row">
-    <div className="col-lg-2">
-    <SideBar/>
-    </div>
-    <div className="col-lg-10">
-		<div className="jumbotron"> */}
-      <Routes>
-
-        <Route exact path='/rideHistory' element={<RiderHis />} />
-        <Route exact path='/RiderBal' element={<RiderBal />} />
-        <Route exact path='/Redeem' element={<Redeem />} />
-        <Route exact path='/CashOut' element={<CashOut />} />
-
-
-
-    </Routes>
-
-
-    </Router>
-
-
-
-
-      {/* </div>
-		</div>
-	  </div>
-    </div> */}
-      {/* <Footer/>
-    {/* <Router>
-      <NavBar />
-      <div className="container-fluid mt-5">
-        <div className="row">
-          <div className="col-lg-2">
-            <SideBar />
-          </div>
-          <div className="col-lg-10">
-            <div className="jumbotron">
-              <Routes>
-                <Route exact path='/rideHistory' element={<RiderHis />} />
-                <Route exact path='/RiderBal' element={<RiderBal />} />
-                <Route exact path='/Redeem' element={<Redeem />} />
-                <Route exact path='/CashOut' element={<CashOut />} />
-              </Routes>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer /> */}
-
-
-
-
-    {/* rider end */}
->>>>>>> 202fa7169aa112a9c7344d624c49d7ea22897d7b
 
   </React.StrictMode >
 );
