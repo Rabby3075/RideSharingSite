@@ -632,6 +632,37 @@ class RideController extends Controller
 
 
     }
+    public function rideCancelApi(Request $request){
+
+        $rideCancel = Ride::where('id',$request->rideid)->first();
+
+        date_default_timezone_set('Asia/Dhaka');
+       $time =  date('d F Y, h:i:s A');
+
+        $rideCancel->customerStatus = "Cancel";
+        $rideCancel->cancelTime = $time;
+        $rideCancel->riderId=null;
+        $rideCancel->riderName=null;
+        $rideCancel->riderPhone=null;
+        $rideCancel->riderStatus=null;
+        $rideCancel->riderApprovalTime=null;
+        $result = $rideCancel->save();
+        if($result){
+
+            //return redirect()->back()->with('success', 'Ride Cancel');
+            return response()->json([
+                'status'=>1,
+                'message'=>'Ride Cancel'
+            ]);
+        }
+        else{
+            return response()->json([
+                'status'=>0,
+                'message'=>'Ride Cancelation failed'
+            ]);
+        }
+
+    }
 
 
 

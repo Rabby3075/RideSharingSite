@@ -113,6 +113,8 @@ Route::post('/rideInfo',[RideController::class, 'RideStatus'])->name('RideStatus
 Route::post('/rideHistory',[RideController::class, 'RideHistory'])->name('RideHistory');
 Route::post('/customerEdit',[CustomerController::class, 'CustomerEditApi'])->name('CustomerEditApi');
 Route::post('/customerpassChange',[CustomerController::class, 'cpassApi'])->name('cpassApi');
+Route::post('/rideInformation',[RideController::class, 'getRideInformation'])->name('rideView');
+Route::post('/ride/cancel',[RideController::class, 'rideCancelApi'])->name('rideCancelApi');
 //-------------------Customer APi---------------------------
 
  Route::post('/adminlogin',[AdminController::class,'adminapilogin']);
