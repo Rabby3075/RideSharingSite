@@ -83,6 +83,8 @@ Route::get('/adminView/{id}',[AdminController::class,'Admininfo']);
  Route::get('/riderstatusdelete/{id}',[AdminController::class,'StatusDeleteApi']);
  Route::post('/riderapprove/{id}',[AdminController::class,'RiderApprove']);
  Route::get('/riderstatus',[AdminController::class,'riderStatusApi']);
+ Route::post('/AdminInfoApi',[AdminController::class, 'adminInfoApi']);
+ Route::post('/AdminInfoUpApi',[AdminController::class, 'adminInfoUpApi']);
 
 
 

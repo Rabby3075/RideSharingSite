@@ -18,6 +18,8 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 const Adminview =(props) =>  {
    const [admins, setAdmins] = useState([]);
 
+   
+
       useEffect(() => {
             axios.get("http://127.0.0.1:8000/api/adminView1")
 
