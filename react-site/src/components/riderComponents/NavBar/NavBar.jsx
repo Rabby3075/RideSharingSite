@@ -18,6 +18,7 @@ const  NavBar = ()=>{
         .then(resp=>{
             var data = resp.data;
             console.log(data);
+            localStorage.clear();
             navigate('/RLogin');
         }).catch(err=>{
             console.log(err);

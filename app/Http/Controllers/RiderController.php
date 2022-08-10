@@ -29,7 +29,7 @@ class RiderController extends Controller
               'dlic'=>'required|numeric|digits:10',
               'username'=>'required|min:5',
               'password'=>'required|min:8|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{5,20}$/',
-              
+
           ],
           ['fname.required'=>"The Full Name field is required.",
           'fname.max'=>"The Full Name field is access max 20 alphabet.",
@@ -48,21 +48,21 @@ class RiderController extends Controller
       $pass=$request->password;
       $cpass=$request->cpassword;
 
-      if ($cpass == $pass)  
+      if ($cpass == $pass)
       {
-  
+
       $userCheck = Rider::where('username',$request->username)->first();
       if($userCheck){
-  
+
           return redirect()->back()->with('failed', 'Username already exist');
       }
       else{
         $image = $request->file('image')->getClientOriginalName();
-        
-        
+
+
         //$image = $request->image;
         //$nameImage = $image->getClientOriginalName();
-  
+
         $rider = new Rider();
           $rider->name = $request->fname;
           $rider->gender = $request->gender;
@@ -97,7 +97,7 @@ class RiderController extends Controller
               return redirect()->back()->with('failed', 'Registration Failed');
           }
       }
-  
+
       }
       else{
         return redirect()->back()->with('failed', 'Confirm Password doesnt match with password');
@@ -189,7 +189,7 @@ class RiderController extends Controller
             'nid'=>'required|numeric|digits:10',
             'dlic'=>'required|numeric|digits:10',
             'image'=> 'image|mimes:jpeg,png,jpg,gif,svg'
-            
+
         ],
         ['fname.required'=>"The Full Name field is required.",
         'fname.max'=>"The Full Name field is access max 20 alphabet.",
@@ -210,7 +210,7 @@ class RiderController extends Controller
  else{
      $nameImage = $request->session()->get('image');
  }
- 
+
      $user = Rider::where('username',$request->session()->get('username'))->first();
      $user->name = $request->fname;
      $request->session()->put('name',$request->fname);
@@ -232,16 +232,16 @@ class RiderController extends Controller
      $request->session()->put('dlic',$request->dlic);
      $user->image = $image;
      $request->session()->put('image',$image);
- 
+
      $result = $user->save();
      if($result){
- 
+
         return redirect()->back()->with('success', 'Successfully Profile Updated');
     }
     else{
         return redirect()->back()->with('failed', 'Failure in Profile Updating');
      }
- 
+
      }
 
     public function riderchangePass(Request $request){
@@ -262,7 +262,7 @@ class RiderController extends Controller
     $pass=$request->npassword;
     $rpass=$request->cnpassword;
 
-    if ($rpass == $pass)  
+    if ($rpass == $pass)
     {
 
     $user = Rider::where('username',$request->session()->get('username'))->where('password',md5($request->password))->first();
@@ -291,7 +291,7 @@ class RiderController extends Controller
 
    public function cashout(Request $request){
     $validate = $request->validate([
-        'amount'=>'required|regex:/^\+?[1-9]\d*$/',  
+        'amount'=>'required|regex:/^\+?[1-9]\d*$/',
         'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:14',
     ]
    );
@@ -307,7 +307,7 @@ class RiderController extends Controller
      }
     }
    }
-   
+
 
   //Api Start
   public function rideHisApi(Request $request){
@@ -340,7 +340,7 @@ class RiderController extends Controller
         return $total;
         }
 
-        
+
     public function redeemApi(Request $request){
         $token = Token::where('token',$request->token)->first();
         $req = "Ride complete";
@@ -350,7 +350,7 @@ class RiderController extends Controller
         $result = $rider->save();
 
     }
-    
+
    public function cashoutApi(Request $request){
     $token = Token::where('token',$request->token)->first();
    $rider = Rider::where('id',$token->userid)->first();
@@ -359,31 +359,6 @@ class RiderController extends Controller
 
    }
 
-  public function regApi(Request $request){
-  $status = "pending";
-  $balance = 0;
-  $rpoint = 0;
-  $userCheck = Rider::where('username',$request->username)->first();
-  if(!$userCheck){
-      $rider = new Rider();
-      $rider->name = $request->fname;
-      $rider->gender = $request->gender;
-      $rider->dob = $request->dob;
-      $rider->peraddress = $request->peraddress;
-      $rider->preaddress = $request->preaddress;
-      $rider->phone = $request->digit.$request->phone;
-      $rider->email = $request->email;
-      $rider->nid = $request->nid;
-      $rider->dlic = $request->dlic;
-      $rider->status = $status;
-      $rider->rpoint = $rpoint;
-      $rider->balance = $balance;
-      $rider->username = $request->username;
-      $rider->password = md5($request->password);
-      $rider->image = $request->image;
-      $result = $rider->save();
-  }
-}
 public function  loginApi(Request $request){
 
     $user = Rider::where('username',$request->username)->where('password',md5($request->password))->first();
@@ -440,7 +415,7 @@ public function riderInfoUpApi(Request $request){
  $result = $user->save();
  }
 
- 
+
  public function checkReqApi(){
 
     $req = "Waiting for rider...";
@@ -475,13 +450,13 @@ public function approveReq(Request $request){
 public function reqApi(Request $request){
 
 
-    
+
     $token = Token::where('token',$request->token)->first();
     $user = Rider::where('id', $token->userid)->first();
     date_default_timezone_set('Asia/Dhaka');
     $time =  date('d F Y, h:i:s A');
     $rs = "Approve";
-    $ride = Ride::where('id', $request->rid)->first();
+    $ride = Ride::orderBy('id','DESC')->first();
 
     $ride->riderId = $user->id;
     $ride->riderName = $user->name;
@@ -509,8 +484,8 @@ public function rideProgApi(Request $request){
     {
         return Ride::where('riderId',$token->userid)->where('customerStatus',$on)->where('riderStatus',$on)->first();
     }
-    
-    
+
+
 
 }
 public function rideButtonApi(Request $request){
@@ -584,9 +559,9 @@ public function completeApi(Request $request){
     $ridez->riderStatus= $rs;
     $ridez->customerStatus= $rs;
     $ridez->save();
-   
+
     $rider = Rider::where('id',$token->userid)->first();
-    $rider->balance= $rider->balance +  $ridez->cost;
+    $rider->balance= $rider->balance +  130;
     $rider->rpoint= $rider->rpoint + 3;
     $rider->save();
     $result = "done";
@@ -607,7 +582,7 @@ public function riderRegistrationApi(Request $request){
     $status = "pending";
     $balance = 0;
     $rpoint = 0;
-    $code = rand(1000,9000);
+
     $userCheck = Rider::where('username',$request->username)->first();
     if(!$userCheck){
         $rider = new Rider();
@@ -626,23 +601,25 @@ public function riderRegistrationApi(Request $request){
         $rider->username = $request->username;
         $rider->password = md5($request->password);
         $rider->image = $request->image;
+        $code = rand(1000,9000);
+        $rider->otp = $code;
+        $result = $rider->save();
         $details = [
                 'title' => 'Registration Confirmation',
                 'code' => $code
         ];
-        $rider->otp = $code;
         Mail::to($request->email)->send(new RiderRegMail($details));
-        $result = $rider->save();
+
 
     }
     }
-    
+
 
 
 
 public function OtpApi(Request $request){
     $token = Token::where('token',$request->token)->first();
-    $user = Rider::where('id',$token->userid)->first();
+    $user = Rider::orderBy('id','DESC')->first();
     if($user->otp === $request->otp){
         $user->otp = "";
         $user->save();

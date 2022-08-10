@@ -33,25 +33,20 @@ import RiderBal from './components/riderComponents/RiderBal/RiderBal';
 import Redeem from './components/riderComponents/Redeem/Redeem';
 import CashOut from './components/riderComponents/CashOut/CashOut';
 import Rdash from './components/riderComponents/dashboard/Rdash';
-<<<<<<< HEAD
-=======
 
->>>>>>> 16e792515f9e5364bbd19a12f3c818024f0989c0
 import RLogin from './components/riderComponents/RLogin/RLogin';
 import RReg from './components/riderComponents/RReg/RReg';
 import Rotp from './components/riderComponents/Rotp/Rotp';
 import ProfEdit from './components/riderComponents/ProfEdit/ProfEdit';
 import CheckReq from './components/riderComponents/CheckReq/CheckReq';
 import RideProg from './components/riderComponents/RideProg/RideProg';
+
 //end
 
 import NavBar from './components/riderComponents/NavBar/NavBar';
 import SideBar from './components/riderComponents/SideBar/SideBar';
 import Footer from './components/riderComponents/Footer/Footer';
-<<<<<<< HEAD
-=======
 
->>>>>>> 16e792515f9e5364bbd19a12f3c818024f0989c0
 
 import Addadmin from './components/adminComponents/Addadmin/Addadmin';
 import Dropdownlist from './components/adminComponents/Dropdownlist/Dropdownlist';
@@ -83,6 +78,7 @@ import Editadmin from './components/adminComponents/Adminview/Editadmin';
 import LogOut from './components/adminComponents/LogOut/LogOut';
 import Viewinfo from './components/adminComponents/Status/Viewinfo';
 import RiderData from './components/adminComponents/RiderList/RiderData';
+
 import RiderHistoty from './components/adminComponents/Charts/RiderHistoty';
 import SearchRiders from './components/adminComponents/SearchRiders.js/SearchRiders';
 
@@ -92,12 +88,7 @@ import Editprofile from './components/adminComponents/Editprofile/Editprofile';
 
 
 
-<<<<<<< HEAD
-=======
 
-
-
->>>>>>> 16e792515f9e5364bbd19a12f3c818024f0989c0
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -106,32 +97,20 @@ root.render(
     {/* Admin start */}
     <Router>
 
-<<<<<<< HEAD
+
     <Routes>
     <Route path='/admindashboard' element={<Dashboard/>} />
     <Route path='/addcustomer' element={<Addcustomer/>} />
     <Route path='/addadmin' element={<Addadmin/>}/>
     <Route path='/dropdown' element={<Dropdownlist/>}/>
     <Route path='/customerview' element={<Customerview/>}/>
-    <Route path='/customerviewprops' element={<Customerviewprops/>}/>
     <Route path='/formview/:id' element={<Formview/>}/>
     <Route path='/adminlogin' element={<Login />} />
 
     <Route path='/customerdelete' element={<Customerview/>}/>
     {/* <Route path='/customerviewprops' element={<Customerviewprops/>}/> */}
-    <Route path='/customerinfo/:id' element={<Customerinfo/>}/>
-    <Route path='/riderstatus' element={<Viewrider/>}/>
-    <Route path='/riderviewinfo/:id' element={<Viewinfo/>}/>
 
-    <Route path='/editcustomer/:id' element={<Editcustomer />} />
-    <Route path='/addRider' element={<AddRider></AddRider>} />
-    <Route path='/riderList' element={<RiderData></RiderData>} />
-    <Route path='/riderList' element={<RiderList></RiderList>} />
-  
-    <Route path='/riderUpdate/:id' element={<RiderUpdate></RiderUpdate>} />
-    <Route path='/ridecomplete' element={<RideComplete />} />
-    <Route path='/riderView/:id' element={<RiderView></RiderView>} />
-    <Route path='/logout' element={<LogOut></LogOut>} />
+
     </Routes>
     </Router>
     {/* ADmin End */}
@@ -156,15 +135,12 @@ root.render(
     {/* rider End */}
 
     <Router>
-    <Routes>
+
         {/*------------------------ Customer ----------------- */}
-=======
+
       <Routes>
 
 
-        <Route path='/addadmin' element={<Addadmin />} />
-        <Route path='/customerview' element={<Customerview />} />
-        <Route path='/formview/:id' element={<Formview />} />
         <Route exact path='/editprofile' element={<Editprofile />} />
 
 
@@ -175,16 +151,11 @@ root.render(
 
 
 
-        <Route path='/adminlogin' element={<Login />} />
-        <Route path='/admindashboard' element={<Dashboard />} />
-        <Route path='/addcustomer' element={<Addcustomer />} />
-        <Route path='/dropdown' element={<Dropdownlist />} />
         <Route exact path='/adminview' element={<Adminview />} />
 
 
->>>>>>> 16e792515f9e5364bbd19a12f3c818024f0989c0
 
-        <Route path='/customerdelete' element={<Customerview />} />
+
         {/* <Route path='/customerviewprops' element={<Customerviewprops/>}/> */}
         <Route path='/customerinfo/:id' element={<Customerinfo />} />
         <Route path='/admininfo/:id' element={<Admininfo />} />
@@ -192,7 +163,6 @@ root.render(
         <Route path='/ridecomplete' element={<RideComplete />} />
         <Route path='/riderviewinfo/:id' element={<Viewinfo />} />
         <Route path='/editcustomer/:id' element={<Editcustomer />} />
-        <Route path='/customerLogin' element={<CustomerLogin />} />
         <Route path='/editadmin/:id' element={<Editadmin />} />
         {/*  rider  Admin Part start */}
 
@@ -244,23 +214,6 @@ root.render(
 
 
 
-        {/* rider start */}
-
-
-        <Route exact path='/rideHistory' element={<RiderHis />} />
-        <Route exact path='/RiderBal' element={<RiderBal />} />
-        <Route exact path='/Redeem' element={<Redeem />} />
-        <Route exact path='/CashOut' element={<CashOut />} />
-        <Route exact path='/RLogin' element={<RLogin />} />
-        <Route exact path='/RReg' element={<RReg />} />
-        <Route exact path='/RProfile' element={<ProfEdit />} />
-        <Route exact path='/RDash' element={<Rdash />} />
-        <Route exact path='/CheckReq' element={<CheckReq />} />
-
-
-
-
-        {/* rider End */}
 
 
 
@@ -277,9 +230,6 @@ root.render(
         <Route path='/customer/viewprofile' element={<ViewProfile />} />
         <Route path='/customer/changepassword' element={<ChangePass />} />
         <Route path='/customer/chat/:id' element={<CustomerChat />} />
-
-<<<<<<< HEAD
-=======
 
         {/*------------------------ Customer ----------------- */}
 
@@ -347,7 +297,7 @@ root.render(
 
 
 
->>>>>>> 16e792515f9e5364bbd19a12f3c818024f0989c0
+
   </React.StrictMode >
 );
 
