@@ -25,6 +25,12 @@ Route::post('/customerLoginSubmit',[CustomerController::class, 'customerLoginSub
 Route::get('/customerOtp', function () {return view('customer.email.otpCheck');})->name('customerOtp');
 Route::post('/customerOtpSubmit',[CustomerController::class, 'otp'])->name('customerOtpSubmit');
 
+Route::get('authorized/google', [CustomerController::class, 'redirectToGoogle']);
+Route::get('authorized/google/callback', [CustomerController::class, 'handleGoogleCallback']);
+
+Route::get('authorized/facebook', [CustomerController::class, 'redirectToFacebook']);
+Route::get('authorized/facebook/callback', [CustomerController::class, 'handleFacebookCallback']);
+
 //dashboard
 Route::get('/customerDashboard/home', function () {return view('customer.home');})->name('customerDash')->middleware('customerValid');
 Route::get('/customerDashboard/logout',[CustomerController::class, 'logout'])->name('customerLogout')->middleware('customerValid');
@@ -158,3 +164,13 @@ Route::post('/riderOtp',[RiderController::class, 'otpsend'])->name('riderOtp');
 
 //--Rider route end--
 
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

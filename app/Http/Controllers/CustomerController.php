@@ -8,10 +8,13 @@ use App\Models\Token;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-
+use Laravel\Socialite\Facades\Socialite;
+use Exception;
 class CustomerController extends Controller
 {
     /**
@@ -96,7 +99,7 @@ class CustomerController extends Controller
 
       $validate = $request->validate([
             "name"=>"required",
-            'dob'=>'required|date',
+            'dob' => 'required|date|before:'.now()->subYears(18)->format('Y-m-d'),
             'email'=>'required|email',
             'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:11',
             'address'=>'required',
@@ -104,7 +107,7 @@ class CustomerController extends Controller
             'password'=>'required|min:8|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{5,20}$/',
             'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg'
         ],
-        ['password.regex'=>"Please use atleast 1 uppercase, 1 lowercase, 1 special charactee, 1 numbers"]
+        ['password.regex'=>"Please use atleast 1 uppercase, 1 lowercase, 1 special charactee, 1 numbers", 'dob.before'=>"Under 18 not allow to register"]
     );
     $rating = 0;
     $ErrorMsg = "User name doesn't exist";
@@ -157,6 +160,85 @@ class CustomerController extends Controller
         }
     }
     }
+
+    }
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback(Request $request)
+    {
+
+        try {
+            $user = Socialite::driver('google')->stateless()->user();
+            //dd($user);
+            $loginCheck = Customer::where('email',$user->email)->first();
+            if (!$loginCheck){
+                return redirect()->route('customerRegistration')->with('user', $user);
+            }
+            else{
+                $request->session()->put('id',$loginCheck->id);
+                $request->session()->put('name',$loginCheck->name);
+                $request->session()->put('dob',$loginCheck->dob);
+                $request->session()->put('phone',$loginCheck->phone);
+                $request->session()->put('address',$loginCheck->address);
+                $request->session()->put('customer_username',$loginCheck->username);
+                $request->session()->put('email',$loginCheck->email);
+                $request->session()->put('password',$loginCheck->password);
+                $request->session()->put('image',$loginCheck->image);
+                $request->session()->put('rating',$loginCheck->rating);
+
+                if($loginCheck->status === "0"){
+                    return  redirect()->route('customerOtp');
+                }
+                else{
+                    return  redirect()->route('customerDash');
+                }
+            }
+        } catch (Exception $e) {
+            dd($e);
+        }
+
+    }
+
+    public function redirectToFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleFacebookCallback(Request $request)
+    {
+        try {
+            $user = Socialite::driver('facebook')->stateless()->user();
+            //dd($user);
+            $loginCheck = Customer::where('email',$user->email)->first();
+            if (!$loginCheck){
+                return redirect()->route('customerRegistration')->with('user', $user);
+            }
+            else{
+                $request->session()->put('id',$loginCheck->id);
+                $request->session()->put('name',$loginCheck->name);
+                $request->session()->put('dob',$loginCheck->dob);
+                $request->session()->put('phone',$loginCheck->phone);
+                $request->session()->put('address',$loginCheck->address);
+                $request->session()->put('customer_username',$loginCheck->username);
+                $request->session()->put('email',$loginCheck->email);
+                $request->session()->put('password',$loginCheck->password);
+                $request->session()->put('image',$loginCheck->image);
+                $request->session()->put('rating',$loginCheck->rating);
+
+                if($loginCheck->status === "0"){
+                    return  redirect()->route('customerOtp');
+                }
+                else{
+                    return  redirect()->route('customerDash');
+                }
+            }
+        } catch (Exception $e) {
+            dd($e);
+        }
 
     }
 
